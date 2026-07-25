@@ -5,28 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Page not found — Next Digital Level</title>
   <meta name="robots" content="noindex">
-  <meta name="theme-color" content="#0F1012">
+  <meta name="theme-color" content="#FAF8F4">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Public+Sans:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/animations.css">
   <style>
     .nf { min-height: 100vh; display: grid; place-items: center; text-align: left; }
     .nf__inner { max-width: 46ch; padding: var(--gutter); }
-    .nf__code { font-family: var(--font-mono); font-size: var(--fs-mono); color: var(--accent);
-      text-transform: uppercase; letter-spacing: 0.18em; margin-bottom: var(--s-5); }
-    .nf h1 { font-size: clamp(3rem, 10vw, 6rem); margin-bottom: var(--s-5); }
-    .nf p { color: var(--paper-dim); margin-bottom: var(--s-7); }
+    .nf__code { font-weight: 600; font-size: var(--fs-label); color: var(--accent);
+      text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: var(--s-5); }
+    .nf h1 { font-size: clamp(2.6rem, 8vw, 4.5rem); margin-bottom: var(--s-5); }
+    .nf p { color: var(--ink-soft); margin-bottom: var(--s-7); font-size: var(--fs-lead); }
   </style>
 </head>
 <body>
   <main class="nf">
     <div class="nf__inner">
-      <p class="nf__code">Error 404 — page not found</p>
-      <h1>This one's off the <span class="accent">map.</span></h1>
-      <p>The page you're after doesn't exist or has moved. Let's get you back to solid ground.</p>
+      <p class="nf__code">Page not found</p>
+      <h1>That page has <em style="font-style:italic; color:var(--accent);">gone missing.</em></h1>
+      <p>The page you're after doesn't exist or has moved. Let's get you back to the homepage.</p>
       <a class="btn btn--primary" href="index.html">Back to home <span class="arw" aria-hidden="true">&rarr;</span></a>
     </div>
   </main>

@@ -1,6 +1,6 @@
 /* ==========================================================================
    NEXT DIGITAL LEVEL — shared script
-   Menu toggle · header state · scroll reveal · count-up · marquee clone
+   Menu toggle · header state · scroll reveal · work carousel
    Respects prefers-reduced-motion.
    ========================================================================== */
 (function () {
@@ -25,7 +25,6 @@
       var open = body.classList.toggle("menu-open");
       toggle.setAttribute("aria-expanded", String(open));
     });
-    // close when a link is chosen or Escape pressed
     nav.addEventListener("click", function (e) {
       if (e.target.closest("a") && body.classList.contains("menu-open")) {
         body.classList.remove("menu-open");
@@ -50,7 +49,6 @@
 
   /* ---- scroll reveal ---- */
   var revealEls = document.querySelectorAll(".reveal");
-  // assign stagger index within each staggered group
   document.querySelectorAll("[data-stagger]").forEach(function (group) {
     group.querySelectorAll(":scope > .reveal").forEach(function (el, i) {
       el.style.setProperty("--i", i);
@@ -71,68 +69,137 @@
     revealEls.forEach(function (el) { revObs.observe(el); });
   }
 
-  /* ---- count-up numbers ---- */
-  function formatNumber(value, decimals, group) {
-    var fixed = value.toFixed(decimals);
-    if (group) {
-      var parts = fixed.split(".");
-      parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-      fixed = parts.join(".");
+  /* ==========================================================================
+     Work carousel — vanilla, no library.
+     1 slide on mobile, 2 on tablet (>=768px), 3 on desktop (>=1024px).
+     Auto-advances every 5s, pauses on hover/focus, swipeable, keyboard
+     accessible, arrow buttons + dot indicators.
+     ========================================================================== */
+  document.querySelectorAll("[data-carousel]").forEach(function (root) {
+    var viewport = root.querySelector(".carousel__viewport");
+    var track = root.querySelector(".carousel__track");
+    var slides = Array.prototype.slice.call(root.querySelectorAll(".carousel__slide"));
+    var prevBtn = root.querySelector("[data-carousel-prev]");
+    var nextBtn = root.querySelector("[data-carousel-next]");
+    var dotsWrap = root.querySelector("[data-carousel-dots]");
+    if (!track || !slides.length) return;
+
+    var AUTO_MS = 5000;
+    var timer = null;
+    var index = 0;
+    var perView = 1;
+    var pageCount = 1;
+
+    function getPerView() {
+      var w = window.innerWidth;
+      if (w >= 1024) return 3;
+      if (w >= 768) return 2;
+      return 1;
     }
-    return fixed;
-  }
 
-  function runCounter(el) {
-    var target = parseFloat(el.getAttribute("data-target")) || 0;
-    var decimals = parseInt(el.getAttribute("data-decimals") || "0", 10);
-    var prefix = el.getAttribute("data-prefix") || "";
-    var suffix = el.getAttribute("data-suffix") || "";
-    var group = el.getAttribute("data-group") === "true";
-    var duration = 1600;
-    var startTime = null;
-
-    function step(now) {
-      if (startTime === null) startTime = now;
-      var p = Math.min((now - startTime) / duration, 1);
-      var eased = 1 - Math.pow(1 - p, 3);
-      el.firstChild.nodeValue = prefix + formatNumber(target * eased, decimals, group) + suffix;
-      if (p < 1) requestAnimationFrame(step);
+    function buildDots() {
+      if (!dotsWrap) return;
+      dotsWrap.innerHTML = "";
+      for (var i = 0; i < pageCount; i++) {
+        var dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = "carousel__dot";
+        dot.setAttribute("aria-label", "Go to slide " + (i + 1) + " of " + pageCount);
+        dot.addEventListener("click", function (idx) {
+          return function () { goTo(idx); restart(); };
+        }(i));
+        dotsWrap.appendChild(dot);
+      }
     }
-    requestAnimationFrame(step);
-  }
 
-  var counters = document.querySelectorAll("[data-counter]");
-  counters.forEach(function (el) {
-    // ensure a text node exists as first child so count-up can write to it
-    var prefix = el.getAttribute("data-prefix") || "";
-    var suffix = el.getAttribute("data-suffix") || "";
-    var decimals = parseInt(el.getAttribute("data-decimals") || "0", 10);
-    var group = el.getAttribute("data-group") === "true";
-    var target = parseFloat(el.getAttribute("data-target")) || 0;
-    var finalText = prefix + formatNumber(target, decimals, group) + suffix;
-
-    if (reduceMotion || !("IntersectionObserver" in window)) {
-      el.textContent = finalText;
-      return;
+    function updateDots() {
+      if (!dotsWrap) return;
+      var dots = dotsWrap.querySelectorAll(".carousel__dot");
+      dots.forEach(function (d, i) { d.classList.toggle("is-active", i === index); });
     }
-    el.textContent = prefix + formatNumber(0, decimals, group) + suffix;
-  });
 
-  if (!reduceMotion && "IntersectionObserver" in window) {
-    var cObs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          runCounter(entry.target);
-          cObs.unobserve(entry.target);
-        }
+    function updateArrows() {
+      if (prevBtn) prevBtn.disabled = false;
+      if (nextBtn) nextBtn.disabled = false;
+    }
+
+    function layout() {
+      perView = getPerView();
+      var slideWidth = 100 / perView;
+      slides.forEach(function (slide) {
+        slide.style.flexBasis = slideWidth + "%";
       });
-    }, { threshold: 0.5 });
-    counters.forEach(function (el) { cObs.observe(el); });
-  }
+      pageCount = Math.max(1, slides.length - perView + 1);
+      if (index > pageCount - 1) index = pageCount - 1;
+      buildDots();
+      render();
+    }
 
-  /* ---- marquee: duplicate track content once for a seamless loop ---- */
-  document.querySelectorAll(".marquee__track").forEach(function (track) {
-    if (reduceMotion) return;
-    track.innerHTML += track.innerHTML;
+    function render() {
+      var slideWidth = 100 / perView;
+      track.style.transform = "translateX(-" + (index * slideWidth) + "%)";
+      updateDots();
+      updateArrows();
+    }
+
+    function goTo(i) {
+      index = (i + pageCount) % pageCount;
+      render();
+    }
+
+    function next() { goTo(index + 1); }
+    function prevSlide() { goTo(index - 1); }
+
+    function start() {
+      if (reduceMotion) return;
+      stop();
+      timer = window.setInterval(next, AUTO_MS);
+    }
+    function stop() {
+      if (timer) { window.clearInterval(timer); timer = null; }
+    }
+    function restart() { start(); }
+
+    if (nextBtn) nextBtn.addEventListener("click", function () { next(); restart(); });
+    if (prevBtn) prevBtn.addEventListener("click", function () { prevSlide(); restart(); });
+
+    root.addEventListener("mouseenter", stop);
+    root.addEventListener("mouseleave", start);
+    root.addEventListener("focusin", stop);
+    root.addEventListener("focusout", function (e) {
+      if (!root.contains(e.relatedTarget)) start();
+    });
+
+    root.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight") { next(); restart(); }
+      if (e.key === "ArrowLeft") { prevSlide(); restart(); }
+    });
+
+    /* touch swipe */
+    var touchStartX = null;
+    var touchDeltaX = 0;
+    var vp = viewport || track;
+    vp.addEventListener("touchstart", function (e) {
+      touchStartX = e.touches[0].clientX;
+      touchDeltaX = 0;
+      stop();
+    }, { passive: true });
+    vp.addEventListener("touchmove", function (e) {
+      if (touchStartX === null) return;
+      touchDeltaX = e.touches[0].clientX - touchStartX;
+    }, { passive: true });
+    vp.addEventListener("touchend", function () {
+      if (Math.abs(touchDeltaX) > 40) {
+        if (touchDeltaX < 0) next(); else prevSlide();
+      }
+      touchStartX = null;
+      touchDeltaX = 0;
+      restart();
+    });
+
+    window.addEventListener("resize", layout, { passive: true });
+
+    layout();
+    start();
   });
 })();

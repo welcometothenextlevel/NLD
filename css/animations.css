@@ -17,16 +17,10 @@
 /* stagger children when parent carries data-stagger */
 [data-stagger] > .reveal { transition-delay: calc(var(--i, 0) * 70ms); }
 
-/* marquee keyframes — track is duplicated in markup, so -50% loops seamlessly */
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
-  .marquee__track { animation: none !important; }
-  .btn, .tlink, .service, .work__row, .service__go,
+  .carousel__track { transition: none !important; }
+  .btn, .tlink, .carousel__arrow, .carousel__dot,
   .btn .arw, .tlink .arw { transition: none !important; }
   *, *::before, *::after { scroll-behavior: auto !important; }
 }
