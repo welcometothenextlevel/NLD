@@ -1,107 +1,138 @@
+/* ==========================================================================
+   NEXT DIGITAL LEVEL — shared script
+   Menu toggle · header state · scroll reveal · count-up · marquee clone
+   Respects prefers-reduced-motion.
+   ========================================================================== */
 (function () {
-  const body = document.body;
-  const header = document.querySelector(".site-header");
-  const menuToggle = document.querySelector(".menu-toggle");
+  "use strict";
 
-  function setHeaderState() {
-    if (!header) return;
-    header.classList.toggle("scrolled", window.scrollY > 12);
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var body = document.body;
+
+  /* ---- sticky header hairline on scroll ---- */
+  var header = document.querySelector(".site-header");
+  function onScroll() {
+    if (header) header.classList.toggle("scrolled", window.scrollY > 8);
   }
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
 
-  setHeaderState();
-  window.addEventListener("scroll", setHeaderState, { passive: true });
-
-  if (menuToggle) {
-    menuToggle.addEventListener("click", () => {
-      const isOpen = body.classList.toggle("menu-open");
-      menuToggle.setAttribute("aria-expanded", String(isOpen));
+  /* ---- mobile menu ---- */
+  var toggle = document.querySelector(".menu-toggle");
+  var nav = document.querySelector(".nav-links");
+  if (toggle && nav) {
+    toggle.addEventListener("click", function () {
+      var open = body.classList.toggle("menu-open");
+      toggle.setAttribute("aria-expanded", String(open));
+    });
+    // close when a link is chosen or Escape pressed
+    nav.addEventListener("click", function (e) {
+      if (e.target.closest("a") && body.classList.contains("menu-open")) {
+        body.classList.remove("menu-open");
+        toggle.setAttribute("aria-expanded", "false");
+      }
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && body.classList.contains("menu-open")) {
+        body.classList.remove("menu-open");
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.focus();
+      }
     });
   }
 
-  document.querySelectorAll(".nav-link").forEach((link) => {
-    const linkPath = new URL(link.href).pathname.replace(/\/$/, "");
-    const currentPath = window.location.pathname.replace(/\/$/, "");
-    if (linkPath === currentPath || (currentPath.endsWith("/index.html") && linkPath.endsWith("/"))) {
-      link.classList.add("active");
-    }
+  /* ---- active nav link (relative-path aware) ---- */
+  var here = window.location.pathname.split("/").pop() || "index.html";
+  document.querySelectorAll(".nav-link").forEach(function (link) {
+    var target = link.getAttribute("href").split("/").pop();
+    if (target === here) link.classList.add("active");
   });
 
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        revealObserver.unobserve(entry.target);
-      }
+  /* ---- scroll reveal ---- */
+  var revealEls = document.querySelectorAll(".reveal");
+  // assign stagger index within each staggered group
+  document.querySelectorAll("[data-stagger]").forEach(function (group) {
+    group.querySelectorAll(":scope > .reveal").forEach(function (el, i) {
+      el.style.setProperty("--i", i);
     });
-  }, { threshold: 0.15 });
+  });
 
-  document.querySelectorAll(".reveal, .reveal-left, .reveal-right").forEach((el) => revealObserver.observe(el));
-
-  function animateCounter(el) {
-    const target = Number(el.dataset.target || 0);
-    const prefix = el.dataset.prefix || "";
-    const suffix = el.dataset.suffix || "";
-    const decimals = Number(el.dataset.decimals || 0);
-    const duration = 1700;
-    const start = performance.now();
-
-    function tick(now) {
-      const progress = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      const value = target * eased;
-      el.textContent = prefix + value.toFixed(decimals) + suffix;
-      if (progress < 1) requestAnimationFrame(tick);
-    }
-
-    requestAnimationFrame(tick);
-  }
-
-  const counterObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        animateCounter(entry.target);
-        counterObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.45 });
-
-  document.querySelectorAll("[data-counter]").forEach((el) => counterObserver.observe(el));
-
-  document.querySelectorAll("[data-tabs]").forEach((tabs) => {
-    const buttons = tabs.querySelectorAll("[data-tab-target]");
-    const panels = tabs.querySelectorAll("[data-tab-panel]");
-    buttons.forEach((button) => {
-      button.addEventListener("click", () => {
-        const target = button.dataset.tabTarget;
-        buttons.forEach((item) => item.classList.toggle("active", item === button));
-        panels.forEach((panel) => panel.classList.toggle("active", panel.dataset.tabPanel === target));
+  if (reduceMotion || !("IntersectionObserver" in window)) {
+    revealEls.forEach(function (el) { el.classList.add("is-visible"); });
+  } else {
+    var revObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revObs.unobserve(entry.target);
+        }
       });
-    });
+    }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+    revealEls.forEach(function (el) { revObs.observe(el); });
+  }
+
+  /* ---- count-up numbers ---- */
+  function formatNumber(value, decimals, group) {
+    var fixed = value.toFixed(decimals);
+    if (group) {
+      var parts = fixed.split(".");
+      parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      fixed = parts.join(".");
+    }
+    return fixed;
+  }
+
+  function runCounter(el) {
+    var target = parseFloat(el.getAttribute("data-target")) || 0;
+    var decimals = parseInt(el.getAttribute("data-decimals") || "0", 10);
+    var prefix = el.getAttribute("data-prefix") || "";
+    var suffix = el.getAttribute("data-suffix") || "";
+    var group = el.getAttribute("data-group") === "true";
+    var duration = 1600;
+    var startTime = null;
+
+    function step(now) {
+      if (startTime === null) startTime = now;
+      var p = Math.min((now - startTime) / duration, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.firstChild.nodeValue = prefix + formatNumber(target * eased, decimals, group) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  var counters = document.querySelectorAll("[data-counter]");
+  counters.forEach(function (el) {
+    // ensure a text node exists as first child so count-up can write to it
+    var prefix = el.getAttribute("data-prefix") || "";
+    var suffix = el.getAttribute("data-suffix") || "";
+    var decimals = parseInt(el.getAttribute("data-decimals") || "0", 10);
+    var group = el.getAttribute("data-group") === "true";
+    var target = parseFloat(el.getAttribute("data-target")) || 0;
+    var finalText = prefix + formatNumber(target, decimals, group) + suffix;
+
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+      el.textContent = finalText;
+      return;
+    }
+    el.textContent = prefix + formatNumber(0, decimals, group) + suffix;
   });
 
-  document.querySelectorAll("[data-carousel]").forEach((shell) => {
-    const carousel = shell.querySelector(".carousel");
-    const prev = shell.querySelector("[data-prev]");
-    const next = shell.querySelector("[data-next]");
-    let timer;
+  if (!reduceMotion && "IntersectionObserver" in window) {
+    var cObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          runCounter(entry.target);
+          cObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    counters.forEach(function (el) { cObs.observe(el); });
+  }
 
-    function move(direction) {
-      if (!carousel) return;
-      carousel.scrollBy({ left: direction * carousel.clientWidth * 0.82, behavior: "smooth" });
-    }
-
-    function start() {
-      timer = window.setInterval(() => move(1), 5000);
-    }
-
-    function stop() {
-      window.clearInterval(timer);
-    }
-
-    prev && prev.addEventListener("click", () => move(-1));
-    next && next.addEventListener("click", () => move(1));
-    shell.addEventListener("mouseenter", stop);
-    shell.addEventListener("mouseleave", start);
-    start();
+  /* ---- marquee: duplicate track content once for a seamless loop ---- */
+  document.querySelectorAll(".marquee__track").forEach(function (track) {
+    if (reduceMotion) return;
+    track.innerHTML += track.innerHTML;
   });
 })();

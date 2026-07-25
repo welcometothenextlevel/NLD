@@ -1,62 +1,32 @@
-.reveal,
-.reveal-left,
-.reveal-right {
+/* ==========================================================================
+   NEXT DIGITAL LEVEL — motion layer
+   Subtle, tasteful only. Fully disabled under prefers-reduced-motion.
+   ========================================================================== */
+
+/* scroll reveal: fade + slight upward translate.
+   Hidden state applies ONLY when JS is active (html.js), so the site is
+   fully visible with JavaScript disabled — progressive enhancement. */
+.js .reveal {
   opacity: 0;
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transform: translateY(16px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+  will-change: opacity, transform;
 }
+.js .reveal.is-visible { opacity: 1; transform: none; }
 
-.reveal {
-  transform: translateY(40px);
-}
+/* stagger children when parent carries data-stagger */
+[data-stagger] > .reveal { transition-delay: calc(var(--i, 0) * 70ms); }
 
-.reveal-left {
-  transform: translateX(-40px);
-}
-
-.reveal-right {
-  transform: translateX(40px);
-}
-
-.reveal.visible,
-.reveal-left.visible,
-.reveal-right.visible {
-  opacity: 1;
-  transform: translate(0, 0);
-}
-
-@keyframes ticker {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-@keyframes floatCard {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-12px);
-  }
+/* marquee keyframes — track is duplicated in markup, so -50% loops seamlessly */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
-    transition-duration: 0.01ms !important;
-  }
-
-  .reveal,
-  .reveal-left,
-  .reveal-right {
-    opacity: 1;
-    transform: none;
-  }
+  .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .marquee__track { animation: none !important; }
+  .btn, .tlink, .service, .work__row, .service__go,
+  .btn .arw, .tlink .arw { transition: none !important; }
+  *, *::before, *::after { scroll-behavior: auto !important; }
 }
