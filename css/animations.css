@@ -1,26 +1,312 @@
 /* ==========================================================================
-   NEXT DIGITAL LEVEL — motion layer
-   Subtle, tasteful only. Fully disabled under prefers-reduced-motion.
+   NEXT DIGITAL LEVEL — Motion layer
+   Scroll reveals · marquees · live-panel choreography
    ========================================================================== */
 
-/* scroll reveal: fade + slight upward translate.
-   Hidden state applies ONLY when JS is active (html.js), so the site is
-   fully visible with JavaScript disabled — progressive enhancement. */
+/* ---------- 1. Scroll reveal --------------------------------------------- */
 .js .reveal {
   opacity: 0;
   transform: translateY(16px);
-  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+  transition:
+    opacity 720ms cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms),
+    transform 720ms cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms);
   will-change: opacity, transform;
 }
-.js .reveal.is-visible { opacity: 1; transform: none; }
+.js .reveal.is-in { opacity: 1; transform: none; }
 
-/* stagger children when parent carries data-stagger */
-[data-stagger] > .reveal { transition-delay: calc(var(--i, 0) * 70ms); }
+.js .reveal--lg { transform: translateY(26px); transition-duration: 900ms; }
+.js .reveal--left { transform: translateX(-22px); }
+.js .reveal--right { transform: translateX(22px); }
 
+/* On narrow screens a sideways reveal would push against the viewport edge,
+   so those fall back to the plain vertical reveal. */
+@media (max-width: 900px) {
+  .js .reveal--left,
+  .js .reveal--right { transform: translateY(16px); }
+}
+.js .reveal--scale { transform: translateY(20px) scale(0.985); }
+.js .reveal--scale.is-in { transform: none; }
+
+/* Stagger helper: children reveal in sequence */
+.js .stagger > * {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1), transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.js .stagger.is-in > * { opacity: 1; transform: none; }
+.js .stagger.is-in > *:nth-child(1) { transition-delay: 0ms; }
+.js .stagger.is-in > *:nth-child(2) { transition-delay: 80ms; }
+.js .stagger.is-in > *:nth-child(3) { transition-delay: 160ms; }
+.js .stagger.is-in > *:nth-child(4) { transition-delay: 240ms; }
+.js .stagger.is-in > *:nth-child(5) { transition-delay: 320ms; }
+.js .stagger.is-in > *:nth-child(6) { transition-delay: 400ms; }
+.js .stagger.is-in > *:nth-child(7) { transition-delay: 480ms; }
+.js .stagger.is-in > *:nth-child(8) { transition-delay: 560ms; }
+
+/* ---------- 2. Hero entrance --------------------------------------------- */
+.js .hero__inner > * {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: heroIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.js .hero__inner > *:nth-child(1) { animation-delay: 0.05s; }
+.js .hero__inner > *:nth-child(2) { animation-delay: 0.15s; }
+.js .hero__inner > *:nth-child(3) { animation-delay: 0.25s; }
+.js .hero__inner > *:nth-child(4) { animation-delay: 0.35s; }
+.js .hero__inner > *:nth-child(5) { animation-delay: 0.45s; }
+.js .hero__inner > *:nth-child(6) { animation-delay: 0.55s; }
+
+@keyframes heroIn {
+  to { opacity: 1; transform: none; }
+}
+
+.js .hero__panel {
+  opacity: 0;
+  transform: translateY(34px) scale(0.98);
+  animation: heroPanelIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+}
+@keyframes heroPanelIn {
+  to { opacity: 1; transform: none; }
+}
+
+.hero__aura { animation: auraBreathe 11s ease-in-out infinite; }
+@keyframes auraBreathe {
+  0%, 100% { opacity: 0.85; transform: translateX(-50%) scale(1); }
+  50% { opacity: 1; transform: translateX(-50%) scale(1.07); }
+}
+
+/* Title word wipe */
+.js .word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+.js .word > span {
+  display: inline-block;
+  transform: translateY(105%);
+  animation: wordUp 1.05s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes wordUp {
+  to { transform: none; }
+}
+
+/* ---------- 3. Scroll cue ------------------------------------------------ */
+.scroll-cue__line::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  transform-origin: left;
+  animation: cueSweep 2.4s cubic-bezier(0.6, 0, 0.4, 1) infinite;
+}
+@keyframes cueSweep {
+  0% { transform: scaleX(0); transform-origin: left; }
+  45% { transform: scaleX(1); transform-origin: left; }
+  55% { transform: scaleX(1); transform-origin: right; }
+  100% { transform: scaleX(0); transform-origin: right; }
+}
+
+/* ---------- 4. Marquee --------------------------------------------------- */
+.marquee__track { animation: marqueeSlide 42s linear infinite; }
+.marquee__track--reverse { animation-direction: reverse; }
+.marquee:hover .marquee__track { animation-play-state: paused; }
+
+@keyframes marqueeSlide {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ---------- 5. Live panel choreography ----------------------------------- */
+/* Pulsing "live" dot */
+.panel__live::before,
+.wa__head small::before {
+  animation: livePulse 2s ease-in-out infinite;
+}
+@keyframes livePulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 currentColor; }
+  50% { opacity: 0.55; box-shadow: 0 0 0 4px transparent; }
+}
+
+/* Rows drop in one after another once the panel is visible */
+.js .panel.is-in .prow,
+.js .panel.is-in .bub,
+.js .panel.is-in .pstat,
+.js .panel.is-in .creative {
+  animation: rowIn 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.js .panel .prow,
+.js .panel .bub,
+.js .panel .pstat,
+.js .panel .creative { opacity: 0; }
+.js .panel.is-in .prow { opacity: 1; }
+
+.js .panel.is-in .prow:nth-child(1),
+.js .panel.is-in .bub:nth-child(1),
+.js .panel.is-in .pstat:nth-child(1),
+.js .panel.is-in .creative:nth-child(1) { animation-delay: 0.1s; }
+.js .panel.is-in .prow:nth-child(2),
+.js .panel.is-in .bub:nth-child(2),
+.js .panel.is-in .pstat:nth-child(2),
+.js .panel.is-in .creative:nth-child(2) { animation-delay: 0.26s; }
+.js .panel.is-in .prow:nth-child(3),
+.js .panel.is-in .bub:nth-child(3),
+.js .panel.is-in .pstat:nth-child(3),
+.js .panel.is-in .creative:nth-child(3) { animation-delay: 0.42s; }
+.js .panel.is-in .prow:nth-child(4),
+.js .panel.is-in .bub:nth-child(4),
+.js .panel.is-in .pstat:nth-child(4) { animation-delay: 0.58s; }
+.js .panel.is-in .prow:nth-child(5),
+.js .panel.is-in .bub:nth-child(5) { animation-delay: 0.74s; }
+.js .panel.is-in .prow:nth-child(6) { animation-delay: 0.9s; }
+
+@keyframes rowIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Ticking check marks */
+.js .panel.is-in .pcheck { animation: checkPop 520ms cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+.js .panel.is-in .prow:nth-child(1) .pcheck { animation-delay: 0.5s; }
+.js .panel.is-in .prow:nth-child(2) .pcheck { animation-delay: 0.9s; }
+.js .panel.is-in .prow:nth-child(3) .pcheck { animation-delay: 1.3s; }
+.js .panel.is-in .prow:nth-child(4) .pcheck { animation-delay: 1.7s; }
+.js .panel.is-in .prow:nth-child(5) .pcheck { animation-delay: 2.1s; }
+
+@keyframes checkPop {
+  from { opacity: 0; transform: scale(0.4); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Typing indicator */
+.typing { display: inline-flex; gap: 4px; align-items: center; padding: 4px 2px; }
+.typing i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.4;
+  animation: typingBounce 1.3s ease-in-out infinite;
+}
+.typing i:nth-child(2) { animation-delay: 0.18s; }
+.typing i:nth-child(3) { animation-delay: 0.36s; }
+
+@keyframes typingBounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.35; }
+  30% { transform: translateY(-4px); opacity: 1; }
+}
+
+/* Sweeping scan line on panels (subtle sheen) */
+.panel::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.045), transparent);
+  pointer-events: none;
+  z-index: 2;
+}
+.js .panel.is-in::after { animation: sheen 5.5s ease-in-out 1.2s infinite; }
+
+@keyframes sheen {
+  0% { left: -60%; }
+  55%, 100% { left: 130%; }
+}
+
+/* Counting ring for the guarantee seal */
+.seal__ring { animation: sealGlow 4.5s ease-in-out infinite; }
+@keyframes sealGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201, 162, 39, 0.24); }
+  50% { box-shadow: 0 0 0 10px rgba(201, 162, 39, 0); }
+}
+
+/* Live counter roll */
+.tick-up { display: inline-block; }
+
+/* ---------- 6. Work carousel --------------------------------------------- */
+.work__rail { transition: transform 60ms linear; }
+.work__viewport.is-dragging .work__rail { transition: none; }
+
+.wcard__skeleton::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 20%, rgba(255, 255, 255, 0.8) 50%, transparent 80%);
+  animation: skeletonSweep 1.8s ease-in-out infinite;
+}
+@keyframes skeletonSweep {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100%); }
+}
+
+/* ---------- 7. Buttons / micro ------------------------------------------- */
+.btn--primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(120% 140% at 50% 120%, rgba(255, 255, 255, 0.22), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+  pointer-events: none;
+}
+.btn--primary:hover::after { opacity: 1; }
+
+.wa__fab::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid #25d366;
+  animation: fabRipple 2.6s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+@keyframes fabRipple {
+  0% { transform: scale(1); opacity: 0.6; }
+  70%, 100% { transform: scale(1.55); opacity: 0; }
+}
+.wa.is-open .wa__fab::before { animation: none; }
+
+/* Nav pill entrance */
+.js .site-header { animation: navIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both; }
+@keyframes navIn {
+  from { opacity: 0; transform: translateY(-16px); }
+  to { opacity: 1; transform: none; }
+}
+.js .site-header.is-hidden { animation: none; }
+
+/* Calendar day entrance */
+.js .cal__grid .cal__day { animation: dayIn 380ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+@keyframes dayIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: none; }
+}
+
+.js .slots__grid .slot { animation: dayIn 340ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+/* ---------- 8. Reduced motion -------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
-  .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
-  .carousel__track { transition: none !important; }
-  .btn, .tlink, .carousel__arrow, .carousel__dot,
-  .btn .arw, .tlink .arw { transition: none !important; }
-  *, *::before, *::after { scroll-behavior: auto !important; }
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .js .reveal,
+  .js .stagger > *,
+  .js .hero__inner > *,
+  .js .hero__panel,
+  .js .panel .prow,
+  .js .panel .bub,
+  .js .panel .pstat,
+  .js .panel .creative {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .js .word > span { transform: none !important; }
+  .marquee__track { animation: none !important; }
+  .panel::after { display: none; }
 }
