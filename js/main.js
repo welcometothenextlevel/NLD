@@ -206,16 +206,16 @@
 
   /* --------------------------------------------- 6. Live work carousel */
   var WORK = [
-    { name: "Char's Beauty Room", cat: "Beauty salon · Perth", url: "https://charsbeautyroom.com.au/" },
-    { name: "Talofa Support Services", cat: "NDIS provider · WA", url: "https://talofasupportservices.com.au/" },
+    { name: "Char's Beauty Room", cat: "Beauty studio · Altona Meadows, Melbourne", url: "https://charsbeautyroom.com.au/" },
+    { name: "Talofa Support Services", cat: "NDIS provider · Melbourne", url: "https://talofasupportservices.com.au/" },
     { name: "The Visa Centre", cat: "Migration agency", url: "https://welcometothenextlevel.github.io/thevisacentre/" },
     { name: "Christus Jewelry", cat: "Jewellery · E-commerce", url: "https://welcometothenextlevel.github.io/christusjewelry/" },
     { name: "Ortensia Wedding", cat: "Wedding planning", url: "https://welcometothenextlevel.github.io/ortensiawedding/" },
     { name: "Citiport", cat: "Transport & booking", url: "https://welcometothenextlevel.github.io/citiport/" },
-    { name: "Just Quality Lawn Care", cat: "Lawn & garden", url: "https://welcometothenextlevel.github.io/justqualitylawncare/" },
+    { name: "Just Quality Lawn Care", cat: "Lawn & garden · Melbourne", url: "https://welcometothenextlevel.github.io/justqualitylawncare/" },
     { name: "Trident Cross Marine", cat: "Marine services", url: "https://welcometothenextlevel.github.io/tridentcrossmarineservices/" },
-    { name: "All In 1 Party World", cat: "Party hire", url: "https://welcometothenextlevel.github.io/allin1partyworld/" },
-    { name: "E&J Carpet Cleaning", cat: "Cleaning services", url: "https://welcometothenextlevel.github.io/ejcarpetcleaning/" },
+    { name: "All In 1 Party World", cat: "Party hire · Victoria", url: "https://welcometothenextlevel.github.io/allin1partyworld/" },
+    { name: "E&J Carpet Cleaning", cat: "Carpet cleaning", url: "https://welcometothenextlevel.github.io/ejcarpetcleaning/" },
     { name: "Everest Badminton", cat: "Sports club", url: "https://welcometothenextlevel.github.io/badminton/" }
   ];
 
