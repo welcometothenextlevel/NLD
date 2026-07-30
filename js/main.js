@@ -230,12 +230,16 @@
         '<div class="wcard__dots"><i></i><i></i><i></i></div>' +
         '<div class="wcard__url">' + host + "</div>" +
       "</div>" +
-      '<div class="wcard__screen">' +
+      // The preview area is itself a link — people tap the screenshot, not the
+      // little arrow. Hidden from assistive tech so the labelled link below
+      // remains the single announced target.
+      '<a class="wcard__screen" href="' + item.url + '" target="_blank" ' +
+        'rel="noopener noreferrer" tabindex="-1" aria-hidden="true">' +
         '<iframe class="wcard__frame" data-src="' + item.url + '" title="' + item.name +
           '" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true" ' +
           'sandbox="allow-scripts allow-same-origin" referrerpolicy="no-referrer"></iframe>' +
         '<div class="wcard__skeleton">Loading preview</div>' +
-      "</div>" +
+      "</a>" +
       '<div class="wcard__meta">' +
         "<div><b>" + item.name + "</b><span>" + item.cat + "</span></div>" +
         '<a class="wcard__open" href="' + item.url + '" target="_blank" rel="noopener noreferrer" ' +
@@ -363,8 +367,11 @@
       paused = document.hidden;
     });
 
+    var dragDist = 0;
+
     function pointerDown(e) {
       dragging = true;
+      dragDist = 0;
       viewport.classList.add("is-dragging");
       dragStartX = (e.touches ? e.touches[0].clientX : e.clientX);
       dragStartOffset = offset;
@@ -372,6 +379,7 @@
     function pointerMove(e) {
       if (!dragging) return;
       var x = (e.touches ? e.touches[0].clientX : e.clientX);
+      dragDist = Math.abs(x - dragStartX);
       offset = dragStartOffset + (x - dragStartX);
       apply();
     }
@@ -380,7 +388,17 @@
       viewport.classList.remove("is-dragging");
     }
 
-    on(viewport, "mousedown", function (e) { e.preventDefault(); pointerDown(e); });
+    // A drag must not count as a click, or letting go lands you on a client's
+    // site. Anything under ~8px of travel is treated as a tap.
+    on(viewport, "click", function (e) {
+      if (dragDist > 8) {
+        e.preventDefault();
+        e.stopPropagation();
+        dragDist = 0;
+      }
+    }, true);
+
+    on(viewport, "mousedown", pointerDown);
     on(window, "mousemove", pointerMove);
     on(window, "mouseup", pointerUp);
     on(viewport, "touchstart", pointerDown, { passive: true });

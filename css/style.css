@@ -1493,7 +1493,13 @@ em, .em { font-style: italic; color: var(--accent); }
   flex-direction: column;
   align-items: flex-end;
   gap: 12px;
+  /* The closed panel keeps its layout box (it is only visibility:hidden), so
+     without this the container swallows every click in the bottom-right
+     corner of the viewport — 43% of the screen on a phone. */
+  pointer-events: none;
 }
+.wa__panel,
+.wa__fab { pointer-events: auto; }
 .wa__panel {
   width: min(322px, calc(100vw - 40px));
   border: 1px solid var(--hairline);
@@ -1798,9 +1804,90 @@ em, .em { font-style: italic; color: var(--accent); }
   color: var(--body-dim);
 }
 
-/* ---------- 23. Responsive ----------------------------------------------- */
+/* ---------- 23. Touch targets -------------------------------------------- */
+/* Every interactive element needs roughly a 44x44 hit area (WCAG 2.5.5).
+   Where real padding would shift the layout, an invisible ::after expands the
+   target instead, so nothing moves visually. */
+
+/* Inline text links — the underline must stay put, so expand with ::after */
+.tlink { position: relative; }
+.tlink::after {
+  content: "";
+  position: absolute;
+  inset: -12px -8px;
+  border-radius: 10px;
+}
+/* Inside running text a big overlay would cover neighbouring lines and block
+   text selection, so keep the expansion tight there. */
+p .tlink::after,
+li .tlink::after,
+.hero__note .tlink::after { inset: -10px -5px; }
+
+/* Footer link lists: real padding, with the list gap reduced to compensate */
+.footer__col a { display: inline-block; padding-block: 10px; }
+.footer__col li + li { margin-top: 1px; }
+
+/* Breadcrumbs are 10px mono text, so they need a lot of padding to reach 44.
+   Negative margins pull the layout back to where it was. */
+.crumbs a {
+  display: inline-block;
+  padding: 14px 8px;
+  margin: -14px -8px;
+}
+
+.drawer__contact a { display: inline-block; padding: 10px 0; }
+/* Careful: must not set `display` here — .nav__phone is display:none until
+   1180px, and an unconditional display would unhide it and break the nav. */
+.nav__phone { align-items: center; min-height: 44px; }
+.brand { min-height: 44px; }
+.nav__link { display: inline-flex; align-items: center; min-height: 44px; }
+.btn--sm { min-height: 44px; }
+
+/* Icon buttons: 40px visually, 44px to the finger */
+.wcard__open,
+.cal__nav button { width: 40px; height: 40px; position: relative; }
+.wcard__open::after,
+.cal__nav button::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+}
+
+.wa__close { width: 32px; height: 32px; position: relative; }
+.wa__close::after { content: ""; position: absolute; inset: -6px; border-radius: 50%; }
+
+.nav__burger { position: relative; }
+.nav__burger::after { content: ""; position: absolute; inset: -2px; border-radius: 50%; }
+
+/* Calendar: slots and days must clear the minimum on a phone */
+.slot {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cal__day { min-height: 40px; }
+.cal__recap button {
+  padding: 14px 6px 14px 14px;
+  margin: -14px -6px -14px 0;
+}
+
+/* Whole preview opens the site — people tap the screenshot, not the arrow */
+.wcard__screen {
+  display: block;
+  color: inherit;
+  cursor: pointer;
+}
+.wcard__meta { position: relative; z-index: 2; }
+
+/* Dragging the carousel shouldn't select text, but card text stays selectable */
+.work__viewport { user-select: none; -webkit-user-select: none; }
+.wcard__meta { user-select: text; -webkit-user-select: text; }
+
+/* ---------- 24. Responsive ----------------------------------------------- */
 @media (min-width: 1180px) {
-  .nav__phone { display: inline-block; }
+  .nav__phone { display: inline-flex; }
 }
 
 @media (max-width: 1040px) {
