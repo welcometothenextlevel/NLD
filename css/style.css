@@ -321,7 +321,6 @@ em, .em { font-style: italic; color: var(--accent); }
   z-index: 120;
   padding-inline: 16px;
   pointer-events: none;
-  transition: transform 0.5s var(--ease-ui);
 }
 
 .nav {
@@ -347,8 +346,6 @@ em, .em { font-style: italic; color: var(--accent); }
   border-color: var(--hairline-strong);
   box-shadow: 0 16px 44px -22px rgba(20, 17, 14, 0.4);
 }
-
-.site-header.is-hidden { transform: translateY(-150%); }
 
 .brand {
   display: inline-flex;

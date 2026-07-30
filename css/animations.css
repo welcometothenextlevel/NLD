@@ -273,7 +273,6 @@
   from { opacity: 0; transform: translateY(-16px); }
   to { opacity: 1; transform: none; }
 }
-.js .site-header.is-hidden { animation: none; }
 
 /* Calendar day entrance */
 .js .cal__grid .cal__day { animation: dayIn 380ms cubic-bezier(0.16, 1, 0.3, 1) both; }

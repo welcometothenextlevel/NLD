@@ -20,14 +20,12 @@
     var drawer = $(".drawer");
     if (!header) return;
 
-    var lastY = window.pageYOffset;
-
+    // The header stays pinned at all times — it only changes its own styling
+    // once you've scrolled past the top. It deliberately does not hide on
+    // scroll-down: that reads as a glitch, and the nav CTA is the main
+    // conversion path, so it should always be one tap away.
     function onScroll() {
-      var y = window.pageYOffset;
-      header.classList.toggle("is-scrolled", y > 24);
-      if (drawer && drawer.classList.contains("is-open")) { lastY = y; return; }
-      header.classList.toggle("is-hidden", y > 520 && y > lastY + 6);
-      lastY = y;
+      header.classList.toggle("is-scrolled", window.pageYOffset > 24);
     }
 
     on(window, "scroll", onScroll, { passive: true });
@@ -38,7 +36,6 @@
       drawer.classList.toggle("is-open", open);
       burger.setAttribute("aria-expanded", open ? "true" : "false");
       document.body.classList.toggle("is-locked", open);
-      if (open) header.classList.remove("is-hidden");
     }
 
     on(burger, "click", function () {
