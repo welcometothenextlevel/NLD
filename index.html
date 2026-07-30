@@ -3,13 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Next Digital Level — Websites &amp; advertising that bring Australian businesses customers</title>
-<meta name="description" content="We build your website free of charge first — you see it in 24 hours, then decide. Then we run the Facebook and Instagram advertising that fills it. No enquiries in week one, full refund.">
+<title>Web Design &amp; Facebook Ads for Australian Small Business</title>
+<meta name="description" content="Websites and Facebook ads for Australian small business. See your site built free in 24 hours before you pay a cent. No enquiries in week one, full refund.">
 <link rel="canonical" href="https://nextdigitalevel.com/">
 <meta name="theme-color" content="#f7f4ee">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="geo.region" content="AU">
 
 <meta property="og:type" content="website">
+<meta property="og:locale" content="en_AU">
 <meta property="og:site_name" content="Next Digital Level">
 <meta property="og:title" content="Next Digital Level — More customers. More jobs. More revenue.">
 <meta property="og:description" content="See your website built for free in 24 hours before you pay a cent. Then we bring the customers to fill it — or you get your money back.">
@@ -32,16 +34,71 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "name": "Next Digital Level",
-  "description": "Website design and Facebook/Instagram advertising for Australian small businesses. Free website sample in 24 hours; first-week advertising refund guarantee.",
-  "url": "https://nextdigitalevel.com/",
-  "email": "contact@nextdigitalevel.com",
-  "telephone": "+61425887683",
-  "areaServed": "AU",
-  "priceRange": "$$",
-  "address": { "@type": "PostalAddress", "addressCountry": "AU" },
-  "sameAs": ["https://wa.me/61425887683"]
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://nextdigitalevel.com/#organisation",
+      "name": "Next Digital Level",
+      "alternateName": "Next Digital Level Australia",
+      "description": "Website design and Facebook and Instagram advertising for Australian small businesses. A free website sample is built within 24 hours before any payment, and advertising carries a first-week refund guarantee.",
+      "url": "https://nextdigitalevel.com/",
+      "logo": "https://nextdigitalevel.com/assets/logo.png",
+      "image": "https://nextdigitalevel.com/assets/logo.png",
+      "email": "contact@nextdigitalevel.com",
+      "telephone": "+61425887683",
+      "priceRange": "$$",
+      "currenciesAccepted": "AUD",
+      "address": { "@type": "PostalAddress", "addressCountry": "AU" },
+      "areaServed": [
+        { "@type": "Country", "name": "Australia" },
+        { "@type": "State", "name": "New South Wales" },
+        { "@type": "State", "name": "Victoria" },
+        { "@type": "State", "name": "Queensland" },
+        { "@type": "State", "name": "Western Australia" },
+        { "@type": "State", "name": "South Australia" }
+      ],
+      "knowsLanguage": "en-AU",
+      "sameAs": ["https://wa.me/61425887683"],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "sales",
+        "telephone": "+61425887683",
+        "email": "contact@nextdigitalevel.com",
+        "areaServed": "AU",
+        "availableLanguage": "English"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Website design and development",
+              "url": "https://nextdigitalevel.com/websites.html"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Facebook and Instagram advertising management",
+              "url": "https://nextdigitalevel.com/advertising.html"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://nextdigitalevel.com/#website",
+      "url": "https://nextdigitalevel.com/",
+      "name": "Next Digital Level",
+      "inLanguage": "en-AU",
+      "publisher": { "@id": "https://nextdigitalevel.com/#organisation" }
+    }
+  ]
 }
 </script>
 </head>
