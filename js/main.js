@@ -206,13 +206,13 @@
     { name: "Char's Beauty Room", cat: "Beauty studio · Altona Meadows, Melbourne", url: "https://charsbeautyroom.com.au/" },
     { name: "Talofa Support Services", cat: "NDIS provider · Melbourne", url: "https://talofasupportservices.com.au/" },
     { name: "The Visa Centre", cat: "Migration agency", url: "https://welcometothenextlevel.github.io/thevisacentre/" },
-    { name: "Christus Jewelry", cat: "Jewellery · E-commerce", url: "https://welcometothenextlevel.github.io/christusjewelry/" },
+    { name: "Christus Jewelry", cat: "Jewellery · E-commerce", url: "https://christusjewelry.com/" },
     { name: "Ortensia Wedding", cat: "Wedding planning", url: "https://welcometothenextlevel.github.io/ortensiawedding/" },
     { name: "Citiport", cat: "Transport & booking", url: "https://welcometothenextlevel.github.io/citiport/" },
     { name: "Just Quality Lawn Care", cat: "Lawn & garden · Melbourne", url: "https://welcometothenextlevel.github.io/justqualitylawncare/" },
-    { name: "Trident Cross Marine", cat: "Marine services", url: "https://welcometothenextlevel.github.io/tridentcrossmarineservices/" },
+    { name: "Trident Cross Marine", cat: "Mobile boat detailing", url: "https://tridentcrossmarineservices.com/" },
     { name: "All In 1 Party World", cat: "Party hire · Victoria", url: "https://welcometothenextlevel.github.io/allin1partyworld/" },
-    { name: "E&J Carpet Cleaning", cat: "Carpet cleaning", url: "https://welcometothenextlevel.github.io/ejcarpetcleaning/" },
+    { name: "E&J Carpet Cleaning", cat: "Carpet cleaning · Liverpool & Fairfield", url: "https://ej-carpetcleaning.com/" },
     { name: "Everest Badminton", cat: "Sports club", url: "https://welcometothenextlevel.github.io/badminton/" }
   ];
 
@@ -263,8 +263,11 @@
     if (!viewport) return;
 
     // Each card is a live site, so on phones we show a shorter set rather than
-    // making someone on mobile data load every preview twice over.
-    var items = window.innerWidth < 720 ? WORK.slice(0, 6) : WORK;
+    // making someone on mobile data load every preview twice over. A width of 0
+    // means we can't measure yet (hidden frame, pre-render) — assume desktop
+    // rather than silently serving everyone the short list.
+    var vw = window.innerWidth || document.documentElement.clientWidth || 0;
+    var items = (vw && vw < 720) ? WORK.slice(0, 6) : WORK;
 
     var rail = document.createElement("div");
     rail.className = "work__rail";
@@ -286,7 +289,10 @@
       if (!frame || frame.src) return;
       frame.src = frame.getAttribute("data-src");
       on(frame, "load", function () { card.classList.add("is-loaded"); });
-      setTimeout(function () { card.classList.add("is-loaded"); }, 5000);
+      // Fallback for sites that never fire load. Generous, because dropping the
+      // skeleton too early leaves a blank white card on image-heavy sites —
+      // worse than showing "Loading preview" for a few seconds longer.
+      setTimeout(function () { card.classList.add("is-loaded"); }, 12000);
     }
 
     if ("IntersectionObserver" in window) {
