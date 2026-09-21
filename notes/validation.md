@@ -77,3 +77,25 @@ Business Profile and Search Console operations are outside this website update.
   homepage cards, the footer and sitemap.xml.
 - `python3 scripts/check-site.py`: 21 pages pass; `node --check` and
   `git diff --check` clean. Checked at 1440 px (headless) and 390 px (in-app).
+
+# Validation — 22 September 2026 (dark mode, English, socials, mobile fixes)
+
+- Dark mode: token overrides under `:root[data-theme="dark"]`, applied before
+  first paint by an inline head script (saved choice, else OS preference);
+  toggles in the nav (≥1200 px) and in the mobile drawer; dot canvases re-read
+  the theme every frame.
+- English: `js/i18n.js` swaps French markup for English from a dictionary
+  matched on each element's own innerHTML (SVG icons preserved); reloads on
+  toggle so headings re-split cleanly. Covers the shared chrome, the whole
+  homepage, the service-page scaffolding, the portfolio labels and the
+  assistant (English answers + keywords for every intent).
+- Instagram and Facebook links in every footer and in the Organization
+  `sameAs`.
+- Portfolio drift no longer pauses forever on touch (pointerenter from a touch
+  pointer was treated as a hover).
+- Hero demo: no auto-advance on touch devices; the guided cursor only runs on
+  fine pointers after 6.5 s idle; a pulsing ring on "Voir l’étape suivante"
+  until the first interaction.
+- Method: on ≤900 px each vignette moves inside its step and plays when it
+  scrolls into view.
+- Validator: 21 pages pass; JS syntax and `git diff --check` clean.

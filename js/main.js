@@ -102,7 +102,7 @@
     { name: "All In 1 Party World", cat: "Party hire · Victoria", url: "https://welcometothenextlevel.github.io/allin1partyworld/", img: "allin1" },
     { name: "E&J Carpet Cleaning", cat: "Carpet cleaning · Liverpool & Fairfield", url: "https://ej-carpetcleaning.com/", img: "ejcarpet" },
     { name: "Everest Badminton", cat: "Sports club", url: "https://welcometothenextlevel.github.io/badminton/", img: "everest" }
-  ];  const categories = ['Institut de beauté · Melbourne', 'Services NDIS · Melbourne', 'Agence de migration', 'Bijouterie · E-commerce', 'Organisation de mariages', 'Transport & réservation', 'Jardinage · Melbourne', 'Entretien de bateaux', 'Location événementielle · Victoria', 'Nettoyage de moquettes', 'Club sportif'];
+  ];  const categories = window.NDL_LANG === 'en' ? ['Beauty studio · Melbourne', 'NDIS services · Melbourne', 'Migration agency', 'Jewellery · E-commerce', 'Wedding planning', 'Transport & booking', 'Lawn care · Melbourne', 'Boat detailing', 'Party hire · Victoria', 'Carpet cleaning', 'Sports club'] : ['Institut de beauté · Melbourne', 'Services NDIS · Melbourne', 'Agence de migration', 'Bijouterie · E-commerce', 'Organisation de mariages', 'Transport & réservation', 'Jardinage · Melbourne', 'Entretien de bateaux', 'Location événementielle · Victoria', 'Nettoyage de moquettes', 'Club sportif'];
   const viewport = $('[data-work]');
   if (viewport) {
     const rail = document.createElement('div'); rail.className = 'work__rail';
@@ -110,7 +110,7 @@
       const card = document.createElement('article'); card.className = 'wcard';
       const monogram = item.name.split(' ').slice(0, 2).map(w => w[0]).join('');
       const host = item.url.replace(/^https?:\/\//, '').replace(/\/$/, '');
-      card.innerHTML = `<div class="project-shot"><div class="project-shot__bar" aria-hidden="true"><i></i><i></i><i></i><span>${host}</span></div><img src="/assets/work/${item.img}-sm.webp" srcset="/assets/work/${item.img}-sm.webp 720w, /assets/work/${item.img}.webp 1280w" sizes="(max-width: 720px) 78vw, 350px" width="720" height="500" loading="lazy" decoding="async" alt="Page d’accueil du site ${item.name}"><span class="project-shot__num" aria-hidden="true">${monogram}</span><span class="project-shot__badge">Projet ${String(index + 1).padStart(2, '0')}</span></div><div class="wcard__meta"><div><b>${item.name}</b><span>${categories[index]}</span></div></div><div class="project-actions"><a href="${item.url}" target="_blank" rel="noopener noreferrer" aria-label="Voir le site ${item.name} (nouvel onglet)">Voir le site <svg class="ico" viewBox="0 0 16 16" width="14" height="14" fill="none" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a><button type="button" aria-expanded="false">Aperçu en direct</button></div>`;
+      card.innerHTML = `<div class="project-shot"><div class="project-shot__bar" aria-hidden="true"><i></i><i></i><i></i><span>${host}</span></div><img src="/assets/work/${item.img}-sm.webp" srcset="/assets/work/${item.img}-sm.webp 720w, /assets/work/${item.img}.webp 1280w" sizes="(max-width: 720px) 78vw, 350px" width="720" height="500" loading="lazy" decoding="async" alt="Page d’accueil du site ${item.name}"><span class="project-shot__num" aria-hidden="true">${monogram}</span><span class="project-shot__badge">Projet ${String(index + 1).padStart(2, '0')}</span></div><div class="wcard__meta"><div><b>${item.name}</b><span>${categories[index]}</span></div></div><div class="project-actions"><a href="${item.url}" target="_blank" rel="noopener noreferrer" aria-label="Voir le site ${item.name} (nouvel onglet)">${window.NDL_LANG === 'en' ? 'Visit site' : 'Voir le site'} <svg class="ico" viewBox="0 0 16 16" width="14" height="14" fill="none" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a><button type="button" aria-expanded="false">${window.NDL_LANG === 'en' ? 'Live preview' : 'Aperçu en direct'}</button></div>`;
       const toggle = $('button', card);
       toggle.addEventListener('click', () => {
         let frame = $('iframe', card);
@@ -121,13 +121,13 @@
           frame.referrerPolicy = 'no-referrer'; frame.src = item.url;
           card.appendChild(frame);
           const note = document.createElement('p'); note.className = 'project-preview-note';
-          note.textContent = 'Site externe. Si l’aperçu est indisponible, utilisez « Voir le site ».';
+          note.textContent = window.NDL_LANG === 'en' ? 'External site. If the preview is unavailable, use “Visit site”.' : 'Site externe. Si l’aperçu est indisponible, utilisez « Voir le site ».';
           card.appendChild(note);
         }
         const open = toggle.getAttribute('aria-expanded') !== 'true';
         frame.hidden = !open; $('.project-preview-note', card).hidden = !open;
         toggle.setAttribute('aria-expanded', String(open));
-        toggle.textContent = open ? 'Fermer l’aperçu' : 'Aperçu en direct';
+        toggle.textContent = window.NDL_LANG === 'en' ? (open ? 'Close preview' : 'Live preview') : (open ? 'Fermer l’aperçu' : 'Aperçu en direct');
       });
       rail.appendChild(card);
     });
@@ -146,16 +146,19 @@
       raf = requestAnimationFrame(tick);
     }
     const start = () => { if (!raf) { last = 0; raf = requestAnimationFrame(tick); } };
-    viewport.addEventListener('pointerenter', () => { paused = true; });
-    viewport.addEventListener('pointerleave', () => { paused = false; dragging = false; viewport.classList.remove('is-dragging'); });
+    // Only a real mouse pauses on hover; touch pointers fire enter without ever leaving.
+    viewport.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') paused = true; });
+    viewport.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') { paused = false; dragging = false; viewport.classList.remove('is-dragging'); } });
     viewport.addEventListener('focusin', () => { paused = true; });
     viewport.addEventListener('focusout', () => { paused = false; });
     viewport.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse') return; dragging = true; dragX = e.clientX; dragStart = viewport.scrollLeft; viewport.classList.add('is-dragging'); });
     window.addEventListener('pointermove', e => { if (!dragging) return; viewport.scrollLeft = dragStart - (e.clientX - dragX); });
     window.addEventListener('pointerup', () => { if (dragging) { dragging = false; viewport.classList.remove('is-dragging'); } });
     viewport.addEventListener('click', e => { if (dragging === false && Math.abs(viewport.scrollLeft - dragStart) > 6 && e.target.closest('a')) e.preventDefault(); }, true);
-    viewport.addEventListener('touchstart', () => { paused = true; }, { passive: true });
-    viewport.addEventListener('touchend', () => { setTimeout(() => { paused = false; }, 2500); }, { passive: true });
+    let touchTimer = 0;
+    viewport.addEventListener('touchstart', () => { paused = true; clearTimeout(touchTimer); }, { passive: true });
+    viewport.addEventListener('touchend', () => { clearTimeout(touchTimer); touchTimer = setTimeout(() => { paused = false; }, 2500); }, { passive: true });
+    viewport.addEventListener('touchcancel', () => { clearTimeout(touchTimer); touchTimer = setTimeout(() => { paused = false; }, 2500); }, { passive: true });
     if ('IntersectionObserver' in window) new IntersectionObserver(en => { visible = en[0].isIntersecting; if (visible) start(); }).observe(viewport); else { visible = true; start(); }
     function move(direction) { viewport.scrollBy({ left: direction * ($('.wcard', rail).offsetWidth + 22), behavior: reduced.matches ? 'instant' : 'smooth' }); }
     $('[data-work-prev]')?.addEventListener('click', () => move(-1));

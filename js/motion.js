@@ -104,9 +104,15 @@
       const ctx = canvas.getContext('2d', { alpha: true });
       if (!ctx) return;
       const GAP = 26, RADIUS = 170, PUSH = 22;
-      const base = dark ? [201, 162, 39] : [11, 110, 79];   // resting tint
-      const hot = dark ? [224, 191, 82] : [201, 162, 39];   // near-cursor tint
-      const restAlpha = dark ? 0.22 : 0.30;
+      // Resting / near-cursor tints; re-read each frame so the theme toggle is instant.
+      let base, hot, restAlpha;
+      function palette() {
+        const night = dark || doc.dataset.theme === 'dark';
+        base = night ? [201, 162, 39] : [11, 110, 79];
+        hot = night ? [224, 191, 82] : [201, 162, 39];
+        restAlpha = night ? (dark ? 0.22 : 0.26) : 0.30;
+      }
+      palette();
       let w = 0, h = 0, dpr = 1, cols = 0, rows = 0, pts = [];
       let mx = -9999, my = -9999, tx = -9999, ty = -9999;
       let raf = 0, visible = false, t0 = performance.now(), idle = 0;
@@ -128,7 +134,7 @@
 
       function draw(now) {
         raf = 0;
-        const t = (now - t0) / 1000;
+        const t = (now - t0) / 1000; palette();
         mx = lerp(mx, tx, 0.12); my = lerp(my, ty, 0.12);
         ctx.clearRect(0, 0, w, h);
         let active = false;
@@ -173,6 +179,7 @@
       if ('IntersectionObserver' in window) new IntersectionObserver(en => { visible = en[0].isIntersecting; if (visible) start(); }).observe(region);
       else { visible = true; }
       document.addEventListener('visibilitychange', () => { if (!document.hidden) start(); });
+      document.addEventListener('ndl:theme', start);
       resize(); start();
     });
   })();
@@ -309,13 +316,29 @@
       steps.forEach((s, k) => { s.classList.toggle('is-active', k === i); s.classList.toggle('is-past', k < i); });
       if (num) { num.textContent = steps[i].dataset.step; num.classList.remove('is-flip'); void num.offsetWidth; num.classList.add('is-flip'); }
       if (bar) bar.style.transform = `scaleX(${(i + 1) / steps.length})`;
-      $$('[data-method-scene]', root).forEach((sc, k) => sc.classList.toggle('is-on', k === i));
+      if (!window.matchMedia('(max-width: 900px)').matches) $$('[data-method-scene]', root).forEach((sc, k) => sc.classList.toggle('is-on', k === i));
     };
     const io = new IntersectionObserver(entries => {
       entries.forEach(en => { if (en.isIntersecting) set(steps.indexOf(en.target)); });
     }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
     steps.forEach(s => io.observe(s));
     set(0);
+    // Narrow screens: the pinned column is not sticky, so each vignette moves
+    // into its own step and plays once it scrolls into view.
+    const narrow = window.matchMedia('(max-width: 900px)');
+    const scenes = $$('[data-method-scene]', root), scenesHome = $('.method__scenes', root);
+    function place() {
+      if (narrow.matches) {
+        scenes.forEach((sc, k) => { const step = steps[k]; if (step && sc.parentElement !== step) { step.appendChild(sc); sc.classList.add('mscene--inline'); } });
+        root.classList.add('method--inline');
+      } else {
+        scenes.forEach(sc => { if (sc.parentElement !== scenesHome) { scenesHome.appendChild(sc); sc.classList.remove('mscene--inline'); } });
+        root.classList.remove('method--inline');
+      }
+    }
+    place(); narrow.addEventListener('change', place);
+    const seen = new IntersectionObserver(en => en.forEach(x => { if (x.isIntersecting && narrow.matches) { x.target.classList.add('is-on'); seen.unobserve(x.target); } }), { threshold: 0.35 });
+    scenes.forEach(sc => seen.observe(sc));
   })();
 
   /* ---------- Extra reveal targets not covered by main.js ---------- */
@@ -484,7 +507,8 @@
     if (!root) return;
     const slides = $$('[data-demo-slide]', root), tiles = $$('[data-demo-go]', root), dots = $$('.demo-progress i', root);
     const next = $('[data-demo-next]', root), cursor = $('.demo-cursor', root), count = $('[data-demo-count]', root.closest('.panel') || document);
-    const AUTO = 5200; let i = 0, timer = 0, idle = 0, visible = true, busy = false;
+    const AUTO = 7000, TOUR = fine.matches && !reduced.matches; // the guided tour only runs where a drawn cursor makes sense
+    let i = 0, timer = 0, idle = 0, visible = true, touched = false;
     function go(n, manual) {
       const k = (n + slides.length) % slides.length; if (k === i && manual === 'init') return;
       slides.forEach((sl, j) => { sl.classList.toggle('is-out', j === i && j !== k); sl.classList.toggle('is-on', j === k); });
@@ -492,8 +516,9 @@
       dots.forEach((d, j) => d.classList.toggle('is-on', j <= k));
       if (count) count.textContent = 'Étape ' + (k + 1) + ' / ' + slides.length;
       i = k; clearTimeout(idle); clearTimeout(timer);
-      // manual interaction pauses the guided tour for a while
-      idle = setTimeout(arm, manual === true ? 12000 : AUTO);
+      if (manual === true) { touched = true; root.classList.add('is-touched'); }
+      // manual interaction pauses the guided tour for a while; on touch devices there is no tour at all
+      if (TOUR) idle = setTimeout(arm, manual === true ? 15000 : AUTO);
     }
     function press(el, then) {
       el.classList.add('is-pressed'); setTimeout(() => { el.classList.remove('is-pressed'); then(); }, 160);
@@ -505,7 +530,7 @@
     }
     function autoStep() {
       const target = tiles[(i + 1) % tiles.length];
-      if (!cursor || !fine.matches || getComputedStyle(cursor).display === 'none') { go(i + 1); return; }
+      if (!cursor || !TOUR || getComputedStyle(cursor).display === 'none') return;
       const r = root.getBoundingClientRect(), t = target.getBoundingClientRect();
       cursor.style.left = (t.left - r.left + t.width * 0.55) + 'px';
       cursor.style.top = (t.top - r.top + t.height * 0.6) + 'px';
@@ -518,7 +543,7 @@
     root.addEventListener('click', e => { if (e.target.closest('button')) return; go(i + 1, true); });
     if ('IntersectionObserver' in window) new IntersectionObserver(en => { visible = en[0].isIntersecting; if (visible) arm(); else { clearTimeout(timer); clearTimeout(idle); } }, { threshold: 0.4 }).observe(root);
     document.addEventListener('visibilitychange', () => { if (document.hidden) { clearTimeout(timer); clearTimeout(idle); } else arm(); });
-    // first auto step once the hero has settled
-    idle = setTimeout(arm, 3800);
+    // first auto step once the hero has settled (desktop only)
+    if (TOUR) idle = setTimeout(arm, 6500);
   })();
 })();
