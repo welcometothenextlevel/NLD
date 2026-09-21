@@ -26,8 +26,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="/css/style.css?v=a720771c68ab">
-<link rel="stylesheet" href="/css/animations.css?v=85a2dab61947">
+<link rel="stylesheet" href="/css/style.css?v=20260921a">
+<link rel="stylesheet" href="/css/animations.css?v=20260921a">
+<link rel="stylesheet" href="/css/motion.css?v=20260921a">
+<link rel="stylesheet" href="/css/chat.css?v=20260921a">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -52,10 +54,23 @@
   }
 }
 </script>
-<script src="/js/main.js?v=d126026ea755" defer></script>
+<script src="/js/main.js?v=20260921a" defer></script>
+<script src="/js/motion.js?v=20260921a" defer></script>
+<script src="/js/chat.js?v=20260921a" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Aller au contenu</a>
+<div class="loader" aria-hidden="true">
+  <div class="loader__inner">
+    <svg class="loader__mark" viewBox="0 0 32 32" fill="none">
+      <rect class="loader__box" x="1" y="1" width="30" height="30" rx="7.5" stroke="#0b6e4f" stroke-width="1.5"/>
+      <path class="loader__path" d="M8 21.5 13.6 15.4 17.6 19.4 24 11" stroke="#0b6e4f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path class="loader__path loader__path--gold" d="M24 11h-4.7M24 11v4.7" stroke="#c9a227" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="loader__word">Next Digital <i>Level</i></span>
+  </div>
+</div>
+<div class="scroll-progress" aria-hidden="true"></div>
 <header class="site-header">
 <nav class="nav" aria-label="Navigation principale">
 <a class="brand" href="/index.html" aria-label="Next Digital Level — accueil">
@@ -67,32 +82,35 @@
       <span class="brand__word">Next Digital <i>Level</i></span>
     </a><span class="nav__sep" aria-hidden="true"></span>
 <div class="nav__links">
-<a class="nav__link" href="/websites.html">Sites sur mesure</a><a class="nav__link" href="/index.html#work">Réalisations</a><a class="nav__link" href="/index.html#process">La méthode</a>
+<a class="nav__link" href="/websites.html">Sites sur mesure</a><a class="nav__link" href="/index.html#work">Réalisations</a><a class="nav__link" href="/index.html#process">La méthode</a><a class="nav__link" href="/index.html#studio">Le studio</a>
 </div>
-<a class="nav__phone" href="tel:+41762632817">+41 76 263 28 17</a><a class="btn btn--primary nav__cta" href="/book.html">Aperçu gratuit <span aria-hidden="true">↗</span></a><button class="nav__burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="drawer"><span></span><span></span><span></span></button>
+<a class="nav__phone" href="tel:+41762632817">+41 76 263 28 17</a><a class="btn btn--primary nav__cta" href="/book.html" data-magnetic>Aperçu gratuit <span aria-hidden="true">↗</span></a><button class="nav__burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="drawer"><span></span><span></span><span></span></button>
 </nav>
 </header>
 <div class="drawer" id="drawer" inert>
-<a class="drawer__link" href="/websites.html"><span>01</span> Sites sur mesure</a><a class="drawer__link" href="/index.html#work"><span>02</span> Réalisations</a><a class="drawer__link" href="/index.html#process"><span>03</span> La méthode</a><a class="drawer__link" href="/advertising.html"><span>04</span> Visibilité</a>
+<a class="drawer__link" href="/websites.html"><span>01</span> Sites sur mesure</a><a class="drawer__link" href="/index.html#work"><span>02</span> Réalisations</a><a class="drawer__link" href="/index.html#process"><span>03</span> La méthode</a><a class="drawer__link" href="/index.html#studio"><span>04</span> Le studio</a><a class="drawer__link" href="/advertising.html"><span>05</span> Visibilité</a>
 <div class="drawer__foot">
 <a class="btn btn--primary btn--lg" href="/book.html">Demander mon aperçu<span aria-hidden="true">↗</span></a><a class="btn btn--ghost btn--lg" href="tel:+41762632817">Appeler le +41 76 263 28 17<span aria-hidden="true">↗</span></a><a class="tlink" href="https://wa.me/41762632817">Écrire sur WhatsApp</a>
 </div>
 </div>
 <main id="main">
-<section class="hero swiss-hero">
-<div class="hero__aura" aria-hidden="true">
-</div>
-<div class="dot-field" aria-hidden="true">
-</div>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero swiss-hero" data-dots-region>
+<div class="hero__aura" aria-hidden="true"></div>
+<canvas class="dot-canvas" data-dots aria-hidden="true"></canvas>
 <div class="container hero-layout">
 <div class="hero__inner">
-<span class="hero__badge"><span class="pip" aria-hidden="true"></span>Entreprise suisse · PME &amp; indépendants</span><h1 class="t-display-xl hero__title">Votre savoir-faire.<br>Un site <em>à sa hauteur.</em></h1><p class="t-body-lg hero__lead">Des sites web codés sur mesure pour les PME de Suisse romande. Découvrez votre <strong>aperçu gratuit avant de vous engager.</strong></p>
+<span class="hero__badge"><span class="pip" aria-hidden="true"></span>Entreprise suisse · PME &amp; indépendants</span>
+<h1 class="t-display-xl hero__title" data-split="lines">Votre savoir-faire.<br>Un site<br><em>à sa hauteur.</em></h1>
+<p class="t-body-lg hero__lead">Des sites web codés sur mesure pour les PME de Suisse romande. Découvrez votre <strong>aperçu gratuit avant de vous engager.</strong></p>
 <div class="hero__actions">
-<a class="btn btn--primary btn--lg" href="/book.html">Demander mon aperçu gratuit<span aria-hidden="true">↗</span></a><a class="btn btn--ghost btn--lg" href="tel:+41762632817">Nous appeler<span aria-hidden="true">↗</span></a>
+<a class="btn btn--primary btn--lg" href="/book.html" data-magnetic>Demander mon aperçu gratuit<span aria-hidden="true">↗</span></a><a class="btn btn--ghost btn--lg" href="tel:+41762632817" data-magnetic>Nous appeler<span aria-hidden="true">↗</span></a>
 </div>
-<p class="hero__note">Sans template générique. Sans frais récurrents.</p><a class="hero-work-link" href="#work">Découvrez nos réalisations <span aria-hidden="true">↓</span></a>
+<p class="hero__note">Sans template générique. Sans frais récurrents.</p>
+<a class="hero-work-link" href="#work">Découvrez nos réalisations <span aria-hidden="true">↓</span></a>
 </div>
-<div class="preview-composition">
+<div class="preview-composition" data-tilt>
 <div class="panel preview-browser">
 <div class="panel__bar">
 <span class="panel__title">Votre entreprise · votre futur site</span><span class="preview-dots" aria-hidden="true">● ● ●</span>
@@ -107,16 +125,11 @@ Ce que vous faites bien.<br><em>Enfin bien présenté.</em>
 </div>
 <p>Vos services, vos réalisations et une façon simple de vous contacter.</p><span class="demo-button">Parlons de votre projet ↗</span>
 <div class="demo-tiles" aria-hidden="true">
-<div>
-<span>01</span>Votre expertise
+<div><span>01</span>Votre expertise</div>
+<div><span>02</span>Vos réalisations</div>
+<div><span>03</span>Votre différence</div>
 </div>
-<div>
-<span>02</span>Vos réalisations
-</div>
-<div>
-<span>03</span>Votre différence
-</div>
-</div>
+<div class="demo-cursor" aria-hidden="true"><svg viewBox="0 0 20 20" width="18" height="18"><path d="M3 2l13 7.5-5.6 1.4L13 17.5l-2.3.9-2.6-6.5L3 15z" fill="#14110e" stroke="#fff" stroke-width="1.2"/></svg></div>
 </div>
 <div class="panel__foot">
 <span>Illustration de présentation</span><span>100 % sur mesure</span>
@@ -125,52 +138,116 @@ Ce que vous faites bien.<br><em>Enfin bien présenté.</em>
 <div class="preview-caption">
 <span class="pip" aria-hidden="true"></span><span><b>D’abord, vous voyez.</b><br>Ensuite, vous décidez.</span><span class="preview-arrow" aria-hidden="true">↗</span>
 </div>
+<div class="preview-orbit preview-orbit--a" aria-hidden="true"><span class="eyebrow">Performance</span><b>Chargement rapide</b></div>
+<div class="preview-orbit preview-orbit--b" aria-hidden="true"><span class="eyebrow">Mobile</span><b>Un geste pour appeler</b></div>
 </div>
 </div>
 </section>
+
+<!-- ═══════════ MARQUEE ═══════════ -->
+<div class="ticker" aria-hidden="true">
+<div class="ticker__track">
+<span>Genève</span><i>✦</i><span>Lausanne</span><i>✦</i><span>Fribourg</span><i>✦</i><span>Neuchâtel</span><i>✦</i><span>Valais</span><i>✦</i><span>Vaud</span><i>✦</i><span>Jura</span><i>✦</i><span>Suisse romande</span><i>✦</i>
+<span>Genève</span><i>✦</i><span>Lausanne</span><i>✦</i><span>Fribourg</span><i>✦</i><span>Neuchâtel</span><i>✦</i><span>Valais</span><i>✦</i><span>Vaud</span><i>✦</i><span>Jura</span><i>✦</i><span>Suisse romande</span><i>✦</i>
+</div>
+<div class="ticker__track ticker__track--reverse">
+<span><em>Codé</em> sur mesure</span><i>✦</i><span>Sans template</span><i>✦</i><span>Sans abonnement</span><i>✦</i><span>Prêt sous 7 jours</span><i>✦</i><span>Suivi 12 mois</span><i>✦</i><span>Aperçu gratuit</span><i>✦</i>
+<span><em>Codé</em> sur mesure</span><i>✦</i><span>Sans template</span><i>✦</i><span>Sans abonnement</span><i>✦</i><span>Prêt sous 7 jours</span><i>✦</i><span>Suivi 12 mois</span><i>✦</i><span>Aperçu gratuit</span><i>✦</i>
+</div>
+</div>
+
+<!-- ═══════════ OFFER STRIP ═══════════ -->
 <div class="container">
-<div class="offer-strip">
-<div>
-<b>7 jours</b><span>pour un site prêt*</span>
-</div>
-<div>
-<b>12 mois</b><span>de suivi inclus</span>
-</div>
-<div>
-<b>Sur mesure</b><span>entièrement codé pour vous</span>
-</div>
-<div>
-<b>7j/7</b><span>à votre écoute</span>
-</div>
+<div class="offer-strip reveal">
+<div><b><span data-count="7">7</span> jours</b><span>pour un site prêt*</span></div>
+<div><b><span data-count="12">12</span> mois</b><span>de suivi inclus</span></div>
+<div><b>Sur mesure</b><span>entièrement codé pour vous</span></div>
+<div><b>7j/7</b><span>à votre écoute</span></div>
 </div>
 <p class="offer-note">* Après validation du projet et réception des éléments nécessaires.</p>
 </div>
-<section class="section " id="services">
+
+<!-- ═══════════ SERVICES ═══════════ -->
+<section class="section" id="services">
 <div class="container">
-<div class="sec-head reveal">
-<span class="eyebrow">/ Un site qui travaille pour vous</span><h2 class="t-display-lg">Inspirer confiance.<br>Donner envie de vous contacter.</h2>
+<div class="sec-head sec-head--split reveal">
+<div>
+<span class="eyebrow">/ Un site qui travaille pour vous</span>
+<h2 class="t-display-lg" data-split="words">Inspirer confiance.<br>Donner envie de vous contacter.</h2>
+</div>
+<p class="t-body sec-head__aside">Chaque site que nous livrons réunit six ingrédients. Aucun n’est optionnel, aucun n’est facturé en plus.</p>
 </div>
 <div class="grid grid--3 stagger">
-<article class="card">
-<span class="eyebrow">01</span><h3 class="t-display-sm">Un site qui vous ressemble</h3><p class="t-body">Entièrement codé sur mesure, sans template générique. Une structure, des textes et un design pensés pour votre activité.</p>
+<article class="card card--spot" data-spot>
+<span class="card__num">01</span>
+<svg class="card__glyph" viewBox="0 0 40 40" fill="none" aria-hidden="true"><rect x="4" y="6" width="32" height="28" rx="4" stroke="currentColor" stroke-width="1.4"/><path d="M4 13h32M10 9.5h2M14 9.5h2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M10 20h12M10 25h20" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+<h3 class="t-display-sm">Design à votre image</h3>
+<p class="t-body">Une direction artistique pensée pour votre métier, vos couleurs et votre clientèle. Pas un thème acheté, pas un gabarit rempli.</p>
 </article>
-<article class="card">
-<span class="eyebrow">02</span><h3 class="t-display-sm">Une prise de contact évidente</h3><p class="t-body">Vos services sont clairs. Vos coordonnées sont visibles. Sur mobile, un geste suffit pour vous appeler ou vous écrire.</p>
+<article class="card card--spot" data-spot>
+<span class="card__num">02</span>
+<svg class="card__glyph" viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M14 12l-8 8 8 8M26 12l8 8-8 8M22 8l-4 24" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<h3 class="t-display-sm">Code sur mesure</h3>
+<p class="t-body">Écrit ligne par ligne, sans constructeur ni extension à maintenir. Le résultat : des pages légères, rapides et qui vous appartiennent.</p>
 </article>
-<article class="card">
-<span class="eyebrow">03</span><h3 class="t-display-sm">Les bases pour être trouvé</h3><p class="t-body">Optimisation SEO, pages rapides et contenu local pertinent. Nous vous accompagnons aussi sur Google Business Profile lorsque c’est adapté.</p>
+<article class="card card--spot" data-spot>
+<span class="card__num">03</span>
+<svg class="card__glyph" viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="18" cy="18" r="11" stroke="currentColor" stroke-width="1.4"/><path d="M26 26l8 8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M13 18h10M18 13v10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+<h3 class="t-display-sm">Les bases pour être trouvé</h3>
+<p class="t-body">Optimisation SEO, pages rapides et contenu local pertinent. Nous vous accompagnons aussi sur Google Business Profile lorsque c’est adapté.</p>
+</article>
+<article class="card card--spot" data-spot>
+<span class="card__num">04</span>
+<svg class="card__glyph" viewBox="0 0 40 40" fill="none" aria-hidden="true"><rect x="11" y="4" width="18" height="32" rx="3.5" stroke="currentColor" stroke-width="1.4"/><path d="M17 8h6M18 31h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M16 21l3 3 6-7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<h3 class="t-display-sm">Pensé pour le mobile</h3>
+<p class="t-body">La majorité de vos clients vous découvrent sur leur téléphone. Un geste suffit pour vous appeler, vous écrire ou trouver votre adresse.</p>
+</article>
+<article class="card card--spot" data-spot>
+<span class="card__num">05</span>
+<svg class="card__glyph" viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M8 30V12a3 3 0 013-3h18a3 3 0 013 3v18" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M13 16h14M13 21h14M13 26h8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+<h3 class="t-display-sm">Textes et structure</h3>
+<p class="t-body">Nous rédigeons avec vous des pages claires : vos services, votre différence, votre zone d’intervention. Le bon mot au bon endroit.</p>
+</article>
+<article class="card card--spot" data-spot>
+<span class="card__num">06</span>
+<svg class="card__glyph" viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="14" stroke="currentColor" stroke-width="1.4"/><path d="M20 11v9l6 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<h3 class="t-display-sm">12 mois à vos côtés</h3>
+<p class="t-body">Après la mise en ligne, un interlocuteur reste disponible 7 jours sur 7 pour vos questions, vos ajustements et la prise en main.</p>
 </article>
 </div>
 </div>
 </section>
-<section class="section " id="work">
+
+<!-- ═══════════ COMPARISON ═══════════ -->
+<section class="section section--soft" id="compare">
 <div class="container">
 <div class="sec-head reveal">
-<span class="eyebrow">/ Réalisations</span><h2 class="t-display-lg">De l’expérience en Australie.<br>La même attention pour votre PME.</h2>
+<span class="eyebrow">/ Pourquoi sur mesure</span>
+<h2 class="t-display-lg" data-split="words">Un template générique ressemble<br>à tous les autres. <em>Pas vous.</em></h2>
+</div>
+<div class="compare reveal">
+<div class="compare__head">
+<span></span><span class="compare__col compare__col--them">Template / constructeur</span><span class="compare__col compare__col--us"><svg viewBox="0 0 32 32" width="18" height="18" fill="none" aria-hidden="true"><rect width="32" height="32" rx="7.5" fill="#0b6e4f"/><path d="M8 21.5 13.6 15.4 17.6 19.4 24 11" stroke="#f7f4ee" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 11h-4.7M24 11v4.7" stroke="#c9a227" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Next Digital Level</span>
+</div>
+<div class="compare__row"><span>Design</span><span>Un thème partagé par des milliers de sites</span><span><b>Dessiné pour votre entreprise</b></span></div>
+<div class="compare__row"><span>Coût dans le temps</span><span>Abonnement mensuel, extensions payantes</span><span><b>Sans frais récurrents</b></span></div>
+<div class="compare__row"><span>Vitesse</span><span>Scripts lourds, pages lentes sur mobile</span><span><b>Code léger, chargement rapide</b></span></div>
+<div class="compare__row"><span>Avant de payer</span><span>Vous achetez sans voir</span><span><b>Un aperçu gratuit, d’abord</b></span></div>
+<div class="compare__row"><span>Après la mise en ligne</span><span>Support par tickets, quand il existe</span><span><b>12 mois de suivi, un interlocuteur</b></span></div>
+<div class="compare__row"><span>Propriété</span><span>Votre site dépend d’une plateforme</span><span><b>Votre site vous appartient</b></span></div>
+</div>
+</div>
+</section>
+
+<!-- ═══════════ WORK ═══════════ -->
+<section class="section" id="work">
+<div class="container">
+<div class="sec-head reveal">
+<span class="eyebrow">/ Réalisations</span>
+<h2 class="t-display-lg" data-split="words">De l’expérience en Australie.<br>La même attention pour votre PME.</h2>
 </div>
 <p class="t-body-lg work-intro">Nous avons accompagné des petites entreprises australiennes : beauté, services, artisanat et commerce. Découvrez les sites existants et la diversité des activités.</p>
-<div class="work__viewport" data-work aria-label="Nos réalisations">
-</div>
+<div class="work__viewport" data-work aria-label="Nos réalisations"></div>
 <div class="work__controls">
 <button class="rbtn" type="button" data-work-prev aria-label="Réalisations précédentes">←</button><span class="work__hint">Faites défiler les projets</span><button class="rbtn" type="button" data-work-next aria-label="Réalisations suivantes">→</button>
 </div>
@@ -179,36 +256,86 @@ Ce que vous faites bien.<br><em>Enfin bien présenté.</em>
 </noscript>
 </div>
 </section>
-<section class="section " id="process">
+
+<!-- ═══════════ PROCESS (sticky) ═══════════ -->
+<section class="section section--soft" id="process">
 <div class="container">
 <div class="sec-head reveal">
-<span class="eyebrow">/ La méthode</span><h2 class="t-display-lg">Vous dirigez votre entreprise.<br>Nous nous occupons du site.</h2>
+<span class="eyebrow">/ La méthode</span>
+<h2 class="t-display-lg" data-split="words">Vous dirigez votre entreprise.<br>Nous nous occupons du site.</h2>
 </div>
-<div class="tl stagger">
-<article class="tl__item">
-<span class="eyebrow">01</span><h3 class="t-display-sm">On en parle</h3><p class="t-body">Votre activité, vos clients et ce que votre site doit leur permettre de faire. Un échange simple, par téléphone ou WhatsApp.</p>
-</article>
-<article class="tl__item">
-<span class="eyebrow">02</span><h3 class="t-display-sm">Vous voyez l’aperçu</h3><p class="t-body">Nous créons un aperçu gratuit de votre site. Vous découvrez la direction proposée avant de vous engager.</p>
-</article>
-<article class="tl__item">
-<span class="eyebrow">03</span><h3 class="t-display-sm">On affine, on publie</h3><p class="t-body">Après votre accord et la réception des éléments nécessaires, votre site est prêt sous 7 jours. Nous gérons la mise en ligne.</p>
-</article>
-<article class="tl__item">
-<span class="eyebrow">04</span><h3 class="t-display-sm">On reste disponibles</h3><p class="t-body">12 mois de suivi inclus pour vos questions et l’accompagnement après lancement. Vous gardez un interlocuteur, 7 jours sur 7.</p>
-</article>
+<div class="method" data-method>
+<div class="method__pin">
+<div class="method__counter" aria-hidden="true"><span class="method__big" data-method-num>01</span><span class="method__of">/ 04</span></div>
+<div class="method__bar" aria-hidden="true"><i data-method-bar></i></div>
+<p class="t-body method__note">Quatre étapes. Un seul interlocuteur du premier appel au suivi.</p>
+</div>
+<ol class="method__steps">
+<li class="method__step" data-step="01">
+<span class="eyebrow">01 · Échange</span>
+<h3 class="t-display-md">On en parle</h3>
+<p class="t-body">Votre activité, vos clients et ce que votre site doit leur permettre de faire. Un échange simple, par téléphone ou WhatsApp, sans jargon.</p>
+<span class="method__meta">30 minutes · téléphone ou WhatsApp</span>
+</li>
+<li class="method__step" data-step="02">
+<span class="eyebrow">02 · Aperçu</span>
+<h3 class="t-display-md">Vous voyez l’aperçu</h3>
+<p class="t-body">Nous créons un aperçu gratuit de votre site. Vous découvrez la direction proposée, la structure et le ton avant de vous engager.</p>
+<span class="method__meta">Gratuit · sans obligation</span>
+</li>
+<li class="method__step" data-step="03">
+<span class="eyebrow">03 · Réalisation</span>
+<h3 class="t-display-md">On affine, on publie</h3>
+<p class="t-body">Après votre accord et la réception des éléments nécessaires, votre site est prêt sous 7 jours. Nous gérons le nom de domaine, la mise en ligne et les réglages techniques.</p>
+<span class="method__meta">7 jours · mise en ligne comprise</span>
+</li>
+<li class="method__step" data-step="04">
+<span class="eyebrow">04 · Suivi</span>
+<h3 class="t-display-md">On reste disponibles</h3>
+<p class="t-body">12 mois de suivi inclus pour vos questions et l’accompagnement après lancement. Vous gardez un interlocuteur, 7 jours sur 7.</p>
+<span class="method__meta">12 mois · un interlocuteur</span>
+</li>
+</ol>
 </div>
 </div>
 </section>
-<section class="section ">
+
+<!-- ═══════════ INCLUDED ═══════════ -->
+<section class="section" id="included">
+<div class="container">
+<div class="included">
+<div class="included__copy reveal">
+<span class="eyebrow">/ Compris dans chaque site</span>
+<h2 class="t-display-lg" data-split="words">Tout ce qu’il faut.<br><em>Rien à rajouter.</em></h2>
+<p class="t-body-lg">Ce que nous considérons comme la base d’un site professionnel en 2026. Inclus d’office, quel que soit votre projet.</p>
+<a class="btn btn--ghost btn--lg" href="/websites.html" data-magnetic>Voir l’offre en détail<span aria-hidden="true">↗</span></a>
+</div>
+<ul class="included__list stagger">
+<li><i></i><b>Design responsive</b><span>Impeccable sur téléphone, tablette et ordinateur</span></li>
+<li><i></i><b>Pages rapides</b><span>Code léger, images optimisées, aucun script superflu</span></li>
+<li><i></i><b>Contact en un geste</b><span>Appel, WhatsApp, e-mail et itinéraire depuis chaque page</span></li>
+<li><i></i><b>SEO local</b><span>Titres, descriptions, données structurées et contenu régional</span></li>
+<li><i></i><b>Sécurité HTTPS</b><span>Certificat, redirections et bonnes pratiques configurés</span></li>
+<li><i></i><b>Accessibilité</b><span>Contrastes, navigation clavier et textes alternatifs</span></li>
+<li><i></i><b>Domaine &amp; mise en ligne</b><span>Nous nous occupons de la partie technique pour vous</span></li>
+<li><i></i><b>Suivi 12 mois</b><span>Un interlocuteur pour vos questions, 7 jours sur 7</span></li>
+</ul>
+</div>
+</div>
+</section>
+
+<!-- ═══════════ COMMITMENTS ═══════════ -->
+<section class="section" id="commitments" data-dots-region>
 <div class="container">
 <div class="sec-head reveal">
-<span class="eyebrow">/ Nos engagements</span><h2 class="t-display-lg">Un projet clair, du premier échange au suivi.</h2>
+<span class="eyebrow">/ Nos engagements</span>
+<h2 class="t-display-lg" data-split="words">Un projet clair, du premier échange au suivi.</h2>
 </div>
 <div class="guarantee reveal" id="guarantee">
+<canvas class="dot-canvas dot-canvas--dark" data-dots data-dots-theme="dark" aria-hidden="true"></canvas>
 <div class="commitment-grid">
 <div>
-<span class="eyebrow">Avant votre accord</span><h3 class="t-display-md">Un aperçu gratuit.<br>Aucune obligation.</h3><p>Vous jugez le travail sur pièce. Nous définissons ensuite ensemble le contenu et le périmètre de votre site.</p><a class="btn btn--primary btn--lg" href="/book.html">Demander mon aperçu gratuit<span aria-hidden="true">↗</span></a>
+<span class="eyebrow">Avant votre accord</span><h3 class="t-display-md">Un aperçu gratuit.<br>Aucune obligation.</h3><p>Vous jugez le travail sur pièce. Nous définissons ensuite ensemble le contenu et le périmètre de votre site.</p><a class="btn btn--gold btn--lg" href="/book.html" data-magnetic>Demander mon aperçu gratuit<span aria-hidden="true">↗</span></a>
 </div>
 <div class="commitment-list">
 <p><b>7 jours</b><span>pour un site prêt après validation et réception des contenus</span></p><p><b>12 mois</b><span>de suivi inclus après le lancement</span></p><p><b>Sans frais récurrents</b><span>pour notre création de site, sans abonnement imposé</span></p>
@@ -217,60 +344,97 @@ Ce que vous faites bien.<br><em>Enfin bien présenté.</em>
 </div>
 </div>
 </section>
-<section class="section ">
+
+<!-- ═══════════ STUDIO ═══════════ -->
+<section class="section section--soft" id="studio">
 <div class="container">
-<div class="sec-head reveal">
-<span class="eyebrow">/ Pour votre activité</span><h2 class="t-display-lg">Un site utile à vos clients.</h2>
+<div class="studio">
+<div class="studio__copy reveal">
+<span class="eyebrow">/ Le studio</span>
+<h2 class="t-display-lg" data-split="words">Un studio suisse,<br>une expérience internationale.</h2>
+<p class="t-body-lg">Next Digital Level est une entreprise suisse. Nous avons construit des sites pour des petites entreprises en Australie avant de nous consacrer aux PME de Suisse romande : instituts, artisans, services à la personne, commerces.</p>
+<p class="t-body">Nous travaillons en français et en anglais, sans intermédiaire : la personne qui vous répond est celle qui conçoit et code votre site.</p>
 </div>
-<div class="sector-links">
-<a href="/tradie-websites.html"><span>Artisans & entreprises de services</span><span aria-hidden="true">↗</span></a><a href="/beauty-salon-websites.html"><span>Salons de beauté & instituts</span><span aria-hidden="true">↗</span></a><a href="/websites.html"><span>Commerces & indépendants</span><span aria-hidden="true">↗</span></a>
+<div class="studio__tenets stagger">
+<div class="tenet"><span class="tenet__n">I</span><b>Voir avant de décider</b><p>L’aperçu gratuit n’est pas un argument commercial. C’est notre façon de commencer chaque projet.</p></div>
+<div class="tenet"><span class="tenet__n">II</span><b>Le détail compte</b><p>Un espacement juste, une phrase claire, un bouton au bon endroit. C’est ce qui inspire confiance sans que l’on sache pourquoi.</p></div>
+<div class="tenet"><span class="tenet__n">III</span><b>Aucune dépendance</b><p>Pas d’abonnement, pas de plateforme propriétaire. Votre site vous appartient, code compris.</p></div>
+<div class="tenet"><span class="tenet__n">IV</span><b>Disponibles, vraiment</b><p>Téléphone, WhatsApp, e-mail. Sept jours sur sept, en français ou en anglais.</p></div>
+</div>
 </div>
 </div>
 </section>
-<section class="section section--soft" id="faq">
+
+<!-- ═══════════ SECTORS ═══════════ -->
+<section class="section">
 <div class="container">
 <div class="sec-head reveal">
-<span class="eyebrow">/ Vos questions</span><h2 class="t-display-lg">Les réponses, simplement.</h2>
+<span class="eyebrow">/ Pour votre activité</span>
+<h2 class="t-display-lg" data-split="words">Un site utile à vos clients.</h2>
 </div>
-<div class="faq">
+<div class="sector-links reveal">
+<a href="/tradie-websites.html" data-cursor="view"><span><small>01</small>Artisans &amp; entreprises de services</span><span aria-hidden="true">↗</span></a>
+<a href="/beauty-salon-websites.html" data-cursor="view"><span><small>02</small>Salons de beauté &amp; instituts</span><span aria-hidden="true">↗</span></a>
+<a href="/websites.html" data-cursor="view"><span><small>03</small>Commerces &amp; indépendants</span><span aria-hidden="true">↗</span></a>
+<a href="/ndis-provider-websites.html" data-cursor="view"><span><small>04</small>Services à la personne &amp; santé</span><span aria-hidden="true">↗</span></a>
+</div>
+</div>
+</section>
+
+<!-- ═══════════ FAQ ═══════════ -->
+<section class="section section--soft" id="faq">
+<div class="container">
+<div class="faq-layout">
+<div class="sec-head reveal">
+<span class="eyebrow">/ Vos questions</span>
+<h2 class="t-display-lg" data-split="words">Les réponses, simplement.</h2>
+<p class="t-body faq-aside">Une question qui n’est pas ici ? L’assistant en bas de page répond immédiatement, ou écrivez-nous sur WhatsApp.</p>
+</div>
+<div class="faq reveal">
 <details class="faq-detail">
-<summary>
-L’aperçu est-il vraiment gratuit ?<span aria-hidden="true">+</span>
-</summary>
+<summary>L’aperçu est-il vraiment gratuit ?<span aria-hidden="true">+</span></summary>
 <p class="t-body">Oui. Vous pouvez voir la direction proposée pour votre site avant de vous engager. La demande d’aperçu ne vous oblige pas à poursuivre.</p>
 </details>
 <details class="faq-detail">
-<summary>
-Que signifie « prêt sous 7 jours » ?<span aria-hidden="true">+</span>
-</summary>
+<summary>Que signifie « prêt sous 7 jours » ?<span aria-hidden="true">+</span></summary>
 <p class="t-body">Le délai démarre après validation du projet et réception des éléments nécessaires. Nous précisons ensemble les pages, les fonctionnalités et le calendrier avant de commencer.</p>
 </details>
 <details class="faq-detail">
-<summary>
-Y a-t-il un abonnement ?<span aria-hidden="true">+</span>
-</summary>
+<summary>Y a-t-il un abonnement ?<span aria-hidden="true">+</span></summary>
 <p class="t-body">Notre création de site est sans frais récurrents. Les éventuels services tiers que vous choisissez, comme un nom de domaine ou un outil de réservation, sont précisés avant votre accord.</p>
 </details>
 <details class="faq-detail">
-<summary>
-Que comprend le suivi de 12 mois ?<span aria-hidden="true">+</span>
-</summary>
+<summary>Que comprend le suivi de 12 mois ?<span aria-hidden="true">+</span></summary>
 <p class="t-body">Vous disposez d’un interlocuteur pour vos questions, l’aide à la prise en main et le suivi après la mise en ligne. Le périmètre des interventions est défini ensemble avant le lancement.</p>
 </details>
 <details class="faq-detail">
-<summary>
-Mon site sera-t-il visible sur Google ?<span aria-hidden="true">+</span>
-</summary>
+<summary>Mon site sera-t-il visible sur Google ?<span aria-hidden="true">+</span></summary>
 <p class="t-body">Nous travaillons les bases techniques et les contenus pour aider Google à comprendre votre activité. Nous pouvons vous accompagner sur votre fiche Google Business Profile. Aucun classement précis n’est garanti.</p>
+</details>
+<details class="faq-detail">
+<summary>Puis-je modifier mon site moi-même ensuite ?<span aria-hidden="true">+</span></summary>
+<p class="t-body">Pendant les 12 mois de suivi, vous nous envoyez simplement vos modifications. Si vous souhaitez gérer certains contenus vous-même, nous en discutons dès le départ pour prévoir la solution adaptée.</p>
+</details>
+<details class="faq-detail">
+<summary>J’ai déjà un site. Pouvez-vous le refaire ?<span aria-hidden="true">+</span></summary>
+<p class="t-body">Oui. Nous partons de ce qui fonctionne, conservons votre nom de domaine et votre référencement existant, puis reconstruisons le site sur mesure. L’aperçu gratuit vous montre la différence avant toute décision.</p>
+</details>
+<details class="faq-detail">
+<summary>Travaillez-vous partout en Suisse romande ?<span aria-hidden="true">+</span></summary>
+<p class="t-body">Oui. Genève, Vaud, Fribourg, Neuchâtel, Valais, Jura : les échanges se font par téléphone, WhatsApp ou visio, ce qui nous permet d’accompagner toute la Suisse romande, et au-delà en anglais.</p>
 </details>
 </div>
 </div>
+</div>
 </section>
-<section class="cta-band">
+
+<!-- ═══════════ CTA ═══════════ -->
+<section class="cta-band" data-dots-region>
+<canvas class="dot-canvas dot-canvas--dark" data-dots data-dots-theme="dark" aria-hidden="true"></canvas>
 <div class="container cta-band__inner reveal">
-<span class="eyebrow">/ On commence ?</span><h2 class="t-display-lg">Votre prochain site.<br><em>Voyez-le avant de décider.</em></h2><p class="t-body-lg">Parlez-nous de votre activité. Nous vous préparons un aperçu gratuit, sans engagement.</p>
+<span class="eyebrow">/ On commence ?</span><h2 class="t-display-lg" data-split="words">Votre prochain site.<br><em>Voyez-le avant de décider.</em></h2><p class="t-body-lg">Parlez-nous de votre activité. Nous vous préparons un aperçu gratuit, sans engagement.</p>
 <div class="hero__actions">
-<a class="btn btn--primary btn--lg" href="/book.html">Demander mon aperçu gratuit<span aria-hidden="true">↗</span></a><a class="btn btn--ghost btn--lg" href="https://wa.me/41762632817">Parlons-en sur WhatsApp<span aria-hidden="true">↗</span></a>
+<a class="btn btn--gold btn--lg" href="/book.html" data-magnetic>Demander mon aperçu gratuit<span aria-hidden="true">↗</span></a><a class="btn btn--onpanel btn--lg" href="https://wa.me/41762632817" data-magnetic>Parlons-en sur WhatsApp<span aria-hidden="true">↗</span></a>
 </div>
 </div>
 </section>
@@ -291,55 +455,29 @@ Mon site sera-t-il visible sur Google ?<span aria-hidden="true">+</span>
 <div class="footer__col">
 <p class="footer__h">Votre projet</p>
 <ul>
-<li>
-<a href="/websites.html">Sites sur mesure</a>
-</li>
-<li>
-<a href="/advertising.html">Visibilité &amp; publicité</a>
-</li>
-<li>
-<a href="/index.html#work">Réalisations</a>
-</li>
-<li>
-<a href="/index.html#guarantee">Nos engagements</a>
-</li>
+<li><a href="/websites.html">Sites sur mesure</a></li>
+<li><a href="/advertising.html">Visibilité &amp; publicité</a></li>
+<li><a href="/index.html#work">Réalisations</a></li>
+<li><a href="/index.html#guarantee">Nos engagements</a></li>
 </ul>
 </div>
 <div class="footer__col">
 <p class="footer__h">Votre activité</p>
 <ul>
-<li>
-<a href="/tradie-websites.html">Artisans &amp; services</a>
-</li>
-<li>
-<a href="/beauty-salon-websites.html">Salons &amp; instituts</a>
-</li>
-<li>
-<a href="/ndis-provider-websites.html">Expérience NDIS en Australie</a>
-</li>
-<li>
-<a href="/web-design-melbourne.html">Notre expérience australienne</a>
-</li>
-<li>
-<a href="/website-cost-australia.html">Préparer votre projet</a>
-</li>
+<li><a href="/tradie-websites.html">Artisans &amp; services</a></li>
+<li><a href="/beauty-salon-websites.html">Salons &amp; instituts</a></li>
+<li><a href="/ndis-provider-websites.html">Expérience NDIS en Australie</a></li>
+<li><a href="/web-design-melbourne.html">Notre expérience australienne</a></li>
+<li><a href="/website-cost-australia.html">Préparer votre projet</a></li>
 </ul>
 </div>
 <div class="footer__col">
 <p class="footer__h">Parlons-en</p>
 <ul>
-<li>
-<a href="tel:+41762632817">+41 76 263 28 17</a>
-</li>
-<li>
-<a href="https://wa.me/41762632817">WhatsApp</a>
-</li>
-<li>
-<a href="mailto:contact@nextdigitalevel.com">contact@nextdigitalevel.com</a>
-</li>
-<li>
-<a href="/book.html">Demander un aperçu gratuit</a>
-</li>
+<li><a href="tel:+41762632817">+41 76 263 28 17</a></li>
+<li><a href="https://wa.me/41762632817">WhatsApp</a></li>
+<li><a href="mailto:contact@nextdigitalevel.com">contact@nextdigitalevel.com</a></li>
+<li><a href="/book.html">Demander un aperçu gratuit</a></li>
 </ul>
 </div>
 </div>

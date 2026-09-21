@@ -26,8 +26,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="/css/style.css?v=a720771c68ab">
-<link rel="stylesheet" href="/css/animations.css?v=85a2dab61947">
+<link rel="stylesheet" href="/css/style.css?v=20260921a">
+<link rel="stylesheet" href="/css/animations.css?v=20260921a">
+<link rel="stylesheet" href="/css/motion.css?v=20260921a">
+<link rel="stylesheet" href="/css/chat.css?v=20260921a">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -52,10 +54,23 @@
   }
 }
 </script>
-<script src="/js/main.js?v=d126026ea755" defer></script>
+<script src="/js/main.js?v=20260921a" defer></script>
+<script src="/js/motion.js?v=20260921a" defer></script>
+<script src="/js/chat.js?v=20260921a" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Aller au contenu</a>
+<div class="loader" aria-hidden="true">
+  <div class="loader__inner">
+    <svg class="loader__mark" viewBox="0 0 32 32" fill="none">
+      <rect class="loader__box" x="1" y="1" width="30" height="30" rx="7.5" stroke="#0b6e4f" stroke-width="1.5"/>
+      <path class="loader__path" d="M8 21.5 13.6 15.4 17.6 19.4 24 11" stroke="#0b6e4f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path class="loader__path loader__path--gold" d="M24 11h-4.7M24 11v4.7" stroke="#c9a227" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="loader__word">Next Digital <i>Level</i></span>
+  </div>
+</div>
+<div class="scroll-progress" aria-hidden="true"></div>
 <header class="site-header">
 <nav class="nav" aria-label="Navigation principale">
 <a class="brand" href="/index.html" aria-label="Next Digital Level — accueil">
@@ -67,7 +82,7 @@
       <span class="brand__word">Next Digital <i>Level</i></span>
     </a><span class="nav__sep" aria-hidden="true"></span>
 <div class="nav__links">
-<a class="nav__link" href="/websites.html">Sites sur mesure</a><a class="nav__link" href="/index.html#work">Réalisations</a><a class="nav__link" href="/index.html#process">La méthode</a>
+<a class="nav__link" href="/websites.html">Sites sur mesure</a><a class="nav__link" href="/index.html#work">Réalisations</a><a class="nav__link" href="/index.html#process">La méthode</a><a class="nav__link" href="/index.html#studio">Le studio</a>
 </div>
 <a class="nav__phone" href="tel:+41762632817">+41 76 263 28 17</a><a class="btn btn--primary nav__cta" href="/book.html">Aperçu gratuit <span aria-hidden="true">↗</span></a><button class="nav__burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="drawer"><span></span><span></span><span></span></button>
 </nav>

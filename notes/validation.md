@@ -25,3 +25,22 @@ External site previews depend on each client's embedding policy and availability
 all retain a direct link and an explanatory fallback. Phone/WhatsApp destinations
 were validated without placing calls or sending messages. Account-level Google
 Business Profile and Search Console operations are outside this website update.
+
+# Validation — 21 September 2026 (premium motion layer + assistant)
+
+- New files: `css/motion.css`, `css/chat.css`, `js/motion.js`, `js/chat.js`,
+  `worker/chat-worker.js` (optional Claude backend, see `worker/README.md`).
+- `python3 scripts/check-site.py`, `node --check` on all scripts, `git diff --check`: passed.
+- Homepage: hero reactive dot canvas (pointer push + gold tint, ambient wave on
+  touch), split-text reveals, magnetic buttons, 3D tilt on the preview panel,
+  spotlight cards, sticky method counter, comparison table, included checklist,
+  studio tenets, expanded FAQ, dark CTA. Every other page inherits the canvas,
+  split H1, magnetic CTAs, loader and assistant automatically via `motion.js`.
+- Assistant: opens/closes, Escape, Enter submits, chips, WhatsApp/tel/mail links,
+  history kept across pages for the session, unknown questions fall back to a
+  human handoff. Verified in the Claude desktop browser at 1440 and 390 px.
+- Cursor / tilt / magnetic are disabled on coarse pointers and under
+  `prefers-reduced-motion`; the loader is skipped under reduced motion and
+  after the first page of a session.
+- Headless Chrome full-page captures at 1440 px and the in-app browser at
+  390 px: no horizontal overflow, no console errors.
