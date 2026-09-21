@@ -54,6 +54,7 @@
     'Appeler {ico}': 'Call {ico}',
     'Entreprise suisse. Des sites codés sur mesure pour les PME, avec un aperçu gratuit avant de vous engager.': 'A Swiss company. Hand-coded websites for small businesses, with a free preview before you commit.',
     'À votre écoute 7 jours sur 7': 'Available 7 days a week',
+    '{ico}<span>Conçu et codé en Suisse</span>': '{ico}<span>Designed and coded in Switzerland</span>',
     'Votre projet': 'Your project',
     'Nos services': 'Our services',
     'Votre activité': 'Your business',
@@ -271,6 +272,16 @@
     '<span><small>02</small>Salons de beauté &amp; instituts</span>{ico}': '<span><small>02</small>Beauty salons &amp; clinics</span>{ico}',
     '<span><small>03</small>Commerces &amp; indépendants</span>{ico}': '<span><small>03</small>Shops &amp; independents</span>{ico}',
     '<span><small>04</small>Services à la personne &amp; santé</span>{ico}': '<span><small>04</small>Care &amp; health services</span>{ico}',
+
+    /* regions */
+    '/ Suisse romande': '/ French-speaking Switzerland',
+    'Création de site internet<br>dans votre canton.': 'Website creation<br>in your canton.',
+    '<small>GE</small><b>Genève</b>{ico}': '<small>GE</small><b>Geneva</b>{ico}',
+    '<small>VD</small><b>Lausanne &amp; Vaud</b>{ico}': '<small>VD</small><b>Lausanne &amp; Vaud</b>{ico}',
+    '<small>CH</small><b>Toute la Suisse romande</b>{ico}': '<small>CH</small><b>All of French-speaking Switzerland</b>{ico}',
+    'Suisse romande': 'French-speaking Switzerland',
+    '<a href="/creation-site-internet-geneve.html">Genève</a>': '<a href="/creation-site-internet-geneve.html">Geneva</a>',
+    '<a href="/creation-site-internet-suisse-romande.html">Toute la Suisse romande</a>': '<a href="/creation-site-internet-suisse-romande.html">All of French-speaking Switzerland</a>',
 
     /* faq */
     '/ Vos questions': '/ Your questions',

@@ -209,6 +209,13 @@ def page(s):
 </div>
 </section>
 '''
+    faq_ld = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in s['faq']]}
+    crumbs = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://nextdigitalevel.com/"},
+        {"@type": "ListItem", "position": 2, "name": "Sites sur mesure", "item": "https://nextdigitalevel.com/websites.html"},
+        {"@type": "ListItem", "position": 3, "name": s['nav'], "item": "https://nextdigitalevel.com/%s.html" % s['slug']}]}
+    import json as _json
+    head = head.replace('</head>', ''.join('<script type="application/ld+json">%s</script>\n' % _json.dumps(o, ensure_ascii=False, indent=1) for o in (faq_ld, crumbs)) + '</head>')
     return head + main + FOOT
 
 
