@@ -91,17 +91,17 @@
     }).observe(region);
   });
   var WORK = [
-    { name: "Char's Beauty Room", cat: "Beauty studio · Altona Meadows, Melbourne", url: "https://charsbeautyroom.com.au/" },
-    { name: "Talofa Support Services", cat: "NDIS provider · Melbourne", url: "https://talofasupportservices.com.au/" },
-    { name: "The Visa Centre", cat: "Migration agency", url: "https://welcometothenextlevel.github.io/thevisacentre/" },
-    { name: "Christus Jewelry", cat: "Jewellery · E-commerce", url: "https://christusjewelry.com/" },
-    { name: "Ortensia Wedding", cat: "Wedding planning", url: "https://welcometothenextlevel.github.io/ortensiawedding/" },
-    { name: "Citiport", cat: "Transport & booking", url: "https://welcometothenextlevel.github.io/citiport/" },
-    { name: "Just Quality Lawn Care", cat: "Lawn & garden · Melbourne", url: "https://welcometothenextlevel.github.io/justqualitylawncare/" },
-    { name: "Trident Cross Marine", cat: "Mobile boat detailing", url: "https://tridentcrossmarineservices.com/" },
-    { name: "All In 1 Party World", cat: "Party hire · Victoria", url: "https://welcometothenextlevel.github.io/allin1partyworld/" },
-    { name: "E&J Carpet Cleaning", cat: "Carpet cleaning · Liverpool & Fairfield", url: "https://ej-carpetcleaning.com/" },
-    { name: "Everest Badminton", cat: "Sports club", url: "https://welcometothenextlevel.github.io/badminton/" }
+    { name: "Char's Beauty Room", cat: "Beauty studio · Altona Meadows, Melbourne", url: "https://charsbeautyroom.com.au/", img: "charsbeautyroom" },
+    { name: "Talofa Support Services", cat: "NDIS provider · Melbourne", url: "https://talofasupportservices.com.au/", img: "talofa" },
+    { name: "The Visa Centre", cat: "Migration agency", url: "https://welcometothenextlevel.github.io/thevisacentre/", img: "thevisacentre" },
+    { name: "Christus Jewelry", cat: "Jewellery · E-commerce", url: "https://christusjewelry.com/", img: "christusjewelry" },
+    { name: "Ortensia Wedding", cat: "Wedding planning", url: "https://welcometothenextlevel.github.io/ortensiawedding/", img: "ortensia" },
+    { name: "Citiport", cat: "Transport & booking", url: "https://welcometothenextlevel.github.io/citiport/", img: "citiport" },
+    { name: "Just Quality Lawn Care", cat: "Lawn & garden · Melbourne", url: "https://welcometothenextlevel.github.io/justqualitylawncare/", img: "justquality" },
+    { name: "Trident Cross Marine", cat: "Mobile boat detailing", url: "https://tridentcrossmarineservices.com/", img: "trident" },
+    { name: "All In 1 Party World", cat: "Party hire · Victoria", url: "https://welcometothenextlevel.github.io/allin1partyworld/", img: "allin1" },
+    { name: "E&J Carpet Cleaning", cat: "Carpet cleaning · Liverpool & Fairfield", url: "https://ej-carpetcleaning.com/", img: "ejcarpet" },
+    { name: "Everest Badminton", cat: "Sports club", url: "https://welcometothenextlevel.github.io/badminton/", img: "everest" }
   ];  const categories = ['Institut de beauté · Melbourne', 'Services NDIS · Melbourne', 'Agence de migration', 'Bijouterie · E-commerce', 'Organisation de mariages', 'Transport & réservation', 'Jardinage · Melbourne', 'Entretien de bateaux', 'Location événementielle · Victoria', 'Nettoyage de moquettes', 'Club sportif'];
   const viewport = $('[data-work]');
   if (viewport) {
@@ -109,7 +109,8 @@
     WORK.forEach((item, index) => {
       const card = document.createElement('article'); card.className = 'wcard';
       const monogram = item.name.split(' ').slice(0, 2).map(w => w[0]).join('');
-      card.innerHTML = `<div class="project-cover"><span class="eyebrow">Projet ${String(index + 1).padStart(2, '0')}</span><span class="project-monogram" aria-hidden="true">${monogram}</span><span>${categories[index]}</span></div><div class="wcard__meta"><div><b>${item.name}</b><span>${categories[index]}</span></div></div><div class="project-actions"><a href="${item.url}" target="_blank" rel="noopener noreferrer" aria-label="Voir le site ${item.name} (nouvel onglet)">Voir le site ↗</a><button type="button" aria-expanded="false">Aperçu en direct</button></div>`;
+      const host = item.url.replace(/^https?:\/\//, '').replace(/\/$/, '');
+      card.innerHTML = `<div class="project-shot"><div class="project-shot__bar" aria-hidden="true"><i></i><i></i><i></i><span>${host}</span></div><img src="/assets/work/${item.img}-sm.webp" srcset="/assets/work/${item.img}-sm.webp 720w, /assets/work/${item.img}.webp 1280w" sizes="(max-width: 720px) 78vw, 350px" width="720" height="500" loading="lazy" decoding="async" alt="Page d’accueil du site ${item.name}"><span class="project-shot__num" aria-hidden="true">${monogram}</span><span class="project-shot__badge">Projet ${String(index + 1).padStart(2, '0')}</span></div><div class="wcard__meta"><div><b>${item.name}</b><span>${categories[index]}</span></div></div><div class="project-actions"><a href="${item.url}" target="_blank" rel="noopener noreferrer" aria-label="Voir le site ${item.name} (nouvel onglet)">Voir le site ↗</a><button type="button" aria-expanded="false">Aperçu en direct</button></div>`;
       const toggle = $('button', card);
       toggle.addEventListener('click', () => {
         let frame = $('iframe', card);

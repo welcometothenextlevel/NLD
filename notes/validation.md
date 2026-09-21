@@ -44,3 +44,21 @@ Business Profile and Search Console operations are outside this website update.
   after the first page of a session.
 - Headless Chrome full-page captures at 1440 px and the in-app browser at
   390 px: no horizontal overflow, no console errors.
+
+# Validation — 21 September 2026 (real previews, showcase, glass buttons, rail)
+
+- `assets/work/*.webp`: hero-height captures of the 11 client sites (headless
+  Chrome, 1440×1000), 31–74 KB each; used in the portfolio cards and showcase.
+- Showcase: native-scroll expansion (no wheel hijack), sticky child, --p driven
+  by scroll position; frame capped to viewport height; tabs auto-cycle only
+  while expanded and visible; reduced motion renders it static and expanded.
+- `overflow-x: hidden` on body was silently breaking every position: sticky
+  block (method counter, included/studio/FAQ pins); switched to `clip`.
+- Glass buttons are CSS only (layered inset shadows, backdrop blur, optional
+  SVG displacement under Chromium); the SVG filter is injected once by motion.js.
+- Scroll rail: fixed hairline + bead + section label + percentage on desktop,
+  hairline + bead on phones; hidden until 120 px of scroll.
+- Mobile: ticker skews with scroll velocity, hero panel tilts with the
+  gyroscope on Android (iOS would need a permission prompt, so it is skipped),
+  parallax on the hero panel and commitments panel, press feedback on cards.
+- Checked at 1440 px (headless) and 390 px (in-app browser); validator passes.

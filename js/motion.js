@@ -325,4 +325,139 @@
     const io = new IntersectionObserver(en => en.forEach(x => { if (x.isIntersecting) { x.target.classList.add('is-in'); io.unobserve(x.target); } }), { threshold: 0.15 });
     targets.forEach(el => io.observe(el));
   })();
+
+  /* ---------- Liquid-glass filter (shared by every glass button) ---------- */
+  (function glassFilter() {
+    if (document.getElementById('ndl-liquid')) return;
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('aria-hidden', 'true'); svg.style.cssText = 'position:absolute;width:0;height:0;overflow:hidden';
+    svg.innerHTML = '<defs><filter id="ndl-liquid" x="0%" y="0%" width="100%" height="100%" color-interpolation-filters="sRGB">' +
+      '<feTurbulence type="fractalNoise" baseFrequency="0.05 0.05" numOctaves="1" seed="1" result="noise"/>' +
+      '<feGaussianBlur in="noise" stdDeviation="2" result="soft"/>' +
+      '<feDisplacementMap in="SourceGraphic" in2="soft" scale="34" xChannelSelector="R" yChannelSelector="B" result="warp"/>' +
+      '<feGaussianBlur in="warp" stdDeviation="3"/></filter></defs>';
+    document.body.prepend(svg);
+  })();
+
+  /* ---------- Scroll rail: a hairline that fills as you read, with a bead,
+     the current section and a percentage. Sections are any block with an id
+     and a data-rail label (or an eyebrow to borrow). ---------- */
+  (function rail() {
+    const rail = document.createElement('div');
+    rail.className = 'rail'; rail.setAttribute('aria-hidden', 'true');
+    rail.innerHTML = '<div class="rail__track"><div class="rail__fill"></div><div class="rail__bead"></div><div class="rail__label"><span></span><i></i></div></div><div class="rail__pct">00</div>';
+    document.body.appendChild(rail);
+    const label = $('.rail__label span', rail), pct = $('.rail__pct', rail);
+    const sections = $$('main section[id], main [id].section, main .cta-band').map(el => {
+      const eyebrow = $('.eyebrow', el);
+      const name = el.dataset.rail || (eyebrow ? eyebrow.textContent.replace(/^\/\s*/, '').trim() : '');
+      return name ? { el, name } : null;
+    }).filter(Boolean);
+    let raf = 0, last = -1, moveTimer = 0, current = '';
+    const update = () => {
+      raf = 0;
+      const max = doc.scrollHeight - window.innerHeight;
+      const p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+      rail.style.setProperty('--progress', p.toFixed(4));
+      pct.textContent = String(Math.round(p * 100)).padStart(2, '0');
+      rail.classList.toggle('is-on', window.scrollY > 120);
+      // which section owns the middle of the viewport
+      const mid = window.scrollY + window.innerHeight * 0.5;
+      let name = '', dark = false;
+      for (const s of sections) { const top = s.el.offsetTop; if (top <= mid) { name = s.name; dark = s.el.classList.contains('cta-band'); } }
+      if (name !== current) { current = name; const n = String(sections.findIndex(s => s.name === name) + 1).padStart(2, '0'); label.innerHTML = '<b>' + n + '</b> ' + name; label.style.animation = 'none'; void label.offsetWidth; label.style.animation = ''; }
+      rail.classList.toggle('rail--dark', dark);
+      if (Math.abs(p - last) > 0.0005) { rail.classList.add('is-moving'); clearTimeout(moveTimer); moveTimer = setTimeout(() => rail.classList.remove('is-moving'), 220); }
+      last = p;
+    };
+    window.addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(update); }, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+
+  /* ---------- Scroll-expansion showcase ----------
+     Progress is derived from how far the tall section has been scrolled
+     through; the sticky child stays put while --p grows. Native scroll,
+     no wheel hijacking, so trackpads, touch and keyboards all behave. */
+  (function showcase() {
+    const root = $('[data-showcase]');
+    if (!root) return;
+    const imgs = $$('[data-showcase-img]', root), tabs = $$('[data-showcase-tab]', root);
+    const host = $('[data-showcase-host]', root), link = $('[data-showcase-link]', root);
+    const CYCLE = 4200; let index = 0, timer = 0, expanded = false, visible = false;
+    function show(i, manual) {
+      index = (i + imgs.length) % imgs.length;
+      imgs.forEach((im, k) => im.classList.toggle('is-on', k === index));
+      tabs.forEach((t, k) => { t.setAttribute('aria-selected', String(k === index)); if (k === index) { t.style.animation = 'none'; void t.offsetWidth; t.style.animation = ''; } });
+      const t = tabs[index];
+      if (t) { if (host) host.textContent = t.dataset.host; if (link) link.href = t.dataset.url; }
+      schedule(manual ? CYCLE * 1.6 : CYCLE);
+    }
+    function schedule(ms) { clearTimeout(timer); if (expanded && visible && !reduced.matches && !document.hidden) timer = setTimeout(() => show(index + 1), ms); }
+    tabs.forEach((t, k) => t.addEventListener('click', () => show(k, true)));
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const r = root.getBoundingClientRect();
+      const travel = r.height - window.innerHeight;
+      const p = travel > 0 ? Math.min(1, Math.max(0, -r.top / travel)) : 1;
+      // ease so the frame lingers small, then commits
+      const e = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+      root.style.setProperty('--p', e.toFixed(4));
+      const now = e > 0.92;
+      if (now !== expanded) { expanded = now; root.classList.toggle('is-expanded', expanded); if (expanded) schedule(CYCLE); else clearTimeout(timer); }
+    };
+    if (reduced.matches) { root.style.setProperty('--p', '1'); root.classList.add('is-expanded'); expanded = true; }
+    else { window.addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(update); }, { passive: true }); window.addEventListener('resize', update); update(); }
+    if ('IntersectionObserver' in window) new IntersectionObserver(en => { visible = en[0].isIntersecting; if (visible) schedule(CYCLE); else clearTimeout(timer); }).observe(root);
+    else visible = true;
+    document.addEventListener('visibilitychange', () => { if (document.hidden) clearTimeout(timer); else schedule(CYCLE); });
+  })();
+
+  /* ---------- Scroll velocity → ticker skew (works on touch too) ---------- */
+  (function velocity() {
+    const tickers = $$('.ticker');
+    if (!tickers.length || reduced.matches) return;
+    let lastY = window.scrollY, lastT = performance.now(), raf = 0, skew = 0, target = 0;
+    const frame = () => { raf = 0; skew = lerp(skew, target, 0.15); tickers.forEach(t => t.style.setProperty('--skew', skew.toFixed(2) + 'deg')); target *= 0.9; if (Math.abs(skew) > 0.02 || Math.abs(target) > 0.02) raf = requestAnimationFrame(frame); };
+    window.addEventListener('scroll', () => {
+      const now = performance.now(), dy = window.scrollY - lastY, dt = Math.max(1, now - lastT);
+      target = Math.max(-10, Math.min(10, (dy / dt) * 6)); lastY = window.scrollY; lastT = now;
+      if (!raf) raf = requestAnimationFrame(frame);
+    }, { passive: true });
+  })();
+
+  /* ---------- Light parallax on tagged blocks (all devices) ---------- */
+  (function parallax() {
+    const els = $$('[data-parallax]');
+    if (!els.length || reduced.matches) return;
+    let raf = 0;
+    const frame = () => {
+      raf = 0; const vh = window.innerHeight;
+      els.forEach(el => {
+        const r = el.getBoundingClientRect(); if (r.bottom < 0 || r.top > vh) return;
+        const c = (r.top + r.height / 2 - vh / 2) / vh; // -0.5 … 0.5 through the viewport
+        el.style.translate = '0 ' + (-c * parseFloat(el.dataset.parallax || 0.1) * vh).toFixed(1) + 'px';
+      });
+    };
+    window.addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(frame); }, { passive: true });
+    frame();
+  })();
+
+  /* ---------- Gyroscope tilt for the hero panel on phones (no permission prompt) ---------- */
+  (function gyro() {
+    const el = $('[data-tilt]');
+    if (!el || fine.matches || reduced.matches || !('DeviceOrientationEvent' in window)) return;
+    if (typeof DeviceOrientationEvent.requestPermission === 'function') return; // iOS asks for a prompt; stay quiet there
+    let raf = 0, gx = 0, gy = 0, tx = 0, ty = 0;
+    const frame = () => { raf = 0; gx = lerp(gx, tx, 0.1); gy = lerp(gy, ty, 0.1); el.style.setProperty('--tx', gx.toFixed(2) + 'deg'); el.style.setProperty('--ty', gy.toFixed(2) + 'deg'); if (Math.abs(gx - tx) + Math.abs(gy - ty) > 0.05) raf = requestAnimationFrame(frame); };
+    window.addEventListener('deviceorientation', e => {
+      if (e.gamma == null) return;
+      tx = Math.max(-8, Math.min(8, e.gamma / 5)); ty = Math.max(-8, Math.min(8, -(e.beta - 40) / 6));
+      if (!raf) raf = requestAnimationFrame(frame);
+    }, { passive: true });
+  })();
+
+  /* ---------- Sector lines draw in on touch devices ---------- */
+  $$('.sector-links a').forEach((a, i) => a.style.setProperty('--i', i));
 })();

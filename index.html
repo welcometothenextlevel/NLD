@@ -26,10 +26,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="/css/style.css?v=20260921a">
-<link rel="stylesheet" href="/css/animations.css?v=20260921a">
-<link rel="stylesheet" href="/css/motion.css?v=20260921a">
-<link rel="stylesheet" href="/css/chat.css?v=20260921a">
+<link rel="stylesheet" href="/css/style.css?v=20260921b">
+<link rel="stylesheet" href="/css/animations.css?v=20260921b">
+<link rel="stylesheet" href="/css/motion.css?v=20260921b">
+<link rel="stylesheet" href="/css/chat.css?v=20260921b">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -54,9 +54,9 @@
   }
 }
 </script>
-<script src="/js/main.js?v=20260921a" defer></script>
-<script src="/js/motion.js?v=20260921a" defer></script>
-<script src="/js/chat.js?v=20260921a" defer></script>
+<script src="/js/main.js?v=20260921b" defer></script>
+<script src="/js/motion.js?v=20260921b" defer></script>
+<script src="/js/chat.js?v=20260921b" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Aller au contenu</a>
@@ -70,7 +70,6 @@
     <span class="loader__word">Next Digital <i>Level</i></span>
   </div>
 </div>
-<div class="scroll-progress" aria-hidden="true"></div>
 <header class="site-header">
 <nav class="nav" aria-label="Navigation principale">
 <a class="brand" href="/index.html" aria-label="Next Digital Level — accueil">
@@ -108,9 +107,9 @@
 <a class="btn btn--primary btn--lg" href="/book.html" data-magnetic>Demander mon aperçu gratuit<span aria-hidden="true">↗</span></a><a class="btn btn--ghost btn--lg" href="tel:+41762632817" data-magnetic>Nous appeler<span aria-hidden="true">↗</span></a>
 </div>
 <p class="hero__note">Sans template générique. Sans frais récurrents.</p>
-<a class="hero-work-link" href="#work">Découvrez nos réalisations <span aria-hidden="true">↓</span></a>
+<a class="hero-work-link" href="#showcase">Découvrez nos réalisations <span aria-hidden="true">↓</span></a>
 </div>
-<div class="preview-composition" data-tilt>
+<div class="preview-composition" data-tilt data-parallax="0.05">
 <div class="panel preview-browser">
 <div class="panel__bar">
 <span class="panel__title">Votre entreprise · votre futur site</span><span class="preview-dots" aria-hidden="true">● ● ●</span>
@@ -166,6 +165,43 @@ Ce que vous faites bien.<br><em>Enfin bien présenté.</em>
 </div>
 <p class="offer-note">* Après validation du projet et réception des éléments nécessaires.</p>
 </div>
+
+
+<!-- ═══════════ SHOWCASE (scroll-expansion) ═══════════ -->
+<section class="showcase" id="showcase" data-showcase aria-label="Aperçu de sites réalisés">
+<div class="showcase__sticky">
+<canvas class="dot-canvas showcase__dots" data-dots aria-hidden="true"></canvas>
+
+<div class="showcase__row">
+<span class="showcase__word showcase__word--l" aria-hidden="true">Des sites</span>
+<div class="showcase__media" data-showcase-media>
+<div class="showcase__bar"><i></i><i></i><i></i><span data-showcase-host>tridentcrossmarineservices.com</span><b class="showcase__live"><span class="pip" aria-hidden="true"></span>Site en ligne</b></div>
+<div class="showcase__screen">
+<img src="/assets/work/trident.webp" width="1280" height="889" alt="Page d’accueil du site Trident Cross Marine, réalisé par Next Digital Level" data-showcase-img="0" class="is-on" decoding="async">
+<img src="/assets/work/everest.webp" width="1280" height="889" alt="Page d’accueil du site Everest Badminton" data-showcase-img="1" loading="lazy" decoding="async">
+<img src="/assets/work/citiport.webp" width="1280" height="889" alt="Page d’accueil du site Citiport" data-showcase-img="2" loading="lazy" decoding="async">
+<img src="/assets/work/talofa.webp" width="1280" height="889" alt="Page d’accueil du site Talofa Support Services" data-showcase-img="3" loading="lazy" decoding="async">
+<img src="/assets/work/allin1.webp" width="1280" height="889" alt="Page d’accueil du site All In 1 Party World" data-showcase-img="4" loading="lazy" decoding="async">
+</div>
+</div>
+<span class="showcase__word showcase__word--r" aria-hidden="true"><em>réels.</em></span>
+</div>
+<p class="showcase__hint" aria-hidden="true"><span class="showcase__hint-l">Faites défiler</span><span class="showcase__hint-r">pour agrandir</span></p>
+<div class="showcase__meta" data-showcase-meta>
+<div class="showcase__tabs" role="tablist" aria-label="Sites présentés">
+<button type="button" role="tab" aria-selected="true" data-showcase-tab="0" data-host="tridentcrossmarineservices.com" data-url="https://tridentcrossmarineservices.com/"><b>Trident Cross Marine</b><span>Entretien de bateaux</span></button>
+<button type="button" role="tab" aria-selected="false" data-showcase-tab="1" data-host="welcometothenextlevel.github.io/badminton" data-url="https://welcometothenextlevel.github.io/badminton/"><b>Everest Badminton</b><span>Club sportif</span></button>
+<button type="button" role="tab" aria-selected="false" data-showcase-tab="2" data-host="welcometothenextlevel.github.io/citiport" data-url="https://welcometothenextlevel.github.io/citiport/"><b>Citiport</b><span>Transport &amp; réservation</span></button>
+<button type="button" role="tab" aria-selected="false" data-showcase-tab="3" data-host="talofasupportservices.com.au" data-url="https://talofasupportservices.com.au/"><b>Talofa Support</b><span>Services NDIS</span></button>
+<button type="button" role="tab" aria-selected="false" data-showcase-tab="4" data-host="welcometothenextlevel.github.io/allin1partyworld" data-url="https://welcometothenextlevel.github.io/allin1partyworld/"><b>All In 1 Party World</b><span>Commerce</span></button>
+</div>
+<div class="showcase__cta">
+<a class="btn btn--primary" href="https://tridentcrossmarineservices.com/" target="_blank" rel="noopener noreferrer" data-showcase-link data-magnetic>Voir le site en ligne<span aria-hidden="true">↗</span></a>
+<a class="tlink" href="#work">Toutes les réalisations <span class="arw" aria-hidden="true">→</span></a>
+</div>
+</div>
+</div>
+</section>
 
 <!-- ═══════════ SERVICES ═══════════ -->
 <section class="section" id="services">
@@ -331,7 +367,7 @@ Ce que vous faites bien.<br><em>Enfin bien présenté.</em>
 <span class="eyebrow">/ Nos engagements</span>
 <h2 class="t-display-lg" data-split="words">Un projet clair, du premier échange au suivi.</h2>
 </div>
-<div class="guarantee reveal" id="guarantee">
+<div class="guarantee reveal" id="guarantee" data-parallax="0.04">
 <canvas class="dot-canvas dot-canvas--dark" data-dots data-dots-theme="dark" aria-hidden="true"></canvas>
 <div class="commitment-grid">
 <div>
