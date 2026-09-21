@@ -309,6 +309,7 @@
       steps.forEach((s, k) => { s.classList.toggle('is-active', k === i); s.classList.toggle('is-past', k < i); });
       if (num) { num.textContent = steps[i].dataset.step; num.classList.remove('is-flip'); void num.offsetWidth; num.classList.add('is-flip'); }
       if (bar) bar.style.transform = `scaleX(${(i + 1) / steps.length})`;
+      $$('[data-method-scene]', root).forEach((sc, k) => sc.classList.toggle('is-on', k === i));
     };
     const io = new IntersectionObserver(entries => {
       entries.forEach(en => { if (en.isIntersecting) set(steps.indexOf(en.target)); });
@@ -385,14 +386,27 @@
     const imgs = $$('[data-showcase-img]', root), tabs = $$('[data-showcase-tab]', root);
     const host = $('[data-showcase-host]', root), link = $('[data-showcase-link]', root);
     const CYCLE = 4200; let index = 0, timer = 0, expanded = false, visible = false;
+    root.style.setProperty('--cycle', CYCLE + 'ms');
+    const track = $('[data-showcase-track]', root), screen = $('[data-showcase-screen]', root);
     function show(i, manual) {
       index = (i + imgs.length) % imgs.length;
+      if (track) track.style.setProperty('--i', index);
       imgs.forEach((im, k) => im.classList.toggle('is-on', k === index));
       tabs.forEach((t, k) => { t.setAttribute('aria-selected', String(k === index)); if (k === index) { t.style.animation = 'none'; void t.offsetWidth; t.style.animation = ''; } });
       const t = tabs[index];
       if (t) { if (host) host.textContent = t.dataset.host; if (link) link.href = t.dataset.url; }
-      schedule(manual ? CYCLE * 1.6 : CYCLE);
+      schedule(manual ? CYCLE * 1.8 : CYCLE);
     }
+    // Drag / swipe the filmstrip horizontally
+    if (track && screen) {
+      let x0 = 0, dx = 0, down = false, w = 1;
+      screen.addEventListener('pointerdown', e => { if (!expanded) return; down = true; x0 = e.clientX; dx = 0; w = screen.clientWidth; track.classList.add('is-dragging'); screen.setPointerCapture(e.pointerId); clearTimeout(timer); });
+      screen.addEventListener('pointermove', e => { if (!down) return; dx = e.clientX - x0; track.style.transform = `translateX(calc(${index} * -100% + ${dx}px))`; });
+      const up = () => { if (!down) return; down = false; track.classList.remove('is-dragging'); track.style.transform = ''; if (Math.abs(dx) > w * 0.12) show(index + (dx < 0 ? 1 : -1), true); else schedule(CYCLE); };
+      screen.addEventListener('pointerup', up); screen.addEventListener('pointercancel', up);
+      screen.addEventListener('click', e => { if (Math.abs(dx) > 6) e.preventDefault(); });
+    }
+    show(0);
     function schedule(ms) { clearTimeout(timer); if (expanded && visible && !reduced.matches && !document.hidden) timer = setTimeout(() => show(index + 1), ms); }
     tabs.forEach((t, k) => t.addEventListener('click', () => show(k, true)));
     let raf = 0;
@@ -460,4 +474,51 @@
 
   /* ---------- Sector lines draw in on touch devices ---------- */
   $$('.sector-links a').forEach((a, i) => a.style.setProperty('--i', i));
+
+  /* ---------- Hero demo: click through the four steps ----------
+     Every click (a tile, "Étape suivante", or the screen itself) shows the
+     next step with its own little animation. Left alone, a drawn cursor
+     walks the visitor through it. */
+  (function demo() {
+    const root = $('[data-demo]');
+    if (!root) return;
+    const slides = $$('[data-demo-slide]', root), tiles = $$('[data-demo-go]', root), dots = $$('.demo-progress i', root);
+    const next = $('[data-demo-next]', root), cursor = $('.demo-cursor', root), count = $('[data-demo-count]', root.closest('.panel') || document);
+    const AUTO = 5200; let i = 0, timer = 0, idle = 0, visible = true, busy = false;
+    function go(n, manual) {
+      const k = (n + slides.length) % slides.length; if (k === i && manual === 'init') return;
+      slides.forEach((sl, j) => { sl.classList.toggle('is-out', j === i && j !== k); sl.classList.toggle('is-on', j === k); });
+      tiles.forEach((t, j) => t.setAttribute('aria-selected', String(j === k)));
+      dots.forEach((d, j) => d.classList.toggle('is-on', j <= k));
+      if (count) count.textContent = 'Étape ' + (k + 1) + ' / ' + slides.length;
+      i = k; clearTimeout(idle); clearTimeout(timer);
+      // manual interaction pauses the guided tour for a while
+      idle = setTimeout(arm, manual === true ? 12000 : AUTO);
+    }
+    function press(el, then) {
+      el.classList.add('is-pressed'); setTimeout(() => { el.classList.remove('is-pressed'); then(); }, 160);
+    }
+    function arm() {
+      clearTimeout(timer);
+      if (!visible || document.hidden || reduced.matches) return;
+      timer = setTimeout(autoStep, 10);
+    }
+    function autoStep() {
+      const target = tiles[(i + 1) % tiles.length];
+      if (!cursor || !fine.matches || getComputedStyle(cursor).display === 'none') { go(i + 1); return; }
+      const r = root.getBoundingClientRect(), t = target.getBoundingClientRect();
+      cursor.style.left = (t.left - r.left + t.width * 0.55) + 'px';
+      cursor.style.top = (t.top - r.top + t.height * 0.6) + 'px';
+      cursor.classList.add('is-visible');
+      setTimeout(() => { cursor.classList.add('is-pressed'); press(target, () => { cursor.classList.remove('is-pressed'); go(i + 1); }); }, 950);
+      setTimeout(() => cursor.classList.remove('is-visible'), 2600);
+    }
+    tiles.forEach((t, n) => t.addEventListener('click', () => press(t, () => go(n, true))));
+    next?.addEventListener('click', () => press(next, () => go(i + 1, true)));
+    root.addEventListener('click', e => { if (e.target.closest('button')) return; go(i + 1, true); });
+    if ('IntersectionObserver' in window) new IntersectionObserver(en => { visible = en[0].isIntersecting; if (visible) arm(); else { clearTimeout(timer); clearTimeout(idle); } }, { threshold: 0.4 }).observe(root);
+    document.addEventListener('visibilitychange', () => { if (document.hidden) { clearTimeout(timer); clearTimeout(idle); } else arm(); });
+    // first auto step once the hero has settled
+    idle = setTimeout(arm, 3800);
+  })();
 })();
