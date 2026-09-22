@@ -43,7 +43,10 @@ for path, page in pages.items():
         if url.scheme or url.netloc: continue
         target = ((ROOT / url.path.lstrip('/')) if url.path.startswith('/') else path.parent / url.path).resolve() if url.path else path
         if target.is_dir(): target /= 'index.html'
+        # Links are extension-less; GitHub Pages serves /foo from foo.html.
+        if not target.exists() and target.with_suffix('.html').exists(): target = target.with_suffix('.html')
         assert target.exists(), f'{page.path}: missing {link}'
+        assert not (url.path.endswith('.html') and url.scheme == '' and url.netloc == ''), f'{page.path}: internal link keeps .html ({link})'
         if url.fragment and target in pages: assert unquote(url.fragment) in pages[target].ids, f'{page.path}: missing fragment {link}'
 home = (ROOT / 'index.html').read_text()
 for token in ('7 jours', '12 mois', 'aperçu gratuit', 'Sans frais récurrents', 'Entreprise suisse', 'australiennes', 'template générique', 'Google Business Profile'):

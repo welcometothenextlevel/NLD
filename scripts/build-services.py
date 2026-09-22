@@ -146,7 +146,7 @@ def page(s):
 <div class="container hero__inner">
 <span class="eyebrow">{s['eyebrow']}</span><h1 class="t-display-xl hero__title">{s['h1']}</h1><p class="t-body-lg hero__lead">{s['lead']}</p>
 <div class="hero__actions">
-<a class="btn btn--primary btn--lg" href="/book.html">Demander mon aperçu gratuit{NE}</a><a class="btn btn--ghost btn--lg" href="tel:+41762632817">Appeler le +41 76 263 28 17{NE}</a>
+<a class="btn btn--primary btn--lg" href="/book">Demander mon aperçu gratuit{NE}</a><a class="btn btn--ghost btn--lg" href="tel:+41762632817">Appeler le +41 76 263 28 17{NE}</a>
 </div>
 <p class="hero__note">Service {s['num']} · compris dans chaque site · sans frais récurrents</p>
 </div>
@@ -174,7 +174,7 @@ def page(s):
 <span class="eyebrow">/ Compris</span>
 <h2 class="t-display-lg" data-split="words">Inclus d’office.<br><em>Rien à rajouter.</em></h2>
 <p class="t-body-lg">Ce service fait partie de chaque site que nous livrons. Il n’est ni optionnel, ni facturé en plus.</p>
-<a class="btn btn--ghost btn--lg" href="/websites.html">Voir l’offre complète{NE}</a>
+<a class="btn btn--ghost btn--lg" href="/websites">Voir l’offre complète{NE}</a>
 </div>
 <ul class="included__list included__list--simple stagger">{incl}</ul>
 </div>
@@ -196,7 +196,7 @@ def page(s):
 <div class="sec-head reveal">
 <span class="eyebrow">/ Aller plus loin</span><h2 class="t-display-lg" data-split="words">Les autres services.</h2>
 </div>
-<div class="sector-links reveal">{related}<a href="/websites.html" data-cursor="view"><span><small>Tout</small>L’offre complète</span><span aria-hidden="true">{NE}</span></a></div>
+<div class="sector-links reveal">{related}<a href="/websites" data-cursor="view"><span><small>Tout</small>L’offre complète</span><span aria-hidden="true">{NE}</span></a></div>
 </div>
 </section>
 <section class="cta-band" data-dots-region>
@@ -204,7 +204,7 @@ def page(s):
 <div class="container cta-band__inner reveal">
 <span class="eyebrow">/ On commence ?</span><h2 class="t-display-lg" data-split="words">Votre prochain site.<br><em>Voyez-le avant de décider.</em></h2><p class="t-body-lg">Parlez-nous de votre activité. Nous vous préparons un aperçu gratuit, sans engagement.</p>
 <div class="hero__actions">
-<a class="btn btn--gold btn--lg" href="/book.html">Demander mon aperçu gratuit{NE}</a><a class="btn btn--onpanel btn--lg" href="https://wa.me/41762632817">Parlons-en sur WhatsApp{NE}</a>
+<a class="btn btn--gold btn--lg" href="/book">Demander mon aperçu gratuit{NE}</a><a class="btn btn--onpanel btn--lg" href="https://wa.me/41762632817">Parlons-en sur WhatsApp{NE}</a>
 </div>
 </div>
 </section>
@@ -212,7 +212,7 @@ def page(s):
     faq_ld = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in s['faq']]}
     crumbs = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://nextdigitalevel.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Sites sur mesure", "item": "https://nextdigitalevel.com/websites.html"},
+        {"@type": "ListItem", "position": 2, "name": "Sites sur mesure", "item": "https://nextdigitalevel.com/websites"},
         {"@type": "ListItem", "position": 3, "name": s['nav'], "item": "https://nextdigitalevel.com/%s.html" % s['slug']}]}
     import json as _json
     head = head.replace('</head>', ''.join('<script type="application/ld+json">%s</script>\n' % _json.dumps(o, ensure_ascii=False, indent=1) for o in (faq_ld, crumbs)) + '</head>')

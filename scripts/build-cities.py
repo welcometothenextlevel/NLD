@@ -126,7 +126,7 @@ def city_page(c):
     faq_ld = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in c['faq']]}
     crumbs = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://nextdigitalevel.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Suisse romande", "item": "https://nextdigitalevel.com/creation-site-internet-suisse-romande.html"},
+        {"@type": "ListItem", "position": 2, "name": "Suisse romande", "item": "https://nextdigitalevel.com/creation-site-internet-suisse-romande"},
         {"@type": "ListItem", "position": 3, "name": c['city'], "item": "https://nextdigitalevel.com/%s.html" % c['slug']}]}
     service_ld = {"@context": "https://schema.org", "@type": "Service", "serviceType": "Création de site internet", "name": "Création de site internet à " + c['city'],
                   "provider": {"@type": "ProfessionalService", "name": "Next Digital Level", "url": "https://nextdigitalevel.com/", "telephone": "+41762632817"},
@@ -141,7 +141,7 @@ def city_page(c):
 <div class="container hero__inner">
 <span class="eyebrow">/ Suisse romande · {c['canton']}</span><h1 class="t-display-xl hero__title">{c['h1']}</h1><p class="t-body-lg hero__lead">{c['lead']}</p>
 <div class="hero__actions">
-<a class="btn btn--primary btn--lg" href="/book.html">Demander mon aperçu gratuit{NE}</a><a class="btn btn--ghost btn--lg" href="tel:+41762632817">Appeler le +41 76 263 28 17{NE}</a>
+<a class="btn btn--primary btn--lg" href="/book">Demander mon aperçu gratuit{NE}</a><a class="btn btn--ghost btn--lg" href="tel:+41762632817">Appeler le +41 76 263 28 17{NE}</a>
 </div>
 <p class="hero__note">Entreprise suisse · aperçu gratuit · prêt sous 7 jours · sans frais récurrents · 12 mois de suivi</p>
 </div>
@@ -162,7 +162,7 @@ def city_page(c):
 <span class="eyebrow">/ Être trouvé à {c['city']}</span>
 <h2 class="t-display-lg" data-split="words">Un site que Google<br><em>montre aux bonnes personnes.</em></h2>
 <p class="t-body-lg">{c['local']}</p>
-<a class="btn btn--ghost btn--lg" href="/seo-local.html">Notre approche du SEO local{NE}</a>
+<a class="btn btn--ghost btn--lg" href="/seo-local">Notre approche du SEO local{NE}</a>
 </div>
 <ul class="included__list included__list--simple stagger">
 <li><i></i><b>Aperçu gratuit</b><span>Vous voyez votre site avant de vous engager</span></li>
@@ -191,7 +191,7 @@ def city_page(c):
 <div class="sec-head reveal">
 <span class="eyebrow">/ Ailleurs en Suisse romande</span><h2 class="t-display-lg" data-split="words">Les autres cantons.</h2>
 </div>
-<div class="sector-links reveal">{others}<a href="/creation-site-internet-suisse-romande.html" data-cursor="view"><span><small>CH</small>Toute la Suisse romande</span><span aria-hidden="true">{NE}</span></a></div>
+<div class="sector-links reveal">{others}<a href="/creation-site-internet-suisse-romande" data-cursor="view"><span><small>CH</small>Toute la Suisse romande</span><span aria-hidden="true">{NE}</span></a></div>
 </div>
 </section>
 <section class="cta-band" data-dots-region>
@@ -199,7 +199,7 @@ def city_page(c):
 <div class="container cta-band__inner reveal">
 <span class="eyebrow">/ On commence ?</span><h2 class="t-display-lg" data-split="words">Votre site à {c['city']}.<br><em>Voyez-le avant de décider.</em></h2><p class="t-body-lg">Parlez-nous de votre activité. Nous vous préparons un aperçu gratuit, sans engagement.</p>
 <div class="hero__actions">
-<a class="btn btn--gold btn--lg" href="/book.html">Demander mon aperçu gratuit{NE}</a><a class="btn btn--onpanel btn--lg" href="https://wa.me/41762632817">Parlons-en sur WhatsApp{NE}</a>
+<a class="btn btn--gold btn--lg" href="/book">Demander mon aperçu gratuit{NE}</a><a class="btn btn--onpanel btn--lg" href="https://wa.me/41762632817">Parlons-en sur WhatsApp{NE}</a>
 </div>
 </div>
 </section>
@@ -211,7 +211,7 @@ def city_page(c):
 def hub_page():
     crumbs = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://nextdigitalevel.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Suisse romande", "item": "https://nextdigitalevel.com/creation-site-internet-suisse-romande.html"}]}
+        {"@type": "ListItem", "position": 2, "name": "Suisse romande", "item": "https://nextdigitalevel.com/creation-site-internet-suisse-romande"}]}
     cards = ''.join(f'<a class="card card--spot region-card" data-spot href="/{c["slug"]}.html"><span class="card__num">{c["code"]}</span><h3 class="t-display-sm">{c["canton"]}</h3><p class="t-body">{c["region"]}</p><span class="card__more">Voir la page {c["city"]}{NE}</span></a>' for c in CITIES)
     main = f'''
 <section class="hero inner-hero">
@@ -219,7 +219,7 @@ def hub_page():
 <div class="container hero__inner">
 <span class="eyebrow">/ Suisse romande</span><h1 class="t-display-xl hero__title">{HUB['h1']}</h1><p class="t-body-lg hero__lead">{HUB['lead']}</p>
 <div class="hero__actions">
-<a class="btn btn--primary btn--lg" href="/book.html">Demander mon aperçu gratuit{NE}</a><a class="btn btn--ghost btn--lg" href="tel:+41762632817">Appeler le +41 76 263 28 17{NE}</a>
+<a class="btn btn--primary btn--lg" href="/book">Demander mon aperçu gratuit{NE}</a><a class="btn btn--ghost btn--lg" href="tel:+41762632817">Appeler le +41 76 263 28 17{NE}</a>
 </div>
 </div>
 </section>
@@ -248,7 +248,7 @@ def hub_page():
 <div class="container cta-band__inner reveal">
 <span class="eyebrow">/ On commence ?</span><h2 class="t-display-lg" data-split="words">Votre prochain site.<br><em>Voyez-le avant de décider.</em></h2><p class="t-body-lg">Parlez-nous de votre activité. Nous vous préparons un aperçu gratuit, sans engagement.</p>
 <div class="hero__actions">
-<a class="btn btn--gold btn--lg" href="/book.html">Demander mon aperçu gratuit{NE}</a><a class="btn btn--onpanel btn--lg" href="https://wa.me/41762632817">Parlons-en sur WhatsApp{NE}</a>
+<a class="btn btn--gold btn--lg" href="/book">Demander mon aperçu gratuit{NE}</a><a class="btn btn--onpanel btn--lg" href="https://wa.me/41762632817">Parlons-en sur WhatsApp{NE}</a>
 </div>
 </div>
 </section>
