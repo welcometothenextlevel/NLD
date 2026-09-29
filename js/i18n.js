@@ -35,6 +35,39 @@
 
   const EN = {
     /* chrome */
+    /* privacy policy */
+    '/ Informations légales': '/ Legal information',
+    'Politique de confidentialité': 'Privacy Policy',
+    'Dernière mise à jour&nbsp;: 29 septembre 2026': 'Last updated&nbsp;: 29 September 2026',
+    '<span class="legal__num" aria-hidden="true">1.</span>Responsable du traitement': '<span class="legal__num" aria-hidden="true">1.</span>Data controller',
+    'Next Digital Level, Amin Hamdi<br>Rue de la Mouline 2, 1022 Chavannes-près-Renens, Suisse<br>E-mail&nbsp;: <a href="mailto:contact@nextdigitalevel.com">contact@nextdigitalevel.com</a><br>Téléphone&nbsp;: <a href="tel:+41762632817">+41 76 263 28 17</a>': 'Next Digital Level, Amin Hamdi<br>Rue de la Mouline 2, 1022 Chavannes-près-Renens, Switzerland<br>Email&nbsp;: <a href="mailto:contact@nextdigitalevel.com">contact@nextdigitalevel.com</a><br>Phone&nbsp;: <a href="tel:+41762632817">+41 76 263 28 17</a>',
+    '<span class="legal__num" aria-hidden="true">2.</span>Données que nous collectons': '<span class="legal__num" aria-hidden="true">2.</span>The data we collect',
+    'Lorsque vous remplissez un formulaire sur Facebook ou Instagram&nbsp;: votre nom, votre numéro de téléphone, votre adresse e-mail (facultative), la localité de votre entreprise et vos réponses aux questions du formulaire.': 'When you fill in a form on Facebook or Instagram&nbsp;: your name, your phone number, your email address (optional), the town your business is in and your answers to the form questions.',
+    'Lorsque vous nous contactez par téléphone, WhatsApp, e-mail ou via ce site&nbsp;: les informations que vous nous transmettez.': 'When you contact us by phone, WhatsApp, email or through this site&nbsp;: the information you send us.',
+    'Lorsque vous visitez ce site&nbsp;: des données techniques (adresse IP, type de navigateur, pages consultées) traitées par notre hébergeur pour assurer le fonctionnement et la sécurité du site.': 'When you visit this site&nbsp;: technical data (IP address, browser type, pages viewed) processed by our host to keep the site running and secure.',
+    '<span class="legal__num" aria-hidden="true">3.</span>Pourquoi nous utilisons vos données': '<span class="legal__num" aria-hidden="true">3.</span>Why we use your data',
+    'Nous utilisons vos données uniquement pour&nbsp;:': 'We use your data only to&nbsp;:',
+    'vous rappeler et répondre à votre demande&nbsp;;': 'call you back and answer your enquiry&nbsp;;',
+    'préparer une proposition de site internet et organiser un rendez-vous&nbsp;;': 'prepare a website proposal and arrange a meeting&nbsp;;',
+    'établir un devis, une facture et réaliser le mandat&nbsp;;': 'issue a quote and an invoice, and carry out the work&nbsp;;',
+    'respecter nos obligations légales.': 'meet our legal obligations.',
+    'Nous ne vendons jamais vos données et ne les utilisons pas à d’autres fins.': 'We never sell your data and we do not use it for any other purpose.',
+    '<span class="legal__num" aria-hidden="true">4.</span>Partage des données': '<span class="legal__num" aria-hidden="true">4.</span>Sharing your data',
+    'Vos données sont partagées uniquement avec les prestataires nécessaires à notre activité&nbsp;: Meta Platforms (formulaires Facebook et Instagram), GitHub (hébergement du site), Google Fonts (les polices de caractères de ce site sont chargées depuis les serveurs de Google, qui reçoit de ce fait votre adresse IP), ainsi que nos outils de communication (téléphone, WhatsApp, e-mail).': 'Your data is shared only with the providers our business needs&nbsp;: Meta Platforms (Facebook and Instagram forms), GitHub (site hosting), Google Fonts (this site’s typefaces are loaded from Google’s servers, which therefore receive your IP address), along with our communication tools (phone, WhatsApp, email).',
+    'Dans la section «&nbsp;Réalisations&nbsp;», un aperçu du site d’un client peut être affiché dans un cadre intégré. Cet aperçu n’est chargé que si vous cliquez vous-même sur «&nbsp;Aperçu en direct&nbsp;»&nbsp;; le site concerné reçoit alors votre adresse IP, comme si vous l’aviez ouvert directement.': 'In the “Our work” section, a preview of a client’s site can be shown in an embedded frame. That preview loads only if you click “Live preview” yourself&nbsp;; the site in question then receives your IP address, exactly as if you had opened it directly.',
+    'Certains de ces prestataires peuvent traiter des données en dehors de la Suisse, notamment aux États-Unis. Dans ce cas, le transfert repose sur des garanties appropriées, comme les clauses contractuelles types reconnues par le Préposé fédéral à la protection des données et à la transparence (PFPDT), ou sur le Swiss-US Data Privacy Framework lorsque le prestataire y est certifié.': 'Some of these providers may process data outside Switzerland, in particular in the United States. In that case the transfer relies on appropriate safeguards, such as the standard contractual clauses recognised by the Federal Data Protection and Information Commissioner (FDPIC), or on the Swiss-US Data Privacy Framework where the provider is certified under it.',
+    '<span class="legal__num" aria-hidden="true">5.</span>Durée de conservation': '<span class="legal__num" aria-hidden="true">5.</span>How long we keep it',
+    'Demandes sans suite&nbsp;: vos données sont supprimées au plus tard 12 mois après notre dernier échange.': 'Enquiries that go no further&nbsp;: your data is deleted at the latest 12 months after our last exchange.',
+    'Clients&nbsp;: vos données sont conservées pendant la durée du mandat, et les documents comptables pendant 10 ans, comme l’exige la loi.': 'Clients&nbsp;: your data is kept for the duration of the engagement, and accounting records for 10 years, as the law requires.',
+    '<span class="legal__num" aria-hidden="true">6.</span>Vos droits': '<span class="legal__num" aria-hidden="true">6.</span>Your rights',
+    'Conformément à la loi fédérale sur la protection des données (LPD), vous pouvez à tout moment demander l’accès à vos données, leur rectification ou leur suppression, vous opposer à leur traitement ou retirer votre consentement. Il vous suffit d’écrire à <a href="mailto:contact@nextdigitalevel.com">contact@nextdigitalevel.com</a>. Nous vous répondons dans un délai de 30 jours.': 'Under the Swiss Federal Act on Data Protection (FADP), you may at any time request access to your data, its correction or its deletion, object to its processing or withdraw your consent. Simply write to <a href="mailto:contact@nextdigitalevel.com">contact@nextdigitalevel.com</a>. We reply within 30 days.',
+    'Vous avez également le droit de déposer une plainte auprès du PFPDT&nbsp;: <a href="https://www.edoeb.admin.ch" target="_blank" rel="noopener">www.edoeb.admin.ch</a>': 'You also have the right to lodge a complaint with the FDPIC&nbsp;: <a href="https://www.edoeb.admin.ch" target="_blank" rel="noopener">www.edoeb.admin.ch</a>',
+    '<span class="legal__num" aria-hidden="true">7.</span>Cookies': '<span class="legal__num" aria-hidden="true">7.</span>Cookies',
+    'Ce site n’utilise ni cookies publicitaires ni outils de suivi. Aucun cookie n’est déposé, et aucune statistique de fréquentation n’est collectée.': 'This site uses neither advertising cookies nor tracking tools. No cookie is set, and no visitor statistics are collected.',
+    'Votre navigateur conserve uniquement trois préférences techniques, stockées sur votre appareil et jamais transmises&nbsp;: le thème clair ou sombre, la langue choisie et, le temps de votre visite, la conversation avec l’assistant. Cet assistant fonctionne entièrement dans votre navigateur&nbsp;: vos messages ne sont envoyés à aucun serveur.': 'Your browser keeps only three technical preferences, stored on your device and never transmitted&nbsp;: the light or dark theme, the language you chose and, for the duration of your visit, your conversation with the assistant. That assistant runs entirely in your browser&nbsp;: your messages are sent to no server.',
+    '<span class="legal__num" aria-hidden="true">8.</span>Modifications': '<span class="legal__num" aria-hidden="true">8.</span>Changes',
+    'Nous pouvons mettre à jour cette politique. La date indiquée en haut de cette page correspond à la dernière version.': 'We may update this policy. The date shown at the top of this page is that of the latest version.',
+
     'Aller au contenu': 'Skip to content',
     'Sites sur mesure': 'Custom websites',
     'Réalisations': 'Our work',
@@ -338,7 +371,9 @@
   };
   const TITLES = {
     'index.html': 'Custom-coded websites in French-speaking Switzerland | Next Digital Level',
-    '': 'Custom-coded websites in French-speaking Switzerland | Next Digital Level'
+    '': 'Custom-coded websites in French-speaking Switzerland | Next Digital Level',
+    'confidentialite': 'Privacy Policy · Next Digital Level',
+    'confidentialite.html': 'Privacy Policy · Next Digital Level'
   };
 
   function norm(h) { return h.replace(/<svg[\s\S]*?<\/svg>/g, '{ico}').replace(/\s+/g, ' ').trim(); }

@@ -1418,3 +1418,48 @@ html, body { overflow-x: clip; }
 .region-card { text-decoration: none; }
 .region-card .card__more { margin-top: 6px; }
 @media (max-width: 720px) { .regions { grid-template-columns: 1fr 1fr; gap: 10px; } .regions a { padding: 18px; } .regions b { font-size: 1.1rem; } }
+
+/* ---------- 33. Legal pages --------------------------------------------- */
+.legal { padding-block: clamp(120px, 14vw, 180px) clamp(70px, 9vw, 120px); }
+.legal__inner { max-width: 820px; }
+.legal__head { padding-bottom: clamp(30px, 4vw, 44px); border-bottom: 1px solid var(--hairline); }
+.legal__title { margin-top: 18px; max-width: 18ch; }
+.legal__updated {
+  margin-top: 20px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--body-dim);
+}
+.legal__body { max-width: 720px; }
+.legal__section { padding-top: clamp(38px, 5vw, 54px); }
+.legal__h2 { display: flex; align-items: baseline; gap: 0.5em; margin-bottom: 18px; letter-spacing: -0.015em; text-wrap: pretty; }
+.legal__num { flex: 0 0 auto; color: var(--accent); font-variant-numeric: tabular-nums; }
+.legal__body p { line-height: 1.75; color: var(--body); }
+.legal__body p + p { margin-top: 14px; }
+.legal__list { margin-top: 6px; display: grid; gap: 12px; }
+.legal__list li {
+  position: relative;
+  padding-left: 22px;
+  line-height: 1.75;
+  color: var(--body);
+}
+.legal__list li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 0.72em;
+  width: 6px;
+  height: 1px;
+  background: var(--accent);
+}
+.legal__body a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.legal__body a:hover { color: var(--ink); }
+.footer__legal { display: inline-block; padding-block: 5px; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--hairline-strong); }
+.footer__legal:hover { text-decoration-color: currentColor; }
+@media (max-width: 720px) {
+  .legal { padding-block: 116px 64px; }
+  .legal__title { max-width: none; }
+  .legal__body p, .legal__list li { font-size: 1rem; }
+}

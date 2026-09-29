@@ -108,11 +108,11 @@ def chrome(s, slug):
     head = HEAD
     head = re.sub(r'<title>.*?</title>', '<title>' + html.escape(s['title']) + '</title>', head)
     head = re.sub(r'<meta name="description" content="[^"]*">', '<meta name="description" content="' + html.escape(s['desc'], quote=True) + '">', head)
-    head = re.sub(r'<link rel="canonical" href="[^"]*">', '<link rel="canonical" href="https://nextdigitalevel.com/%s.html">' % slug, head)
+    head = re.sub(r'<link rel="canonical" href="[^"]*">', '<link rel="canonical" href="https://nextdigitalevel.com/%s">' % slug, head)
     short = html.escape(s['title'].split(' | ')[0], quote=True)
     head = re.sub(r'<meta property="og:title" content="[^"]*">', '<meta property="og:title" content="' + short + '">', head)
     head = re.sub(r'<meta property="og:description" content="[^"]*">', '<meta property="og:description" content="' + html.escape(s['desc'], quote=True) + '">', head)
-    head = re.sub(r'<meta property="og:url" content="[^"]*">', '<meta property="og:url" content="https://nextdigitalevel.com/%s.html">' % slug, head)
+    head = re.sub(r'<meta property="og:url" content="[^"]*">', '<meta property="og:url" content="https://nextdigitalevel.com/%s">' % slug, head)
     head = re.sub(r'<meta name="twitter:title" content="[^"]*">', '<meta name="twitter:title" content="' + short + '">', head)
     head = re.sub(r'<meta name="twitter:description" content="[^"]*">', '<meta name="twitter:description" content="' + html.escape(s['desc'], quote=True) + '">', head)
     return head
@@ -127,14 +127,14 @@ def city_page(c):
     crumbs = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://nextdigitalevel.com/"},
         {"@type": "ListItem", "position": 2, "name": "Suisse romande", "item": "https://nextdigitalevel.com/creation-site-internet-suisse-romande"},
-        {"@type": "ListItem", "position": 3, "name": c['city'], "item": "https://nextdigitalevel.com/%s.html" % c['slug']}]}
+        {"@type": "ListItem", "position": 3, "name": c['city'], "item": "https://nextdigitalevel.com/%s" % c['slug']}]}
     service_ld = {"@context": "https://schema.org", "@type": "Service", "serviceType": "Création de site internet", "name": "Création de site internet à " + c['city'],
                   "provider": {"@type": "ProfessionalService", "name": "Next Digital Level", "url": "https://nextdigitalevel.com/", "telephone": "+41762632817"},
                   "areaServed": {"@type": "AdministrativeArea", "name": "Canton de " + c['canton'], "containedInPlace": {"@type": "Country", "name": "Switzerland"}},
-                  "url": "https://nextdigitalevel.com/%s.html" % c['slug']}
+                  "url": "https://nextdigitalevel.com/%s" % c['slug']}
     cards = ''.join('<article class="card card--spot" data-spot><span class="card__num">%02d</span><h3 class="t-display-sm">%s</h3><p class="t-body">%s</p></article>' % (i + 1, t, b) for i, (t, b) in enumerate(c['sectors']))
     faq = ''.join('<details class="faq-detail"><summary>%s<span aria-hidden="true">+</span></summary><p class="t-body">%s</p></details>' % (q, a) for q, a in c['faq'])
-    others = ''.join('<a href="/%s.html" data-cursor="view"><span><small>%s</small>%s</span><span aria-hidden="true">%s</span></a>' % (o['slug'], o['code'], o['canton'], NE) for o in CITIES if o['slug'] != c['slug'])
+    others = ''.join('<a href="/%s" data-cursor="view"><span><small>%s</small>%s</span><span aria-hidden="true">%s</span></a>' % (o['slug'], o['code'], o['canton'], NE) for o in CITIES if o['slug'] != c['slug'])
     main = f'''
 <section class="hero inner-hero">
 <div class="hero__aura" aria-hidden="true"></div>
@@ -212,7 +212,7 @@ def hub_page():
     crumbs = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://nextdigitalevel.com/"},
         {"@type": "ListItem", "position": 2, "name": "Suisse romande", "item": "https://nextdigitalevel.com/creation-site-internet-suisse-romande"}]}
-    cards = ''.join(f'<a class="card card--spot region-card" data-spot href="/{c["slug"]}.html"><span class="card__num">{c["code"]}</span><h3 class="t-display-sm">{c["canton"]}</h3><p class="t-body">{c["region"]}</p><span class="card__more">Voir la page {c["city"]}{NE}</span></a>' for c in CITIES)
+    cards = ''.join(f'<a class="card card--spot region-card" data-spot href="/{c["slug"]}"><span class="card__num">{c["code"]}</span><h3 class="t-display-sm">{c["canton"]}</h3><p class="t-body">{c["region"]}</p><span class="card__more">Voir la page {c["city"]}{NE}</span></a>' for c in CITIES)
     main = f'''
 <section class="hero inner-hero">
 <div class="hero__aura" aria-hidden="true"></div>

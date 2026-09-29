@@ -129,17 +129,17 @@ def page(s):
     head = HEAD
     head = re.sub(r'<title>.*?</title>', '<title>' + html.escape(s['title']) + '</title>', head)
     head = re.sub(r'<meta name="description" content="[^"]*">', '<meta name="description" content="' + html.escape(s['desc'], quote=True) + '">', head)
-    head = re.sub(r'<link rel="canonical" href="[^"]*">', '<link rel="canonical" href="https://nextdigitalevel.com/%s.html">' % s['slug'], head)
+    head = re.sub(r'<link rel="canonical" href="[^"]*">', '<link rel="canonical" href="https://nextdigitalevel.com/%s">' % s['slug'], head)
     head = re.sub(r'<meta property="og:title" content="[^"]*">', '<meta property="og:title" content="' + html.escape(s['title'].split(' | ')[0], quote=True) + '">', head)
     head = re.sub(r'<meta property="og:description" content="[^"]*">', '<meta property="og:description" content="' + html.escape(s['desc'], quote=True) + '">', head)
-    head = re.sub(r'<meta property="og:url" content="[^"]*">', '<meta property="og:url" content="https://nextdigitalevel.com/%s.html">' % s['slug'], head)
+    head = re.sub(r'<meta property="og:url" content="[^"]*">', '<meta property="og:url" content="https://nextdigitalevel.com/%s">' % s['slug'], head)
     head = re.sub(r'<meta name="twitter:title" content="[^"]*">', '<meta name="twitter:title" content="' + html.escape(s['title'].split(' | ')[0], quote=True) + '">', head)
     head = re.sub(r'<meta name="twitter:description" content="[^"]*">', '<meta name="twitter:description" content="' + html.escape(s['desc'], quote=True) + '">', head)
     cards = ''.join('<article class="card card--spot" data-spot><span class="card__num">%02d</span><h3 class="t-display-sm">%s</h3><p class="t-body">%s</p></article>' % (i + 1, t, b) for i, (t, b) in enumerate(s['why']))
     steps = ''.join('<article class="tl__item"><span class="eyebrow">%02d</span><h3 class="t-display-sm">%s</h3><p class="t-body">%s</p></article>' % (i + 1, t, b) for i, (t, b) in enumerate(s['steps']))
     incl = ''.join('<li><i></i><b>%s</b></li>' % t for t in s['included'])
     faq = ''.join('<details class="faq-detail"><summary>%s<span aria-hidden="true">+</span></summary><p class="t-body">%s</p></details>' % (q, a) for q, a in s['faq'])
-    related = ''.join('<a href="/%s.html" data-cursor="view"><span><small>%s</small>%s</span><span aria-hidden="true">%s</span></a>' % (BY_SLUG[r]['slug'], BY_SLUG[r]['num'], BY_SLUG[r]['nav'], NE) for r in s['related'])
+    related = ''.join('<a href="/%s" data-cursor="view"><span><small>%s</small>%s</span><span aria-hidden="true">%s</span></a>' % (BY_SLUG[r]['slug'], BY_SLUG[r]['num'], BY_SLUG[r]['nav'], NE) for r in s['related'])
     main = f'''
 <section class="hero inner-hero">
 <div class="hero__aura" aria-hidden="true"></div>
@@ -213,7 +213,7 @@ def page(s):
     crumbs = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://nextdigitalevel.com/"},
         {"@type": "ListItem", "position": 2, "name": "Sites sur mesure", "item": "https://nextdigitalevel.com/websites"},
-        {"@type": "ListItem", "position": 3, "name": s['nav'], "item": "https://nextdigitalevel.com/%s.html" % s['slug']}]}
+        {"@type": "ListItem", "position": 3, "name": s['nav'], "item": "https://nextdigitalevel.com/%s" % s['slug']}]}
     import json as _json
     head = head.replace('</head>', ''.join('<script type="application/ld+json">%s</script>\n' % _json.dumps(o, ensure_ascii=False, indent=1) for o in (faq_ld, crumbs)) + '</head>')
     return head + main + FOOT
