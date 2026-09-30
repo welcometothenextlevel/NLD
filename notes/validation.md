@@ -185,3 +185,21 @@ Business Profile and Search Console operations are outside this website update.
   address.
 - Service schema on town pages uses City → AdministrativeArea → Country.
 - sitemap.xml: 32 URLs. `python3 scripts/check-site.py`: 38 pages pass.
+
+# Validation — 30 September 2026 (Google Business Profile wired into the schema)
+
+- The profile exists and is owner-managed. Its feature id was recovered from
+  the `stick=` parameter of the owner's Google search URL (base64url + gzip →
+  `0x948960c29e3110f:0x91054cad746ed963`, entity "Next Digital Level"), and the
+  place ID derived from that pair per notes in memory:
+  `ChIJDxHjKQyWSAkRY9ludK1MBZE`, CID `10449842818249578851`.
+- Verified in the browser before use: `maps.google.com/?cid=…` resolves to
+  Next Digital Level, Website designer, nextdigitalevel.com, 076 263 28 17 —
+  the same feature id appears in the resulting Maps URL. The write-review link
+  redirects to Google sign-in, which is the expected flow.
+- Schema on all 33 pages: `openingHoursSpecification` now 00:00–23:59 every
+  day, matching the profile's "Open 24 hours" — the owner confirmed
+  availability is genuinely 24/7 after the mismatch was raised. The profile is
+  added to `sameAs` and `hasMap`, tying site and listing to one entity.
+- Profile still shows no reviews and 4 photos; those remain the owner's
+  highest-value actions.
