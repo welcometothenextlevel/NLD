@@ -35,6 +35,11 @@
 
   const EN = {
     /* chrome */
+    /* tagline + footer service links */
+    'Des sites qui attirent des clients.<br><em>Construits pour les convertir.</em>': 'Websites that attract clients.<br><em>Built to convert them.</em>',
+    '<a href="/publicite-meta">Publicité Meta</a>': '<a href="/publicite-meta">Meta advertising</a>',
+    '<a href="/google-ads">Google Ads</a>': '<a href="/google-ads">Google Ads</a>',
+
     /* partners / certifications */
     '/ Certifications': '/ Certifications',
     'Publicité en ligne,<br><em>par quelqu’un d’accrédité.</em>': 'Online advertising,<br><em>run by someone accredited.</em>',

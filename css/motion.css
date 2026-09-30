@@ -1491,3 +1491,32 @@ html, body { overflow-x: clip; }
   .partner { flex-direction: column; gap: 16px; padding: 24px; }
   .partner__logo { height: 30px; }
 }
+
+/* ---------- 35. Advertising pages: badge + tagline ----------------------- */
+.adbadge {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  max-width: 660px;
+  margin-top: 30px;
+  padding: 20px 24px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  background: var(--canvas-card);
+  box-shadow: var(--shadow-sm);
+  text-align: left;
+}
+.adbadge__logo { width: auto; height: 30px; flex-shrink: 0; margin-top: 3px; }
+.adbadge span { font-size: 0.9rem; line-height: 1.6; color: var(--body-mid); }
+.adbadge b { display: block; font-family: var(--font-display); font-weight: 400; font-size: 1.15rem; color: var(--ink); margin-bottom: 4px; }
+.tagline { max-width: 900px; margin-bottom: clamp(38px, 5vw, 56px); }
+.tagline__line { margin: 16px 0 18px; color: var(--ink); text-wrap: balance; }
+.tagline__line em { color: var(--accent); }
+.tagline__sub { max-width: 62ch; color: var(--body-mid); }
+@media (max-width: 720px) {
+  .adbadge { flex-direction: column; gap: 14px; padding: 18px 20px; }
+  .inner-hero .adbadge { margin-inline: auto; }
+}
+/* the partner cards are now links */
+a.partner { text-decoration: none; color: inherit; }
+a.partner:hover .partner__body b { color: var(--accent); }
