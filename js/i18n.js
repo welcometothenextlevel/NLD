@@ -175,6 +175,7 @@
     '<span class="pip" aria-hidden="true"></span>Site en ligne': '<span class="pip" aria-hidden="true"></span>Live site',
     '<span class="showcase__hint-l">Faites défiler</span><span class="showcase__hint-r">pour agrandir</span>': '<span class="showcase__hint-l">Scroll</span><span class="showcase__hint-r">to expand</span>',
     'Glisser': 'Drag',
+    '<b>GS Service</b><span>Peinture &amp; rénovation · Vaud</span>': '<b>GS Service</b><span>Painting &amp; renovation · Vaud</span>',
     '<b>Trident Cross Marine</b><span>Entretien de bateaux</span>': '<b>Trident Cross Marine</b><span>Boat detailing</span>',
     '<b>Everest Badminton</b><span>Club sportif</span>': '<b>Everest Badminton</b><span>Sports club</span>',
     '<b>Citiport</b><span>Transport &amp; réservation</span>': '<b>Citiport</b><span>Transport &amp; booking</span>',
@@ -226,8 +227,8 @@
 
     /* work */
     '/ Réalisations': '/ Our work',
-    'De l’expérience en Australie.<br>La même attention pour votre PME.': 'Experience in Australia.<br>The same care for your business.',
-    'Nous avons accompagné des petites entreprises australiennes : beauté, services, artisanat et commerce. Découvrez les sites existants et la diversité des activités.': 'We have worked with small Australian businesses: beauty, services, trades and retail. Browse the live sites and the variety of activities.',
+    'Des sites en ligne,<br>en Suisse et en Australie.': 'Live websites,<br>in Switzerland and Australia.',
+    'De la peinture et de la rénovation en Lavaux aux petites entreprises australiennes : beauté, services, artisanat et commerce. Découvrez les sites existants et la diversité des activités.': 'From painting and renovation in Lavaux to small Australian businesses: beauty, services, trades and retail. Browse the live sites and the variety of activities.',
     'Faites défiler les projets': 'Scroll through the projects',
 
     /* method */

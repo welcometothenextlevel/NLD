@@ -91,6 +91,7 @@
     }).observe(region);
   });
   var WORK = [
+    { name: "GS Service Gotsevski", cat: "Peinture & rénovation · Puidoux, Vaud", url: "https://welcometothenextlevel.github.io/GS-Service/", img: "gsservice" },
     { name: "Char's Beauty Room", cat: "Beauty studio · Altona Meadows, Melbourne", url: "https://charsbeautyroom.com.au/", img: "charsbeautyroom" },
     { name: "Talofa Support Services", cat: "NDIS provider · Melbourne", url: "https://talofasupportservices.com.au/", img: "talofa" },
     { name: "The Visa Centre", cat: "Migration agency", url: "https://welcometothenextlevel.github.io/thevisacentre/", img: "thevisacentre" },
@@ -102,7 +103,7 @@
     { name: "All In 1 Party World", cat: "Party hire · Victoria", url: "https://welcometothenextlevel.github.io/allin1partyworld/", img: "allin1" },
     { name: "E&J Carpet Cleaning", cat: "Carpet cleaning · Liverpool & Fairfield", url: "https://ej-carpetcleaning.com/", img: "ejcarpet" },
     { name: "Everest Badminton", cat: "Sports club", url: "https://welcometothenextlevel.github.io/badminton/", img: "everest" }
-  ];  const categories = window.NDL_LANG === 'en' ? ['Beauty studio · Melbourne', 'NDIS services · Melbourne', 'Migration agency', 'Jewellery · E-commerce', 'Wedding planning', 'Transport & booking', 'Lawn care · Melbourne', 'Boat detailing', 'Party hire · Victoria', 'Carpet cleaning', 'Sports club'] : ['Institut de beauté · Melbourne', 'Services NDIS · Melbourne', 'Agence de migration', 'Bijouterie · E-commerce', 'Organisation de mariages', 'Transport & réservation', 'Jardinage · Melbourne', 'Entretien de bateaux', 'Location événementielle · Victoria', 'Nettoyage de moquettes', 'Club sportif'];
+  ];  const categories = window.NDL_LANG === 'en' ? ['Painting & renovation · Puidoux, Vaud', 'Beauty studio · Melbourne', 'NDIS services · Melbourne', 'Migration agency', 'Jewellery · E-commerce', 'Wedding planning', 'Transport & booking', 'Lawn care · Melbourne', 'Boat detailing', 'Party hire · Victoria', 'Carpet cleaning', 'Sports club'] : ['Peinture & rénovation · Puidoux, Vaud', 'Institut de beauté · Melbourne', 'Services NDIS · Melbourne', 'Agence de migration', 'Bijouterie · E-commerce', 'Organisation de mariages', 'Transport & réservation', 'Jardinage · Melbourne', 'Entretien de bateaux', 'Location événementielle · Victoria', 'Nettoyage de moquettes', 'Club sportif'];
   const viewport = $('[data-work]');
   if (viewport) {
     const rail = document.createElement('div'); rail.className = 'work__rail';

@@ -139,3 +139,22 @@ Business Profile and Search Console operations are outside this website update.
 - `python3 scripts/check-site.py`: 29 pages pass. `node --check`,
   `git diff --check` clean. Domain spelled with a single L everywhere (0
   occurrences of the double-L form).
+
+# Validation — 30 September 2026 (GS Service added to the portfolio)
+
+- GS Service Gotsevski (Puidoux, Vaud — peinture, façades, rénovation) added as
+  the first entry of the portfolio strip and the first slide of the homepage
+  showcase: the only Swiss reference, and the one Swiss prospects look for.
+- Screenshot captured with headless Chrome at 1440×1000 and exported to
+  assets/work/gsservice.webp (74 KB) and -sm.webp (31 KB), same pipeline as the
+  other eleven.
+- The "Réalisations" heading and intro claimed every client was Australian,
+  which this addition made untrue; both were rewritten and their English
+  entries in js/i18n.js retargeted to the new French keys. The assistant's
+  "réalisations" answer (FR and EN) now names the Swiss client first.
+- Checked: 12 WORK entries against 12 FR and 12 EN category labels; showcase
+  slide and tab indices 0–5 with no duplicate; browser-bar host and CTA link
+  default to GS Service; EN toggle renders all new strings; no console errors;
+  no horizontal overflow at 390 px.
+- `python3 scripts/check-site.py`: 29 pages pass. `node --check` on main.js,
+  chat.js, i18n.js and `git diff --check` clean.
