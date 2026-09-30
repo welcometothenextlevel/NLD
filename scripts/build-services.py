@@ -12,6 +12,10 @@ HEAD = BASE[:BASE.index('<main id="main">') + len('<main id="main">')]
 FOOT = BASE[BASE.index('</main>'):]
 NE = '<svg class="ico" viewBox="0 0 16 16" width="14" height="14" fill="none" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 
+TAGLINE = 'Des sites qui attirent des clients.<br><em>Construits pour les convertir.</em>'
+STANCE_SUB = ('Tout ce que nous construisons vise la même chose. Un site est un outil commercial avant '
+              'd’être un objet de décoration — et cela vaut avec ou sans publicité derrière.')
+
 SERVICES = [
     dict(slug='design-sur-mesure', num='01', nav='Design à votre image',
          title='Design à votre image | Next Digital Level',
@@ -153,6 +157,11 @@ def page(s):
 </section>
 <section class="section">
 <div class="container">
+<div class="tagline reveal">
+<span class="eyebrow">/ Notre position</span>
+<p class="t-display-lg tagline__line">{TAGLINE}</p>
+<p class="t-body-lg tagline__sub">{STANCE_SUB}</p>
+</div>
 <div class="sec-head reveal">
 <span class="eyebrow">/ Ce que cela change pour vous</span><h2 class="t-display-lg" data-split="words">Concrètement.</h2>
 </div>

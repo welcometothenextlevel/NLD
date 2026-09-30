@@ -246,3 +246,30 @@ Business Profile and Search Console operations are outside this website update.
   47×30): the blank hero in headless captures is the entrance animation not
   running there, not a layout fault.
 - `python3 scripts/check-site.py`: 40 pages pass.
+
+# Validation — 30 September 2026 (navigation + "brings you clients" repositioning)
+
+- Navigation: "Sites sur mesure" becomes a "Prestations" panel holding all
+  eighteen destinations in three columns — Création de site (the six services
+  + the full offer), Publicité (Meta, Google Ads, Visibilité) and Votre région
+  (six cantons + the hub). Réalisations / La méthode / Le studio stay flat, so
+  the item count is unchanged.
+- The panel is anchored to the nav pill, not to the trigger: anchored to the
+  trigger it overflowed the left viewport edge (measured left: -21px). Now
+  left 260, width 920, fits the viewport.
+- Opens on click everywhere and on hover after 90 ms on fine pointers; closes
+  on Escape, outside click, link click, scroll and focus leaving the panel.
+  aria-expanded / aria-controls / aria-haspopup set.
+- Mobile drawer regrouped: three headed groups, 17 sub-links, scrollable, no
+  horizontal overflow at 390 px.
+- Copy: the homepage hero lead, the services section (eyebrow, heading, intro
+  and all six card bodies), the included section, and the websites.html hero
+  and heading now lead with what the site is for — attracting visitors and
+  turning them into clients, with or without advertising. Each of the six
+  cards opens on what is at stake rather than on the feature.
+- The positioning band from the advertising pages is now on all six service
+  pages too, via build-services.py, so the stance is consistent.
+- All eleven reworded strings were retargeted in js/i18n.js; verified in the
+  browser that the English toggle leaves 0 French strings in that section.
+- `python3 scripts/check-site.py`: 40 pages pass; JS syntax and
+  `git diff --check` clean.

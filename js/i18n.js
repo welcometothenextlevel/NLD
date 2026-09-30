@@ -35,6 +35,11 @@
 
   const EN = {
     /* chrome */
+    'Artisan, commerçant ou indépendant : votre site doit attirer des visiteurs, expliquer votre valeur et déclencher le prochain appel. Nous le construisons pour cela, de bout en bout.': 'Tradesperson, shopkeeper or independent: your site must attract visitors, explain your value and trigger the next call. We build it for exactly that, end to end.',
+    'Un site qui vous amène des clients.': 'A website that brings you clients.',
+    'Tout ce que nous construisons vise la même chose. Un site est un outil commercial avant d’être un objet de décoration — et cela vaut avec ou sans publicité derrière.': 'Everything we build aims at the same thing. A website is a commercial tool before it is a decorative object — and that holds with or without advertising behind it.',
+    '/ Notre position': '/ Where we stand',
+
     /* tagline + footer service links */
     'Des sites qui attirent des clients.<br><em>Construits pour les convertir.</em>': 'Websites that attract clients.<br><em>Built to convert them.</em>',
     '<a href="/publicite-meta">Publicité Meta</a>': '<a href="/publicite-meta">Meta advertising</a>',
@@ -127,7 +132,7 @@
     /* hero */
     '<span class="pip" aria-hidden="true"></span>Entreprise suisse · PME &amp; indépendants': '<span class="pip" aria-hidden="true"></span>Swiss company · SMEs &amp; independents',
     'Votre savoir-faire.<br>Un site<br><em>à sa hauteur.</em>': 'Your craft.<br>A website<br><em>that lives up to it.</em>',
-    'Des sites web codés sur mesure pour les PME de Suisse romande. Découvrez votre <strong>aperçu gratuit avant de vous engager.</strong>': 'Hand-coded websites for small businesses in French-speaking Switzerland. See your <strong>free preview before you commit.</strong>',
+    'Des sites codés sur mesure pour les PME de Suisse romande, construits pour attirer des visiteurs et les transformer en clients. Découvrez votre <strong>aperçu gratuit avant de vous engager.</strong>': 'Hand-coded websites for small businesses in French-speaking Switzerland, built to attract visitors and turn them into clients. See your <strong>free preview before you commit.</strong>',
     'Sans template générique. Sans frais récurrents.': 'No generic template. No recurring fees.',
     'Découvrez nos réalisations {ico}': 'See our work {ico}',
     'Votre entreprise · la méthode en 4 étapes': 'Your business · the method in 4 steps',
@@ -198,21 +203,21 @@
     'Toutes les réalisations {ico}': 'All our work {ico}',
 
     /* services */
-    '/ Un site qui travaille pour vous': '/ A website that works for you',
-    'Inspirer confiance.<br>Donner envie de vous contacter.': 'Inspire trust.<br>Make people want to call.',
-    'Chaque site que nous livrons réunit six ingrédients. Aucun n’est optionnel, aucun n’est facturé en plus.': 'Every site we deliver brings six ingredients together. None is optional, none is charged extra.',
+    '/ Un site qui va chercher vos clients': '/ A website that goes and finds your clients',
+    'Pas seulement un beau site.<br><em>Un site qui vous amène des clients.</em>': 'Not just a good-looking site.<br><em>A site that brings you clients.</em>',
+    'Chaque site que nous livrons vise la même chose : attirer des visiteurs, les convaincre et les transformer en appels. Six éléments, aucun optionnel — et cela vaut avec ou sans publicité.': 'Every site we deliver aims at the same thing: attract visitors, convince them and turn them into calls. Six elements, none optional — and that holds with or without advertising.',
     'Design à votre image': 'Design in your image',
-    'Une direction artistique pensée pour votre métier, vos couleurs et votre clientèle. Pas un thème acheté, pas un gabarit rempli.': 'An art direction built around your trade, your colours and your customers. Not a purchased theme, not a filled-in template.',
+    'Un visiteur décide en quelques secondes s’il vous fait confiance. Une direction pensée pour votre métier et votre clientèle fait ce travail avant même la première ligne lue.': 'A visitor decides in seconds whether to trust you. A direction built around your trade and your customers does that work before a single line is read.',
     'Code sur mesure': 'Hand-written code',
-    'Écrit ligne par ligne, sans constructeur ni extension à maintenir. Le résultat : des pages légères, rapides et qui vous appartiennent.': 'Written line by line, with no site builder or plugins to maintain. The result: light, fast pages that belong to you.',
+    'Une page lente perd ses visiteurs avant de les convaincre. Écrit ligne par ligne, sans constructeur : léger, rapide sur mobile, et il vous appartient.': 'A slow page loses visitors before it can convince them. Written line by line, no site builder: light, fast on mobile, and yours to keep.',
     'Les bases pour être trouvé': 'The basics to be found',
-    'Optimisation SEO, pages rapides et contenu local pertinent. Nous vous accompagnons aussi sur Google Business Profile lorsque c’est adapté.': 'SEO fundamentals, fast pages and relevant local content. We also help with Google Business Profile when it makes sense.',
+    'Un site que personne ne trouve ne rapporte rien. SEO local, pages rapides et contenu régional pour apparaître quand on cherche votre métier près de chez vous.': 'A site nobody finds earns nothing. Local SEO, fast pages and regional content so you appear when someone searches your trade nearby.',
     'Pensé pour le mobile': 'Built for mobile',
-    'La majorité de vos clients vous découvrent sur leur téléphone. Un geste suffit pour vous appeler, vous écrire ou trouver votre adresse.': 'Most of your customers discover you on their phone. One tap is enough to call you, message you or find your address.',
+    'La majorité de vos clients vous découvrent sur leur téléphone, et c’est là que se gagne l’appel. Un geste suffit pour vous joindre ou trouver votre adresse.': 'Most of your customers discover you on their phone, and that is where the call is won. One tap to reach you or find your address.',
     'Textes et structure': 'Copy and structure',
-    'Nous rédigeons avec vous des pages claires : vos services, votre différence, votre zone d’intervention. Le bon mot au bon endroit.': 'We write clear pages with you: your services, what sets you apart, the area you serve. The right words in the right place.',
+    'Des mots flous ne convertissent pas. Nous écrivons avec vous des pages qui expliquent ce que vous faites et donnent envie de décrocher le téléphone.': 'Vague words do not convert. We write pages with you that explain what you do and make people want to pick up the phone.',
     '12 mois à vos côtés': '12 months by your side',
-    'Après la mise en ligne, un interlocuteur reste disponible 7 jours sur 7 pour vos questions, vos ajustements et la prise en main.': 'After launch, one contact stays available 7 days a week for your questions, adjustments and getting started.',
+    'Un site qui vieillit perd du terrain. Pendant douze mois, un interlocuteur le tient à jour et répond à vos questions, 7 jours sur 7.': 'A site that ages loses ground. For twelve months one contact keeps it current and answers your questions, seven days a week.',
     'En savoir plus{ico}': 'Learn more{ico}',
 
     /* comparison */
@@ -277,7 +282,7 @@
     /* included */
     '/ Compris dans chaque site': '/ Included in every site',
     'Tout ce qu’il faut.<br><em>Rien à rajouter.</em>': 'Everything you need.<br><em>Nothing to add.</em>',
-    'Ce que nous considérons comme la base d’un site professionnel en 2026. Inclus d’office, quel que soit votre projet.': 'What we consider the baseline of a professional website in 2026. Included by default, whatever your project.',
+    'La base d’un site qui travaille, pas seulement d’un site qui existe. Inclus d’office, quel que soit votre projet.': 'The baseline of a site that works, not merely one that exists. Included by default, whatever your project.',
     'Voir l’offre en détail{ico}': 'See the offer in detail{ico}',
     '<i></i><b>Design responsive</b><span>Impeccable sur téléphone, tablette et ordinateur</span>': '<i></i><b>Responsive design</b><span>Flawless on phone, tablet and desktop</span>',
     '<i></i><b>Pages rapides</b><span>Code léger, images optimisées, aucun script superflu</span>': '<i></i><b>Fast pages</b><span>Light code, optimised images, no unnecessary scripts</span>',

@@ -546,4 +546,32 @@
     // first auto step once the hero has settled (desktop only)
     if (TOUR) idle = setTimeout(arm, 6500);
   })();
+
+  /* ---------- Mega menu ----------
+     Click to open on every device; on a fine pointer it also opens on hover
+     after a short delay so it does not flicker while crossing the nav. */
+  (function megaMenu() {
+    $$('[data-menu]').forEach(item => {
+      const trigger = $('.nav__trigger', item), panel = $('.mega', item);
+      if (!trigger || !panel) return;
+      panel.removeAttribute('hidden');
+      let hoverTimer = 0;
+      const open = () => { item.classList.add('is-open'); trigger.setAttribute('aria-expanded', 'true'); };
+      const close = () => { item.classList.remove('is-open'); trigger.setAttribute('aria-expanded', 'false'); };
+      const isOpen = () => item.classList.contains('is-open');
+
+      trigger.addEventListener('click', e => { e.preventDefault(); isOpen() ? close() : open(); });
+      item.addEventListener('mouseenter', () => { if (!fine.matches) return; clearTimeout(hoverTimer); hoverTimer = setTimeout(open, 90); });
+      item.addEventListener('mouseleave', () => { if (!fine.matches) return; clearTimeout(hoverTimer); hoverTimer = setTimeout(close, 180); });
+      $$('a', panel).forEach(a => a.addEventListener('click', close));
+      document.addEventListener('click', e => { if (isOpen() && !item.contains(e.target)) close(); });
+      document.addEventListener('keydown', e => {
+        if (e.key !== 'Escape' || !isOpen()) return;
+        close(); trigger.focus();
+      });
+      // keyboard: leaving the panel forwards closes it
+      item.addEventListener('focusout', e => { if (!item.contains(e.relatedTarget)) close(); });
+      window.addEventListener('scroll', () => { if (isOpen()) close(); }, { passive: true });
+    });
+  })();
 })();
