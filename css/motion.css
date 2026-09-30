@@ -1463,3 +1463,31 @@ html, body { overflow-x: clip; }
   .legal__title { max-width: none; }
   .legal__body p, .legal__list li { font-size: 1rem; }
 }
+
+/* ---------- 34. Partner / certification strip ---------------------------- */
+.partners { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.partner {
+  display: flex;
+  align-items: flex-start;
+  gap: 22px;
+  padding: 28px 30px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  background: var(--canvas-card);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.5s var(--ease-reveal), border-color 0.3s, box-shadow 0.5s var(--ease-ui);
+}
+.partner:hover { transform: translateY(-3px); border-color: var(--hairline-strong); box-shadow: var(--shadow-md); }
+/* The marks keep their own brand colours, which read on both themes. */
+.partner__logo { width: auto; height: 34px; flex-shrink: 0; margin-top: 2px; }
+.partner__body { display: flex; flex-direction: column; gap: 7px; }
+.partner__body b { font-family: var(--font-display); font-weight: 400; font-size: 1.3rem; letter-spacing: -0.01em; color: var(--ink); }
+.partner__body span { font-size: 0.92rem; line-height: 1.65; color: var(--body-mid); }
+.partners__note { margin-top: 18px; font-size: 0.72rem; line-height: 1.6; color: var(--body-dim); max-width: 70ch; }
+@media (max-width: 900px) {
+  .partners { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  .partner { flex-direction: column; gap: 16px; padding: 24px; }
+  .partner__logo { height: 30px; }
+}

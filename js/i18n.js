@@ -35,6 +35,14 @@
 
   const EN = {
     /* chrome */
+    /* partners / certifications */
+    '/ Certifications': '/ Certifications',
+    'Publicité en ligne,<br><em>par quelqu’un d’accrédité.</em>': 'Online advertising,<br><em>run by someone accredited.</em>',
+    'Au-delà du site, nous gérons vos campagnes. Deux plateformes, apprises sérieusement plutôt qu’en surface.': 'Beyond the site, we run your campaigns. Two platforms, learned properly rather than superficially.',
+    'Campagnes Facebook et Instagram : audiences locales, formulaires de contact, suivi des demandes.': 'Facebook and Instagram campaigns: local audiences, lead forms, enquiry tracking.',
+    'Annonces de recherche sur les requêtes qui comptent dans votre région, avec un budget que vous maîtrisez.': 'Search ads on the queries that matter in your region, on a budget you control.',
+    'Meta et Google Ads sont des marques de leurs propriétaires respectifs. Ces logos indiquent les plateformes sur lesquelles nous travaillons.': 'Meta and Google Ads are trademarks of their respective owners. These logos indicate the platforms we work on.',
+
     /* privacy policy */
     '/ Informations légales': '/ Legal information',
     'Politique de confidentialité': 'Privacy Policy',

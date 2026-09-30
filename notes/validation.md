@@ -203,3 +203,22 @@ Business Profile and Search Console operations are outside this website update.
   added to `sameAs` and `hasMap`, tying site and listing to one entity.
 - Profile still shows no reviews and 4 photos; those remain the owner's
   highest-value actions.
+
+# Validation — 30 September 2026 (Meta / Google Ads certifications)
+
+- New "Certifications" section on the homepage (before the sectors) and on
+  /advertising (before the "Suivi" section), naming Meta Business Partner and
+  Google Ads.
+- Logos are the official vectors from Wikimedia Commons, not redrawn: Meta
+  Platforms mark and the Google Ads icon. The Meta file's dark "Meta" wordmark
+  was removed and only the infinity mark kept, because the wordmark would have
+  disappeared against the dark theme; both marks were rendered on the ivory and
+  the dark canvas to confirm they read on each.
+- Wording deliberately mirrors exactly what the owner claimed: "Meta Business
+  Partner" and "Google Ads". It does NOT say "Google Partner", which is a
+  separate badge programme with its own requirements, and does not claim any
+  certification the owner did not state.
+- A trademark attribution line sits under the two cards.
+- Translated in js/i18n.js. Checked at 390 px and 1440 px, light and dark: no
+  overflow, logos legible on both themes.
+- `python3 scripts/check-site.py`: 38 pages pass.
