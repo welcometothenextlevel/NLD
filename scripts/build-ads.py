@@ -252,3 +252,7 @@ def page(a):
 for a in ADS:
     (ROOT / (a['slug'] + '.html')).write_text(page(a))
     print('wrote', a['slug'])
+
+# JSON-LD is owned by one script; run it so this output is never left stale.
+import subprocess as _sp, sys as _sys
+_sp.run([_sys.executable, str(ROOT / 'scripts' / 'structured_data.py')], check=True)

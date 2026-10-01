@@ -273,3 +273,38 @@ Business Profile and Search Console operations are outside this website update.
   browser that the English toggle leaves 0 French strings in that section.
 - `python3 scripts/check-site.py`: 40 pages pass; JS syntax and
   `git diff --check` clean.
+
+# Validation — 1 October 2026 (technical SEO: structured data)
+
+- New scripts/structured_data.py owns all JSON-LD; every page generator now
+  ends by running it, and it is idempotent (`--check` reports 0 changes).
+- lang: all 40 HTML files (35 root + 5 redirect stubs) already carried
+  `lang="fr-CH"`; nothing to fix.
+- Business entity: the previous `#organization` block (which exposed the
+  street address) is replaced on every page by one `#business` entity per the
+  owner's brief — no streetAddress; locality, postcode, region VD, country CH;
+  telephone "+41 76 263 28 17"; areaServed = the six cantons; IG + FB in
+  sameAs. Kept from earlier owner requests: the Google Business Profile in
+  sameAs + hasMap (2026-09-30) and 24/7 opening hours. It is identical on every
+  page so `provider: {"@id": …/#business}` resolves on the page itself; a
+  second, different entity on the homepage would have contradicted the first.
+- Service on all 16 /creation-site-internet-* pages, provider by @id only;
+  areaServed City for towns (with containing canton), AdministrativeArea for
+  cantons, the six cantons for the Suisse romande hub (which had none). Canton
+  names normalised to plain "Valais", "Jura" — the generator had produced
+  "Canton de Valais" / "Canton de Jura".
+- FAQPage rebuilt from the visible <details> FAQ on 25 pages. Before the
+  change, the 24 existing blocks already matched word for word; websites.html
+  showed 5 FAQs with no schema and now has one. Older trade pages have no FAQ.
+- BreadcrumbList added (Accueil > page) to the 8 indexable pages that lacked
+  one, using the footer labels; homepage and 404 deliberately excluded. Stray
+  breadcrumbs inherited by generators copying websites.html's <head> are
+  dropped — only a trail ending on the page itself is kept.
+- Sitemap: 34 URLs, each maps to a page whose canonical is itself; no
+  indexable page missing; 404 excluded. lastmod set to 2026-10-01 on all 34,
+  because the business entity changed on every one (derived from git, not
+  assumed).
+- Proven no visible change: with JSON-LD stripped, all 35 changed HTML files
+  are byte-identical to the previous commit.
+- check-site.py now enforces: one #business entity per page, no street
+  address, no #organization, FAQPage == visible FAQ, Service on local pages.

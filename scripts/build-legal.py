@@ -154,3 +154,7 @@ def build():
 
 if __name__ == '__main__':
     build()
+
+# JSON-LD is owned by one script; run it so this output is never left stale.
+import subprocess as _sp, sys as _sys
+_sp.run([_sys.executable, str(ROOT / 'scripts' / 'structured_data.py')], check=True)

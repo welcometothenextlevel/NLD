@@ -518,3 +518,7 @@ for c in CITIES:
 for t in TOWNS:
     (ROOT / (t['slug'] + '.html')).write_text(town_page(t)); print('wrote', t['slug'])
 (ROOT / (HUB['slug'] + '.html')).write_text(hub_page()); print('wrote', HUB['slug'])
+
+# JSON-LD is owned by one script; run it so this output is never left stale.
+import subprocess as _sp, sys as _sys
+_sp.run([_sys.executable, str(ROOT / 'scripts' / 'structured_data.py')], check=True)

@@ -52,3 +52,22 @@ home = (ROOT / 'index.html').read_text()
 for token in ('7 jours', '12 mois', 'aperçu gratuit', 'Sans frais récurrents', 'Entreprise suisse', 'australiennes', 'template générique', 'Google Business Profile'):
     assert token in home, f'Missing offer: {token}'
 print(f'PASS: {len(pages)} HTML pages; links, fragments, metadata, JSON-LD, contact, offer, absence of prices.')
+
+# Structured data invariants (owned by scripts/structured_data.py).
+import sys as _sys; _sys.path.insert(0, str(ROOT / 'scripts'))
+import structured_data as _sd
+for path in sorted(ROOT.glob('*.html')):
+    text = path.read_text(); slug = path.stem
+    nodes = [json.loads(m.group(1)) for m in _sd.LD.finditer(text)]
+    biz = [n for n in nodes if n.get('@type') == 'ProfessionalService']
+    assert len(biz) == 1 and biz[0]['@id'] == _sd.BUSINESS_ID, f'{path.name}: expected one #business entity'
+    assert 'streetAddress' not in biz[0]['address'], f'{path.name}: street address must stay out of the schema'
+    assert '#organization' not in text, f'{path.name}: stale #organization reference'
+    visible = _sd.visible_faq(text)
+    faq = [n for n in nodes if n.get('@type') == 'FAQPage']
+    if visible:
+        got = [(q['name'], q['acceptedAnswer']['text']) for q in faq[0]['mainEntity']] if len(faq) == 1 else None
+        assert got == visible, f'{path.name}: FAQPage does not match the visible FAQ word for word'
+    if slug in _sd.PLACES:
+        assert any(n.get('@type') == 'Service' and n.get('provider') == {'@id': _sd.BUSINESS_ID} for n in nodes), f'{path.name}: local page needs a Service'
+print('PASS: structured data — one #business entity, no street address, FAQ schema matches visible text.')
