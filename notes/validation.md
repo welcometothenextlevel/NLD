@@ -308,3 +308,27 @@ Business Profile and Search Console operations are outside this website update.
   are byte-identical to the previous commit.
 - check-site.py now enforces: one #business entity per page, no street
   address, no #organization, FAQPage == visible FAQ, Service on local pages.
+
+# Validation — 1 October 2026 (portfolio clicks)
+
+- Reproduced with a real mouse click: "Aperçu en direct" landed on
+  DIV.container, never on the button. pointerdown put the strip in drag mode
+  at once, and drag mode sets pointer-events:none on the cards — before the
+  button was released. The release landed behind the card, so the browser
+  dispatched the click to the common ancestor. Every click in the strip was
+  lost on desktop.
+- Phones had a separate fault: the drag-vs-click check compared against a
+  start position only mouse presses ever set; on touch it stayed 0, so once
+  the strip had drifted a few pixels every tap on "Voir le site" was cancelled.
+- The duplicate cards (seamless loop) were cloneNode() copies whose preview
+  button forwarded to the original card, often off-screen.
+- Fix: a press becomes a drag only after 6 px of movement; only a real drag
+  swallows the click that follows it; touch keeps native scrolling with no
+  interference; every card, copies included, is built by one function with its
+  own handlers; the screenshot is now itself a link to the site, matching the
+  "VOIR" cursor shown over it.
+- Verified with real clicks: preview button → iframe of the right site renders
+  in that card; screenshot click → reaches the link, not prevented; a 320 px
+  mouse drag scrolls 576 px and opens nothing; a copy's preview opens in the
+  copy and leaves the original alone. All 12 client sites send no
+  X-Frame-Options / frame-ancestors, so every live preview can load.

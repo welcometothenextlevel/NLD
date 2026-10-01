@@ -1619,3 +1619,8 @@ a.partner:hover .partner__body b { color: var(--accent); }
   border-bottom: 1px solid var(--hairline);
 }
 .drawer__sub:hover, .drawer__sub:active { color: var(--accent); }
+
+/* ---------- 37. Portfolio cards: the screenshot is a link ---------------- */
+a.project-shot { display: block; color: inherit; text-decoration: none; }
+.project-shot img, .project-shot { -webkit-user-drag: none; user-select: none; }
+a.project-shot:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }

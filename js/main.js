@@ -106,37 +106,44 @@
   ];  const categories = window.NDL_LANG === 'en' ? ['Painting & renovation · Puidoux, Vaud', 'Beauty studio · Melbourne', 'NDIS services · Melbourne', 'Migration agency', 'Jewellery · E-commerce', 'Wedding planning', 'Transport & booking', 'Lawn care · Melbourne', 'Boat detailing', 'Party hire · Victoria', 'Carpet cleaning', 'Sports club'] : ['Peinture & rénovation · Puidoux, Vaud', 'Institut de beauté · Melbourne', 'Services NDIS · Melbourne', 'Agence de migration', 'Bijouterie · E-commerce', 'Organisation de mariages', 'Transport & réservation', 'Jardinage · Melbourne', 'Entretien de bateaux', 'Location événementielle · Victoria', 'Nettoyage de moquettes', 'Club sportif'];
   const viewport = $('[data-work]');
   if (viewport) {
+    const EN = window.NDL_LANG === 'en';
     const rail = document.createElement('div'); rail.className = 'work__rail';
-    WORK.forEach((item, index) => {
+    // Each card is built with its own handlers, so the duplicate set used for
+    // the seamless loop behaves exactly like the original — cloneNode() drops
+    // listeners, which is why the copies used to open previews in the wrong card.
+    function makeCard(item, index, copy) {
       const card = document.createElement('article'); card.className = 'wcard';
       const monogram = item.name.split(' ').slice(0, 2).map(w => w[0]).join('');
       const host = item.url.replace(/^https?:\/\//, '').replace(/\/$/, '');
-      card.innerHTML = `<div class="project-shot"><div class="project-shot__bar" aria-hidden="true"><i></i><i></i><i></i><span>${host}</span></div><img src="/assets/work/${item.img}-sm.webp" srcset="/assets/work/${item.img}-sm.webp 720w, /assets/work/${item.img}.webp 1280w" sizes="(max-width: 720px) 78vw, 350px" width="720" height="500" loading="lazy" decoding="async" alt="Page d’accueil du site ${item.name}"><span class="project-shot__num" aria-hidden="true">${monogram}</span><span class="project-shot__badge">Projet ${String(index + 1).padStart(2, '0')}</span></div><div class="wcard__meta"><div><b>${item.name}</b><span>${categories[index]}</span></div></div><div class="project-actions"><a href="${item.url}" target="_blank" rel="noopener noreferrer" aria-label="Voir le site ${item.name} (nouvel onglet)">${window.NDL_LANG === 'en' ? 'Visit site' : 'Voir le site'} <svg class="ico" viewBox="0 0 16 16" width="14" height="14" fill="none" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a><button type="button" aria-expanded="false">${window.NDL_LANG === 'en' ? 'Live preview' : 'Aperçu en direct'}</button></div>`;
+      const label = (EN ? 'Visit the site ' : 'Voir le site ') + item.name + (EN ? ' (new tab)' : ' (nouvel onglet)');
+      card.innerHTML = `<a class="project-shot" href="${item.url}" target="_blank" rel="noopener noreferrer" draggable="false" aria-label="${label}"><div class="project-shot__bar" aria-hidden="true"><i></i><i></i><i></i><span>${host}</span></div><img src="/assets/work/${item.img}-sm.webp" srcset="/assets/work/${item.img}-sm.webp 720w, /assets/work/${item.img}.webp 1280w" sizes="(max-width: 720px) 78vw, 350px" width="720" height="500" loading="lazy" decoding="async" draggable="false" alt="Page d’accueil du site ${item.name}"><span class="project-shot__num" aria-hidden="true">${monogram}</span><span class="project-shot__badge">Projet ${String(index + 1).padStart(2, '0')}</span></a><div class="wcard__meta"><div><b>${item.name}</b><span>${categories[index]}</span></div></div><div class="project-actions"><a href="${item.url}" target="_blank" rel="noopener noreferrer" draggable="false" aria-label="${label}">${EN ? 'Visit site' : 'Voir le site'} <svg class="ico" viewBox="0 0 16 16" width="14" height="14" fill="none" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a><button type="button" aria-expanded="false">${EN ? 'Live preview' : 'Aperçu en direct'}</button></div>`;
+      if (copy) { card.setAttribute('aria-hidden', 'true'); $$('a, button', card).forEach(el => { el.tabIndex = -1; }); }
       const toggle = $('button', card);
       toggle.addEventListener('click', () => {
         let frame = $('iframe', card);
         if (!frame) {
           frame = document.createElement('iframe');
-          frame.className = 'project-frame'; frame.title = 'Aperçu du site ' + item.name;
+          frame.className = 'project-frame'; frame.title = (EN ? 'Preview of ' : 'Aperçu du site ') + item.name;
           frame.loading = 'lazy'; frame.setAttribute('sandbox', 'allow-scripts allow-same-origin');
           frame.referrerPolicy = 'no-referrer'; frame.src = item.url;
           card.appendChild(frame);
           const note = document.createElement('p'); note.className = 'project-preview-note';
-          note.textContent = window.NDL_LANG === 'en' ? 'External site. If the preview is unavailable, use “Visit site”.' : 'Site externe. Si l’aperçu est indisponible, utilisez « Voir le site ».';
+          note.textContent = EN ? 'External site. If the preview is unavailable, use “Visit site”.' : 'Site externe. Si l’aperçu est indisponible, utilisez « Voir le site ».';
           card.appendChild(note);
         }
         const open = toggle.getAttribute('aria-expanded') !== 'true';
         frame.hidden = !open; $('.project-preview-note', card).hidden = !open;
         toggle.setAttribute('aria-expanded', String(open));
-        toggle.textContent = window.NDL_LANG === 'en' ? (open ? 'Close preview' : 'Live preview') : (open ? 'Fermer l’aperçu' : 'Aperçu en direct');
+        toggle.textContent = EN ? (open ? 'Close preview' : 'Live preview') : (open ? 'Fermer l’aperçu' : 'Aperçu en direct');
       });
-      rail.appendChild(card);
-    });
-    // Second copy of the cards so the strip can loop without a visible jump.
-    $$('.wcard', rail).forEach(card => { const clone = card.cloneNode(true); clone.setAttribute('aria-hidden', 'true'); $$('a, button', clone).forEach(el => el.tabIndex = -1); $('button', clone)?.addEventListener('click', () => $('button', $$('.wcard', rail)[[...rail.children].indexOf(clone) - WORK.length]).click()); rail.appendChild(clone); });
+      return card;
+    }
+    WORK.forEach((item, i) => rail.appendChild(makeCard(item, i, false)));
+    WORK.forEach((item, i) => rail.appendChild(makeCard(item, i, true)));   // second set for the loop
     viewport.appendChild(rail);
+
     // Slow continuous drift; pauses on hover, touch, focus, drag and while a live preview is open.
-    let paused = false, dragging = false, dragX = 0, dragStart = 0, visible = false, raf = 0, last = 0;
+    let paused = false, dragging = false, visible = false, raf = 0, last = 0;
     const half = () => rail.scrollWidth / 2;
     function tick(now) {
       raf = 0;
@@ -149,13 +156,34 @@
     const start = () => { if (!raf) { last = 0; raf = requestAnimationFrame(tick); } };
     // Only a real mouse pauses on hover; touch pointers fire enter without ever leaving.
     viewport.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') paused = true; });
-    viewport.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') { paused = false; dragging = false; viewport.classList.remove('is-dragging'); } });
+    viewport.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') paused = false; });
     viewport.addEventListener('focusin', () => { paused = true; });
     viewport.addEventListener('focusout', () => { paused = false; });
-    viewport.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse') return; dragging = true; dragX = e.clientX; dragStart = viewport.scrollLeft; viewport.classList.add('is-dragging'); });
-    window.addEventListener('pointermove', e => { if (!dragging) return; viewport.scrollLeft = dragStart - (e.clientX - dragX); });
-    window.addEventListener('pointerup', () => { if (dragging) { dragging = false; viewport.classList.remove('is-dragging'); } });
-    viewport.addEventListener('click', e => { if (dragging === false && Math.abs(viewport.scrollLeft - dragStart) > 6 && e.target.closest('a')) e.preventDefault(); }, true);
+
+    // Mouse drag-to-scroll. A press only becomes a drag once it has moved more
+    // than DRAG_PX: entering drag mode on press set pointer-events:none on the
+    // cards before the button was released, so the release landed behind them
+    // and every click in the strip was swallowed. Touch keeps native scrolling.
+    const DRAG_PX = 6;
+    let pressed = false, pressX = 0, pressScroll = 0, swallowClick = false;
+    viewport.addEventListener('pointerdown', e => {
+      if (e.pointerType !== 'mouse' || e.button !== 0) return;
+      pressed = true; pressX = e.clientX; pressScroll = viewport.scrollLeft;
+    });
+    window.addEventListener('pointermove', e => {
+      if (!pressed) return;
+      const dx = e.clientX - pressX;
+      if (!dragging && Math.abs(dx) > DRAG_PX) { dragging = true; viewport.classList.add('is-dragging'); }
+      if (dragging) viewport.scrollLeft = pressScroll - dx;
+    });
+    window.addEventListener('pointerup', () => {
+      if (dragging) { swallowClick = true; setTimeout(() => { swallowClick = false; }, 0); }
+      pressed = false; dragging = false; viewport.classList.remove('is-dragging');
+    });
+    // Only a genuine drag cancels the click that follows it; taps and clicks pass through.
+    viewport.addEventListener('click', e => { if (swallowClick) { e.preventDefault(); e.stopPropagation(); } }, true);
+    viewport.addEventListener('dragstart', e => e.preventDefault());
+
     let touchTimer = 0;
     viewport.addEventListener('touchstart', () => { paused = true; clearTimeout(touchTimer); }, { passive: true });
     viewport.addEventListener('touchend', () => { clearTimeout(touchTimer); touchTimer = setTimeout(() => { paused = false; }, 2500); }, { passive: true });
