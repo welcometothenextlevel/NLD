@@ -35,6 +35,7 @@
 
   const EN = {
     /* chrome */
+    'Partenaire certifié Google Ads': 'Google Ads Certified Partner',
     'Artisan, commerçant ou indépendant : votre site doit attirer des visiteurs, expliquer votre valeur et déclencher le prochain appel. Nous le construisons pour cela, de bout en bout.': 'Tradesperson, shopkeeper or independent: your site must attract visitors, explain your value and trigger the next call. We build it for exactly that, end to end.',
     'Un site qui vous amène des clients.': 'A website that brings you clients.',
     'Tout ce que nous construisons vise la même chose. Un site est un outil commercial avant d’être un objet de décoration — et cela vaut avec ou sans publicité derrière.': 'Everything we build aims at the same thing. A website is a commercial tool before it is a decorative object — and that holds with or without advertising behind it.',
@@ -51,7 +52,7 @@
     'Au-delà du site, nous gérons vos campagnes. Deux plateformes, apprises sérieusement plutôt qu’en surface.': 'Beyond the site, we run your campaigns. Two platforms, learned properly rather than superficially.',
     'Campagnes Facebook et Instagram : audiences locales, formulaires de contact, suivi des demandes.': 'Facebook and Instagram campaigns: local audiences, lead forms, enquiry tracking.',
     'Annonces de recherche sur les requêtes qui comptent dans votre région, avec un budget que vous maîtrisez.': 'Search ads on the queries that matter in your region, on a budget you control.',
-    'Meta et Google Ads sont des marques de leurs propriétaires respectifs. Ces logos indiquent les plateformes sur lesquelles nous travaillons.': 'Meta and Google Ads are trademarks of their respective owners. These logos indicate the platforms we work on.',
+    'Meta et Google Ads sont des marques de leurs propriétaires respectifs. Ces logos indiquent les plateformes sur lesquelles nous travaillons et les accréditations que nous détenons.': 'Meta and Google Ads are trademarks of their respective owners. These logos indicate the platforms we work on and the accreditations we hold.',
 
     /* privacy policy */
     '/ Informations légales': '/ Legal information',

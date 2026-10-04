@@ -71,13 +71,14 @@ ADS = [
 
     dict(slug='google-ads', nav='Google Ads', other='publicite-meta',
          logo='/assets/partners/google-ads.svg', logo_alt='Logo Google Ads', logo_w=256, logo_h=230,
-         badge='Google Ads',
-         title='Google Ads pour les PME de Suisse romande | Next Digital Level',
-         desc='Campagnes Google Ads pour les PME romandes : annonces de recherche sur les requêtes locales, budget maîtrisé, compte à votre nom. Genève, Lausanne, Valais, Fribourg.',
+         badge='Partenaire certifié Google Ads',
+         badge_img=('/assets/partners/google-ads-certified-partner', 570, 200),
+         title='Partenaire certifié Google Ads en Suisse romande | Next Digital Level',
+         desc='Partenaire certifié Google Ads : campagnes de recherche locale pour les PME romandes, budget maîtrisé, compte à votre nom. Genève, Lausanne, Valais, Fribourg.',
          eyebrow='/ Google Ads',
          h1='Google Ads.<br><em>Être là quand on vous cherche.</em>',
          lead='Quelqu’un tape « plombier Fribourg » ou « institut de beauté Nyon » à l’instant même. Il a un besoin, tout de suite, et il appellera l’un des premiers résultats. Google Ads vous place là, en attendant que votre référencement naturel prenne le relais.',
-         intro_badge='Nous gérons des campagnes Google Ads pour des PME romandes : recherche locale, budget serré, résultats mesurés. Pas de dépense à l’aveugle, pas de jargon dans les rapports.',
+         intro_badge='Nous sommes partenaire certifié Google Ads. Nous gérons des campagnes pour des PME romandes : recherche locale, budget serré, résultats mesurés. Pas de dépense à l’aveugle, pas de jargon dans les rapports.',
          why=[('Des clients qui cherchent déjà',
                'La différence avec les réseaux sociaux est fondamentale : ici, la personne exprime un besoin en le tapant. L’intention est là, il ne reste qu’à être visible au bon moment.'),
               ('Une zone que vous choisissez',
@@ -108,6 +109,18 @@ ADS = [
                'Personne ne le peut honnêtement. La position dépend de votre enchère, de la qualité de l’annonce et de la page d’arrivée. Nous travaillons ces deux derniers points, qui sont ceux que l’on maîtrise.')]),
 ]
 BY_SLUG = {a['slug']: a for a in ADS}
+
+
+def badge_visual(a):
+    """An official partner badge is shown unaltered on a white plate (its own
+    background); a plain platform mark is shown at icon size."""
+    if a.get('badge_img'):
+        base, w, h = a['badge_img']
+        return ('<span class="badge-plate"><picture><source srcset="%s.webp" type="image/webp">'
+                '<img class="badge-plate__img" src="%s.png" width="%d" height="%d" alt="Badge %s" decoding="async">'
+                '</picture></span>') % (base, base, w, h, 'Google Ads Certified Partner')
+    return '<img class="adbadge__logo" src="%s" width="%d" height="%d" alt="%s" decoding="async">' % (
+        a['logo'], a['logo_w'], a['logo_h'], a['logo_alt'])
 
 
 def page(a):
@@ -167,8 +180,8 @@ def page(a):
 <div class="hero__actions">
 <a class="btn btn--primary btn--lg" href="/book">Parler de mes campagnes{NE}</a><a class="btn btn--ghost btn--lg" href="tel:+41762632817">Appeler le +41 76 263 28 17{NE}</a>
 </div>
-<div class="adbadge">
-<img class="adbadge__logo" src="{a['logo']}" width="{a['logo_w']}" height="{a['logo_h']}" alt="{a['logo_alt']}" decoding="async">
+<div class="adbadge{' adbadge--plate' if a.get('badge_img') else ''}">
+{badge_visual(a)}
 <span><b>{a['badge']}</b>{a['intro_badge']}</span>
 </div>
 </div>

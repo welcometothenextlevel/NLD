@@ -332,3 +332,24 @@ Business Profile and Search Console operations are outside this website update.
   mouse drag scrolls 576 px and opens nothing; a copy's preview opens in the
   copy and leaves the original alone. All 12 client sites send no
   X-Frame-Options / frame-ancestors, so every live preview can load.
+
+# Validation — 4 October 2026 (Google Ads Certified Partner badge)
+
+- The owner has received the Google Ads Certified Partner badge. This
+  supersedes the 30 September rule of writing only "Google Ads": the
+  accreditation is now real and named as such.
+- Badge installed exactly as supplied — no recolouring, cropping or
+  transparency — as assets/partners/google-ads-certified-partner.{webp,png}
+  (14 KB lossless WebP, PNG fallback). It ships on solid white, so it sits on
+  its own white plate in both themes instead of being altered to fit dark mode.
+- Placed on the Google card of the homepage and /advertising certifications
+  sections (heading "Partenaire certifié Google Ads") and in the hero of
+  /google-ads, whose title and description now lead with the accreditation.
+  The trademark line now mentions the accreditations held.
+- The assistant's advertising answer states both accreditations (FR + EN) and
+  matches "certifié / certified / partenaire / partner".
+- Also fixed: three English assistant answers still linked to /…html — the
+  earlier clean-URL pass missed links written as escaped \"…\" strings.
+- Checked in a real browser: badge loads as WebP at 170×60 in the hero,
+  168×59 on a 390 px phone, no overflow, no console errors; light and dark.
+- `python3 scripts/check-site.py`: 40 pages pass.

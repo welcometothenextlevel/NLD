@@ -1624,3 +1624,27 @@ a.partner:hover .partner__body b { color: var(--accent); }
 a.project-shot { display: block; color: inherit; text-decoration: none; }
 .project-shot img, .project-shot { -webkit-user-drag: none; user-select: none; }
 a.project-shot:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+/* ---------- 38. Official partner badge ----------------------------------- */
+/* The badge ships on white and must not be recoloured, so it sits on its own
+   white plate in both themes rather than being made transparent. */
+.badge-plate {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid var(--hairline);
+  box-shadow: 0 1px 2px rgba(20, 17, 14, 0.06);
+}
+.badge-plate__img { display: block; width: 156px; height: auto; }
+.partner--badge { align-items: center; }
+.adbadge--plate { align-items: center; }
+.adbadge--plate .badge-plate__img { width: 170px; }
+:root[data-theme="dark"] .badge-plate { border-color: transparent; box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.7); }
+@media (max-width: 480px) {
+  .badge-plate__img, .adbadge--plate .badge-plate__img { width: 168px; }
+  .partner--badge, .adbadge--plate { align-items: flex-start; }
+}
