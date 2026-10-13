@@ -34,6 +34,34 @@
   });
 
   const EN = {
+    /* reviews */
+    '/ Avis clients': '/ Client reviews',
+    '/ Avis à Lausanne': '/ Reviews in Lausanne',
+    '/ Vous êtes client ?': '/ Are you a client?',
+    'Ce que disent<br><em>nos clients.</em>': 'What our clients<br><em>say.</em>',
+    'Des sites qui ont<br><em>déjà fait leurs preuves.</em>': 'Websites that have<br><em>already proved themselves.</em>',
+    'Ils nous ont confié<br><em>leur site à Lausanne.</em>': 'They trusted us<br><em>with their site in Lausanne.</em>',
+    'Site et marketing,<br><em>du même côté.</em>': 'Website and marketing,<br><em>on the same side.</em>',
+    'Disponibles,<br><em>et ça se remarque.</em>': 'Available,<br><em>and it shows.</em>',
+    'Des avis laissés sur notre fiche Google, reproduits tels quels.': 'Reviews left on our Google Business Profile, reproduced as written.',
+    '5,0': '5.0',
+    '9 avis sur Google': '9 reviews on Google',
+    '9 avis Google': '9 Google reviews',
+    'Lire tous nos avis{ico}': 'Read all our reviews{ico}',
+    'Voir nos avis sur Google{ico}': 'See our reviews on Google{ico}',
+    'Laisser un avis{ico}': 'Leave a review{ico}',
+    'Laisser un avis sur Google{ico}': 'Leave a review on Google{ico}',
+    'Avis': 'Reviews',
+    'Avis clients': 'Client reviews',
+    '<span>04</span> Avis clients': '<span>04</span> Client reviews',
+    'Nos clients<br><em>en parlent mieux que nous.</em>': 'Our clients<br><em>say it better than we do.</em>',
+    'Chaque avis ci-dessous a été laissé sur notre fiche Google par un client, et il est reproduit tel quel, dans sa langue d’origine. Vous pouvez tous les vérifier sur Google.': 'Every review below was left by a client on our Google Business Profile and is reproduced as written, in its original language. You can check each one on Google.',
+    'Les notes laissées sans commentaire sont comptées dans la moyenne mais n’apparaissent pas ici.': 'Ratings left without a comment count towards the average but are not shown here.',
+    'Votre avis compte<br><em>plus que notre publicité.</em>': 'Your review counts<br><em>more than our advertising.</em>',
+    'Un avis de quelques lignes aide une autre PME de Suisse romande à choisir en confiance. Il ne prend qu’une minute et nous lisons chacun d’entre eux.': 'A few lines help another small business in French-speaking Switzerland choose with confidence. It takes a minute, and we read every one.',
+    'Votre site, le prochain avis.<br><em>Voyez-le avant de décider.</em>': 'Your website, the next review.<br><em>See it before you decide.</em>',
+    'Avis Google · octobre 2026': 'Google review · October 2026',
+    /* /reviews */
     /* chrome */
     'Partenaire certifié Google Ads': 'Google Ads Certified Partner',
     'Artisan, commerçant ou indépendant : votre site doit attirer des visiteurs, expliquer votre valeur et déclencher le prochain appel. Nous le construisons pour cela, de bout en bout.': 'Tradesperson, shopkeeper or independent: your site must attract visitors, explain your value and trigger the next call. We build it for exactly that, end to end.',
@@ -379,6 +407,8 @@
     'Une autre question ? L’assistant en bas de page répond immédiatement, ou écrivez-nous sur WhatsApp.': 'Another question? The assistant at the bottom of the page answers immediately, or message us on WhatsApp.'
   };
   const ATTR = {
+    '5 étoiles sur 5': '5 stars out of 5',
+    'Avis clients': 'Client reviews',
     'Ouvrir le menu': 'Open menu',
     'Réalisations précédentes': 'Previous projects',
     'Réalisations suivantes': 'Next projects',
@@ -390,6 +420,8 @@
     'Next Digital Level — accueil': 'Next Digital Level — home'
   };
   const TITLES = {
+    'avis': 'Client reviews | Next Digital Level',
+    'avis.html': 'Client reviews | Next Digital Level',
     'index.html': 'Custom-coded websites in French-speaking Switzerland | Next Digital Level',
     '': 'Custom-coded websites in French-speaking Switzerland | Next Digital Level',
     'confidentialite': 'Privacy Policy · Next Digital Level',

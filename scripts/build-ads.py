@@ -248,6 +248,7 @@ def page(a):
 </div>
 </div>
 </section>
+<!-- reviews:marketing --><!-- /reviews:marketing -->
 <section class="cta-band" data-dots-region>
 <canvas class="dot-canvas dot-canvas--dark" data-dots data-dots-theme="dark" aria-hidden="true"></canvas>
 <div class="container cta-band__inner reveal">
@@ -268,4 +269,4 @@ for a in ADS:
 
 # JSON-LD is owned by one script; run it so this output is never left stale.
 import subprocess as _sp, sys as _sys
-_sp.run([_sys.executable, str(ROOT / 'scripts' / 'structured_data.py')], check=True)
+_sp.run([_sys.executable, str(ROOT / 'scripts' / 'reviews.py')], check=True)

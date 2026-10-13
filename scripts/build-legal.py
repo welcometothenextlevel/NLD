@@ -157,4 +157,4 @@ if __name__ == '__main__':
 
 # JSON-LD is owned by one script; run it so this output is never left stale.
 import subprocess as _sp, sys as _sys
-_sp.run([_sys.executable, str(ROOT / 'scripts' / 'structured_data.py')], check=True)
+_sp.run([_sys.executable, str(ROOT / 'scripts' / 'reviews.py')], check=True)

@@ -1648,3 +1648,122 @@ a.project-shot:focus-visible { outline: 2px solid var(--accent); outline-offset:
   .badge-plate__img, .adbadge--plate .badge-plate__img { width: 168px; }
   .partner--badge, .adbadge--plate { align-items: flex-start; }
 }
+
+/* ---------- 39. Client reviews ------------------------------------------- */
+.rv-stars { display: inline-flex; gap: 2px; color: var(--gold); line-height: 1; }
+.rv-stars svg { width: 15px; height: 15px; fill: currentColor; }
+.rv-g { flex-shrink: 0; }
+
+/* compact score chip (hero, booking page) */
+.rv-score {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 18px;
+  padding: 7px 14px 7px 12px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-pill);
+  background: var(--canvas-card);
+  box-shadow: var(--shadow-sm);
+  font-size: 0.85rem;
+  color: var(--body);
+  text-decoration: none;
+  transition: border-color 0.3s var(--ease-ui), transform 0.4s var(--ease-ui);
+}
+.rv-score b { font-family: var(--font-display); font-size: 1.05rem; color: var(--ink); }
+.rv-score > span:last-child { color: var(--body-mid); }
+.rv-score:hover { border-color: var(--accent); transform: translateY(-1px); }
+.rv-score .rv-stars svg { width: 13px; height: 13px; }
+.booking__copy .rv-score { margin: 4px 0 18px; }
+
+/* section head with the big score on the right */
+.reviews__head { display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+.reviews__head .sec-head { margin-bottom: 0; }
+.rv-summary { display: grid; justify-items: end; gap: 6px; padding-bottom: 6px; }
+.rv-summary__n { font-family: var(--font-display); font-weight: 400; font-size: clamp(3rem, 6vw, 4.6rem); line-height: 0.9; color: var(--ink); letter-spacing: -0.03em; }
+.rv-summary > span:not(.rv-stars) { font-size: 0.82rem; color: var(--body-mid); }
+@media (min-width: 1100px) { .rv-summary { margin-right: 110px; } }
+.rv-summary .rv-stars svg { width: 18px; height: 18px; }
+
+/* the strip */
+.rv-viewport {
+  margin-top: 40px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+  outline: none;
+}
+.rv-viewport::-webkit-scrollbar { display: none; }
+.rv-viewport.is-dragging { cursor: grabbing; }
+.rv-viewport:focus-visible { box-shadow: 0 0 0 2px var(--accent); border-radius: var(--radius-md); }
+.rv-rail { display: flex; align-items: flex-start; gap: 20px; width: max-content; padding-block: 8px 14px; }
+.rv-rail .rv-card { width: clamp(270px, 30vw, 380px); flex-shrink: 0; }
+
+.rv-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 0;
+  padding: 24px 24px 22px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  background: var(--canvas-card);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.5s var(--ease-ui), box-shadow 0.5s var(--ease-ui), border-color 0.4s var(--ease-ui);
+}
+.rv-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--hairline-strong); }
+.rv-card__top { display: flex; align-items: center; justify-content: space-between; }
+.rv-card__text { margin: 0; font-size: 0.98rem; line-height: 1.6; color: var(--body); }
+.rv-card__text p { margin: 0; }
+.rv-card__text p + p { margin-top: 0.7em; }
+.rv-card__text p:first-child::before { content: '«\00a0'; color: var(--gold); }
+.rv-card__text[lang="en"] p:first-child::before { content: '“'; }
+.rv-card__text p:last-child::after { content: '\00a0»'; color: var(--gold); }
+.rv-card__text[lang="en"] p:last-child::after { content: '”'; }
+.rv-card figcaption { display: flex; align-items: center; gap: 12px; padding-top: 14px; border-top: 1px solid var(--hairline); }
+.rv-avatar {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--accent-wash);
+  color: var(--accent-deep);
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  flex-shrink: 0;
+}
+.rv-who { display: grid; gap: 2px; }
+.rv-who b { font-weight: 600; font-size: 0.92rem; color: var(--ink); }
+.rv-who small { font-size: 0.74rem; color: var(--body-mid); }
+
+.rv-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+
+/* /avis page */
+.rv-hero__score { display: flex; align-items: center; gap: 18px; margin-top: 30px; }
+.rv-hero__score > div { display: grid; gap: 6px; }
+.rv-hero__score div > span:not(.rv-stars) { font-size: 0.86rem; color: var(--body-mid); }
+.rv-hero__score .rv-stars svg { width: 20px; height: 20px; }
+.rv-hero .rv-actions { margin-top: 30px; }
+.rv-grid { columns: 3 300px; column-gap: 20px; }
+.rv-grid .rv-card { break-inside: avoid; margin-bottom: 20px; }
+.rv-note { margin-top: 12px; font-size: 0.82rem; color: var(--body-mid); }
+.rv-ask { max-width: 720px; display: grid; gap: 18px; justify-items: start; }
+
+:root[data-theme="dark"] .rv-card, :root[data-theme="dark"] .rv-score { background: var(--canvas-card); }
+@media (max-width: 720px) {
+  .reviews__head { align-items: flex-start; }
+  .rv-summary { justify-items: start; grid-template-columns: auto auto; align-items: center; column-gap: 12px; }
+  .rv-summary > span:not(.rv-stars) { grid-column: 1 / -1; }
+  .rv-rail .rv-card { width: 82vw; }
+  .rv-actions .btn { width: 100%; justify-content: center; }
+}
+@media (prefers-reduced-motion: reduce) { .rv-card, .rv-score { transition: none; } }
+
+/* five top-level links since "Avis" joined the bar: keep each on one line */
+.nav__link { white-space: nowrap; }
+@media (min-width: 1041px) and (max-width: 1260px) { .nav__link { padding-inline: 10px; } .nav { gap: 12px; } }

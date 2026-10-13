@@ -353,3 +353,13 @@ Business Profile and Search Console operations are outside this website update.
 - Checked in a real browser: badge loads as WebP at 170×60 in the hero,
   168×59 on a 390 px phone, no overflow, no console errors; light and dark.
 - `python3 scripts/check-site.py`: 40 pages pass.
+
+## 2026-10-13 — Client reviews (Google Business Profile)
+
+- Review texts copied verbatim from the GBP (signed-out Google Search reviews dialog, consent rejected); Omar Silva's full text recovered, Vaciraya Pechlak kept in the original English.
+- `scripts/reviews.py` is the single source: fills `<!-- reviews:* -->` markers (home, websites, lausanne, marketing x3, suivi, score chips on / and /book), builds /avis, writes the EN strings into i18n.js, then runs structured_data.py. All four generators now chain through it.
+- Bruce's review held back (`show=False`): the profile shows it as the signed-in owner's own review. TheRoyalCharme left a rating with no text: counted in "9 avis", no card.
+- No Review/AggregateRating schema (self-serving LocalBusiness reviews are not eligible for stars).
+- Nav "Avis", drawer "04 Avis clients" and footer link on all 35 pages; nav links set nowrap (checked 1440/1200/1060, no overflow).
+- Puppeteer: strips drift, no horizontal overflow at 1440 or iPhone 13, dark mode OK, EN toggle translates every block with no console errors.
+- check-site.py PASS (41 pages), structured_data --check: 0 changes. Assets bumped to v=20261013a.

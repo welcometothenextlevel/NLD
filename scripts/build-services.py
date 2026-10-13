@@ -127,6 +127,8 @@ SERVICES = [
          related=['seo-local', 'contenu-redaction']),
 ]
 BY_SLUG = {s['slug']: s for s in SERVICES}
+# Review blocks filled in by scripts/reviews.py.
+REVIEWS = {'suivi-12-mois': '<!-- reviews:suivi --><!-- /reviews:suivi -->\n'}
 
 
 def page(s):
@@ -208,7 +210,7 @@ def page(s):
 <div class="sector-links reveal">{related}<a href="/websites" data-cursor="view"><span><small>Tout</small>L’offre complète</span><span aria-hidden="true">{NE}</span></a></div>
 </div>
 </section>
-<section class="cta-band" data-dots-region>
+{REVIEWS.get(s['slug'], '')}<section class="cta-band" data-dots-region>
 <canvas class="dot-canvas dot-canvas--dark" data-dots data-dots-theme="dark" aria-hidden="true"></canvas>
 <div class="container cta-band__inner reveal">
 <span class="eyebrow">/ On commence ?</span><h2 class="t-display-lg" data-split="words">Votre prochain site.<br><em>Voyez-le avant de décider.</em></h2><p class="t-body-lg">Parlez-nous de votre activité. Nous vous préparons un aperçu gratuit, sans engagement.</p>
@@ -234,4 +236,4 @@ for s in SERVICES:
 
 # JSON-LD is owned by one script; run it so this output is never left stale.
 import subprocess as _sp, sys as _sys
-_sp.run([_sys.executable, str(ROOT / 'scripts' / 'structured_data.py')], check=True)
+_sp.run([_sys.executable, str(ROOT / 'scripts' / 'reviews.py')], check=True)

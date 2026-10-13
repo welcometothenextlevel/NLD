@@ -193,6 +193,53 @@
     $('[data-work-prev]')?.addEventListener('click', () => move(-1));
     $('[data-work-next]')?.addEventListener('click', () => move(1));
   }
+
+  // Review strips: the cards are static HTML (built by scripts/reviews.py);
+  // here they get a second, hidden set for a seamless loop, a slow drift,
+  // mouse drag and native swipe. Same pause rules as the portfolio strip.
+  $$('[data-reviews-rail]').forEach(view => {
+    const rail = $('.rv-rail', view);
+    if (!rail || rail.children.length < 2) return;
+    Array.from(rail.children).forEach(card => {
+      const copy = card.cloneNode(true); copy.setAttribute('aria-hidden', 'true'); rail.appendChild(copy);
+    });
+    let paused = false, dragging = false, pressed = false, visible = false, raf = 0, last = 0, pressX = 0, pressScroll = 0, touchTimer = 0;
+    const half = () => rail.scrollWidth / 2;
+    function tick(now) {
+      raf = 0;
+      const dt = last ? Math.min(now - last, 50) : 16.7; last = now;
+      if (!paused && !dragging && visible && !document.hidden && !reduced.matches) view.scrollLeft += dt * 0.03;
+      if (view.scrollLeft >= half()) view.scrollLeft -= half();
+      else if (view.scrollLeft < 0) view.scrollLeft += half();
+      if (visible) raf = requestAnimationFrame(tick);
+    }
+    const start = () => { if (!raf) { last = 0; raf = requestAnimationFrame(tick); } };
+    view.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') paused = true; });
+    view.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') paused = false; });
+    view.addEventListener('focusin', () => { paused = true; });
+    view.addEventListener('focusout', () => { paused = false; });
+    view.addEventListener('pointerdown', e => {
+      if (e.pointerType !== 'mouse' || e.button !== 0) return;
+      pressed = true; pressX = e.clientX; pressScroll = view.scrollLeft;
+    });
+    window.addEventListener('pointermove', e => {
+      if (!pressed) return;
+      const dx = e.clientX - pressX;
+      if (!dragging && Math.abs(dx) > 6) { dragging = true; view.classList.add('is-dragging'); }
+      if (dragging) view.scrollLeft = pressScroll - dx;
+    });
+    window.addEventListener('pointerup', () => { pressed = false; dragging = false; view.classList.remove('is-dragging'); });
+    view.addEventListener('dragstart', e => e.preventDefault());
+    view.addEventListener('keydown', e => {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      e.preventDefault();
+      view.scrollBy({ left: (e.key === 'ArrowRight' ? 1 : -1) * (rail.firstElementChild.offsetWidth + 20), behavior: reduced.matches ? 'instant' : 'smooth' });
+    });
+    view.addEventListener('touchstart', () => { paused = true; clearTimeout(touchTimer); }, { passive: true });
+    ['touchend', 'touchcancel'].forEach(t => view.addEventListener(t, () => { clearTimeout(touchTimer); touchTimer = setTimeout(() => { paused = false; }, 2500); }, { passive: true }));
+    if ('IntersectionObserver' in window) new IntersectionObserver(en => { visible = en[0].isIntersecting; if (visible) start(); }).observe(view); else { visible = true; start(); }
+  });
+
   const form = $('[data-preview-form]');
   form?.addEventListener('submit', e => {
     e.preventDefault();

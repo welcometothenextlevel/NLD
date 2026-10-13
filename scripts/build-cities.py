@@ -258,6 +258,10 @@ def jsonld(*objs):
     return ''.join('<script type="application/ld+json">%s</script>\n' % json.dumps(o, ensure_ascii=False, indent=1) for o in objs)
 
 
+# Review blocks filled in by scripts/reviews.py.
+REVIEWS = {'creation-site-internet-lausanne': '<!-- reviews:lausanne --><!-- /reviews:lausanne -->\n'}
+
+
 def city_page(c):
     faq_ld = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in c['faq']]}
     crumbs = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
@@ -337,7 +341,7 @@ def city_page(c):
 </div>
 </div>
 </section>
-{towns_block}<section class="section section--soft">
+{towns_block}{REVIEWS.get(c['slug'], '')}<section class="section section--soft">
 <div class="container">
 <div class="sec-head reveal">
 <span class="eyebrow">/ Ailleurs en Suisse romande</span><h2 class="t-display-lg" data-split="words">Les autres cantons.</h2>
@@ -521,4 +525,4 @@ for t in TOWNS:
 
 # JSON-LD is owned by one script; run it so this output is never left stale.
 import subprocess as _sp, sys as _sys
-_sp.run([_sys.executable, str(ROOT / 'scripts' / 'structured_data.py')], check=True)
+_sp.run([_sys.executable, str(ROOT / 'scripts' / 'reviews.py')], check=True)
