@@ -1902,3 +1902,44 @@ a.project-shot:focus-visible { outline: 2px solid var(--accent); outline-offset:
   .vs__col { padding: 16px; }
   .vs__col b { font-size: 1.15rem; }
 }
+
+/* ---------- 43. Time-limited promotion ----------------------------------- */
+/* data-promo shows while it runs; .promo-over (set by the head script once
+   the end date has passed) swaps in the data-promo-else version. */
+[data-promo-else] { display: none !important; }
+.promo-over [data-promo] { display: none !important; }
+.promo-over span[data-promo-else], .promo-over b[data-promo-else] { display: inline !important; }
+.promo-over div[data-promo-else], .promo-over p[data-promo-else] { display: flex !important; }
+.promo-over p.offer-note-line[data-promo-else] { display: block !important; }
+
+.promo-pill {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+  padding: 7px 14px 7px 7px;
+  border: 1px solid rgba(201, 162, 39, 0.45);
+  border-radius: var(--radius-pill);
+  background: var(--gold-wash);
+  color: var(--ink);
+  font-size: 0.9rem;
+}
+.promo-pill__tag { padding: 4px 10px; border-radius: var(--radius-pill); background: var(--gold); color: #1d1606; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.02em; }
+.promo-pill s, .price s, .offer-note-line s { color: var(--body-mid); text-decoration-color: rgba(213, 43, 30, 0.7); text-decoration-thickness: 1.5px; }
+.promo-pill b { color: var(--ink); }
+.inner-hero .promo-pill { margin-inline: auto; }
+.price-card__promo {
+  justify-self: start;
+  margin-bottom: -4px;
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--gold);
+  color: #1d1606;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+.price s { font-family: var(--font-display); font-size: clamp(1.8rem, 3.4vw, 2.4rem); color: var(--panel-dim); align-self: center; margin-right: 4px; }
+:root[data-theme="dark"] .promo-pill { background: rgba(201, 162, 39, 0.12); }
+@media (max-width: 520px) { .promo-pill { font-size: 0.82rem; border-radius: 18px; } }
+.promo-over p.hero__note[data-promo-else] { display: block !important; }

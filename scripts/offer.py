@@ -16,6 +16,15 @@ PRICE = '999'
 AGENCY_PRICE, AGENCY_TIME = '3’000 à 8’000 CHF', '2 à 4 mois'
 DOMAIN_COST = '15 à 20 CHF'
 
+# Time-limited promotion. Elements marked data-promo show while it runs and
+# data-promo-else elements replace them afterwards: the inline head script
+# on every page adds .promo-over once PROMO_ENDS has passed, so the site
+# falls back to PRICE on its own. Set PROMO_PRICE = None to remove it.
+PROMO_PRICE = '799'
+PROMO_UNTIL = '31 octobre'
+PROMO_UNTIL_EN = '31 October'
+PROMO_ENDS = '2026-11-01T00:00:00+01:00'   # also in the head script of every page
+
 NE = '<svg class="ico" viewBox="0 0 16 16" width="14" height="14" fill="none" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 TICK = '<svg viewBox="0 0 16 16" width="14" height="14" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 
@@ -32,6 +41,33 @@ INCLUDED = [
 ]
 
 
+def promo_ribbon():
+    if not PROMO_PRICE:
+        return ''
+    return f'<p class="price-card__promo" data-promo>Offre d’octobre · jusqu’au {PROMO_UNTIL}</p>'
+
+
+def price_block():
+    if not PROMO_PRICE:
+        return f'<div class="price"><b>{PRICE}</b><span>CHF</span></div>'
+    return (f'<div class="price" data-promo><s aria-label="au lieu de {PRICE} CHF">{PRICE}</s><b>{PROMO_PRICE}</b><span>CHF</span></div>'
+            f'<div class="price" data-promo-else><b>{PRICE}</b><span>CHF</span></div>')
+
+
+def promo():
+    """The pill under hero buttons; empty once the promotion is removed."""
+    if not PROMO_PRICE:
+        return ''
+    return (f'<p class="promo-pill" data-promo><span class="promo-pill__tag">Offre d’octobre</span>'
+            f'<span><s>{PRICE}</s> <b>{PROMO_PRICE} CHF</b> tout compris, jusqu’au {PROMO_UNTIL}</span></p>')
+
+
+def us_price():
+    if not PROMO_PRICE:
+        return f'{PRICE} CHF'
+    return f'<span data-promo>{PROMO_PRICE} CHF</span><span data-promo-else>{PRICE} CHF</span>'
+
+
 def full():
     items = ''.join(f'<li>{TICK}<span>{fr}</span></li>' for fr, _ in INCLUDED)
     return f'''<section class="section offer-sec" id="offre">
@@ -43,13 +79,13 @@ def full():
 <p class="t-body-lg">Une agence classique demande souvent {AGENCY_TIME} et {AGENCY_PRICE} pour un site. Nous livrons la même qualité en 48 heures, pour {PRICE} CHF payés une seule fois.</p>
 <div class="vs">
 <div class="vs__col"><span class="vs__who">Agence classique</span><b>{AGENCY_TIME}</b><b>{AGENCY_PRICE}</b><span class="vs__extra">Textes, photos et fonctionnalités souvent facturés en plus</span></div>
-<div class="vs__col vs__col--us"><span class="vs__who">Next Digital Level</span><b>48 heures</b><b>{PRICE} CHF</b><span class="vs__extra">Tout est compris, sans abonnement</span></div>
+<div class="vs__col vs__col--us"><span class="vs__who">Next Digital Level</span><b>48 heures</b><b>{us_price()}</b><span class="vs__extra">Tout est compris, sans abonnement</span></div>
 </div>
 <p class="t-body">Aucun abonnement, aucuns frais annuels, aucun supplément caché. Vous voyez d’abord votre aperçu gratuit, et vous ne payez que s’il vous plaît.</p>
 </div>
 <div class="price-card reveal">
-<div class="price-card__top"><span class="eyebrow">Création de site · paiement unique</span><span class="price-card__tag">Prêt en 48 heures</span></div>
-<div class="price"><b>{PRICE}</b><span>CHF</span></div>
+{promo_ribbon()}<div class="price-card__top"><span class="eyebrow">Création de site · paiement unique</span><span class="price-card__tag">Prêt en 48 heures</span></div>
+{price_block()}
 <p class="price__sub">Payé une seule fois, après validation de votre aperçu gratuit.</p>
 <ul class="price__list">{items}</ul>
 <p class="price__zero"><b>0 CHF</b> par mois <i aria-hidden="true">·</i> <b>0 CHF</b> par an</p>
@@ -62,11 +98,16 @@ def full():
 
 
 def note():
-    return (f'<p class="offer-note-line"><b>{PRICE} CHF tout compris</b>, payé une seule fois. '
+    line = (f'<p class="offer-note-line"{{attr}}><b>{{price}} CHF tout compris</b>, payé une seule fois. '
             'Prêt en 48 heures. Aucun abonnement.</p>')
+    if not PROMO_PRICE:
+        return line.format(attr='', price=PRICE)
+    return (f'<p class="offer-note-line" data-promo><b><s>{PRICE}</s> {PROMO_PRICE} CHF tout compris</b> jusqu’au {PROMO_UNTIL}, '
+            'payé une seule fois. Prêt en 48 heures. Aucun abonnement.</p>'
+            + line.format(attr=' data-promo-else', price=PRICE))
 
 
-BLOCKS = {'full': full, 'note': note}
+BLOCKS = {'full': full, 'note': note, 'promo': promo}
 MARK = re.compile(r'<!-- offer:(\w+) -->.*?<!-- /offer:\1 -->', re.S)
 
 
@@ -86,6 +127,11 @@ def english():
         '<b>0 CHF</b> par mois <i aria-hidden="true">·</i> <b>0 CHF</b> par an': '<b>0 CHF</b> per month <i aria-hidden="true">·</i> <b>0 CHF</b> per year',
         f'Les seuls frais qui ne viennent pas de nous : votre nom de domaine, acheté à votre nom (environ {DOMAIN_COST} par an), les commissions de votre prestataire de paiement sur vos ventes, et un budget publicitaire si vous choisissez d’en faire.':
             'The only costs that don’t come from us: your domain name, bought in your own name (about 15 to 20 CHF a year), your payment provider’s commission on your sales, and an advertising budget if you choose to advertise.',
+        f'Offre d’octobre · jusqu’au {PROMO_UNTIL}': f'October offer · until {PROMO_UNTIL_EN}',
+        'Offre d’octobre': 'October offer',
+        f'<s>{PRICE}</s> <b>{PROMO_PRICE} CHF</b> tout compris, jusqu’au {PROMO_UNTIL}': f'<s>{PRICE}</s> <b>{PROMO_PRICE} CHF</b>, everything included, until {PROMO_UNTIL_EN}',
+        f'<b><s>{PRICE}</s> {PROMO_PRICE} CHF tout compris</b> jusqu’au {PROMO_UNTIL}, payé une seule fois. Prêt en 48 heures. Aucun abonnement.':
+            f'<b><s>{PRICE}</s> {PROMO_PRICE} CHF, everything included</b> until {PROMO_UNTIL_EN}, paid once. Ready in 48 hours. No subscription.',
         f'<b>{PRICE} CHF tout compris</b>, payé une seule fois. Prêt en 48 heures. Aucun abonnement.':
             f'<b>{PRICE} CHF, everything included</b>, paid once. Ready in 48 hours. No subscription.',
     }

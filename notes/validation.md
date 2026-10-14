@@ -391,3 +391,10 @@ Business Profile and Search Console operations are outside this website update.
 - Home: removed the "template vs sur mesure" table and the "Compris dans chaque site" list (folded into the price card); hero line and key figures show 999 CHF; FAQ gains "Combien coûte un site ?", subscription answer rewritten. Chat price/subscription/content answers rewritten. Content and photo FAQs now say text and images are included.
 - check-site: CHF amounts restricted to 999 / 0 / 20 / 3’000 / 8’000; offer tokens updated. PASS (41 pages).
 - Verified desktop, iPhone 13, dark + EN: no overflow, no console errors. Assets v=20261014f.
+
+## 2026-10-14 — October promotion 799 CHF
+
+- `scripts/offer.py` PROMO_PRICE 799 until 31 October: price card (999 struck, 799, gold "Offre d’octobre" ribbon), comparison box, key figures, hero pill on / and every local page, booking line, chat price answer. Home hero line "999 CHF tout compris" hidden during the promo.
+- Auto-expiry: the inline head script on all 36 pages adds `.promo-over` from 2026-11-01T00:00+01:00; CSS then hides `[data-promo]` and shows `[data-promo-else]` (999). Verified in puppeteer with Date.now set to 1 Nov: no 799 left anywhere, 999 back on card, strip, hero line and booking line.
+- FAQ and structured data keep the regular 999 (schema can’t expire on its own). check-site allows 799. Assets v=20261014g.
+- After 31 October: set PROMO_PRICE = None in offer.py and rerun scripts/reviews.py to drop the dead markup.

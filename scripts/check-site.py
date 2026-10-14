@@ -33,7 +33,7 @@ for path in ROOT.rglob('*.html'):
     # The only amounts the site may state: the price, the agency comparison,
     # "0 CHF" and the domain estimate (all set in scripts/offer.py).
     for amount in re.findall(r'(\d[\d’\']*)\s*CHF', text):
-        assert amount in {'999', '0', '20', '3’000', '8’000'}, f'{path}: unexpected amount {amount} CHF'
+        assert amount in {'999', '799', '0', '20', '3’000', '8’000'}, f'{path}: unexpected amount {amount} CHF'
     if path.parent == ROOT:
         assert page.h1 == 1, f'{path}: expected one h1'
         for token in ('rel="canonical"', 'property="og:title"', 'name="description"'):

@@ -299,6 +299,7 @@ def city_page(c):
 <div class="hero__actions">
 <a class="btn btn--primary btn--lg" href="/book">Demander mon aperçu gratuit{NE}</a><a class="btn btn--ghost btn--lg" href="tel:+41762632817">Appeler le +41 76 263 28 17{NE}</a>
 </div>
+<!-- offer:promo --><!-- /offer:promo -->
 <p class="hero__note"><svg class="flag-ch" viewBox="0 0 32 32" width="16" height="16" aria-hidden="true"><rect width="32" height="32" rx="4" fill="#da291c"/><path d="M16 6v20M6 16h20" stroke="#fff" stroke-width="6"/></svg>Entreprise suisse · sans intermédiaire · 999 CHF tout compris · prêt en 48 heures · aperçu gratuit · 12 mois de suivi</p>
 </div>
 </section>
@@ -393,6 +394,7 @@ def town_page(t):
 <div class="hero__actions">
 <a class="btn btn--primary btn--lg" href="/book">Demander mon aperçu gratuit{NE}</a><a class="btn btn--ghost btn--lg" href="tel:+41762632817">Appeler le +41 76 263 28 17{NE}</a>
 </div>
+<!-- offer:promo --><!-- /offer:promo -->
 <p class="hero__note"><svg class="flag-ch" viewBox="0 0 32 32" width="16" height="16" aria-hidden="true"><rect width="32" height="32" rx="4" fill="#da291c"/><path d="M16 6v20M6 16h20" stroke="#fff" stroke-width="6"/></svg>Entreprise suisse · sans intermédiaire · 999 CHF tout compris · prêt en 48 heures · aperçu gratuit · 12 mois de suivi</p>
 </div>
 </section>
