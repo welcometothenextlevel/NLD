@@ -168,7 +168,7 @@
     '© <span data-year>2026</span> Next Digital Level · Suisse': '© <span data-year>2026</span> Next Digital Level · Switzerland',
 
     /* hero */
-    '<span class="pip" aria-hidden="true"></span>Entreprise suisse · sans intermédiaire': '<span class="pip" aria-hidden="true"></span>Swiss company · no middleman',
+    '{ico}Entreprise suisse · sans intermédiaire': '{ico}Swiss company · no middleman',
     'Votre savoir-faire.<br>Un site<br><em>à sa hauteur.</em>': 'Your craft.<br>A website<br><em>that lives up to it.</em>',
     'Des sites codés sur mesure pour les PME de Suisse romande, construits pour attirer des visiteurs et les transformer en clients. Découvrez votre <strong>aperçu gratuit avant de vous engager.</strong>': 'Hand-coded websites for small businesses in French-speaking Switzerland, built to attract visitors and turn them into clients. See your <strong>free preview before you commit.</strong>',
     'Vous parlez directement au fondateur. Sans template, sans frais récurrents.': 'You deal directly with the founder. No template, no recurring fees.',
@@ -416,6 +416,7 @@
     'Une autre question ? L’assistant en bas de page répond immédiatement, ou écrivez-nous sur WhatsApp.': 'Another question? The assistant at the bottom of the page answers immediately, or message us on WhatsApp.'
   };
   const ATTR = {
+    'Entreprise suisse': 'Swiss company',
     'Avis suivant': 'Next review',
     'Avis précédent': 'Previous review',
     '5 étoiles sur 5': '5 stars out of 5',

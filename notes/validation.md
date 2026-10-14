@@ -375,3 +375,10 @@ Business Profile and Search Console operations are outside this website update.
 ## 2026-10-14 — 10th review (Charmayne Grech)
 
 - Added verbatim from the GBP screenshot (Char's Beauty Room, EN, original spelling kept). RATED 9 -> 10; shows on 24 pages (all general blocks + /avis), not the Lausanne, ads or follow-up blocks. check-site PASS. Assets v=20261014b.
+
+## 2026-10-14 — Swiss flag + review link on the portfolio
+
+- Swiss flag next to the logo in the header of all 36 pages (role=img, "Entreprise suisse" / EN "Swiss company"), on the home hero badge, on the founder monogram and in the local pages' hero note.
+- Phone header: flag would clip "Aperçu gratuit" at 390px; ≤480px uses a 15px flag, 7px nav gap and drops the CTA arrow. Measured at 320/375/390/430: no overflow.
+- Char's Beauty Room portfolio card gets "★ Avis client" -> /avis#charmayne-grech; /avis cards carry ids, the target card is outlined in gold; Charmayne's card shows "Char’s Beauty Room · Melbourne".
+- check-site PASS. Assets v=20261014d.

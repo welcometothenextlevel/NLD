@@ -28,7 +28,7 @@ WRITE_URL = 'https://search.google.com/local/writereview?placeid=ChIJDxHjKQyWSAk
 # `show=False` keeps a review counted in RATED but off the site.
 REVIEWS = [
     # Char's Beauty Room, Melbourne (first card in the portfolio).
-    dict(name='Charmayne Grech', date='octobre 2026', lang='en', tags={'design'},
+    dict(name='Charmayne Grech', date='octobre 2026', lang='en', tags={'design'}, company='Char’s Beauty Room · Melbourne', slug='charmayne-grech',
          text=['Next digital level, has been absoulty amazing, from the start designed a new website 2 weeks turnaround. One of best desinged websites I’ve had. Very proffessional service. Highy recommend thank you']),
     dict(name='Vaciraya Pechlak', date='octobre 2026', lang='en', tags={'marketing'},
          text=['I’m very satisfied with their digital marketing services. The team is professional, easy to communicate with, and committed to providing quality service. A great choice for businesses looking to improve their online presence!']),
@@ -65,13 +65,17 @@ G = ('<svg class="rv-g" viewBox="0 0 24 24" width="18" height="18" aria-hidden="
 EXT = ' target="_blank" rel="noopener noreferrer"'
 
 
-def card(r):
+def card(r, anchor=False):
     body = ''.join('<p>%s</p>' % html.escape(p, quote=False) for p in r['text'])
-    return ('<figure class="rv-card">'
+    # /avis gives a card an id when something links to it (the portfolio does).
+    ident = f' id="{r["slug"]}"' if anchor and r.get('slug') else ''
+    return (f'<figure class="rv-card"{ident}>'
             f'<div class="rv-card__top">{STARS}{G}</div>'
             f'<blockquote class="rv-card__text" lang="{r["lang"]}">{body}</blockquote>'
             f'<figcaption><span class="rv-avatar" aria-hidden="true">{html.escape(r["name"][0])}</span>'
-            f'<span class="rv-who"><b>{html.escape(r["name"])}</b><small>Avis Google · {r["date"]}</small></span></figcaption>'
+            f'<span class="rv-who"><b>{html.escape(r["name"])}</b>'
+            + (f'<span class="rv-co">{html.escape(r["company"])}</span>' if r.get('company') else '')
+            + f'<small>Avis Google · {r["date"]}</small></span></figcaption>'
             '</figure>')
 
 
@@ -152,7 +156,7 @@ def avis_page():
                      (r'<meta name="twitter:title" content="[^"]*">', '<meta name="twitter:title" content="Avis clients">'),
                      (r'<meta name="twitter:description" content="[^"]*">', f'<meta name="twitter:description" content="{html.escape(desc, quote=True)}">')]:
         head = re.sub(pat, val, head)
-    grid = ''.join(card(r) for r in SHOWN)
+    grid = ''.join(card(r, anchor=True) for r in SHOWN)
     main = f'''
 <section class="hero inner-hero rv-hero">
 <div class="hero__aura" aria-hidden="true"></div>

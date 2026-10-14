@@ -1808,3 +1808,45 @@ a.project-shot:focus-visible { outline: 2px solid var(--accent); outline-offset:
 /* review strip arrows */
 .rv-controls { display: flex; align-items: center; gap: 10px; margin-top: 18px; }
 .rv-controls .work__hint { font-size: 0.8rem; color: var(--body-mid); }
+
+/* ---------- 41. Swiss flag ----------------------------------------------- */
+.flag-ch { display: inline-block; flex-shrink: 0; width: 16px; height: 16px; border-radius: 3px; box-shadow: 0 1px 2px rgba(20, 17, 14, 0.18); vertical-align: -3px; }
+.nav__swiss { display: inline-flex; align-items: center; margin-left: -6px; }
+.nav__swiss .flag-ch { width: 18px; height: 18px; }
+.hero__badge .flag-ch { margin-right: 2px; }
+.hero__note .flag-ch { width: 14px; height: 14px; margin-right: 7px; vertical-align: -2px; }
+.founder__mono { position: relative; }
+.founder__flag { position: absolute; right: -3px; bottom: -3px; width: 20px; height: 20px; border-radius: 4px; box-shadow: 0 0 0 2px var(--canvas-card); }
+@media (max-width: 1040px) { .nav__swiss { margin-left: 0; } }
+
+/* review link on a portfolio card, and the card it lands on */
+.wcard__meta { justify-content: space-between; }
+.wcard__review {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+  padding: 6px 11px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-pill);
+  background: var(--gold-wash);
+  color: var(--gold-ink);
+  font-size: 0.76rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: border-color 0.3s var(--ease-ui), transform 0.3s var(--ease-ui);
+}
+.wcard__review svg { color: var(--gold); }
+.wcard__review:hover { border-color: var(--gold); transform: translateY(-1px); }
+.rv-co { font-size: 0.78rem; color: var(--accent-deep); }
+:root[data-theme="dark"] .rv-co { color: var(--accent-bright); }
+.rv-grid .rv-card { scroll-margin-top: 120px; }
+.rv-card:target { border-color: var(--gold); box-shadow: 0 0 0 3px var(--gold-wash), var(--shadow-md); }
+/* the flag costs ~28px in the phone header: win it back so "Aperçu gratuit" never clips */
+@media (max-width: 480px) {
+  .nav__swiss { margin-left: -4px; }
+  .nav__swiss .flag-ch { width: 15px; height: 15px; }
+  .nav__cta .ico { display: none; }
+  .nav__cta { padding-inline: 13px; }
+  .nav { gap: 7px; }
+}
