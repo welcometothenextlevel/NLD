@@ -259,6 +259,7 @@ def jsonld(*objs):
 
 
 # Review blocks filled in by scripts/reviews.py.
+ALL_REVIEWS = '<!-- reviews:all --><!-- /reviews:all -->\n'
 REVIEWS = {'creation-site-internet-lausanne': '<!-- reviews:lausanne --><!-- /reviews:lausanne -->\n'}
 
 
@@ -298,7 +299,7 @@ def city_page(c):
 <div class="hero__actions">
 <a class="btn btn--primary btn--lg" href="/book">Demander mon aperçu gratuit{NE}</a><a class="btn btn--ghost btn--lg" href="tel:+41762632817">Appeler le +41 76 263 28 17{NE}</a>
 </div>
-<p class="hero__note">Entreprise suisse · aperçu gratuit · prêt sous 7 jours · sans frais récurrents · 12 mois de suivi</p>
+<p class="hero__note">Entreprise suisse · sans intermédiaire · aperçu gratuit · prêt sous 7 jours · sans frais récurrents · 12 mois de suivi</p>
 </div>
 </section>
 <section class="section">
@@ -341,7 +342,7 @@ def city_page(c):
 </div>
 </div>
 </section>
-{towns_block}{REVIEWS.get(c['slug'], '')}<section class="section section--soft">
+{towns_block}{REVIEWS.get(c['slug'], ALL_REVIEWS)}<section class="section section--soft">
 <div class="container">
 <div class="sec-head reveal">
 <span class="eyebrow">/ Ailleurs en Suisse romande</span><h2 class="t-display-lg" data-split="words">Les autres cantons.</h2>
@@ -392,7 +393,7 @@ def town_page(t):
 <div class="hero__actions">
 <a class="btn btn--primary btn--lg" href="/book">Demander mon aperçu gratuit{NE}</a><a class="btn btn--ghost btn--lg" href="tel:+41762632817">Appeler le +41 76 263 28 17{NE}</a>
 </div>
-<p class="hero__note">Entreprise suisse · aperçu gratuit · prêt sous 7 jours · sans frais récurrents · 12 mois de suivi</p>
+<p class="hero__note">Entreprise suisse · sans intermédiaire · aperçu gratuit · prêt sous 7 jours · sans frais récurrents · 12 mois de suivi</p>
 </div>
 </section>
 <section class="section">
@@ -443,7 +444,7 @@ def town_page(t):
 <div class="sector-links reveal">{near}<a href="/{canton['slug']}" data-cursor="view"><span><small>{t['code']}</small>Tout le canton de {canton['canton']}</span><span aria-hidden="true">{NE}</span></a><a href="/creation-site-internet-suisse-romande" data-cursor="view"><span><small>CH</small>Toute la Suisse romande</span><span aria-hidden="true">{NE}</span></a></div>
 </div>
 </section>
-<section class="cta-band" data-dots-region>
+{ALL_REVIEWS}<section class="cta-band" data-dots-region>
 <canvas class="dot-canvas dot-canvas--dark" data-dots data-dots-theme="dark" aria-hidden="true"></canvas>
 <div class="container cta-band__inner reveal">
 <span class="eyebrow">/ On commence ?</span><h2 class="t-display-lg" data-split="words">Votre site à {t['city']}.<br><em>Voyez-le avant de décider.</em></h2><p class="t-body-lg">Parlez-nous de votre activité. Nous vous préparons un aperçu gratuit, sans engagement.</p>
@@ -503,7 +504,7 @@ def hub_page():
 </div>
 </div>
 </section>
-<section class="cta-band" data-dots-region>
+{ALL_REVIEWS}<section class="cta-band" data-dots-region>
 <canvas class="dot-canvas dot-canvas--dark" data-dots data-dots-theme="dark" aria-hidden="true"></canvas>
 <div class="container cta-band__inner reveal">
 <span class="eyebrow">/ On commence ?</span><h2 class="t-display-lg" data-split="words">Votre prochain site.<br><em>Voyez-le avant de décider.</em></h2><p class="t-body-lg">Parlez-nous de votre activité. Nous vous préparons un aperçu gratuit, sans engagement.</p>

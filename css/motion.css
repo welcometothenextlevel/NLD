@@ -1700,7 +1700,7 @@ a.project-shot:focus-visible { outline: 2px solid var(--accent); outline-offset:
 .rv-viewport::-webkit-scrollbar { display: none; }
 .rv-viewport.is-dragging { cursor: grabbing; }
 .rv-viewport:focus-visible { box-shadow: 0 0 0 2px var(--accent); border-radius: var(--radius-md); }
-.rv-rail { display: flex; align-items: flex-start; gap: 20px; width: max-content; padding-block: 8px 14px; }
+.rv-rail { display: flex; align-items: stretch; gap: 20px; width: max-content; padding-block: 8px 14px; }
 .rv-rail .rv-card { width: clamp(270px, 30vw, 380px); flex-shrink: 0; }
 
 .rv-card {
@@ -1724,7 +1724,7 @@ a.project-shot:focus-visible { outline: 2px solid var(--accent); outline-offset:
 .rv-card__text[lang="en"] p:first-child::before { content: '“'; }
 .rv-card__text p:last-child::after { content: '\00a0»'; color: var(--gold); }
 .rv-card__text[lang="en"] p:last-child::after { content: '”'; }
-.rv-card figcaption { display: flex; align-items: center; gap: 12px; padding-top: 14px; border-top: 1px solid var(--hairline); }
+.rv-card figcaption { margin-top: auto; display: flex; align-items: center; gap: 12px; padding-top: 14px; border-top: 1px solid var(--hairline); }
 .rv-avatar {
   display: grid;
   place-items: center;
@@ -1767,3 +1767,44 @@ a.project-shot:focus-visible { outline: 2px solid var(--accent); outline-offset:
 /* five top-level links since "Avis" joined the bar: keep each on one line */
 .nav__link { white-space: nowrap; }
 @media (min-width: 1041px) and (max-width: 1260px) { .nav__link { padding-inline: 10px; } .nav { gap: 12px; } }
+
+/* ---------- 40. Founder card (home, studio section) ---------------------- */
+.founder {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 16px;
+  margin-top: 6px;
+  padding: 18px 20px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  background: var(--canvas-card);
+  box-shadow: var(--shadow-sm);
+}
+.founder__mono {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  letter-spacing: 0.02em;
+  box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.18);
+}
+.founder__id { display: grid; gap: 3px; }
+.founder__id b { font-family: var(--font-display); font-weight: 400; font-size: 1.3rem; color: var(--ink); }
+.founder__id span, .founder__stat span { font-size: 0.8rem; color: var(--body-mid); }
+.founder__stat { display: grid; gap: 2px; justify-items: end; text-align: right; padding-left: 18px; border-left: 1px solid var(--hairline); }
+.founder__stat b { font-family: var(--font-display); font-weight: 400; font-size: 1.6rem; line-height: 1; color: var(--accent-deep); }
+:root[data-theme="dark"] .founder__stat b { color: var(--accent-bright); }
+@media (max-width: 480px) {
+  .founder { grid-template-columns: auto 1fr; }
+  .founder__stat { grid-column: 1 / -1; justify-items: start; text-align: left; padding: 12px 0 0; border-left: 0; border-top: 1px solid var(--hairline); }
+}
+
+/* review strip arrows */
+.rv-controls { display: flex; align-items: center; gap: 10px; margin-top: 18px; }
+.rv-controls .work__hint { font-size: 0.8rem; color: var(--body-mid); }

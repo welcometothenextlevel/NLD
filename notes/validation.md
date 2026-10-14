@@ -363,3 +363,11 @@ Business Profile and Search Console operations are outside this website update.
 - Nav "Avis", drawer "04 Avis clients" and footer link on all 35 pages; nav links set nowrap (checked 1440/1200/1060, no overflow).
 - Puppeteer: strips drift, no horizontal overflow at 1440 or iPhone 13, dark mode OK, EN toggle translates every block with no console errors.
 - check-site.py PASS (41 pages), structured_data --check: 0 changes. Assets bumped to v=20261013a.
+
+## 2026-10-14 — Founder, no middleman, reviews first
+
+- Home: hero badge "Entreprise suisse · sans intermédiaire", hero note "Vous parlez directement au fondateur", offer strip "5 ans d'expérience", studio section rewritten around Amin Hamdi (founder card: Fondateur · Suisse, 5 ans). Footer on every page: "Entreprise suisse fondée par Amin Hamdi… sans intermédiaire". Local pages' hero note gains "sans intermédiaire". Schema: `founder` Person on #business. Chat "who" intent names Amin.
+- Reviews moved up to right after the hero on the home page; the strip now also sits on every service, canton, town and hub page and on /book (28 pages). Prev/next arrows added.
+- Phone fix: the drift added ~0.5 px per frame to scrollLeft, which WebKit rounds to whole pixels, so the strips never moved on iPhone. Position is now accumulated in JS (portfolio strip too). Verified in puppeteer with a scrollLeft setter that rounds like WebKit: 14 -> 73 px in 2 s.
+- Rail cards stretch to equal height, name pinned to the bottom (no empty band under short cards on phone).
+- EN toggle checked for every new string, no console errors; check-site PASS (41 pages). Assets v=20261014a.

@@ -104,6 +104,22 @@
     { name: "E&J Carpet Cleaning", cat: "Carpet cleaning · Liverpool & Fairfield", url: "https://ej-carpetcleaning.com/", img: "ejcarpet" },
     { name: "Everest Badminton", cat: "Sports club", url: "https://welcometothenextlevel.github.io/badminton/", img: "everest" }
   ];  const categories = window.NDL_LANG === 'en' ? ['Painting & renovation · Puidoux, Vaud', 'Beauty studio · Melbourne', 'NDIS services · Melbourne', 'Migration agency', 'Jewellery · E-commerce', 'Wedding planning', 'Transport & booking', 'Lawn care · Melbourne', 'Boat detailing', 'Party hire · Victoria', 'Carpet cleaning', 'Sports club'] : ['Peinture & rénovation · Puidoux, Vaud', 'Institut de beauté · Melbourne', 'Services NDIS · Melbourne', 'Agence de migration', 'Bijouterie · E-commerce', 'Organisation de mariages', 'Transport & réservation', 'Jardinage · Melbourne', 'Entretien de bateaux', 'Location événementielle · Victoria', 'Nettoyage de moquettes', 'Club sportif'];
+  // Auto-scroll for the looping strips. A frame moves the strip by about half
+  // a pixel and iOS Safari rounds scrollLeft to whole pixels, so adding to
+  // scrollLeft directly never moved anything on iPhone. The exact position is
+  // kept on the element instead, and re-read whenever the visitor scrolled.
+  function wrap(view, half) {
+    if (view.scrollLeft >= half) view.scrollLeft -= half;
+    else if (view.scrollLeft < 0) view.scrollLeft += half;
+    view._pos = view.scrollLeft;
+  }
+  function drift(view, px, half) {
+    if (view._pos === undefined || Math.abs(view.scrollLeft - view._pos) > 2) view._pos = view.scrollLeft;
+    view._pos += px;
+    if (view._pos >= half) view._pos -= half;
+    view.scrollLeft = view._pos;
+  }
+
   const viewport = $('[data-work]');
   if (viewport) {
     const EN = window.NDL_LANG === 'en';
@@ -148,9 +164,8 @@
     function tick(now) {
       raf = 0;
       const dt = last ? Math.min(now - last, 50) : 16.7; last = now;
-      if (!paused && !dragging && visible && !document.hidden && !reduced.matches && !$('iframe:not([hidden])', rail)) viewport.scrollLeft += dt * 0.028;
-      if (viewport.scrollLeft >= half()) viewport.scrollLeft -= half();
-      else if (viewport.scrollLeft < 0) viewport.scrollLeft += half();
+      if (!paused && !dragging && visible && !document.hidden && !reduced.matches && !$('iframe:not([hidden])', rail)) drift(viewport, dt * 0.028, half());
+      else wrap(viewport, half());
       raf = requestAnimationFrame(tick);
     }
     const start = () => { if (!raf) { last = 0; raf = requestAnimationFrame(tick); } };
@@ -208,9 +223,8 @@
     function tick(now) {
       raf = 0;
       const dt = last ? Math.min(now - last, 50) : 16.7; last = now;
-      if (!paused && !dragging && visible && !document.hidden && !reduced.matches) view.scrollLeft += dt * 0.03;
-      if (view.scrollLeft >= half()) view.scrollLeft -= half();
-      else if (view.scrollLeft < 0) view.scrollLeft += half();
+      if (!paused && !dragging && visible && !document.hidden && !reduced.matches) drift(view, dt * 0.03, half());
+      else wrap(view, half());
       if (visible) raf = requestAnimationFrame(tick);
     }
     const start = () => { if (!raf) { last = 0; raf = requestAnimationFrame(tick); } };
@@ -230,11 +244,18 @@
     });
     window.addEventListener('pointerup', () => { pressed = false; dragging = false; view.classList.remove('is-dragging'); });
     view.addEventListener('dragstart', e => e.preventDefault());
+    const step = dir => view.scrollBy({ left: dir * (rail.firstElementChild.offsetWidth + 20), behavior: reduced.matches ? 'instant' : 'smooth' });
     view.addEventListener('keydown', e => {
       if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
-      e.preventDefault();
-      view.scrollBy({ left: (e.key === 'ArrowRight' ? 1 : -1) * (rail.firstElementChild.offsetWidth + 20), behavior: reduced.matches ? 'instant' : 'smooth' });
+      e.preventDefault(); step(e.key === 'ArrowRight' ? 1 : -1);
     });
+    const controls = view.nextElementSibling;
+    if (controls && controls.classList.contains('rv-controls')) {
+      // A press pauses the drift for a moment so the smooth step isn't fought.
+      const nudge = dir => { paused = true; clearTimeout(touchTimer); if (dir < 0 && view.scrollLeft < rail.firstElementChild.offsetWidth + 20) view.scrollLeft += half(); step(dir); touchTimer = setTimeout(() => { paused = false; }, 3000); };
+      $('[data-rv-prev]', controls)?.addEventListener('click', () => nudge(-1));
+      $('[data-rv-next]', controls)?.addEventListener('click', () => nudge(1));
+    }
     view.addEventListener('touchstart', () => { paused = true; clearTimeout(touchTimer); }, { passive: true });
     ['touchend', 'touchcancel'].forEach(t => view.addEventListener(t, () => { clearTimeout(touchTimer); touchTimer = setTimeout(() => { paused = false; }, 2500); }, { passive: true }));
     if ('IntersectionObserver' in window) new IntersectionObserver(en => { visible = en[0].isIntersecting; if (visible) start(); }).observe(view); else { visible = true; start(); }

@@ -86,9 +86,16 @@ def buttons(all_link=True):
     return out + '</div>'
 
 
+PREV = '<svg class="ico" viewBox="0 0 16 16" width="14" height="14" fill="none" aria-hidden="true"><path d="M13 8H3M7 4 3 8l4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+NEXT = '<svg class="ico" viewBox="0 0 16 16" width="14" height="14" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+
+
 def rail(items, label='Avis clients'):
     return (f'<div class="rv-viewport" data-reviews-rail tabindex="0" aria-label="{label}"><div class="rv-rail">'
-            + ''.join(card(r) for r in items) + '</div></div>')
+            + ''.join(card(r) for r in items) + '</div></div>'
+            f'<div class="rv-controls"><button class="rbtn" type="button" data-rv-prev aria-label="Avis précédent">{PREV}</button>'
+            f'<button class="rbtn" type="button" data-rv-next aria-label="Avis suivant">{NEXT}</button>'
+            '<span class="work__hint">Faites défiler les avis</span></div>')
 
 
 def section(eyebrow, title, sub, items, soft=False, all_link=True, sid=''):
@@ -118,6 +125,10 @@ BLOCKS = {
                                 'Des avis laissés sur notre fiche Google, reproduits tels quels.', pick('lausanne', 'speed')),
     'marketing': lambda: section('/ Avis clients', 'Site et marketing,<br><em>du même côté.</em>',
                                  'Des avis laissés sur notre fiche Google, reproduits tels quels.', pick('marketing', 'results')),
+    'all': lambda: section('/ Avis clients', 'Ce que disent<br><em>nos clients.</em>',
+                           'Des avis laissés sur notre fiche Google, reproduits tels quels.', pick()),
+    'book': lambda: section('/ Avis clients', 'Ils sont passés<br><em>par la même étape.</em>',
+                            'Le premier message, l’aperçu, puis le site. Voici ce qu’ils en disent sur Google.', pick()),
     'suivi': lambda: section('/ Avis clients', 'Disponibles,<br><em>et ça se remarque.</em>',
                              'Des avis laissés sur notre fiche Google, reproduits tels quels.', pick('suivi', 'speed')),
 }
@@ -144,7 +155,8 @@ def avis_page():
 <div class="hero__aura" aria-hidden="true"></div>
 <div class="container hero__inner">
 <span class="eyebrow">/ Avis clients</span><h1 class="t-display-xl hero__title">Nos clients<br><em>en parlent mieux que nous.</em></h1>
-<p class="t-body-lg hero__lead">Chaque avis ci-dessous a été laissé sur notre fiche Google par un client, et il est reproduit tel quel, dans sa langue d’origine. Vous pouvez tous les vérifier sur Google.</p>
+<p class="t-body-lg hero__lead">Beaucoup citent Amin, le fondateur : c’est lui qui vous répond, sans intermédiaire, du premier message à la mise en ligne.</p>
+<p class="t-body hero__lead">Chaque avis ci-dessous a été laissé sur notre fiche Google par un client, et il est reproduit tel quel, dans sa langue d’origine. Vous pouvez tous les vérifier sur Google.</p>
 <div class="rv-hero__score"><b class="rv-summary__n">{RATING}</b><div>{STARS}<span>{RATED} avis sur Google</span></div></div>
 {buttons(all_link=False)}
 </div>
@@ -205,6 +217,10 @@ def english():
         f'Lire tous nos avis{ico}': f'Read all our reviews{ico}', f'Voir nos avis sur Google{ico}': f'See our reviews on Google{ico}',
         f'Laisser un avis{ico}': f'Leave a review{ico}', f'Laisser un avis sur Google{ico}': f'Leave a review on Google{ico}',
         'Avis': 'Reviews', 'Avis clients': 'Client reviews', '<span>04</span> Avis clients': '<span>04</span> Client reviews',
+        'Ils sont passés<br><em>par la même étape.</em>': 'They started<br><em>exactly where you are.</em>',
+        'Le premier message, l’aperçu, puis le site. Voici ce qu’ils en disent sur Google.': 'The first message, the preview, then the website. Here is what they say about it on Google.',
+        'Faites défiler les avis': 'Scroll through the reviews',
+        'Beaucoup citent Amin, le fondateur : c’est lui qui vous répond, sans intermédiaire, du premier message à la mise en ligne.': 'Many mention Amin, the founder: he is the one who answers you, with no middleman, from the first message to launch day.',
         'Nos clients<br><em>en parlent mieux que nous.</em>': 'Our clients<br><em>say it better than we do.</em>',
         'Chaque avis ci-dessous a été laissé sur notre fiche Google par un client, et il est reproduit tel quel, dans sa langue d’origine. Vous pouvez tous les vérifier sur Google.':
             'Every review below was left by a client on our Google Business Profile and is reproduced as written, in its original language. You can check each one on Google.',
@@ -227,7 +243,10 @@ def english():
         src = re.sub(r'    /\* reviews \*/\n.*?    /\* /reviews \*/\n', lambda m: block, src, flags=re.S)
     else:
         src = src.replace('    /* chrome */\n', block + '    /* chrome */\n', 1)
-    src = re.sub(r"(  const ATTR = \{\n)(?!    '5 étoiles sur 5')", r"\1    '5 étoiles sur 5': '5 stars out of 5',\n    'Avis clients': 'Client reviews',\n", src)
+    attrs = {'5 étoiles sur 5': '5 stars out of 5', 'Avis clients': 'Client reviews', 'Avis précédent': 'Previous review', 'Avis suivant': 'Next review'}
+    for k, v in attrs.items():
+        if f"    {q(k)}:" not in src.split('  const ATTR = {', 1)[1]:
+            src = src.replace('  const ATTR = {\n', f'  const ATTR = {{\n    {q(k)}: {q(v)},\n', 1)
     if "'avis':" not in src:
         src = src.replace("  const TITLES = {\n", "  const TITLES = {\n    'avis': 'Client reviews | Next Digital Level',\n    'avis.html': 'Client reviews | Next Digital Level',\n", 1)
     p.write_text(src)

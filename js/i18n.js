@@ -54,6 +54,10 @@
     'Avis': 'Reviews',
     'Avis clients': 'Client reviews',
     '<span>04</span> Avis clients': '<span>04</span> Client reviews',
+    'Ils sont passés<br><em>par la même étape.</em>': 'They started<br><em>exactly where you are.</em>',
+    'Le premier message, l’aperçu, puis le site. Voici ce qu’ils en disent sur Google.': 'The first message, the preview, then the website. Here is what they say about it on Google.',
+    'Faites défiler les avis': 'Scroll through the reviews',
+    'Beaucoup citent Amin, le fondateur : c’est lui qui vous répond, sans intermédiaire, du premier message à la mise en ligne.': 'Many mention Amin, the founder: he is the one who answers you, with no middleman, from the first message to launch day.',
     'Nos clients<br><em>en parlent mieux que nous.</em>': 'Our clients<br><em>say it better than we do.</em>',
     'Chaque avis ci-dessous a été laissé sur notre fiche Google par un client, et il est reproduit tel quel, dans sa langue d’origine. Vous pouvez tous les vérifier sur Google.': 'Every review below was left by a client on our Google Business Profile and is reproduced as written, in its original language. You can check each one on Google.',
     'Les notes laissées sans commentaire sont comptées dans la moyenne mais n’apparaissent pas ici.': 'Ratings left without a comment count towards the average but are not shown here.',
@@ -63,6 +67,11 @@
     'Avis Google · octobre 2026': 'Google review · October 2026',
     /* /reviews */
     /* chrome */
+    'à créer des sites pour des PME': 'building websites for small businesses',
+    '5 ans': '5 years',
+    'Fondateur · Suisse': 'Founder · Switzerland',
+    'd’expérience': 'of experience',
+    '<span data-count="5">5</span> ans': '<span data-count="5">5</span> years',
     'Partenaire certifié Google Ads': 'Google Ads Certified Partner',
     'Artisan, commerçant ou indépendant : votre site doit attirer des visiteurs, expliquer votre valeur et déclencher le prochain appel. Nous le construisons pour cela, de bout en bout.': 'Tradesperson, shopkeeper or independent: your site must attract visitors, explain your value and trigger the next call. We build it for exactly that, end to end.',
     'Un site qui vous amène des clients.': 'A website that brings you clients.',
@@ -132,7 +141,7 @@
     'Demander mon aperçu gratuit{ico}': 'Request my free preview{ico}',
     'Nous appeler{ico}': 'Call us{ico}',
     'Appeler {ico}': 'Call {ico}',
-    'Entreprise suisse. Des sites codés sur mesure pour les PME, avec un aperçu gratuit avant de vous engager.': 'A Swiss company. Hand-coded websites for small businesses, with a free preview before you commit.',
+    'Entreprise suisse fondée par Amin Hamdi. Des sites codés sur mesure pour les PME, sans intermédiaire.': 'A Swiss company founded by Amin Hamdi. Hand-coded websites for small businesses, with no middleman.',
     'À votre écoute 7 jours sur 7': 'Available 7 days a week',
     '{ico}<span>Conçu et codé en Suisse</span>': '{ico}<span>Designed and coded in Switzerland</span>',
     'Votre projet': 'Your project',
@@ -159,10 +168,10 @@
     '© <span data-year>2026</span> Next Digital Level · Suisse': '© <span data-year>2026</span> Next Digital Level · Switzerland',
 
     /* hero */
-    '<span class="pip" aria-hidden="true"></span>Entreprise suisse · PME &amp; indépendants': '<span class="pip" aria-hidden="true"></span>Swiss company · SMEs &amp; independents',
+    '<span class="pip" aria-hidden="true"></span>Entreprise suisse · sans intermédiaire': '<span class="pip" aria-hidden="true"></span>Swiss company · no middleman',
     'Votre savoir-faire.<br>Un site<br><em>à sa hauteur.</em>': 'Your craft.<br>A website<br><em>that lives up to it.</em>',
     'Des sites codés sur mesure pour les PME de Suisse romande, construits pour attirer des visiteurs et les transformer en clients. Découvrez votre <strong>aperçu gratuit avant de vous engager.</strong>': 'Hand-coded websites for small businesses in French-speaking Switzerland, built to attract visitors and turn them into clients. See your <strong>free preview before you commit.</strong>',
-    'Sans template générique. Sans frais récurrents.': 'No generic template. No recurring fees.',
+    'Vous parlez directement au fondateur. Sans template, sans frais récurrents.': 'You deal directly with the founder. No template, no recurring fees.',
     'Découvrez nos réalisations {ico}': 'See our work {ico}',
     'Votre entreprise · la méthode en 4 étapes': 'Your business · the method in 4 steps',
     'Votre entreprise.': 'Your business.',
@@ -334,9 +343,9 @@
 
     /* studio */
     '/ Le studio': '/ The studio',
-    'Un studio suisse,<br>une expérience internationale.': 'A Swiss studio,<br>international experience.',
-    'Next Digital Level est une entreprise suisse. Nous avons construit des sites pour des petites entreprises en Australie avant de nous consacrer aux PME de Suisse romande : instituts, artisans, services à la personne, commerces.': 'Next Digital Level is a Swiss company. We built websites for small businesses in Australia before focusing on SMEs in French-speaking Switzerland: salons, tradespeople, care services, shops.',
-    'Nous travaillons en français et en anglais, sans intermédiaire : la personne qui vous répond est celle qui conçoit et code votre site.': 'We work in French and English, with no middleman: the person who answers you is the one who designs and codes your site.',
+    'Un studio suisse.<br><em>Un seul interlocuteur.</em>': 'A Swiss studio.<br><em>One person to talk to.</em>',
+    'Next Digital Level est une entreprise suisse fondée par Amin Hamdi. Depuis 5 ans, il conçoit et code des sites pour des petites entreprises, d’abord en Australie, aujourd’hui pour les PME de Suisse romande : instituts, artisans, services à la personne, commerces.': 'Next Digital Level is a Swiss company founded by Amin Hamdi. For 5 years he has been designing and coding websites for small businesses, first in Australia and now for SMEs in French-speaking Switzerland: beauty studios, tradespeople, care services, shops.',
+    'Pas de commercial, pas d’intermédiaire : vous parlez directement à Amin, de la première conversation à la mise en ligne, en français ou en anglais.': 'No salesperson, no middleman: you talk directly to Amin, from the first conversation to launch day, in French or English.',
     'Voir avant de décider': 'See before deciding',
     'L’aperçu gratuit n’est pas un argument commercial. C’est notre façon de commencer chaque projet.': 'The free preview is not a sales pitch. It is how we start every project.',
     'Le détail compte': 'Details matter',
@@ -407,6 +416,8 @@
     'Une autre question ? L’assistant en bas de page répond immédiatement, ou écrivez-nous sur WhatsApp.': 'Another question? The assistant at the bottom of the page answers immediately, or message us on WhatsApp.'
   };
   const ATTR = {
+    'Avis suivant': 'Next review',
+    'Avis précédent': 'Previous review',
     '5 étoiles sur 5': '5 stars out of 5',
     'Avis clients': 'Client reviews',
     'Ouvrir le menu': 'Open menu',
