@@ -382,3 +382,12 @@ Business Profile and Search Console operations are outside this website update.
 - Phone header: flag would clip "Aperçu gratuit" at 390px; ≤480px uses a 15px flag, 7px nav gap and drops the CTA arrow. Measured at 320/375/390/430: no overflow.
 - Char's Beauty Room portfolio card gets "★ Avis client" -> /avis#charmayne-grech; /avis cards carry ids, the target card is outlined in gold; Charmayne's card shows "Char’s Beauty Room · Melbourne".
 - check-site PASS. Assets v=20261014d.
+
+## 2026-10-14 — 48 hours, 999 CHF all included
+
+- Owner decisions (asked in chat): 999 CHF fixed, paid once; the client buys their own domain; no mention of AI; free preview and 12 months of follow-up kept.
+- Every "7 jours" turnaround → "48 heures" (FR, EN, chat, meta descriptions, FAQ, schema description, generators, demo and method timelines now 0h–48h). "7 jours sur 7" availability untouched. The clock now starts at preview approval, since text and images are included.
+- `scripts/offer.py` (run by reviews.py): `offer:full` price card + agency comparison (2–4 months / 3'000–8'000 CHF vs 48 h / 999 CHF) on / and /websites, `offer:note` on /book, EN strings in i18n.js. Fine print names the only outside costs: domain (~15–20 CHF/yr, client's name), payment-provider commission, optional ad budget.
+- Home: removed the "template vs sur mesure" table and the "Compris dans chaque site" list (folded into the price card); hero line and key figures show 999 CHF; FAQ gains "Combien coûte un site ?", subscription answer rewritten. Chat price/subscription/content answers rewritten. Content and photo FAQs now say text and images are included.
+- check-site: CHF amounts restricted to 999 / 0 / 20 / 3’000 / 8’000; offer tokens updated. PASS (41 pages).
+- Verified desktop, iPhone 13, dark + EN: no overflow, no console errors. Assets v=20261014f.

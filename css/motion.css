@@ -1850,3 +1850,55 @@ a.project-shot:focus-visible { outline: 2px solid var(--accent); outline-offset:
   .nav__cta { padding-inline: 13px; }
   .nav { gap: 7px; }
 }
+
+/* ---------- 42. The offer: one price, everything included --------------- */
+.offer { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 64px; align-items: center; }
+.offer__copy { display: flex; flex-direction: column; gap: 22px; }
+.vs { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--hairline); border-radius: var(--radius-md); overflow: hidden; background: var(--canvas-card); }
+.vs__col { display: grid; align-content: start; gap: 4px; padding: 20px 22px; }
+.vs__col + .vs__col { border-left: 1px solid var(--hairline); }
+.vs__who { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--body-mid); margin-bottom: 6px; }
+.vs__col b { font-family: var(--font-display); font-weight: 400; font-size: 1.45rem; line-height: 1.2; color: var(--body-mid); text-decoration: line-through; text-decoration-color: rgba(213, 43, 30, 0.55); text-decoration-thickness: 1.5px; }
+.vs__extra { margin-top: 8px; font-size: 0.8rem; color: var(--body-mid); }
+.vs__col--us { background: var(--accent-wash); }
+.vs__col--us .vs__who { color: var(--accent-deep); }
+.vs__col--us b { color: var(--ink); text-decoration: none; }
+.vs__col--us .vs__extra { color: var(--accent-deep); }
+
+.price-card {
+  position: relative;
+  display: grid;
+  gap: 18px;
+  padding: 34px 32px 30px;
+  border-radius: var(--radius-lg);
+  background: var(--panel);
+  color: var(--panel-body);
+  box-shadow: var(--shadow-panel);
+  overflow: hidden;
+}
+.price-card::before { content: ''; position: absolute; inset: -40% -30% auto auto; width: 70%; height: 80%; background: radial-gradient(closest-side, rgba(201, 162, 39, 0.22), transparent); pointer-events: none; }
+.price-card__top { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.price-card .eyebrow { color: var(--gold); }
+.price-card__tag { padding: 5px 11px; border-radius: var(--radius-pill); background: rgba(201, 162, 39, 0.16); color: var(--gold); font-size: 0.76rem; font-weight: 500; }
+.price { display: flex; align-items: baseline; gap: 10px; }
+.price b { font-family: var(--font-display); font-weight: 400; font-size: clamp(4.2rem, 8vw, 5.6rem); line-height: 0.9; letter-spacing: -0.04em; color: var(--panel-ink); }
+.price span { font-family: var(--font-display); font-size: 1.6rem; color: var(--gold); }
+.price__sub { margin-top: -8px; font-size: 0.88rem; color: var(--panel-dim); }
+.price__list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 18px; padding: 18px 0; margin: 0; list-style: none; border-block: 1px solid var(--panel-line); }
+.price__list li { display: flex; align-items: flex-start; gap: 8px; font-size: 0.88rem; line-height: 1.35; color: var(--panel-body); }
+.price__list svg { flex-shrink: 0; margin-top: 2px; color: var(--accent-bright); }
+.price__zero { font-size: 0.9rem; color: var(--panel-dim); }
+.price__zero b { color: var(--panel-ink); font-weight: 600; }
+.price__zero i { font-style: normal; margin-inline: 6px; color: var(--gold); }
+.price-card .btn { justify-self: start; }
+.offer__fine { margin-top: 26px; max-width: 860px; font-size: 0.82rem; line-height: 1.55; color: var(--body-mid); }
+.offer-note-line { margin: 4px 0 2px; padding: 12px 16px; border-radius: var(--radius-sm); background: var(--accent-wash); color: var(--accent-deep); font-size: 0.92rem; }
+.offer-note-line b { color: var(--ink); }
+@media (max-width: 960px) { .offer { grid-template-columns: 1fr; gap: 40px; } }
+@media (max-width: 520px) {
+  .price-card { padding: 28px 22px 24px; }
+  .price__list { grid-template-columns: 1fr; }
+  .price-card .btn { justify-self: stretch; justify-content: center; padding-inline: 18px; font-size: 0.95rem; white-space: nowrap; }
+  .vs__col { padding: 16px; }
+  .vs__col b { font-size: 1.15rem; }
+}

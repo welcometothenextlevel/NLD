@@ -32,7 +32,7 @@ BUSINESS = {
     "logo": SITE + "/assets/logo-mark-512.png",
     "image": SITE + "/assets/social-preview.png",
     "description": ("Entreprise suisse de création de sites codés sur mesure pour les PME de Suisse "
-                    "romande, avec un aperçu gratuit avant tout engagement, un site prêt sous 7 jours, "
+                    "romande, avec un aperçu gratuit avant tout engagement, un site prêt en 48 heures, "
                     "sans frais récurrents et 12 mois de suivi."),
     "founder": {"@type": "Person", "name": "Amin Hamdi", "jobTitle": "Fondateur", "nationality": {"@type": "Country", "name": "Switzerland"}},
     "telephone": "+41 76 263 28 17",

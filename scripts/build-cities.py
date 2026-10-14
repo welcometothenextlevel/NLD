@@ -15,7 +15,7 @@ NE = '<svg class="ico" viewBox="0 0 16 16" width="14" height="14" fill="none" ar
 CITIES = [
     dict(slug='creation-site-internet-geneve', city='Genève', canton='Genève', code='GE', region='Genève et ses communes',
          title='Création de site internet à Genève | Next Digital Level',
-         desc='Création de sites web sur mesure pour les PME et indépendants de Genève : aperçu gratuit avant engagement, site prêt sous 7 jours, sans frais récurrents.',
+         desc='Création de sites web sur mesure pour les PME et indépendants de Genève : aperçu gratuit avant engagement, site prêt en 48 heures, sans frais récurrents.',
          h1='Création de site internet<br><em>à Genève.</em>',
          lead='Genève concentre une clientèle exigeante et internationale. Un site clair, rapide et bilingue si nécessaire fait la différence entre un appel et un visiteur qui repart. Nous concevons des sites sur mesure pour les PME genevoises, avec un aperçu gratuit avant tout engagement.',
          towns='Carouge, Lancy, Vernier, Meyrin, Onex, Thônex, Chêne-Bougeries, Versoix, Plan-les-Ouates et toute la rive gauche comme la rive droite.',
@@ -29,7 +29,7 @@ CITIES = [
          geo=(46.2044, 6.1432)),
     dict(slug='creation-site-internet-lausanne', city='Lausanne', canton='Vaud', code='VD', region='Lausanne, la Riviera et le canton de Vaud',
          title='Création de site internet à Lausanne et dans le canton de Vaud | Next Digital Level',
-         desc='Sites web codés sur mesure pour les PME de Lausanne, Vevey, Montreux, Nyon, Morges et Yverdon. Aperçu gratuit, prêt sous 7 jours, sans abonnement.',
+         desc='Sites web codés sur mesure pour les PME de Lausanne, Vevey, Montreux, Nyon, Morges et Yverdon. Aperçu gratuit, prêt en 48 heures, sans abonnement.',
          h1='Création de site internet<br><em>à Lausanne et dans le canton de Vaud.</em>',
          lead='De Nyon à Montreux, de Morges à Yverdon, les PME vaudoises ont un point commun : leurs clients les cherchent sur Google avant d’appeler. Nous créons des sites sur mesure qui se chargent vite, expliquent clairement votre offre et donnent envie de vous contacter.',
          towns='Lausanne, Pully, Renens, Morges, Nyon, Vevey, Montreux, Yverdon-les-Bains, Aigle et l’ensemble du canton de Vaud.',
@@ -37,7 +37,7 @@ CITIES = [
                   ('Restauration, commerces et loisirs', 'Cafés, boutiques, ateliers, clubs sportifs : horaires, menus, réservations et itinéraire, accessibles en un geste depuis un téléphone.'),
                   ('Santé, bien-être et services à la personne', 'Cabinets, thérapeutes, aide à domicile : une présentation rassurante, des informations pratiques et une prise de contact simple.')],
          local='Le canton de Vaud est vaste et les recherches sont très locales : « électricien Morges », « coiffeur Vevey », « fiduciaire Nyon ». Un site sur mesure permet de créer, sans lourdeur, des pages ou des sections dédiées aux villes que vous servez réellement, avec des textes utiles plutôt qu’une liste de mots-clés. Nous posons cette structure dès le départ.',
-         faq=[('Je suis à Vevey ou à Nyon, est-ce le même service ?', 'Oui. Nous accompagnons tout le canton de Vaud avec le même processus : aperçu gratuit, site prêt sous 7 jours après validation, 12 mois de suivi.'),
+         faq=[('Je suis à Vevey ou à Nyon, est-ce le même service ?', 'Oui. Nous accompagnons tout le canton de Vaud avec le même processus : aperçu gratuit, site prêt en 48 heures après validation, 12 mois de suivi.'),
               ('Pouvez-vous reprendre mon site actuel ?', 'Oui. Nous conservons votre nom de domaine et votre référencement existant, puis reconstruisons le site proprement. L’aperçu gratuit vous montre la différence.'),
               ('Comment se passe le premier contact ?', 'Un appel ou un message WhatsApp de trente minutes suffit pour comprendre votre activité et préparer l’aperçu.')],
          geo=(46.5197, 6.6323)),
@@ -53,7 +53,7 @@ CITIES = [
          local='Fribourg est un canton bilingue. Selon votre zone, une version allemande de vos pages principales peut doubler votre visibilité, sans complexité supplémentaire dans un site codé sur mesure. Nous travaillons aussi la présence sur Google Business Profile, décisive pour les recherches « près de moi » dans les districts.',
          faq=[('Pouvez-vous livrer le site en français et en allemand ?', 'Oui. Nous rédigeons en français et travaillons avec des relecteurs natifs pour l’allemand. Nous définissons ensemble les pages à traduire.'),
               ('Je suis à Bulle, dans la Gruyère. Est-ce que vous couvrez cette zone ?', 'Oui, tout le canton de Fribourg. Les échanges se font à distance ou sur rendez-vous si vous préférez.'),
-              ('Combien de temps pour mettre le site en ligne ?', 'Sept jours après validation du projet et réception de vos contenus. L’aperçu gratuit vient avant, sans engagement.')],
+              ('Combien de temps pour mettre le site en ligne ?', '48 heures après la validation de votre aperçu. L’aperçu gratuit vient avant, sans engagement.')],
          geo=(46.8065, 7.1620)),
     dict(slug='creation-site-internet-neuchatel', city='Neuchâtel', canton='Neuchâtel', code='NE', region='Neuchâtel, La Chaux-de-Fonds et le Littoral',
          title='Création de site internet à Neuchâtel | Next Digital Level',
@@ -66,12 +66,12 @@ CITIES = [
                   ('Santé, bien-être et indépendants', 'Cabinets, thérapeutes, conseillers : une présentation sobre qui inspire confiance dès le premier écran.')],
          local='Dans le canton de Neuchâtel, les recherches locales se concentrent sur quelques pôles : Neuchâtel, La Chaux-de-Fonds, Le Locle. Nous structurons vos pages pour couvrir vos zones réelles d’intervention et nous mettons en place les bases techniques que Google attend : données structurées, vitesse, contenus locaux, fiche Google Business Profile.',
          faq=[('Vous déplacez-vous à La Chaux-de-Fonds ?', 'Les échanges se font par téléphone, WhatsApp ou visio, ce qui convient à la plupart de nos clients. Un rendez-vous sur place reste possible.'),
-              ('Que faut-il me fournir pour démarrer ?', 'Vos coordonnées, la liste de vos prestations et quelques photos. Nous rédigeons les textes avec vous.'),
+              ('Que faut-il me fournir pour démarrer ?', 'Vos coordonnées et la liste de vos prestations suffisent. Les textes et les images sont compris dans le prix : nous les préparons, et vos propres photos sont les bienvenues.'),
               ('Y a-t-il des frais mensuels ?', 'Non. Notre création de site est sans frais récurrents. Seuls le nom de domaine et d’éventuels outils tiers, précisés à l’avance, peuvent avoir un coût.')],
          geo=(46.9900, 6.9293)),
     dict(slug='creation-site-internet-valais', city='Sion', canton='Valais', code='VS', region='Sion, Martigny, Sierre, Monthey et les stations',
          title='Création de site internet en Valais et à Sion | Next Digital Level',
-         desc='Création de sites web sur mesure pour les PME valaisannes : Sion, Conthey, Nendaz et les stations du Valais romand. Aperçu gratuit, prêt sous 7 jours.',
+         desc='Création de sites web sur mesure pour les PME valaisannes : Sion, Conthey, Nendaz et les stations du Valais romand. Aperçu gratuit, prêt en 48 heures.',
          h1='Création de site internet<br><em>en Valais.</em>',
          lead='Le Valais vit au rythme des saisons et du tourisme : hébergements, activités, artisans, commerces. Un site sur mesure, rapide sur mobile et clair sur les horaires et les tarifs, transforme une recherche en réservation ou en appel. Aperçu gratuit avant tout engagement.',
          towns='Sion, Martigny, Sierre, Monthey, Conthey, Fully, Saxon, Verbier, Crans-Montana, Nendaz, Anzère et l’ensemble du Valais romand.',
@@ -80,7 +80,7 @@ CITIES = [
                   ('Artisans et entreprises de services', 'Chauffage, sanitaire, couverture, paysagisme : vos réalisations et vos communes desservies, du Chablais au Haut-Valais romand.')],
          local='En Valais, la saisonnalité et la clientèle touristique changent la donne : les recherches viennent souvent de l’extérieur du canton, parfois en anglais ou en allemand, et presque toujours depuis un téléphone. Nous construisons des sites légers qui se chargent vite même en montagne, avec des pages par activité et par lieu, et nous relions le tout à votre fiche Google Business Profile.',
          faq=[('Je suis dans une station, mes clients sont surtout des touristes. Est-ce adapté ?', 'Oui. Nous concevons des pages claires sur les périodes, les tarifs et la réservation, avec une version anglaise si nécessaire.'),
-              ('Pouvez-vous intégrer un système de réservation ?', 'Oui. Nous intégrons un outil de réservation fiable lorsque c’est utile, et nous en précisons les éventuels coûts avant votre accord.'),
+              ('Pouvez-vous intégrer un système de réservation ?', 'Oui, et c’est compris dans le prix. La réservation en ligne est intégrée à votre site ; si vous utilisez déjà un outil externe, nous le relions simplement (son éventuel abonnement reste chez ce prestataire).'),
               ('Couvrez-vous tout le Valais romand ?', 'Oui, de Monthey à Sierre, plaine et stations. Les échanges se font à distance ou sur rendez-vous.')],
          geo=(46.2331, 7.3606)),
     dict(slug='creation-site-internet-jura', city='Delémont', canton='Jura', code='JU', region='Delémont, Porrentruy et le Jura bernois',
@@ -109,7 +109,7 @@ CITIES = [
 TOWNS = [
     dict(slug='creation-site-internet-nyon', city='Nyon', canton='Vaud', canton_slug='creation-site-internet-lausanne', code='VD',
          title='Agence web à Nyon et sur La Côte | Next Digital Level',
-         desc='Création de sites web sur mesure pour les PME de Nyon, Gland, Rolle et de La Côte. Aperçu gratuit avant engagement, site prêt sous 7 jours, sans frais récurrents.',
+         desc='Création de sites web sur mesure pour les PME de Nyon, Gland, Rolle et de La Côte. Aperçu gratuit avant engagement, site prêt en 48 heures, sans frais récurrents.',
          h1='Agence web<br><em>à Nyon et sur La Côte.</em>',
          lead='Entre Genève et Lausanne, Nyon vit à deux vitesses : une clientèle locale fidèle et une population internationale très mobile, qui cherche, compare et réserve depuis son téléphone. Un site clair, rapide et souvent bilingue fait ici toute la différence.',
          towns='Nyon, Gland, Rolle, Prangins, Coppet, Founex, Begnins, Aubonne, Saint-Cergue et l’ensemble du district de Nyon.',
@@ -123,7 +123,7 @@ TOWNS = [
 
     dict(slug='creation-site-internet-morges', city='Morges', canton='Vaud', canton_slug='creation-site-internet-lausanne', code='VD',
          title='Création de site web à Morges | Next Digital Level',
-         desc='Sites internet sur mesure pour les commerces, artisans et indépendants de Morges, Tolochenaz, Préverenges et Saint-Prex. Aperçu gratuit, prêt sous 7 jours.',
+         desc='Sites internet sur mesure pour les commerces, artisans et indépendants de Morges, Tolochenaz, Préverenges et Saint-Prex. Aperçu gratuit, prêt en 48 heures.',
          h1='Création de site web<br><em>à Morges.</em>',
          lead='Morges vit de son centre historique, de son port et d’un tissu dense de commerces indépendants, à dix minutes de Lausanne. Vos clients vous cherchent par nom de rue et par quartier : votre site doit répondre avant que l’on ne fasse défiler la page de résultats.',
          towns='Morges, Tolochenaz, Préverenges, Saint-Prex, Échichens, Lonay, Denges, Bussigny et le district de Morges.',
@@ -133,7 +133,7 @@ TOWNS = [
          local='La concurrence sur « Morges » est plus accessible que sur Lausanne, et c’est une opportunité : une page bien construite, des textes qui nomment vos quartiers et vos communes voisines, et une fiche Google complète suffisent souvent à sortir devant des sites plus anciens mais négligés. Nous bâtissons cette structure dès la création, sans bourrage de mots-clés.',
          faq=[('Suis-je en concurrence avec les agences lausannoises ?', 'Sur les recherches locales « à Morges », non : Google privilégie la proximité et la pertinence. C’est justement ce que nous travaillons dans vos pages et votre fiche Google.'),
               ('J’ai un commerce physique. Qu’est-ce qui compte le plus ?', 'Les horaires, l’adresse avec itinéraire, des photos réelles du lieu et un numéro cliquable. Ensuite seulement le reste. Nous les plaçons en haut de page.'),
-              ('Combien de temps avant la mise en ligne ?', 'Sept jours après validation du projet et réception de vos contenus. L’aperçu gratuit vient avant, sans engagement.')]),
+              ('Combien de temps avant la mise en ligne ?', '48 heures après la validation de votre aperçu. L’aperçu gratuit vient avant, sans engagement.')]),
 
     dict(slug='creation-site-internet-vevey-montreux', city='Vevey et Montreux', canton='Vaud', canton_slug='creation-site-internet-lausanne', code='VD',
          title='Création de site internet à Vevey et Montreux (Riviera) | Next Digital Level',
@@ -179,7 +179,7 @@ TOWNS = [
 
     dict(slug='creation-site-internet-martigny', city='Martigny', canton='Valais', canton_slug='creation-site-internet-valais', code='VS',
          title='Site internet à Martigny et dans le Bas-Valais | Next Digital Level',
-         desc='Création de sites web sur mesure pour les PME de Martigny, Fully, Saxon et du Bas-Valais : vignerons, artisans, commerces. Aperçu gratuit, prêt sous 7 jours.',
+         desc='Création de sites web sur mesure pour les PME de Martigny, Fully, Saxon et du Bas-Valais : vignerons, artisans, commerces. Aperçu gratuit, prêt en 48 heures.',
          h1='Site internet à Martigny<br><em>et dans le Bas-Valais.</em>',
          lead='Carrefour entre la France, l’Italie et le reste du Valais, Martigny voit passer autant de clients de passage que d’habitués. Votre site doit convaincre les deux : les premiers cherchent vite, les seconds vérifient que vous êtes toujours là.',
          towns='Martigny, Fully, Saxon, Charrat, Vernayaz, Saillon, Leytron, Orsières et le Bas-Valais.',
@@ -237,7 +237,7 @@ TOWNS = [
 HUB = dict(slug='creation-site-internet-suisse-romande', title='Création de site internet en Suisse romande | Next Digital Level',
            desc='Agence suisse de création de sites web sur mesure pour les PME de Suisse romande : Genève, Vaud, Fribourg, Neuchâtel, Valais, Jura. Aperçu gratuit avant engagement.',
            h1='Création de site internet<br><em>en Suisse romande.</em>',
-           lead='Next Digital Level est un studio suisse. Nous concevons et codons des sites sur mesure pour les PME et indépendants de toute la Suisse romande, avec un aperçu gratuit avant tout engagement, un site prêt sous 7 jours et 12 mois de suivi inclus. Choisissez votre région.')
+           lead='Next Digital Level est un studio suisse. Nous concevons et codons des sites sur mesure pour les PME et indépendants de toute la Suisse romande, avec un aperçu gratuit avant tout engagement, un site prêt en 48 heures et 12 mois de suivi inclus. Choisissez votre région.')
 
 
 def chrome(s, slug):
@@ -299,7 +299,7 @@ def city_page(c):
 <div class="hero__actions">
 <a class="btn btn--primary btn--lg" href="/book">Demander mon aperçu gratuit{NE}</a><a class="btn btn--ghost btn--lg" href="tel:+41762632817">Appeler le +41 76 263 28 17{NE}</a>
 </div>
-<p class="hero__note"><svg class="flag-ch" viewBox="0 0 32 32" width="16" height="16" aria-hidden="true"><rect width="32" height="32" rx="4" fill="#da291c"/><path d="M16 6v20M6 16h20" stroke="#fff" stroke-width="6"/></svg>Entreprise suisse · sans intermédiaire · aperçu gratuit · prêt sous 7 jours · sans frais récurrents · 12 mois de suivi</p>
+<p class="hero__note"><svg class="flag-ch" viewBox="0 0 32 32" width="16" height="16" aria-hidden="true"><rect width="32" height="32" rx="4" fill="#da291c"/><path d="M16 6v20M6 16h20" stroke="#fff" stroke-width="6"/></svg>Entreprise suisse · sans intermédiaire · 999 CHF tout compris · prêt en 48 heures · aperçu gratuit · 12 mois de suivi</p>
 </div>
 </section>
 <section class="section">
@@ -322,7 +322,7 @@ def city_page(c):
 </div>
 <ul class="included__list included__list--simple stagger">
 <li><i></i><b>Aperçu gratuit</b><span>Vous voyez votre site avant de vous engager</span></li>
-<li><i></i><b>Prêt sous 7 jours</b><span>Après validation et réception de vos contenus</span></li>
+<li><i></i><b>Prêt en 48 heures</b><span>Après validation de votre aperçu</span></li>
 <li><i></i><b>Sans frais récurrents</b><span>Pas d’abonnement, le site vous appartient</span></li>
 <li><i></i><b>SEO local inclus</b><span>Titres, données structurées, contenu régional</span></li>
 <li><i></i><b>Google Business Profile</b><span>Fiche complétée et reliée à votre site</span></li>
@@ -393,7 +393,7 @@ def town_page(t):
 <div class="hero__actions">
 <a class="btn btn--primary btn--lg" href="/book">Demander mon aperçu gratuit{NE}</a><a class="btn btn--ghost btn--lg" href="tel:+41762632817">Appeler le +41 76 263 28 17{NE}</a>
 </div>
-<p class="hero__note"><svg class="flag-ch" viewBox="0 0 32 32" width="16" height="16" aria-hidden="true"><rect width="32" height="32" rx="4" fill="#da291c"/><path d="M16 6v20M6 16h20" stroke="#fff" stroke-width="6"/></svg>Entreprise suisse · sans intermédiaire · aperçu gratuit · prêt sous 7 jours · sans frais récurrents · 12 mois de suivi</p>
+<p class="hero__note"><svg class="flag-ch" viewBox="0 0 32 32" width="16" height="16" aria-hidden="true"><rect width="32" height="32" rx="4" fill="#da291c"/><path d="M16 6v20M6 16h20" stroke="#fff" stroke-width="6"/></svg>Entreprise suisse · sans intermédiaire · 999 CHF tout compris · prêt en 48 heures · aperçu gratuit · 12 mois de suivi</p>
 </div>
 </section>
 <section class="section">
@@ -416,7 +416,7 @@ def town_page(t):
 </div>
 <ul class="included__list included__list--simple stagger">
 <li><i></i><b>Aperçu gratuit</b><span>Vous voyez votre site avant de vous engager</span></li>
-<li><i></i><b>Prêt sous 7 jours</b><span>Après validation et réception de vos contenus</span></li>
+<li><i></i><b>Prêt en 48 heures</b><span>Après validation de votre aperçu</span></li>
 <li><i></i><b>Sans frais récurrents</b><span>Pas d’abonnement, le site vous appartient</span></li>
 <li><i></i><b>SEO local inclus</b><span>Titres, données structurées, contenu régional</span></li>
 <li><i></i><b>Google Business Profile</b><span>Fiche complétée et reliée à votre site</span></li>
@@ -500,7 +500,7 @@ def hub_page():
 <div class="grid grid--3 stagger">
 <article class="card card--spot" data-spot><span class="card__num">01</span><h3 class="t-display-sm">Un interlocuteur, en français</h3><p class="t-body">La personne qui vous répond conçoit et code votre site. Pas de plateforme, pas de ticket, pas de décalage horaire.</p></article>
 <article class="card card--spot" data-spot><span class="card__num">02</span><h3 class="t-display-sm">Une connaissance du terrain</h3><p class="t-body">Communes, districts, bilinguisme, saisonnalité : nous adaptons la structure et les textes à la réalité de votre canton.</p></article>
-<article class="card card--spot" data-spot><span class="card__num">03</span><h3 class="t-display-sm">Un cadre clair</h3><p class="t-body">Aperçu gratuit avant engagement, site prêt sous 7 jours après validation, sans frais récurrents, 12 mois de suivi inclus.</p></article>
+<article class="card card--spot" data-spot><span class="card__num">03</span><h3 class="t-display-sm">Un cadre clair</h3><p class="t-body">Aperçu gratuit avant engagement, site prêt en 48 heures après validation, sans frais récurrents, 12 mois de suivi inclus.</p></article>
 </div>
 </div>
 </section>

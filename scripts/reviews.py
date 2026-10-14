@@ -263,5 +263,10 @@ if __name__ == '__main__':
     avis_page()
     inject()
     english()
+    sys_path = str(ROOT / 'scripts')
+    import sys as _sys
+    if sys_path not in _sys.path: _sys.path.insert(0, sys_path)
+    import offer
+    offer.run()
     import subprocess, sys
     subprocess.run([sys.executable, str(ROOT / 'scripts' / 'structured_data.py')], check=True)

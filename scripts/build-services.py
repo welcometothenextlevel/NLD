@@ -104,7 +104,7 @@ SERVICES = [
          included=['Plan du site et hiérarchie des pages', 'Rédaction de toutes les pages', 'Titres et appels à l’action', 'Foire aux questions', 'Conseils photos et sélection', 'Relecture et corrections'],
          faq=[('Je ne sais pas quoi écrire. Est-ce grave ?', 'Pas du tout. C’est justement notre travail : nous posons les questions, nous écrivons, vous corrigez.'),
               ('Pouvez-vous rédiger en allemand ou en anglais ?', 'Oui pour l’anglais et le français. Pour l’allemand et l’italien, nous travaillons avec des relecteurs natifs ; nous en parlons lors du premier échange.'),
-              ('Dois-je fournir des photos professionnelles ?', 'Non. Des photos nettes prises avec votre téléphone, en lumière naturelle, font souvent très bien l’affaire. Nous vous indiquons quoi photographier.'),
+              ('Dois-je fournir des photos professionnelles ?', 'Non. Les images sont comprises dans le prix : nous choisissons des visuels adaptés à votre activité. Si vous avez vos propres photos, même prises au téléphone, nous les mettons en valeur.'),
               ('Puis-je modifier les textes plus tard ?', 'Oui, pendant les 12 mois de suivi il suffit de nous envoyer vos modifications.')],
          related=['seo-local', 'design-sur-mesure']),
     dict(slug='suivi-12-mois', num='06', nav='12 mois à vos côtés',

@@ -30,6 +30,10 @@ for path in ROOT.rglob('*.html'):
     page = Page(path.relative_to(ROOT)); text = path.read_text(); page.feed(text)
     assert page.lang == 'fr-CH', f'{path}: wrong language'
     assert not re.search(r'\$\s*\d|\b(?:CHF|AUD)\s*\d|61425887683|en_AU|priceCurrency|priceRange', text), f'{path}: stale pricing/contact'
+    # The only amounts the site may state: the price, the agency comparison,
+    # "0 CHF" and the domain estimate (all set in scripts/offer.py).
+    for amount in re.findall(r'(\d[\d’\']*)\s*CHF', text):
+        assert amount in {'999', '0', '20', '3’000', '8’000'}, f'{path}: unexpected amount {amount} CHF'
     if path.parent == ROOT:
         assert page.h1 == 1, f'{path}: expected one h1'
         for token in ('rel="canonical"', 'property="og:title"', 'name="description"'):
@@ -49,7 +53,7 @@ for path, page in pages.items():
         assert not (url.path.endswith('.html') and url.scheme == '' and url.netloc == ''), f'{page.path}: internal link keeps .html ({link})'
         if url.fragment and target in pages: assert unquote(url.fragment) in pages[target].ids, f'{page.path}: missing fragment {link}'
 home = (ROOT / 'index.html').read_text()
-for token in ('7 jours', '12 mois', 'aperçu gratuit', 'Sans frais récurrents', 'Entreprise suisse', 'australiennes', 'template générique', 'Google Business Profile'):
+for token in ('48 heures', '999 CHF', 'tout compris', 'Aucun abonnement', '12 mois', 'aperçu gratuit', 'Entreprise suisse', 'sans intermédiaire', 'Google Business Profile'):
     assert token in home, f'Missing offer: {token}'
 print(f'PASS: {len(pages)} HTML pages; links, fragments, metadata, JSON-LD, contact, offer, absence of prices.')
 
