@@ -371,3 +371,7 @@ Business Profile and Search Console operations are outside this website update.
 - Phone fix: the drift added ~0.5 px per frame to scrollLeft, which WebKit rounds to whole pixels, so the strips never moved on iPhone. Position is now accumulated in JS (portfolio strip too). Verified in puppeteer with a scrollLeft setter that rounds like WebKit: 14 -> 73 px in 2 s.
 - Rail cards stretch to equal height, name pinned to the bottom (no empty band under short cards on phone).
 - EN toggle checked for every new string, no console errors; check-site PASS (41 pages). Assets v=20261014a.
+
+## 2026-10-14 — 10th review (Charmayne Grech)
+
+- Added verbatim from the GBP screenshot (Char's Beauty Room, EN, original spelling kept). RATED 9 -> 10; shows on 24 pages (all general blocks + /avis), not the Lausanne, ads or follow-up blocks. check-site PASS. Assets v=20261014b.
