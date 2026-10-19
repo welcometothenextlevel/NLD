@@ -409,3 +409,11 @@ Business Profile and Search Console operations are outside this website update.
 - Menu: "Le service" / "Nos canaux" / "Votre région"; drawer and footer to match; nav CTA "Audit gratuit".
 - Chat knowledge base rewritten (price, ad budget, commitment, exclusivity, audit, volume, channels, website, report…); 8 test questions answered correctly. Worker system prompt updated.
 - check-site: only CHF amount allowed is 1’700; home tokens updated. PASS (42 pages). EN check: no French left on /, /websites, /book, /advertising, /avis beyond the JS step counter. No horizontal overflow at 1440 or iPhone 13. Assets v=20261019b.
+
+## 2026-10-19 — Calls, separate channels, 1’200 CHF, canton flags
+
+- Price everywhere 1’700 → 1’200 CHF (offer.py, pages, generators, chat, worker, check-site allowlist).
+- Calls added next to quotes and bookings (hero "Des appels, des devis, des réservations.", titles, offer, method, FAQ, chat).
+- Channels are separate services: the free audit picks the best one and we start there. Removed every "we combine the channels" line; price card lists one chosen channel; "ad budget included" now scoped to Google Ads and Meta. New FAQ "Travaillez-vous sur tous les canaux à la fois ?".
+- Ticker: square canton flags (GE, VD for Lausanne and Vaud, FR, NE, VS, JU, CH for Suisse romande). First build left the SVGs unclosed and hid the names; fixed and verified desktop + iPhone.
+- check-site PASS (42 pages). Assets v=20261019c.

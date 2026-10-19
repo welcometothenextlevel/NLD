@@ -67,7 +67,7 @@ CITIES = [
          local='Dans le canton de Neuchâtel, les recherches locales se concentrent sur quelques pôles : Neuchâtel, La Chaux-de-Fonds, Le Locle. Nous structurons vos pages pour couvrir vos zones réelles d’intervention et nous mettons en place les bases techniques que Google attend : données structurées, vitesse, contenus locaux, fiche Google Business Profile.',
          faq=[('Vous déplacez-vous à La Chaux-de-Fonds ?', 'Les échanges se font par téléphone, WhatsApp ou visio, ce qui convient à la plupart de nos clients. Un rendez-vous sur place reste possible.'),
               ('Que faut-il me fournir pour démarrer ?', 'Vos coordonnées et la liste de vos prestations suffisent. Les textes et les images sont compris dans le prix : nous les préparons, et vos propres photos sont les bienvenues.'),
-              ('Combien coûte le service ?', 'Dès 1’700 CHF par mois, budget publicitaire inclus, sans engagement. Le site est compris, et l’audit gratuit fixe le prix exact avant de commencer.')],
+              ('Combien coûte le service ?', 'Dès 1’200 CHF par mois, budget publicitaire inclus, sans engagement. Le site est compris, et l’audit gratuit fixe le prix exact avant de commencer.')],
          geo=(46.9900, 6.9293)),
     dict(slug='creation-site-internet-valais', city='Sion', canton='Valais', code='VS', region='Sion, Martigny, Sierre, Monthey et les stations',
          title='Création de site internet en Valais et à Sion | Next Digital Level',
@@ -237,7 +237,7 @@ TOWNS = [
 HUB = dict(slug='creation-site-internet-suisse-romande', title='Création de site internet en Suisse romande | Next Digital Level',
            desc='Agence suisse de création de sites web sur mesure pour les PME de Suisse romande : Genève, Vaud, Fribourg, Neuchâtel, Valais, Jura. Site inclus, demandes de devis exclusives, audit gratuit.',
            h1='Création de site internet<br><em>en Suisse romande.</em>',
-           lead='Next Digital Level est un studio suisse. Nous amenons aux PME et indépendants de toute la Suisse romande des demandes de devis et des réservations exclusives : Google Ads, recherche ChatGPT, référencement local et Meta, site compris. Choisissez votre région.')
+           lead='Next Digital Level est un studio suisse. Nous amenons aux PME et indépendants de toute la Suisse romande des appels, demandes de devis et réservations exclusives : Google Ads, recherche ChatGPT, référencement local et Meta, site compris. Choisissez votre région.')
 
 
 def chrome(s, slug):
@@ -299,7 +299,7 @@ def city_page(c):
 <div class="hero__actions">
 <a class="btn btn--primary btn--lg" href="/book">Demander mon audit gratuit{NE}</a><a class="btn btn--ghost btn--lg" href="tel:+41762632817">Appeler le +41 76 263 28 17{NE}</a>
 </div>
-<p class="hero__note"><svg class="flag-ch" viewBox="0 0 32 32" width="16" height="16" aria-hidden="true"><rect width="32" height="32" rx="4" fill="#da291c"/><path d="M16 6v20M6 16h20" stroke="#fff" stroke-width="6"/></svg>Entreprise suisse · sans intermédiaire · audit gratuit · dès 1’700 CHF par mois · sans engagement</p>
+<p class="hero__note"><svg class="flag-ch" viewBox="0 0 32 32" width="16" height="16" aria-hidden="true"><rect width="32" height="32" rx="4" fill="#da291c"/><path d="M16 6v20M6 16h20" stroke="#fff" stroke-width="6"/></svg>Entreprise suisse · sans intermédiaire · audit gratuit · dès 1’200 CHF par mois · sans engagement</p>
 </div>
 </section>
 <section class="section">
@@ -393,7 +393,7 @@ def town_page(t):
 <div class="hero__actions">
 <a class="btn btn--primary btn--lg" href="/book">Demander mon audit gratuit{NE}</a><a class="btn btn--ghost btn--lg" href="tel:+41762632817">Appeler le +41 76 263 28 17{NE}</a>
 </div>
-<p class="hero__note"><svg class="flag-ch" viewBox="0 0 32 32" width="16" height="16" aria-hidden="true"><rect width="32" height="32" rx="4" fill="#da291c"/><path d="M16 6v20M6 16h20" stroke="#fff" stroke-width="6"/></svg>Entreprise suisse · sans intermédiaire · audit gratuit · dès 1’700 CHF par mois · sans engagement</p>
+<p class="hero__note"><svg class="flag-ch" viewBox="0 0 32 32" width="16" height="16" aria-hidden="true"><rect width="32" height="32" rx="4" fill="#da291c"/><path d="M16 6v20M6 16h20" stroke="#fff" stroke-width="6"/></svg>Entreprise suisse · sans intermédiaire · audit gratuit · dès 1’200 CHF par mois · sans engagement</p>
 </div>
 </section>
 <section class="section">
@@ -500,7 +500,7 @@ def hub_page():
 <div class="grid grid--3 stagger">
 <article class="card card--spot" data-spot><span class="card__num">01</span><h3 class="t-display-sm">Un interlocuteur, en français</h3><p class="t-body">La personne qui vous répond conçoit et code votre site. Pas de plateforme, pas de ticket, pas de décalage horaire.</p></article>
 <article class="card card--spot" data-spot><span class="card__num">02</span><h3 class="t-display-sm">Une connaissance du terrain</h3><p class="t-body">Communes, districts, bilinguisme, saisonnalité : nous adaptons la structure et les textes à la réalité de votre canton.</p></article>
-<article class="card card--spot" data-spot><span class="card__num">03</span><h3 class="t-display-sm">Un cadre clair</h3><p class="t-body">Audit gratuit, dès 1’700 CHF par mois budget publicitaire inclus, sans engagement. Les demandes sont exclusives et le site est compris.</p></article>
+<article class="card card--spot" data-spot><span class="card__num">03</span><h3 class="t-display-sm">Un cadre clair</h3><p class="t-body">Audit gratuit, dès 1’200 CHF par mois budget publicitaire inclus, sans engagement. Les demandes sont exclusives et le site est compris.</p></article>
 </div>
 </div>
 </section>

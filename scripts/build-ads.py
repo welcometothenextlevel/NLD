@@ -23,11 +23,11 @@ TAGLINE = 'Des demandes exclusives.<br><em>Pas des clics.</em>'
 # to separate the studio from agencies that stop at a good-looking site.
 STANCE = [
     ('Des demandes, pas de la visibilité',
-     'Des impressions et des clics ne paient pas vos factures. Nous mesurons une seule chose : combien de demandes de devis et de réservations vous recevez, et d’où elles viennent.'),
+     'Des impressions et des clics ne paient pas vos factures. Nous mesurons une seule chose : combien d’appels, de demandes de devis et de réservations vous recevez, et d’où elles viennent.'),
     ('Exclusives, jamais partagées',
      'Chaque demande vient de vos propres campagnes et arrive chez vous seul. Rien n’est revendu à un concurrent, contrairement aux plateformes de leads.'),
-    ('Un prix, budget inclus',
-     'Dès 1’700 CHF par mois, budget publicitaire compris, sans engagement. Pas de facture séparée de Google ou de Meta, pas de contrat à l’année.'),
+    ('Un canal, un prix',
+     'Chaque canal est un service à part, dès 1’200 CHF par mois et sans engagement. Sur Google Ads et Meta, le budget publicitaire est compris : pas de facture séparée.'),
 ]
 
 ADS = [
@@ -61,7 +61,7 @@ ADS = [
                    'Formulaires de contact Meta',
                    'Suivi, optimisation et point sur les résultats'],
          faq=[('Le budget publicitaire est-il compris ?',
-               'Oui. Ce que nous dépensons sur Facebook et Instagram pour vos campagnes fait partie du prix mensuel, dès 1’700 CHF. Vous n’avez pas de facture séparée de Meta.'),
+               'Oui. Ce que nous dépensons sur Facebook et Instagram pour vos campagnes fait partie du prix mensuel, dès 1’200 CHF. Vous n’avez pas de facture séparée de Meta.'),
               ('Les demandes sont-elles partagées avec d’autres entreprises ?',
                'Non. Les demandes viennent de vos propres annonces et de vos formulaires : elles arrivent chez vous seul et ne sont revendues à personne.'),
               ('Faut-il déjà avoir un site ?',
@@ -76,7 +76,7 @@ ADS = [
          eyebrow='/ Recherche ChatGPT',
          h1='Recherche ChatGPT.<br><em>Faire partie de la réponse.</em>',
          lead='« Quel électricien recommandes-tu à Sion ? » De plus en plus de clients posent la question à ChatGPT plutôt qu’à Google. L’assistant ne donne pas dix liens : il cite deux ou trois entreprises. Nous travaillons pour que la vôtre en fasse partie.',
-         intro_badge='ChatGPT, Gemini, Perplexity et les résumés IA de Google répondent déjà à la question « qui appeler ». Ce canal fait partie de notre service, avec Google Ads, le référencement local et Meta.',
+         intro_badge='ChatGPT, Gemini, Perplexity et les résumés IA de Google répondent déjà à la question « qui appeler ». C’est l’un de nos quatre canaux, proposé séparément, comme Google Ads, le référencement local et Meta.',
          why=[('Des clients qui demandent un nom',
                'Une question posée à un assistant IA est souvent la dernière étape avant l’appel. Être cité à ce moment-là vaut une recommandation.'),
               ('Des sources que l’IA croit',
@@ -96,13 +96,13 @@ ADS = [
                    'Fiche Google et données structurées cohérentes',
                    'Stratégie d’avis clients',
                    'Suivi des visites venues des assistants IA',
-                   'Inclus dans le prix mensuel'],
+                   'Un canal à part, sans engagement'],
          faq=[('Pouvez-vous garantir que ChatGPT me recommande ?',
                'Non, personne ne le peut : les assistants choisissent eux-mêmes leurs sources. Nous travaillons ce qui augmente vos chances d’être cité, et nous mesurons ce que cela rapporte.'),
               ('Est-ce différent du référencement Google ?',
                'Les bases sont proches : un site clair, une fiche Google complète, de bons avis. Mais les assistants citent des réponses, pas des pages : nous écrivons donc des contenus qui répondent directement aux questions de vos clients.'),
-              ('Est-ce payé en plus ?',
-               'Non. La visibilité dans la recherche IA fait partie du service, avec Google Ads, le référencement local et Meta, dès 1’700 CHF par mois.'),
+              ('Combien ça coûte ?',
+               'C’est un canal à part entière, dès 1’200 CHF par mois et sans engagement. L’audit gratuit vous dit s’il est le plus rentable pour votre métier.'),
               ('Quels assistants sont concernés ?',
                'ChatGPT, Gemini, Perplexity, Copilot et les résumés IA qui apparaissent en haut des résultats Google.')]),
 
@@ -139,7 +139,7 @@ ADS = [
          faq=[('Google Ads ou référencement naturel ?',
                'Les deux, à des moments différents. Le référencement naturel est plus durable mais met des mois à s’installer ; Google Ads donne de la visibilité immédiatement. Beaucoup de nos clients démarrent avec Ads, puis réduisent quand le naturel prend le relais.'),
               ('Le budget publicitaire est-il compris ?',
-               'Oui. Ce que nous dépensons sur Google pour vos annonces fait partie du prix mensuel, dès 1’700 CHF. Vous n’avez pas de facture séparée de Google, et pas d’engagement.'),
+               'Oui. Ce que nous dépensons sur Google pour vos annonces fait partie du prix mensuel, dès 1’200 CHF. Vous n’avez pas de facture séparée de Google, et pas d’engagement.'),
               ('Les demandes sont-elles exclusives ?',
                'Oui. Elles viennent de vos propres annonces, vers votre propre page ou votre numéro. Elles arrivent chez vous seul.'),
               ('Pouvez-vous garantir la première place ?',
@@ -232,7 +232,7 @@ def page(a):
 <div class="tagline reveal">
 <span class="eyebrow">/ Notre position</span>
 <p class="t-display-lg tagline__line">{TAGLINE}</p>
-<p class="t-body-lg tagline__sub">Google Ads, recherche ChatGPT, référencement local et Meta ne sont que des moyens. Ce que nous vous livrons, ce sont des demandes de devis et des réservations, chaque mois.</p>
+<p class="t-body-lg tagline__sub">Google Ads, recherche ChatGPT, référencement local et Meta ne sont que des moyens. Ce que nous vous livrons, ce sont des appels, demandes de devis et réservations, chaque mois.</p>
 </div>
 <div class="grid grid--3 stagger">{stance}</div>
 </div>
@@ -259,7 +259,7 @@ def page(a):
 <div class="included__copy reveal">
 <span class="eyebrow">/ Compris dans votre mois</span>
 <h2 class="t-display-lg" data-split="words">Ce que nous prenons<br><em>en charge.</em></h2>
-<p class="t-body-lg">Tout est compris dans votre mois, budget publicitaire inclus, dès 1’700 CHF. Sans engagement : vous restez parce que les demandes arrivent.</p>
+<p class="t-body-lg">Chaque canal est un service à part, dès 1’200 CHF par mois. Sur Google Ads et Meta, le budget publicitaire est inclus. Sans engagement : vous restez parce que les appels arrivent.</p>
 <a class="btn btn--ghost btn--lg" href="/websites">Voir l’offre complète{NE}</a>
 </div>
 <ul class="included__list included__list--simple stagger">{incl}</ul>
@@ -293,8 +293,8 @@ def page(a):
 <section class="cta-band" data-dots-region>
 <canvas class="dot-canvas dot-canvas--dark" data-dots data-dots-theme="dark" aria-hidden="true"></canvas>
 <div class="container cta-band__inner reveal">
-<span class="eyebrow">/ On commence ?</span><h2 class="t-display-lg" data-split="words">Plus de demandes.<br><em>Pour vous seul.</em></h2>
-<p class="t-body-lg">Parlez-nous de votre activité. L’audit gratuit vous dit quels canaux comptent pour votre métier et ce qu’il est réaliste d’obtenir.</p>
+<span class="eyebrow">/ On commence ?</span><h2 class="t-display-lg" data-split="words">Plus d’appels.<br><em>Pour vous seul.</em></h2>
+<p class="t-body-lg">Parlez-nous de votre activité. L’audit gratuit vous dit quel canal rapportera le plus pour votre métier, et ce qu’il est réaliste d’obtenir.</p>
 <div class="hero__actions">
 <a class="btn btn--gold btn--lg" href="/book">Demander mon audit gratuit{NE}</a><a class="btn btn--onpanel btn--lg" href="https://wa.me/41762632817">Parlons-en sur WhatsApp{NE}</a>
 </div>

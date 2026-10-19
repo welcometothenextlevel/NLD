@@ -1909,3 +1909,8 @@ a.project-shot:focus-visible { outline: 2px solid var(--accent); outline-offset:
 .price span { font-size: 1.25rem; }
 .adbadge__icon { display: grid; place-items: center; flex-shrink: 0; width: 46px; height: 46px; border-radius: 12px; background: var(--accent-wash); color: var(--accent-deep); }
 :root[data-theme="dark"] .adbadge__icon { color: var(--accent-bright); }
+
+/* ---------- 44. Canton flags in the ticker -------------------------------- */
+.tk-place { display: inline-flex; align-items: center; gap: 0.45em; }
+.flag-canton { width: 0.95em; height: 0.95em; flex-shrink: 0; border-radius: 3px; box-shadow: 0 0 0 1px rgba(20, 17, 14, 0.12), 0 1px 2px rgba(20, 17, 14, 0.12); }
+:root[data-theme="dark"] .flag-canton { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.18); }
