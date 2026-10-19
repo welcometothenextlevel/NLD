@@ -417,3 +417,15 @@ Business Profile and Search Console operations are outside this website update.
 - Channels are separate services: the free audit picks the best one and we start there. Removed every "we combine the channels" line; price card lists one chosen channel; "ad budget included" now scoped to Google Ads and Meta. New FAQ "Travaillez-vous sur tous les canaux à la fois ?".
 - Ticker: square canton flags (GE, VD for Lausanne and Vaud, FR, NE, VS, JU, CH for Suisse romande). First build left the SVGs unclosed and hid the names; fixed and verified desktop + iPhone.
 - check-site PASS (42 pages). Assets v=20261019c.
+
+## 2026-10-19 — scale.com-style scenes on the home page
+
+- Owner picked A–F from a proposal based on their screen recording of scale.com.
+- A · Hero is now a rounded full-width video reel: 8 royalty-free Pexels clips (coiffure, plomberie, menuiserie, onglerie, électricité, jardin, peinture, garage), trimmed to 4.6 s, 960×540, ~0.9 Mb/s, no audio, faststart (Swift AVAssetWriter: no ffmpeg here). assets/reel/ ≈ 4.5 MB incl. posters; only the current and next clip load. Reduced motion or Save-Data → posters only. Same headline/lead/buttons (EN keys unchanged); old 4-step tablet removed.
+- B · Method replaced by a sticky 3D layer stack (Audit → Page → Canal → Appels), scroll-driven.
+- C · "Votre téléphone sonne" sticky phone; 5 example notifications with source logos, marked "Exemple de journée, à titre d’illustration". Phones show the latest 3.
+- D · Sectors: "Des clients pour [les plombiers…]" rotating word, 12 floating tiles (trade stills + client-site screenshots), scroll parallax, matching tile highlighted. Width re-measured after fonts load (italic was clipped).
+- E · Expanding green card after the reviews, words light up with scroll.
+- F · Channel cards fill dark green on hover (and when centred on touch screens).
+- js/scenes.js (home only). Ticker row 2 got brand logos (Simple Icons, CC0; Google Ads official SVG).
+- Puppeteer desktop + iPhone 13 + dark mode: videos play and advance, no overflow, no console errors; EN check clean. check-site PASS. Assets v=20261019e.

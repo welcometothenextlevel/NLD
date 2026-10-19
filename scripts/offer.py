@@ -39,7 +39,7 @@ def full():
 <p class="t-body-lg">Vous vivez du bouche-à-oreille, vos appels arrivent par vagues, ou vous avez déjà payé pour des « leads » qui n’ont rien donné. Nous mettons en place le canal qui vous amène des appels et des demandes réguliers, et nous le pilotons chaque mois.</p>
 <div class="vs">
 <div class="vs__col"><span class="vs__who">Plateformes de leads</span><b>Demandes partagées</b><b>Contrat à l’année</b><span class="vs__extra">La même demande vendue à plusieurs concurrents</span></div>
-<div class="vs__col vs__col--us"><span class="vs__who">Next Digital Level</span><b>Demandes exclusives</b><b>Sans engagement</b><span class="vs__extra">Chaque demande vient de vos campagnes, pour vous seul</span></div>
+<div class="vs__col vs__col--us"><span class="vs__who">Next Digital Level</span><b>Appels exclusifs</b><b>Sans engagement</b><span class="vs__extra">Chaque appel vient de vos campagnes, pour vous seul</span></div>
 </div>
 <p class="t-body">Chaque canal est un service à part. Tout commence par un audit gratuit : nous étudions votre métier, votre zone et vos concurrents, puis nous vous disons quel canal rapportera le plus.</p>
 </div>
@@ -74,7 +74,7 @@ def english():
             'You live on word of mouth, your calls come in waves, or you have already paid for “leads” that went nowhere. We set up the channel that brings you steady calls and enquiries, and we run it every month.',
         'Plateformes de leads': 'Lead platforms', 'Demandes partagées': 'Shared enquiries', 'Contrat à l’année': 'Yearly contract',
         'La même demande vendue à plusieurs concurrents': 'The same enquiry sold to several competitors',
-        'Demandes exclusives': 'Exclusive enquiries', 'Sans engagement': 'No commitment',
+        'Demandes exclusives': 'Exclusive enquiries', 'Appels exclusifs': 'Exclusive calls', 'Sans engagement': 'No commitment',
         'Chaque appel vient de vos campagnes, pour vous seul': 'Every call comes from your campaigns, for you alone',
         'Chaque canal est un service à part. Tout commence par un audit gratuit : nous étudions votre métier, votre zone et vos concurrents, puis nous vous disons quel canal rapportera le plus.':
             'Each channel is a separate service. It all starts with a free audit: we study your trade, your area and your competitors, then tell you which channel will pay off most.',
