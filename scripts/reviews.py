@@ -126,16 +126,16 @@ BLOCKS = {
     'score': lambda: score(),
     'home': lambda: section('/ Avis clients', 'Ce que disent<br><em>nos clients.</em>',
                             'Des avis laissés sur notre fiche Google, reproduits tels quels.', pick(), sid='avis-clients'),
-    'websites': lambda: section('/ Avis clients', 'Des sites qui ont<br><em>déjà fait leurs preuves.</em>',
+    'websites': lambda: section('/ Avis clients', 'Ils recevaient peu de demandes.<br><em>Voici ce qu’ils en disent.</em>',
                                 'Des avis laissés sur notre fiche Google, reproduits tels quels.', pick(), soft=True),
-    'lausanne': lambda: section('/ Avis à Lausanne', 'Ils nous ont confié<br><em>leur site à Lausanne.</em>',
+    'lausanne': lambda: section('/ Avis à Lausanne', 'Ils nous ont fait confiance<br><em>à Lausanne.</em>',
                                 'Des avis laissés sur notre fiche Google, reproduits tels quels.', pick('lausanne', 'speed')),
     'marketing': lambda: section('/ Avis clients', 'Site et marketing,<br><em>du même côté.</em>',
                                  'Des avis laissés sur notre fiche Google, reproduits tels quels.', pick('marketing', 'results')),
     'all': lambda: section('/ Avis clients', 'Ce que disent<br><em>nos clients.</em>',
                            'Des avis laissés sur notre fiche Google, reproduits tels quels.', pick()),
     'book': lambda: section('/ Avis clients', 'Ils sont passés<br><em>par la même étape.</em>',
-                            'Le premier message, l’aperçu, puis le site. Voici ce qu’ils en disent sur Google.', pick()),
+                            'L’audit, la page, puis les demandes. Voici ce qu’ils en disent sur Google.', pick()),
     'suivi': lambda: section('/ Avis clients', 'Disponibles,<br><em>et ça se remarque.</em>',
                              'Des avis laissés sur notre fiche Google, reproduits tels quels.', pick('suivi', 'speed')),
 }
@@ -185,9 +185,9 @@ def avis_page():
 <section class="cta-band" data-dots-region>
 <canvas class="dot-canvas dot-canvas--dark" data-dots data-dots-theme="dark" aria-hidden="true"></canvas>
 <div class="container cta-band__inner reveal">
-<span class="eyebrow">/ On commence ?</span><h2 class="t-display-lg" data-split="words">Votre site, le prochain avis.<br><em>Voyez-le avant de décider.</em></h2><p class="t-body-lg">Parlez-nous de votre activité. Nous vous préparons un aperçu gratuit, sans engagement.</p>
+<span class="eyebrow">/ On commence ?</span><h2 class="t-display-lg" data-split="words">Votre entreprise, le prochain avis.<br><em>Commençons par l’audit.</em></h2><p class="t-body-lg">Parlez-nous de votre activité. Nous commençons par un audit gratuit de votre marché, sans engagement.</p>
 <div class="hero__actions">
-<a class="btn btn--gold btn--lg" href="/book">Demander mon aperçu gratuit{NE}</a><a class="btn btn--onpanel btn--lg" href="https://wa.me/41762632817">Parlons-en sur WhatsApp{NE}</a>
+<a class="btn btn--gold btn--lg" href="/book">Demander mon audit gratuit{NE}</a><a class="btn btn--onpanel btn--lg" href="https://wa.me/41762632817">Parlons-en sur WhatsApp{NE}</a>
 </div>
 </div>
 </section>
@@ -214,8 +214,8 @@ def english():
     en = {
         '/ Avis clients': '/ Client reviews', '/ Avis à Lausanne': '/ Reviews in Lausanne', '/ Vous êtes client ?': '/ Are you a client?',
         'Ce que disent<br><em>nos clients.</em>': 'What our clients<br><em>say.</em>',
-        'Des sites qui ont<br><em>déjà fait leurs preuves.</em>': 'Websites that have<br><em>already proved themselves.</em>',
-        'Ils nous ont confié<br><em>leur site à Lausanne.</em>': 'They trusted us<br><em>with their site in Lausanne.</em>',
+        'Ils recevaient peu de demandes.<br><em>Voici ce qu’ils en disent.</em>': 'They weren’t getting many enquiries.<br><em>Here is what they say.</em>',
+        'Ils nous ont fait confiance<br><em>à Lausanne.</em>': 'They trusted us<br><em>in Lausanne.</em>',
         'Site et marketing,<br><em>du même côté.</em>': 'Website and marketing,<br><em>on the same side.</em>',
         'Disponibles,<br><em>et ça se remarque.</em>': 'Available,<br><em>and it shows.</em>',
         'Des avis laissés sur notre fiche Google, reproduits tels quels.': 'Reviews left on our Google Business Profile, reproduced as written.',
@@ -225,7 +225,7 @@ def english():
         f'Laisser un avis{ico}': f'Leave a review{ico}', f'Laisser un avis sur Google{ico}': f'Leave a review on Google{ico}',
         'Avis': 'Reviews', 'Avis clients': 'Client reviews', '<span>04</span> Avis clients': '<span>04</span> Client reviews',
         'Ils sont passés<br><em>par la même étape.</em>': 'They started<br><em>exactly where you are.</em>',
-        'Le premier message, l’aperçu, puis le site. Voici ce qu’ils en disent sur Google.': 'The first message, the preview, then the website. Here is what they say about it on Google.',
+        'L’audit, la page, puis les demandes. Voici ce qu’ils en disent sur Google.': 'The audit, the page, then the enquiries. Here is what they say about it on Google.',
         'Faites défiler les avis': 'Scroll through the reviews',
         'Beaucoup citent Amin, le fondateur : c’est lui qui vous répond, sans intermédiaire, du premier message à la mise en ligne.': 'Many mention Amin, the founder: he is the one who answers you, with no middleman, from the first message to launch day.',
         'Nos clients<br><em>en parlent mieux que nous.</em>': 'Our clients<br><em>say it better than we do.</em>',
@@ -235,7 +235,7 @@ def english():
         'Votre avis compte<br><em>plus que notre publicité.</em>': 'Your review counts<br><em>more than our advertising.</em>',
         'Un avis de quelques lignes aide une autre PME de Suisse romande à choisir en confiance. Il ne prend qu’une minute et nous lisons chacun d’entre eux.':
             'A few lines help another small business in French-speaking Switzerland choose with confidence. It takes a minute, and we read every one.',
-        'Votre site, le prochain avis.<br><em>Voyez-le avant de décider.</em>': 'Your website, the next review.<br><em>See it before you decide.</em>',
+        'Votre entreprise, le prochain avis.<br><em>Commençons par l’audit.</em>': 'Your business, the next review.<br><em>Let’s start with the audit.</em>',
     }
     months = {'octobre': 'October', 'novembre': 'November', 'décembre': 'December', 'janvier': 'January', 'février': 'February', 'mars': 'March',
               'avril': 'April', 'mai': 'May', 'juin': 'June', 'juillet': 'July', 'août': 'August', 'septembre': 'September'}

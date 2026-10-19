@@ -398,3 +398,14 @@ Business Profile and Search Console operations are outside this website update.
 - Auto-expiry: the inline head script on all 36 pages adds `.promo-over` from 2026-11-01T00:00+01:00; CSS then hides `[data-promo]` and shows `[data-promo-else]` (999). Verified in puppeteer with Date.now set to 1 Nov: no 799 left anywhere, 999 back on card, strip, hero line and booking line.
 - FAQ and structured data keep the regular 999 (schema can’t expire on its own). check-site allows 799. Assets v=20261014g.
 - After 31 October: set PROMO_PRICE = None in offer.py and rerun scripts/reviews.py to drop the dead markup.
+
+## 2026-10-19 — Pivot: quote requests and bookings (client acquisition)
+
+- Owner decisions (asked in chat): website offer folded into the new service (no separate 999 CHF product); from 1’700 CHF/month, ad budget included, shown without a split; no commitment, monthly; free audit is the main call to action.
+- Home rewritten around exclusive enquiries: hero, 4-step demo (audit → plan & page → campaigns → enquiries), ticker, key figures, channel cards with new icons, method + scenes, commitments, studio, FAQ (9 new Q&As), CTA. Old October promo and its head-script expiry removed.
+- `scripts/offer.py` now renders the monthly offer (lead platforms vs us, price card, fine print: no promised volume before the audit). /websites rebuilt as "L’offre"; /book is the audit request (form labels, WhatsApp message text, English for the form).
+- New page /recherche-ia (ChatGPT / AI search) from build-ads.py; Meta and Google Ads pages: budget now included, "account in your name" claims removed (not confirmed for the new model), exclusivity FAQs. /advertising = "Nos canaux".
+- Service pages reframed as "site included"; suivi-12-mois page rewritten as monthly tracking and reports (slug kept). City/town/hub pages keep their URLs and titles; meta descriptions, hero line, included list, FAQs and CTA moved to the new offer.
+- Menu: "Le service" / "Nos canaux" / "Votre région"; drawer and footer to match; nav CTA "Audit gratuit".
+- Chat knowledge base rewritten (price, ad budget, commitment, exclusivity, audit, volume, channels, website, report…); 8 test questions answered correctly. Worker system prompt updated.
+- check-site: only CHF amount allowed is 1’700; home tokens updated. PASS (42 pages). EN check: no French left on /, /websites, /book, /advertising, /avis beyond the JS step counter. No horizontal overflow at 1440 or iPhone 13. Assets v=20261019b.

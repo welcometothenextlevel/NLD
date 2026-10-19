@@ -266,9 +266,9 @@
     e.preventDefault();
     if (!form.reportValidity()) return;
     const data = Object.fromEntries(new FormData(form));
-    const message = 'Bonjour, je souhaite un aperçu gratuit pour mon site.\n\nPrénom : ' + data.name.trim() + '\nEntreprise / activité : ' + data.business.trim() + (data.website.trim() ? '\nSite actuel : ' + data.website.trim() : '') + (data.message.trim() ? '\nMon projet : ' + data.message.trim() : '');
+    const message = 'Bonjour, je souhaite un audit gratuit pour mon entreprise.\n\nPrénom : ' + data.name.trim() + '\nEntreprise / activité : ' + data.business.trim() + (data.website.trim() ? '\nSite actuel : ' + data.website.trim() : '') + (data.message.trim() ? '\nMes clients aujourd’hui : ' + data.message.trim() : '');
     $('[data-message-link]').href = 'https://wa.me/41762632817?text=' + encodeURIComponent(message);
-    $('[data-email-link]').href = 'mailto:contact@nextdigitalevel.com?subject=' + encodeURIComponent('Demande d’aperçu gratuit') + '&body=' + encodeURIComponent(message);
+    $('[data-email-link]').href = 'mailto:contact@nextdigitalevel.com?subject=' + encodeURIComponent('Demande d’audit gratuit') + '&body=' + encodeURIComponent(message);
     const ready = $('[data-message-ready]'); ready.hidden = false;
     $('[data-message-link]').focus();
   });

@@ -30,10 +30,9 @@ for path in ROOT.rglob('*.html'):
     page = Page(path.relative_to(ROOT)); text = path.read_text(); page.feed(text)
     assert page.lang == 'fr-CH', f'{path}: wrong language'
     assert not re.search(r'\$\s*\d|\b(?:CHF|AUD)\s*\d|61425887683|en_AU|priceCurrency|priceRange', text), f'{path}: stale pricing/contact'
-    # The only amounts the site may state: the price, the agency comparison,
-    # "0 CHF" and the domain estimate (all set in scripts/offer.py).
+    # The only amount the site may state is the monthly price (scripts/offer.py).
     for amount in re.findall(r'(\d[\d’\']*)\s*CHF', text):
-        assert amount in {'999', '799', '0', '20', '3’000', '8’000'}, f'{path}: unexpected amount {amount} CHF'
+        assert amount in {'1’700'}, f'{path}: unexpected amount {amount} CHF'
     if path.parent == ROOT:
         assert page.h1 == 1, f'{path}: expected one h1'
         for token in ('rel="canonical"', 'property="og:title"', 'name="description"'):
@@ -53,7 +52,7 @@ for path, page in pages.items():
         assert not (url.path.endswith('.html') and url.scheme == '' and url.netloc == ''), f'{page.path}: internal link keeps .html ({link})'
         if url.fragment and target in pages: assert unquote(url.fragment) in pages[target].ids, f'{page.path}: missing fragment {link}'
 home = (ROOT / 'index.html').read_text()
-for token in ('48 heures', '999 CHF', 'tout compris', 'Aucun abonnement', '12 mois', 'aperçu gratuit', 'Entreprise suisse', 'sans intermédiaire', 'Google Business Profile'):
+for token in ('audit gratuit', '1’700 CHF', 'exclusive', 'Sans engagement', 'Entreprise suisse', 'sans intermédiaire', 'Google Ads', 'ChatGPT'):
     assert token in home, f'Missing offer: {token}'
 print(f'PASS: {len(pages)} HTML pages; links, fragments, metadata, JSON-LD, contact, offer, absence of prices.')
 

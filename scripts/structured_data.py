@@ -31,9 +31,9 @@ BUSINESS = {
     "url": SITE + "/",
     "logo": SITE + "/assets/logo-mark-512.png",
     "image": SITE + "/assets/social-preview.png",
-    "description": ("Entreprise suisse de création de sites codés sur mesure pour les PME de Suisse "
-                    "romande, avec un aperçu gratuit avant tout engagement, un site prêt en 48 heures, "
-                    "sans frais récurrents et 12 mois de suivi."),
+    "description": ("Entreprise suisse qui amène aux PME de Suisse romande des demandes de devis et "
+                    "des réservations exclusives, via Google Ads, la recherche ChatGPT, le référencement "
+                    "local et la publicité Meta. Audit gratuit, sans engagement."),
     "founder": {"@type": "Person", "name": "Amin Hamdi", "jobTitle": "Fondateur", "nationality": {"@type": "Country", "name": "Switzerland"}},
     "telephone": "+41 76 263 28 17",
     "email": "contact@nextdigitalevel.com",
@@ -91,9 +91,9 @@ PLACES = {
 
 # Breadcrumb names for pages that had none: the same labels the footer uses.
 CRUMB_NAMES = {
-    'websites': 'Sites sur mesure',
-    'advertising': 'Visibilité & publicité',
-    'book': 'Demander un aperçu gratuit',
+    'websites': 'L’offre',
+    'advertising': 'Nos canaux',
+    'book': 'Audit gratuit',
     'tradie-websites': 'Artisans & services',
     'beauty-salon-websites': 'Salons & instituts',
     'ndis-provider-websites': 'Expérience NDIS en Australie',

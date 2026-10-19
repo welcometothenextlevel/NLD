@@ -17,17 +17,17 @@ HEAD = BASE[:BASE.index('<main id="main">') + len('<main id="main">')]
 FOOT = BASE[BASE.index('</main>'):]
 NE = '<svg class="ico" viewBox="0 0 16 16" width="14" height="14" fill="none" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 
-TAGLINE = 'Des sites qui attirent des clients.<br><em>Construits pour les convertir.</em>'
+TAGLINE = 'Des demandes exclusives.<br><em>Pas des clics.</em>'
 
 # The positioning argument, shared by both pages: the same words the owner uses
 # to separate the studio from agencies that stop at a good-looking site.
 STANCE = [
-    ('Un beau site ne suffit pas',
-     'Un site peut être primé et ne rien rapporter. Le nôtre est jugé sur autre chose : est-ce qu’il amène des visiteurs, et est-ce qu’ils vous contactent ? C’est la seule question qui compte pour une PME.'),
-    ('Conçu pour convertir, pas pour plaire',
-     'Chaque page a un objectif : un appel, un message, une demande de devis. Les boutons, les preuves et les informations sont placés là où votre client les attend, pas là où c’est joli.'),
-    ('La publicité en plus, quand elle sert',
-     'Beaucoup d’agences livrent un site et s’arrêtent là. Nous savons aussi aller chercher le trafic : campagnes Meta et Google Ads, gérées par la personne qui a construit votre site.'),
+    ('Des demandes, pas de la visibilité',
+     'Des impressions et des clics ne paient pas vos factures. Nous mesurons une seule chose : combien de demandes de devis et de réservations vous recevez, et d’où elles viennent.'),
+    ('Exclusives, jamais partagées',
+     'Chaque demande vient de vos propres campagnes et arrive chez vous seul. Rien n’est revendu à un concurrent, contrairement aux plateformes de leads.'),
+    ('Un prix, budget inclus',
+     'Dès 1’700 CHF par mois, budget publicitaire compris, sans engagement. Pas de facture séparée de Google ou de Meta, pas de contrat à l’année.'),
 ]
 
 ADS = [
@@ -54,20 +54,57 @@ ADS = [
                  'Les premiers jours servent à apprendre : quelles audiences réagissent, quel visuel fonctionne. Nous coupons ce qui ne marche pas plutôt que de laisser tourner.'),
                 ('On optimise et on vous rend compte',
                  'Ajustements réguliers et un point clair sur les résultats. Vous savez ce que la campagne a rapporté, pas seulement ce qu’elle a coûté.')],
-         included=['Création du compte publicitaire à votre nom',
+         included=['Budget publicitaire inclus',
                    'Paramétrage du pixel et du suivi des demandes',
                    'Visuels et textes des annonces',
                    'Ciblage par commune et par centres d’intérêt',
                    'Formulaires de contact Meta',
                    'Suivi, optimisation et point sur les résultats'],
          faq=[('Le budget publicitaire est-il compris ?',
-               'Non, et c’est important de le distinguer. La création de votre site est sans frais récurrents. Une campagne, elle, a un budget versé directement à Meta, que vous fixez et que vous pouvez arrêter quand vous voulez. Notre travail de gestion est séparé et annoncé à l’avance.'),
-              ('À qui appartient le compte publicitaire ?',
-               'À vous. Nous le créons à votre nom et vous en gardez l’accès complet. Si vous arrêtez de travailler avec nous, vous partez avec votre compte, son historique et ses audiences.'),
+               'Oui. Ce que nous dépensons sur Facebook et Instagram pour vos campagnes fait partie du prix mensuel, dès 1’700 CHF. Vous n’avez pas de facture séparée de Meta.'),
+              ('Les demandes sont-elles partagées avec d’autres entreprises ?',
+               'Non. Les demandes viennent de vos propres annonces et de vos formulaires : elles arrivent chez vous seul et ne sont revendues à personne.'),
               ('Faut-il déjà avoir un site ?',
-               'C’est fortement recommandé. Envoyer de la publicité vers une page qui ne convainc pas revient à payer pour des visiteurs qui repartent. C’est précisément pour cela que nous construisons d’abord des sites faits pour convertir.'),
+               'Non. Si votre site ne convertit pas, nous construisons une page ou un site fait pour transformer les visiteurs en demandes, et c’est inclus dans le prix.'),
               ('En combien de temps voit-on des résultats ?',
                'Les premières demandes arrivent souvent dans les premiers jours, mais il faut compter quelques semaines pour que la campagne se stabilise. Personne ne peut garantir un volume précis, et nous ne le ferons pas.')]),
+
+    dict(slug='recherche-ia', nav='Recherche ChatGPT', other=None,
+         icon=True, badge='Recherche ChatGPT et IA',
+         title='Être recommandé par ChatGPT et la recherche IA | Next Digital Level',
+         desc='Être cité par ChatGPT, Gemini et les résumés IA de Google quand un client cherche votre métier en Suisse romande. Inclus dans notre service de demandes de devis.',
+         eyebrow='/ Recherche ChatGPT',
+         h1='Recherche ChatGPT.<br><em>Faire partie de la réponse.</em>',
+         lead='« Quel électricien recommandes-tu à Sion ? » De plus en plus de clients posent la question à ChatGPT plutôt qu’à Google. L’assistant ne donne pas dix liens : il cite deux ou trois entreprises. Nous travaillons pour que la vôtre en fasse partie.',
+         intro_badge='ChatGPT, Gemini, Perplexity et les résumés IA de Google répondent déjà à la question « qui appeler ». Ce canal fait partie de notre service, avec Google Ads, le référencement local et Meta.',
+         why=[('Des clients qui demandent un nom',
+               'Une question posée à un assistant IA est souvent la dernière étape avant l’appel. Être cité à ce moment-là vaut une recommandation.'),
+              ('Des sources que l’IA croit',
+               'Les assistants s’appuient sur votre site, votre fiche Google, vos avis et ce que d’autres sites disent de vous. Nous rendons ces informations claires, cohérentes et faciles à citer.'),
+              ('Mesuré comme le reste',
+               'Nous suivons les visites et les demandes qui viennent de ChatGPT et des autres assistants, dans le même rapport mensuel que vos campagnes.')],
+         steps=[('On regarde ce que l’IA dit de vous',
+                 'Nous posons aux assistants les questions de vos clients, dans votre région, et nous notons qui est cité et pourquoi.'),
+                ('On corrige vos sources',
+                 'Site, fiche Google, avis, annuaires : des informations exactes et identiques partout, et des pages qui répondent clairement aux questions de vos clients.'),
+                ('On construit votre réputation en ligne',
+                 'Avis clients, mentions sur des sites locaux et contenus utiles : ce qui fait qu’une entreprise est jugée fiable, par un assistant comme par un humain.'),
+                ('On mesure et on ajuste',
+                 'Chaque mois, nous vérifions à nouveau ce que disent les assistants et nous suivons les demandes qui en viennent.')],
+         included=['Audit de ce que disent ChatGPT, Gemini et Google',
+                   'Pages qui répondent aux questions de vos clients',
+                   'Fiche Google et données structurées cohérentes',
+                   'Stratégie d’avis clients',
+                   'Suivi des visites venues des assistants IA',
+                   'Inclus dans le prix mensuel'],
+         faq=[('Pouvez-vous garantir que ChatGPT me recommande ?',
+               'Non, personne ne le peut : les assistants choisissent eux-mêmes leurs sources. Nous travaillons ce qui augmente vos chances d’être cité, et nous mesurons ce que cela rapporte.'),
+              ('Est-ce différent du référencement Google ?',
+               'Les bases sont proches : un site clair, une fiche Google complète, de bons avis. Mais les assistants citent des réponses, pas des pages : nous écrivons donc des contenus qui répondent directement aux questions de vos clients.'),
+              ('Est-ce payé en plus ?',
+               'Non. La visibilité dans la recherche IA fait partie du service, avec Google Ads, le référencement local et Meta, dès 1’700 CHF par mois.'),
+              ('Quels assistants sont concernés ?',
+               'ChatGPT, Gemini, Perplexity, Copilot et les résumés IA qui apparaissent en haut des résultats Google.')]),
 
     dict(slug='google-ads', nav='Google Ads', other='publicite-meta',
          logo='/assets/partners/google-ads.svg', logo_alt='Logo Google Ads', logo_w=256, logo_h=230,
@@ -93,7 +130,7 @@ ADS = [
                  'Les premiers jours servent à exclure les recherches inutiles et à voir quelles annonces déclenchent des appels. C’est là que se joue la rentabilité.'),
                 ('On ajuste et on rend compte',
                  'Optimisation régulière des mots-clés, des annonces et du budget, avec un point clair sur ce que la campagne a rapporté.')],
-         included=['Création du compte Google Ads à votre nom',
+         included=['Budget publicitaire inclus',
                    'Recherche de mots-clés et de zone géographique',
                    'Rédaction des annonces et des extensions',
                    'Exclusion des requêtes non pertinentes',
@@ -102,9 +139,9 @@ ADS = [
          faq=[('Google Ads ou référencement naturel ?',
                'Les deux, à des moments différents. Le référencement naturel est plus durable mais met des mois à s’installer ; Google Ads donne de la visibilité immédiatement. Beaucoup de nos clients démarrent avec Ads, puis réduisent quand le naturel prend le relais.'),
               ('Le budget publicitaire est-il compris ?',
-               'Non. La création de votre site est sans frais récurrents ; le budget Ads, lui, est versé directement à Google, fixé par vous et interrompable à tout moment. Notre travail de gestion est distinct et annoncé à l’avance.'),
-              ('À qui appartient le compte ?',
-               'À vous. Il est créé à votre nom, vous en gardez l’accès et tout l’historique, même si nous cessons de travailler ensemble.'),
+               'Oui. Ce que nous dépensons sur Google pour vos annonces fait partie du prix mensuel, dès 1’700 CHF. Vous n’avez pas de facture séparée de Google, et pas d’engagement.'),
+              ('Les demandes sont-elles exclusives ?',
+               'Oui. Elles viennent de vos propres annonces, vers votre propre page ou votre numéro. Elles arrivent chez vous seul.'),
               ('Pouvez-vous garantir la première place ?',
                'Personne ne le peut honnêtement. La position dépend de votre enchère, de la qualité de l’annonce et de la page d’arrivée. Nous travaillons ces deux derniers points, qui sont ceux que l’on maîtrise.')]),
 ]
@@ -114,6 +151,10 @@ BY_SLUG = {a['slug']: a for a in ADS}
 def badge_visual(a):
     """An official partner badge is shown unaltered on a white plate (its own
     background); a plain platform mark is shown at icon size."""
+    if a.get('icon'):
+        return ('<span class="adbadge__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" fill="none">'
+                '<path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.5 4v-4H6.5A2.5 2.5 0 0 1 4 13.5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>'
+                '<path d="M8.5 8.5h7M8.5 11.5h4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>')
     if a.get('badge_img'):
         base, w, h = a['badge_img']
         return ('<span class="badge-plate"><picture><source srcset="%s.webp" type="image/webp">'
@@ -124,7 +165,7 @@ def badge_visual(a):
 
 
 def page(a):
-    other = BY_SLUG[a['other']]
+    others = [o for o in ADS if o['slug'] != a['slug']]
     short = html.escape(a['title'].split(' | ')[0], quote=True)
     head = HEAD
     head = re.sub(r'<title>.*?</title>', '<title>' + html.escape(a['title']) + '</title>', head)
@@ -145,7 +186,7 @@ def page(a):
               "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": t}} for q, t in a['faq']]}
     crumbs = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://nextdigitalevel.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Visibilité & publicité", "item": "https://nextdigitalevel.com/advertising"},
+        {"@type": "ListItem", "position": 2, "name": "Nos canaux", "item": "https://nextdigitalevel.com/advertising"},
         {"@type": "ListItem", "position": 3, "name": a['nav'], "item": "https://nextdigitalevel.com/%s" % a['slug']}]}
     service_ld = {"@context": "https://schema.org", "@type": "Service", "serviceType": a['nav'],
                   "name": short,
@@ -178,7 +219,7 @@ def page(a):
 <span class="eyebrow">{a['eyebrow']}</span><h1 class="t-display-xl hero__title">{a['h1']}</h1>
 <p class="t-body-lg hero__lead">{a['lead']}</p>
 <div class="hero__actions">
-<a class="btn btn--primary btn--lg" href="/book">Parler de mes campagnes{NE}</a><a class="btn btn--ghost btn--lg" href="tel:+41762632817">Appeler le +41 76 263 28 17{NE}</a>
+<a class="btn btn--primary btn--lg" href="/book">Demander mon audit gratuit{NE}</a><a class="btn btn--ghost btn--lg" href="tel:+41762632817">Appeler le +41 76 263 28 17{NE}</a>
 </div>
 <div class="adbadge{' adbadge--plate' if a.get('badge_img') else ''}">
 {badge_visual(a)}
@@ -191,7 +232,7 @@ def page(a):
 <div class="tagline reveal">
 <span class="eyebrow">/ Notre position</span>
 <p class="t-display-lg tagline__line">{TAGLINE}</p>
-<p class="t-body-lg tagline__sub">C’est la promesse de tout ce que nous construisons. Un site est un outil commercial avant d’être un objet de décoration — et quand il faut aller chercher le trafic, nous savons aussi le faire.</p>
+<p class="t-body-lg tagline__sub">Google Ads, recherche ChatGPT, référencement local et Meta ne sont que des moyens. Ce que nous vous livrons, ce sont des demandes de devis et des réservations, chaque mois.</p>
 </div>
 <div class="grid grid--3 stagger">{stance}</div>
 </div>
@@ -216,10 +257,10 @@ def page(a):
 <div class="container">
 <div class="included">
 <div class="included__copy reveal">
-<span class="eyebrow">/ Compris dans la gestion</span>
+<span class="eyebrow">/ Compris dans votre mois</span>
 <h2 class="t-display-lg" data-split="words">Ce que nous prenons<br><em>en charge.</em></h2>
-<p class="t-body-lg">Le budget publicitaire est versé directement à la plateforme et reste le vôtre. Notre travail de gestion est distinct, annoncé à l’avance, et le compte est créé à votre nom.</p>
-<a class="btn btn--ghost btn--lg" href="/advertising">Visibilité &amp; publicité{NE}</a>
+<p class="t-body-lg">Tout est compris dans votre mois, budget publicitaire inclus, dès 1’700 CHF. Sans engagement : vous restez parce que les demandes arrivent.</p>
+<a class="btn btn--ghost btn--lg" href="/websites">Voir l’offre complète{NE}</a>
 </div>
 <ul class="included__list included__list--simple stagger">{incl}</ul>
 </div>
@@ -239,12 +280,12 @@ def page(a):
 <section class="section section--soft">
 <div class="container">
 <div class="sec-head reveal">
-<span class="eyebrow">/ Aller plus loin</span><h2 class="t-display-lg" data-split="words">Le reste de l’offre.</h2>
+<span class="eyebrow">/ Aller plus loin</span><h2 class="t-display-lg" data-split="words">Les autres canaux.</h2>
 </div>
 <div class="sector-links reveal">
-<a href="/{other['slug']}" data-cursor="view"><span><small>Ads</small>{other['nav']}</span><span aria-hidden="true">{NE}</span></a>
+{''.join(f'<a href="/{o["slug"]}" data-cursor="view"><span><small>Canal</small>{o["nav"]}</span><span aria-hidden="true">{NE}</span></a>' for o in others)}
 <a href="/seo-local" data-cursor="view"><span><small>SEO</small>Référencement local</span><span aria-hidden="true">{NE}</span></a>
-<a href="/websites" data-cursor="view"><span><small>Site</small>Sites sur mesure</span><span aria-hidden="true">{NE}</span></a>
+<a href="/websites" data-cursor="view"><span><small>Offre</small>L’offre complète</span><span aria-hidden="true">{NE}</span></a>
 </div>
 </div>
 </section>
@@ -252,10 +293,10 @@ def page(a):
 <section class="cta-band" data-dots-region>
 <canvas class="dot-canvas dot-canvas--dark" data-dots data-dots-theme="dark" aria-hidden="true"></canvas>
 <div class="container cta-band__inner reveal">
-<span class="eyebrow">/ On commence ?</span><h2 class="t-display-lg" data-split="words">Plus de visiteurs.<br><em>Et plus de clients.</em></h2>
-<p class="t-body-lg">Parlez-nous de votre activité. Nous vous dirons franchement si la publicité est le bon levier pour vous — ou si votre site doit passer en premier.</p>
+<span class="eyebrow">/ On commence ?</span><h2 class="t-display-lg" data-split="words">Plus de demandes.<br><em>Pour vous seul.</em></h2>
+<p class="t-body-lg">Parlez-nous de votre activité. L’audit gratuit vous dit quels canaux comptent pour votre métier et ce qu’il est réaliste d’obtenir.</p>
 <div class="hero__actions">
-<a class="btn btn--gold btn--lg" href="/book">Demander mon aperçu gratuit{NE}</a><a class="btn btn--onpanel btn--lg" href="https://wa.me/41762632817">Parlons-en sur WhatsApp{NE}</a>
+<a class="btn btn--gold btn--lg" href="/book">Demander mon audit gratuit{NE}</a><a class="btn btn--onpanel btn--lg" href="https://wa.me/41762632817">Parlons-en sur WhatsApp{NE}</a>
 </div>
 </div>
 </section>

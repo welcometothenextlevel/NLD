@@ -12,32 +12,32 @@ HEAD = BASE[:BASE.index('<main id="main">') + len('<main id="main">')]
 FOOT = BASE[BASE.index('</main>'):]
 NE = '<svg class="ico" viewBox="0 0 16 16" width="14" height="14" fill="none" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 
-TAGLINE = 'Des sites qui attirent des clients.<br><em>Construits pour les convertir.</em>'
-STANCE_SUB = ('Tout ce que nous construisons vise la même chose. Un site est un outil commercial avant '
-              'd’être un objet de décoration — et cela vaut avec ou sans publicité derrière.')
+TAGLINE = 'Le site fait partie du service.<br><em>Il est construit pour convertir.</em>'
+STANCE_SUB = ('Nos campagnes amènent des visiteurs ; c’est la page qui les transforme en demandes de devis '
+              'et en réservations. C’est pour cela que le site est compris dans notre service, dès 1’700 CHF par mois, sans engagement.')
 
 SERVICES = [
     dict(slug='design-sur-mesure', num='01', nav='Design à votre image',
          title='Design à votre image | Next Digital Level',
-         desc='Une direction artistique dessinée pour votre entreprise, pas un thème acheté. Aperçu gratuit avant de vous engager, sans frais récurrents. Entreprise suisse.',
+         desc='Une page ou un site dessiné pour votre entreprise et fait pour convertir, compris dans notre service de demandes de devis. Entreprise suisse.',
          eyebrow='/ Design à votre image', h1='Un design dessiné<br><em>pour votre entreprise.</em>',
          lead='Vos couleurs, votre ton, votre clientèle. Nous concevons chaque page comme une pièce unique, pas comme un gabarit à remplir. Le résultat inspire confiance avant même que l’on ait lu une ligne.',
          why=[('Une première impression maîtrisée', 'En quelques secondes, un visiteur décide s’il vous fait confiance. Une mise en page juste, une typographie soignée et des espaces respirants font ce travail à votre place.'),
               ('Reconnaissable entre mille', 'Un thème est partagé par des milliers de sites. Un design sur mesure reprend votre identité, votre logo, vos matières, votre façon de parler à vos clients.'),
               ('Pensé pour convertir', 'Chaque écran a un objectif : appeler, écrire, réserver. Nous plaçons les boutons, les preuves et les informations là où votre client les attend.')],
          steps=[('Immersion', 'Nous regardons votre activité, vos concurrents, vos clients. Nous notons ce qui vous distingue et ce que votre site doit faire dire de vous.'),
-                ('Direction visuelle', 'Palette, typographies, rythme des pages, style des photos. Une direction claire, présentée dans l’aperçu gratuit avant tout engagement.'),
+                ('Direction visuelle', 'Palette, typographies, rythme des pages, style des photos. Une direction claire, validée avec vous avant la mise en ligne.'),
                 ('Maquettes de chaque page', 'Accueil, services, à propos, contact : chaque page est composée pour ordinateur et téléphone, avec vos vrais contenus.'),
                 ('Ajustements ensemble', 'Vous réagissez, nous affinons. Deux ou trois allers-retours suffisent en général pour que le design vous ressemble.')],
          included=['Direction artistique complète', 'Maquettes ordinateur et mobile', 'Palette et typographies cohérentes', 'Icônes, illustrations et micro-animations', 'Adaptation de votre logo si nécessaire', 'Fichiers sources remis'],
          faq=[('Je n’ai pas de logo ni de charte. Est-ce un problème ?', 'Non. Beaucoup de nos clients partent de zéro. Nous proposons une direction visuelle simple et cohérente, et nous pouvons composer un logotype sobre si vous n’en avez pas.'),
-              ('Puis-je voir le design avant de m’engager ?', 'Oui, c’est le principe de l’aperçu gratuit : vous découvrez la direction proposée sur votre propre projet, puis vous décidez.'),
+              ('Puis-je voir le design avant la mise en ligne ?', 'Oui. Vous validez la direction de votre page avant qu’elle soit publiée. Et comme le service est sans engagement, vous ne prenez aucun risque.'),
               ('Le design est-il vraiment unique ?', 'Oui. Aucun thème, aucun constructeur. Chaque page est composée pour vous, puis codée à la main.'),
               ('Combien de retours puis-je faire ?', 'Nous n’imposons pas de quota rigide. Nous définissons ensemble le périmètre avant de commencer, et nous affinons jusqu’à ce que le résultat vous ressemble.')],
          related=['developpement-sur-mesure', 'contenu-redaction']),
     dict(slug='developpement-sur-mesure', num='02', nav='Code sur mesure',
          title='Développement web sur mesure | Next Digital Level',
-         desc='Un site codé ligne par ligne, sans constructeur ni extension à maintenir. Léger, rapide et à vous. Aperçu gratuit, sans frais récurrents.',
+         desc='Un site codé ligne par ligne, sans constructeur ni extension à maintenir. Léger, rapide et à vous. Compris dans notre service de demandes de devis.',
          eyebrow='/ Code sur mesure', h1='Codé ligne par ligne.<br><em>Léger, rapide, à vous.</em>',
          lead='Pas de WordPress, pas de Wix, pas d’extensions qui cassent à chaque mise à jour. Nous écrivons le code de votre site nous-mêmes. Il charge vite, il tient dans le temps, et il vous appartient.',
          why=[('Des pages qui chargent vite', 'Un site sur mesure ne transporte que ce dont il a besoin. Sur mobile, en 4G, la différence avec un site à constructeur se compte en secondes.'),
@@ -64,12 +64,12 @@ SERVICES = [
          steps=[('Recherche', 'Quels mots vos clients tapent-ils ? Quelles villes, quels services ? Nous partons de la réalité de votre marché.'),
                 ('Socle technique', 'Balises, données structurées, sitemap, performance, HTTPS : tout ce que Google attend d’un site sérieux.'),
                 ('Pages et contenus', 'Une page par service important, une présence claire de votre zone, des textes utiles et lisibles.'),
-                ('Fiche Google et suivi', 'Configuration de Google Business Profile et de Search Console, puis conseils pendant les 12 mois de suivi.')],
+                ('Fiche Google et suivi', 'Configuration de Google Business Profile et de Search Console, puis suivi chaque mois.')],
          included=['Balises titre et descriptions optimisées', 'Données structurées (schema.org)', 'Sitemap, robots et Search Console', 'Pages rapides et images optimisées', 'Contenu local par service et par zone', 'Accompagnement Google Business Profile'],
          faq=[('Garantissez-vous la première page de Google ?', 'Non, et personne ne le peut honnêtement. Nous posons toutes les bases et nous rédigeons des contenus pertinents ; le classement dépend ensuite de votre marché et du temps.'),
               ('Faut-il un blog ?', 'Pas forcément. Pour une PME locale, des pages de services claires et une fiche Google vivante comptent souvent davantage.'),
               ('Que faire de mes avis clients ?', 'Nous vous conseillons pour obtenir des avis réguliers sur votre fiche Google et nous pouvons les mettre en valeur sur le site.'),
-              ('Le SEO est-il facturé en plus ?', 'Les bases décrites ici sont incluses dans chaque site. Un accompagnement plus poussé (publicité, campagnes) est décrit sur la page Visibilité.')],
+              ('Le SEO est-il facturé en plus ?', 'Non. Le référencement local fait partie du service, avec Google Ads, la recherche ChatGPT et Meta, dès 1’700 CHF par mois.')],
          related=['contenu-redaction', 'suivi-12-mois']),
     dict(slug='site-mobile', num='04', nav='Pensé pour le mobile',
          title='Site web pensé pour le mobile | Next Digital Level',
@@ -84,7 +84,7 @@ SERVICES = [
                 ('Performance', 'Chaque image et chaque police sont optimisées. Nous mesurons le temps de chargement sur un vrai téléphone.'),
                 ('Tests réels', 'iPhone, Android, petits et grands écrans, navigation au pouce : nous vérifions tout avant la mise en ligne.')],
          included=['Conception mobile-first', 'Barre de contact fixe (appel, WhatsApp)', 'Lien itinéraire vers votre adresse', 'Images et polices optimisées', 'Tests sur appareils réels', 'Compatibilité iOS et Android'],
-         faq=[('Mon site actuel s’affiche mal sur téléphone. Pouvez-vous le corriger ?', 'Dans la plupart des cas, il est plus efficace de le reconstruire proprement. L’aperçu gratuit vous montre la différence sur votre propre téléphone.'),
+         faq=[('Mon site actuel s’affiche mal sur téléphone. Pouvez-vous le corriger ?', 'Dans la plupart des cas, il est plus efficace de le reconstruire proprement. Le site est compris dans le service : nous le reconstruisons proprement, sans frais en plus.'),
               ('Le bouton WhatsApp est-il compris ?', 'Oui. Nous relions WhatsApp, l’appel et l’e-mail à vos vrais numéros et adresses, et nous testons chaque lien.'),
               ('Le site sera-t-il aussi beau sur ordinateur ?', 'Bien sûr. Partir du mobile garantit la clarté ; la version ordinateur profite ensuite de l’espace supplémentaire.'),
               ('Faut-il une application ?', 'Non. Un site rapide et bien conçu fait tout ce qu’une PME attend, sans installation ni frais d’app store.')],
@@ -105,24 +105,24 @@ SERVICES = [
          faq=[('Je ne sais pas quoi écrire. Est-ce grave ?', 'Pas du tout. C’est justement notre travail : nous posons les questions, nous écrivons, vous corrigez.'),
               ('Pouvez-vous rédiger en allemand ou en anglais ?', 'Oui pour l’anglais et le français. Pour l’allemand et l’italien, nous travaillons avec des relecteurs natifs ; nous en parlons lors du premier échange.'),
               ('Dois-je fournir des photos professionnelles ?', 'Non. Les images sont comprises dans le prix : nous choisissons des visuels adaptés à votre activité. Si vous avez vos propres photos, même prises au téléphone, nous les mettons en valeur.'),
-              ('Puis-je modifier les textes plus tard ?', 'Oui, pendant les 12 mois de suivi il suffit de nous envoyer vos modifications.')],
+              ('Puis-je modifier les textes plus tard ?', 'Oui. Tant que nous travaillons ensemble, il suffit de nous envoyer vos modifications.')],
          related=['seo-local', 'design-sur-mesure']),
-    dict(slug='suivi-12-mois', num='06', nav='12 mois à vos côtés',
-         title='12 mois de suivi inclus | Next Digital Level',
-         desc='Après la mise en ligne, un interlocuteur reste disponible 7 jours sur 7 pour vos questions et vos ajustements. Inclus dans chaque site.',
-         eyebrow='/ 12 mois à vos côtés', h1='Après la mise en ligne,<br><em>nous restons là.</em>',
-         lead='Un site vit : un horaire change, une nouvelle prestation arrive, une photo doit être remplacée. Pendant douze mois, vous nous écrivez et nous nous en occupons. Un seul interlocuteur, 7 jours sur 7.',
-         why=[('Un interlocuteur, pas un ticket', 'Vous écrivez à la personne qui a conçu votre site. Pas de plateforme, pas de file d’attente.'),
-              ('Des ajustements sans stress', 'Textes, photos, horaires, nouvelle page ponctuelle : les modifications courantes sont comprises dans le suivi.'),
-              ('Un site qui reste en forme', 'Nous surveillons la disponibilité, le certificat HTTPS et le bon fonctionnement des formulaires.')],
-         steps=[('Prise en main', 'À la mise en ligne, nous vous montrons ce qu’il faut savoir : où sont vos accès, comment nous demander une modification.'),
-                ('Demandes courantes', 'Vous nous écrivez par WhatsApp ou e-mail. Les petites modifications sont faites rapidement, souvent le jour même.'),
-                ('Points réguliers', 'Nous regardons ensemble ce que fait votre site : visites, appels, fiche Google. Et ce que l’on peut améliorer.'),
-                ('Et après 12 mois', 'Votre site reste à vous, sans obligation. Si vous souhaitez continuer l’accompagnement, nous vous proposons une formule simple.')],
-         included=['Interlocuteur unique, 7 jours sur 7', 'Modifications courantes de contenus', 'Surveillance de la disponibilité et du HTTPS', 'Aide à la prise en main', 'Conseils Google Business Profile', 'Point sur les résultats'],
-         faq=[('Qu’est-ce qui est compris dans le suivi ?', 'Les modifications courantes (textes, photos, horaires, coordonnées), les questions, la surveillance technique et les conseils. Le périmètre exact est défini ensemble avant le lancement.'),
-              ('Et une refonte complète ou une nouvelle fonctionnalité ?', 'Ce sont des projets à part entière ; nous vous faisons une proposition claire, sans surprise.'),
-              ('Que se passe-t-il à la fin des 12 mois ?', 'Rien n’est imposé. Votre site fonctionne, il vous appartient. Un accompagnement prolongé est possible si vous le souhaitez.'),
+    dict(slug='suivi-12-mois', num='06', nav='Suivi et rapports',
+         title='Suivi des demandes et rapport mensuel | Next Digital Level',
+         desc='Chaque demande comptée et rattachée à sa source, un rapport mensuel clair et un interlocuteur 7 jours sur 7. Compris dans notre service, sans engagement.',
+         eyebrow='/ Suivi et rapports', h1='Chaque demande comptée.<br><em>Chaque mois, un rapport clair.</em>',
+         lead='Vous savez combien de demandes vous avez reçues, d’où elles viennent et ce qu’elles ont coûté. Chaque mois, nous ajustons ce qui marche et coupons ce qui ne marche pas. Un seul interlocuteur, 7 jours sur 7.',
+         why=[('Un interlocuteur, pas un ticket', 'Vous écrivez à la personne qui gère vos campagnes. Pas de plateforme, pas de file d’attente.'),
+              ('Des chiffres que vous comprenez', 'Combien de demandes, par quel canal, à quel coût. En français, dans un message clair, pas dans un tableau de bord illisible.'),
+              ('Un système qui s’améliore', 'Mots-clés, annonces, page, budget : chaque mois, nous déplaçons l’effort vers ce qui vous amène des clients.')],
+         steps=[('Mise en place du suivi', 'Formulaires, appels et réservations sont mesurés dès le premier jour, avec leur source.'),
+                ('Demandes au quotidien', 'Les demandes arrivent chez vous, par e-mail, téléphone ou WhatsApp. Vous nous dites lesquelles sont devenues des clients.'),
+                ('Rapport mensuel', 'Ce que le mois a rapporté, ce que nous avons changé, ce que nous prévoyons. Court et lisible.'),
+                ('Libre chaque mois', 'Le service est sans engagement. Vous continuez parce que les demandes arrivent, pas à cause d’un contrat.')],
+         included=['Interlocuteur unique, 7 jours sur 7', 'Suivi des formulaires, appels et réservations', 'Rapport mensuel clair', 'Ajustements des campagnes chaque mois', 'Modifications courantes de votre page', 'Sans engagement'],
+         faq=[('Que contient le rapport mensuel ?', 'Le nombre de demandes reçues, leur source (Google, ChatGPT, Meta, référencement), ce qu’elles ont coûté et ce que nous changeons le mois suivant.'),
+              ('Puis-je arrêter quand je veux ?', 'Oui. Le service est mensuel, sans engagement. Vous nous prévenez et nous arrêtons à la fin du mois.'),
+              ('Les modifications de mon site sont-elles comprises ?', 'Oui, les modifications courantes (textes, photos, horaires, offres) sont comprises tant que nous travaillons ensemble.'),
               ('Comment vous joindre ?', 'WhatsApp, téléphone ou e-mail, 7 jours sur 7. Vous avez toujours la même personne en face.')],
          related=['seo-local', 'contenu-redaction']),
 ]
@@ -153,9 +153,9 @@ def page(s):
 <div class="container hero__inner">
 <span class="eyebrow">{s['eyebrow']}</span><h1 class="t-display-xl hero__title">{s['h1']}</h1><p class="t-body-lg hero__lead">{s['lead']}</p>
 <div class="hero__actions">
-<a class="btn btn--primary btn--lg" href="/book">Demander mon aperçu gratuit{NE}</a><a class="btn btn--ghost btn--lg" href="tel:+41762632817">Appeler le +41 76 263 28 17{NE}</a>
+<a class="btn btn--primary btn--lg" href="/book">Demander mon audit gratuit{NE}</a><a class="btn btn--ghost btn--lg" href="tel:+41762632817">Appeler le +41 76 263 28 17{NE}</a>
 </div>
-<p class="hero__note">Service {s['num']} · compris dans chaque site · sans frais récurrents</p>
+<p class="hero__note">Compris dans le service · dès 1’700 CHF par mois · sans engagement</p>
 </div>
 </section>
 <section class="section">
@@ -185,7 +185,7 @@ def page(s):
 <div class="included__copy reveal">
 <span class="eyebrow">/ Compris</span>
 <h2 class="t-display-lg" data-split="words">Inclus d’office.<br><em>Rien à rajouter.</em></h2>
-<p class="t-body-lg">Ce service fait partie de chaque site que nous livrons. Il n’est ni optionnel, ni facturé en plus.</p>
+<p class="t-body-lg">Compris dans notre service de demandes de devis et de réservations, dès 1’700 CHF par mois. Ni optionnel, ni facturé en plus.</p>
 <a class="btn btn--ghost btn--lg" href="/websites">Voir l’offre complète{NE}</a>
 </div>
 <ul class="included__list included__list--simple stagger">{incl}</ul>
@@ -214,9 +214,9 @@ def page(s):
 {REVIEWS.get(s['slug'], ALL_REVIEWS)}<section class="cta-band" data-dots-region>
 <canvas class="dot-canvas dot-canvas--dark" data-dots data-dots-theme="dark" aria-hidden="true"></canvas>
 <div class="container cta-band__inner reveal">
-<span class="eyebrow">/ On commence ?</span><h2 class="t-display-lg" data-split="words">Votre prochain site.<br><em>Voyez-le avant de décider.</em></h2><p class="t-body-lg">Parlez-nous de votre activité. Nous vous préparons un aperçu gratuit, sans engagement.</p>
+<span class="eyebrow">/ On commence ?</span><h2 class="t-display-lg" data-split="words">Votre prochaine demande de devis.<br><em>Commençons par l’audit.</em></h2><p class="t-body-lg">Parlez-nous de votre activité. Nous commençons par un audit gratuit de votre marché, sans engagement.</p>
 <div class="hero__actions">
-<a class="btn btn--gold btn--lg" href="/book">Demander mon aperçu gratuit{NE}</a><a class="btn btn--onpanel btn--lg" href="https://wa.me/41762632817">Parlons-en sur WhatsApp{NE}</a>
+<a class="btn btn--gold btn--lg" href="/book">Demander mon audit gratuit{NE}</a><a class="btn btn--onpanel btn--lg" href="https://wa.me/41762632817">Parlons-en sur WhatsApp{NE}</a>
 </div>
 </div>
 </section>
@@ -224,7 +224,7 @@ def page(s):
     faq_ld = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in s['faq']]}
     crumbs = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://nextdigitalevel.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Sites sur mesure", "item": "https://nextdigitalevel.com/websites"},
+        {"@type": "ListItem", "position": 2, "name": "L’offre", "item": "https://nextdigitalevel.com/websites"},
         {"@type": "ListItem", "position": 3, "name": s['nav'], "item": "https://nextdigitalevel.com/%s" % s['slug']}]}
     import json as _json
     head = head.replace('</head>', ''.join('<script type="application/ld+json">%s</script>\n' % _json.dumps(o, ensure_ascii=False, indent=1) for o in (faq_ld, crumbs)) + '</head>')
