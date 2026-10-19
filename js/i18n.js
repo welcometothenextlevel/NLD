@@ -101,6 +101,9 @@
     'Un interlocuteur, 7 jours sur 7': 'One contact, 7 days a week',
     /* /offer */
     /* chrome */
+    '{ico}{ico}Publicité Meta': '{ico}{ico}Meta ads',
+    '{ico}SEO local': '{ico}Local SEO',
+    '{ico}Recherche ChatGPT': '{ico}ChatGPT search',
     'Appels <em>exclusifs</em>': '<em>Exclusive</em> calls',
     '{ico}Suisse romande': '{ico}French-speaking Switzerland',
     'Chaque appel et chaque demande sont comptés et rattachés à leur source. Chaque mois, un rapport clair : ce qui a rapporté, ce que nous changeons.': 'Every call and enquiry is counted and traced to its source. Every month, a clear report: what paid off and what we are changing.',
