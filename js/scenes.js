@@ -1,6 +1,5 @@
 /* Next Digital Level — home page scenes (scale.com-style).
-   A  video reel hero            [data-reel]
-   B  3D layer stack on scroll   [data-stack]
+   A+B hero → pull-apart stack   [data-pull]
    C  phone that rings           [data-ring]
    D  rotating word + photos     [data-orbit]
    E  expanding statement card   [data-grow]
@@ -23,68 +22,105 @@
     return total > 0 ? clamp(-r.top / total) : clamp(1 - r.top / window.innerHeight);
   }
 
-  /* ---------- A · Video reel ---------- */
-  (function reel() {
-    const root = $('[data-reel]');
+  /* ---------- A+B · Hero → pull-apart stack (scale.com-style) ----------
+     One tall section with a sticky stage. Scroll progress p (0..1) drives:
+       0 → 0.12   the full-width hero card shrinks into a tilted 3D panel,
+                  the page turns black, glass plates fan out behind it;
+       then four chapters, the stack moving centre → right → left → right.
+     Keyframes are [p, x (vw from centre), y (vh from centre), w (vw), rx, ry, gap px]. */
+  (function pull() {
+    const root = $('[data-pull]');
     if (!root) return;
-    const clips = $$('.reel__clip', root), bars = $$('.reel__bars i', root), label = $('[data-reel-label]', root);
+    const stage = $('.pull__stage', root), rig = $('[data-pull-rig]', root), card = $('[data-pull-card]', root);
+    const hero = $('[data-pull-hero]', root), foot = $('[data-pull-foot]', root);
+    const clips = $$('.pull__clip', root), media = $$('[data-media]', root), chapters = $$('[data-ch]', root);
+    const lines = $('[data-pull-lines]', root), plateLines = $('[data-pull-plate-lines]', root);
+    const label = $('[data-pull-label]', root), bars = $$('.reel__bars i', root);
     const saveData = navigator.connection && navigator.connection.saveData;
     const usePosters = reduced || saveData;
-    let i = 0, timer = 0, visible = true;
-    const HOLD = 4200;
+    const mobile = () => window.innerWidth <= 900;
+    const KD = [[0.12, 0, -0.05, 0.46, 10, 16, 56], [0.30, 0, -0.06, 0.46, 9, 10, 62], [0.37, 0.19, 0, 0.40, 9, 34, 84], [0.55, 0.19, 0, 0.40, 8, 28, 90],
+                [0.62, -0.19, 0, 0.40, 9, -34, 84], [0.79, -0.19, 0, 0.40, 8, -28, 90], [0.86, 0.19, 0, 0.40, 9, 34, 84], [1, 0.19, 0, 0.40, 8, 28, 90]];
+    const KM = [[0.12, 0, -0.2, 0.8, 10, 14, 34], [0.30, 0, -0.21, 0.8, 9, 9, 38], [0.37, 0.02, -0.21, 0.76, 9, 22, 46], [0.55, 0.02, -0.21, 0.76, 8, 18, 50],
+                [0.62, -0.02, -0.21, 0.76, 9, -22, 46], [0.79, -0.02, -0.21, 0.76, 8, -18, 50], [0.86, 0.02, -0.21, 0.76, 9, 22, 46], [1, 0.02, -0.21, 0.76, 8, 18, 50]];
+    const CH = [['c1', 0.13, 0.33], ['c2', 0.37, 0.57], ['c3', 0.61, 0.81], ['c4', 0.85, 1.01]];
+    const ease = t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    const sm = (a, b, v) => { const t = clamp((v - a) / (b - a)); return t * t * (3 - 2 * t); };
+    const lerp = (a, b, t) => a + (b - a) * t;
+
+    // reel (hero + first chapter)
+    let ri = 0, timer = 0, visible = true, mode = 'reel';
     const name = c => (EN && c.dataset.en) || c.dataset.label;
-    function load(c) { if (!usePosters && !c.getAttribute('src') && c.dataset.src) { c.src = c.dataset.src; c.preload = 'auto'; } }
+    function load(v) { if (!usePosters && v && !v.getAttribute('src') && v.dataset.src) { v.src = v.dataset.src; v.preload = 'auto'; } }
+    function setLines(src) { if (src && lines.getAttribute('src') !== src) { lines.src = src; if (plateLines) plateLines.src = src; } }
     function mark() {
-      bars.forEach((b, k) => { b.classList.toggle('is-done', k < i); b.classList.remove('is-on'); });
-      void (bars[i] && bars[i].offsetWidth);
-      bars[i] && bars[i].classList.add('is-on');
-      if (label) label.textContent = name(clips[i]);
+      bars.forEach((b, k) => { b.classList.toggle('is-done', k < ri); b.classList.remove('is-on'); });
+      void (bars[ri] && bars[ri].offsetWidth); bars[ri] && bars[ri].classList.add('is-on');
+      if (label) label.textContent = name(clips[ri]);
     }
-    function show(n) {
-      const prev = clips[i]; i = n; const cur = clips[i];
-      load(cur); load(clips[(i + 1) % clips.length]);
+    function showClip(n) {
+      const prev = clips[ri]; ri = n; const cur = clips[ri];
+      load(cur); load(clips[(ri + 1) % clips.length]);
       if (!usePosters) { try { cur.currentTime = 0; } catch (e) {} cur.play().catch(() => {}); }
-      cur.classList.add('is-on');
-      if (prev !== cur) { prev.classList.remove('is-on'); setTimeout(() => { if (!prev.classList.contains('is-on')) prev.pause(); }, 1200); }
-      mark();
+      cur.classList.add('is-on'); if (prev !== cur) { prev.classList.remove('is-on'); setTimeout(() => { if (!prev.classList.contains('is-on')) prev.pause(); }, 1100); }
+      setLines(cur.dataset.lines); mark();
     }
-    function schedule() { clearTimeout(timer); if (visible && !document.hidden && !reduced) timer = setTimeout(() => { show((i + 1) % clips.length); schedule(); }, HOLD); }
-    if (usePosters) clips.forEach(c => { c.removeAttribute('src'); c.preload = 'none'; });
-    else { clips[0].play().catch(() => {}); load(clips[1]); }
+    function schedule() { clearTimeout(timer); if (mode === 'reel' && visible && !document.hidden && !reduced) timer = setTimeout(() => { showClip((ri + 1) % clips.length); schedule(); }, 4200); }
+    function setMode(m) {
+      if (m === mode) return; mode = m;
+      if (m === 'reel') { media.forEach(x => { x.classList.remove('is-on'); if (x.tagName === 'VIDEO') x.pause(); }); showClip(ri); schedule(); return; }
+      clearTimeout(timer); clips.forEach(c => { c.classList.remove('is-on'); c.pause(); });
+      media.forEach(x => { const on = x.dataset.media === m; x.classList.toggle('is-on', on); if (x.tagName === 'VIDEO') { if (on) { load(x); if (!usePosters) x.play().catch(() => {}); } else x.pause(); } });
+      const cur = media.find(x => x.dataset.media === m);
+      setLines(cur && cur.dataset.lines ? cur.dataset.lines : (m === 'audit' ? '/assets/scene/verre-lines.svg' : '/assets/scene/tours-lines.svg'));
+    }
+    if (usePosters) clips.forEach(c => { c.removeAttribute('src'); c.preload = 'none'; }); else { clips[0].play().catch(() => {}); load(clips[1]); }
     mark(); schedule();
     if ('IntersectionObserver' in window) new IntersectionObserver(en => {
       visible = en[0].isIntersecting;
-      if (visible) { if (!usePosters) clips[i].play().catch(() => {}); schedule(); }
-      else { clearTimeout(timer); clips[i].pause(); }
-    }, { threshold: 0.15 }).observe(root);
+      if (visible) { if (mode === 'reel' && !usePosters) clips[ri].play().catch(() => {}); schedule(); }
+      else { clearTimeout(timer); clips.forEach(c => c.pause()); media.forEach(x => x.tagName === 'VIDEO' && x.pause()); }
+    }).observe(root);
     document.addEventListener('visibilitychange', () => { if (document.hidden) clearTimeout(timer); else schedule(); });
-  })();
 
-  /* ---------- B · 3D layer stack ---------- */
-  (function stack() {
-    const root = $('[data-stack]');
-    if (!root) return;
-    const layers = $$('[data-stack-layer]', root), steps = $$('[data-stack-step]', root);
-    const num = $('[data-stack-num]', root), bar = $('[data-stack-bar]', root), world = $('[data-stack-world]', root);
-    let last = -1;
+    let lastCh = '';
     scenes.push(() => {
-      const p = progress(root);
-      const open = clamp(p / 0.14);                       // layers separate first
-      const active = Math.min(layers.length - 1, Math.floor(clamp((p - 0.1) / 0.86) * layers.length));
-      const gap = 18 + 92 * open;
-      layers.forEach((l, k) => {
-        const z = (k - (layers.length - 1) / 2) * gap + (k === active ? 34 * open : 0);
-        l.style.transform = `translate3d(0, 0, ${z.toFixed(1)}px)`;
-        l.classList.toggle('is-on', k === active);
-        l.classList.toggle('is-past', k < active);
-      });
-      world.style.transform = `rotateX(58deg) rotateZ(${(-42 + 14 * p).toFixed(2)}deg) translateZ(${(-20 + 20 * open).toFixed(1)}px)`;
-      if (bar) bar.style.transform = `scaleX(${p.toFixed(3)})`;
-      if (active !== last) {
-        last = active;
-        steps.forEach((s, k) => s.classList.toggle('is-on', k === active));
-        if (num) num.textContent = String(active + 1).padStart(2, '0');
-      }
+      const r = root.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > window.innerHeight) return;
+      const p = progress(root), vw = window.innerWidth, vh = window.innerHeight, M = mobile();
+      const K = M ? KM : KD;
+      // full hero rect
+      const fx = M ? 8 : 14, fy = M ? 84 : 92, fw = vw - fx * 2, fh = vh - fy - (M ? 8 : 14);
+      // target values at this p
+      let k1 = K[0], k2 = K[0], t = 0;
+      if (p > K[0][0]) { for (let i = 0; i < K.length - 1; i++) if (p >= K[i][0] && p <= K[i + 1][0]) { k1 = K[i]; k2 = K[i + 1]; t = sm(K[i][0], K[i + 1][0], p); break; } if (p > K[K.length - 1][0]) { k1 = k2 = K[K.length - 1]; } }
+      const at = i => lerp(k1[i], k2[i], t);
+      const sx = at(1), sy = at(2), sw = at(3) * vw, sh = sw * 9 / 16, rx = at(4), ry = at(5), gap = at(6);
+      const s0 = ease(clamp(p / K[0][0]));          // hero → stack
+      const w = lerp(fw, sw, s0), h = lerp(fh, sh, s0);
+      const cx = lerp(fx + fw / 2, vw / 2 + sx * vw, s0), cy = lerp(fy + fh / 2, vh * (0.45 + sy), s0);
+      rig.style.left = (cx - w / 2).toFixed(1) + 'px'; rig.style.top = (cy - h / 2).toFixed(1) + 'px';
+      rig.style.width = w.toFixed(1) + 'px'; rig.style.height = h.toFixed(1) + 'px';
+      rig.style.transform = `rotateX(${(rx * s0).toFixed(2)}deg) rotateY(${(ry * s0).toFixed(2)}deg)`;
+      card.style.setProperty('--r', lerp(26, 12, s0).toFixed(1) + 'px');
+      rig.style.setProperty('--gap', (gap * s0).toFixed(1) + 'px');
+      // plates fan out away from the side the stack turns towards, a little larger each step back
+      rig.style.setProperty('--px', ((ry >= 0 ? -1 : 1) * (M ? 10 : 20) * s0).toFixed(1) + 'px');
+      rig.style.setProperty('--py', (-8 * s0).toFixed(1) + 'px');
+      rig.style.setProperty('--ps', (0.035 * s0).toFixed(4));
+      rig.style.setProperty('--po', sm(0.04, 0.12, p).toFixed(3));
+      card.style.setProperty('--lo', (0.5 * sm(0.05, 0.14, p)).toFixed(3));
+      card.style.setProperty('--hs', (1 - 0.8 * sm(0.02, 0.12, p)).toFixed(3));
+      const out = sm(0.965, 1, p);                   // hand back to the light page
+      stage.style.setProperty('--d', (sm(0.0, 0.1, p) * (1 - out)).toFixed(3));
+      rig.style.opacity = (1 - out).toFixed(3);
+      const ho = 1 - sm(0.005, 0.06, p);
+      root.style.setProperty('--ho', ho.toFixed(3)); hero.style.setProperty('--ho', ho.toFixed(3)); foot.style.setProperty('--ho', ho.toFixed(3));
+      hero.style.setProperty('--hy', (-60 * (1 - ho)).toFixed(1) + 'px');
+      if (ho < 0.2) root.setAttribute('data-past-hero', ''); else root.removeAttribute('data-past-hero');
+      const cur = (CH.find(c => p >= c[1] && p < c[2]) || [''])[0];
+      if (cur !== lastCh) { lastCh = cur; chapters.forEach(c => c.classList.toggle('is-on', c.dataset.ch === cur)); }
+      setMode(p < 0.345 ? 'reel' : p < 0.585 ? 'audit' : p < 0.83 ? 'chantier' : 'calls');
     });
   })();
 

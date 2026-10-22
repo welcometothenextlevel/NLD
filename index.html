@@ -30,10 +30,10 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap">
 <script>try{var p=location.pathname;if(p.length>5&&p.slice(-5)===".html"){var q=p==="/index.html"?"/":p.slice(0,-5);history.replaceState(null,"",q+location.search+location.hash);}}catch(e){}</script>
 <script>try{var t=localStorage.getItem("ndl-theme");if(t==="dark")document.documentElement.dataset.theme="dark";var l=localStorage.getItem("ndl-lang");if(l==="en")document.documentElement.dataset.lang="en";}catch(e){}</script>
-<link rel="stylesheet" href="/css/style.css?v=20261019e">
-<link rel="stylesheet" href="/css/animations.css?v=20261019e">
-<link rel="stylesheet" href="/css/motion.css?v=20261019e">
-<link rel="stylesheet" href="/css/chat.css?v=20261019e">
+<link rel="stylesheet" href="/css/style.css?v=20261022a">
+<link rel="stylesheet" href="/css/animations.css?v=20261022a">
+<link rel="stylesheet" href="/css/motion.css?v=20261022a">
+<link rel="stylesheet" href="/css/chat.css?v=20261022a">
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -225,11 +225,11 @@
  }
 }
 </script>
-<script src="/js/i18n.js?v=20261019e" defer></script>
-<script src="/js/main.js?v=20261019e" defer></script>
-<script src="/js/motion.js?v=20261019e" defer></script>
-<script src="/js/scenes.js?v=20261019e" defer></script>
-<script src="/js/chat.js?v=20261019e" defer></script>
+<script src="/js/i18n.js?v=20261022a" defer></script>
+<script src="/js/main.js?v=20261022a" defer></script>
+<script src="/js/motion.js?v=20261022a" defer></script>
+<script src="/js/scenes.js?v=20261022a" defer></script>
+<script src="/js/chat.js?v=20261022a" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Aller au contenu</a>
@@ -268,32 +268,80 @@
 </div>
 <main id="main">
 
-<!-- ═══════════ HERO (video reel) ═══════════ -->
-<section class="hero reel-hero" data-reel>
-<div class="reel">
-<div class="reel__media">
-<video class="reel__clip is-on" muted playsinline loop preload="auto" poster="/assets/reel/coiffure.webp" src="/assets/reel/coiffure.mp4" data-label="Coiffure" data-en="Hairdressing" aria-hidden="true"></video>
-<video class="reel__clip" muted playsinline loop preload="none" poster="/assets/reel/plomberie.webp" data-src="/assets/reel/plomberie.mp4" data-label="Plomberie" data-en="Plumbing" aria-hidden="true"></video>
-<video class="reel__clip" muted playsinline loop preload="none" poster="/assets/reel/menuiserie.webp" data-src="/assets/reel/menuiserie.mp4" data-label="Menuiserie" data-en="Carpentry" aria-hidden="true"></video>
-<video class="reel__clip" muted playsinline loop preload="none" poster="/assets/reel/onglerie.webp" data-src="/assets/reel/onglerie.mp4" data-label="Onglerie" data-en="Nail studio" aria-hidden="true"></video>
-<video class="reel__clip" muted playsinline loop preload="none" poster="/assets/reel/electricite.webp" data-src="/assets/reel/electricite.mp4" data-label="Électricité" data-en="Electrical" aria-hidden="true"></video>
-<video class="reel__clip" muted playsinline loop preload="none" poster="/assets/reel/jardin.webp" data-src="/assets/reel/jardin.mp4" data-label="Jardin &amp; paysage" data-en="Garden &amp; landscape" aria-hidden="true"></video>
-<video class="reel__clip" muted playsinline loop preload="none" poster="/assets/reel/peinture.webp" data-src="/assets/reel/peinture.mp4" data-label="Peinture" data-en="Painting" aria-hidden="true"></video>
-<video class="reel__clip" muted playsinline loop preload="none" poster="/assets/reel/garage.webp" data-src="/assets/reel/garage.mp4" data-label="Garage" data-en="Car repair" aria-hidden="true"></video>
+<!-- ═══════════ HERO → PULL-APART (scale.com-style) ═══════════ -->
+<section class="pull" data-pull>
+<span class="pull__anchor" id="process" aria-hidden="true"></span>
+<div class="pull__stage">
+<div class="pull__scene">
+<div class="pull__rig" data-pull-rig>
+<div class="pull__plate" style="--k:1"><img class="pl__lines" data-pull-plate-lines src="/assets/scene/geneve-lines.svg" alt="" aria-hidden="true"><span class="pl__lab" style="--lx:3%;--ly:5%">FR 1700</span><span class="pl__lab" style="--lx:86%;--ly:9%">VS 1950</span><span class="pl__lab" style="--lx:78%;--ly:92%">NE 2000</span></div>
+<div class="pull__plate" style="--k:2"><svg class="pl__flow" viewBox="0 0 200 112" preserveAspectRatio="none" aria-hidden="true"><path d="M-5 80 C40 70 60 30 100 40 S160 90 205 60"/><path d="M-5 30 C30 40 70 90 120 70 S170 20 205 34"/><circle cx="100" cy="40" r="1.6"/><circle cx="120" cy="70" r="1.6"/><circle cx="160" cy="76" r="1.6"/><circle cx="40" cy="70" r="1.6"/></svg><span class="pl__lab" style="--lx:3%;--ly:5%">JU 2800</span><span class="pl__lab" style="--lx:86%;--ly:9%">+41</span><span class="pl__lab" style="--lx:78%;--ly:92%">CH</span></div>
+<div class="pull__plate" style="--k:3"><i class="pl__tick pl__tick--a"></i><i class="pl__tick pl__tick--b"></i><span class="pl__lab" style="--lx:3%;--ly:5%">46.52°N 6.63°E</span><span class="pl__lab" style="--lx:86%;--ly:9%">VD 1003</span><span class="pl__lab" style="--lx:78%;--ly:92%">GE 1204</span></div>
+<div class="pull__card" data-pull-card>
+<video class="pull__clip is-on" muted playsinline loop preload="auto" poster="/assets/scene/geneve.webp" src="/assets/scene/geneve.mp4" data-lines="/assets/scene/geneve-lines.svg" data-label="Genève" data-en="Geneva" aria-hidden="true"></video>
+<video class="pull__clip" muted playsinline loop preload="none" poster="/assets/scene/tours.webp" data-src="/assets/scene/tours.mp4" data-lines="/assets/scene/tours-lines.svg" data-label="Bureaux" data-en="Offices" aria-hidden="true"></video>
+<video class="pull__clip" muted playsinline loop preload="none" poster="/assets/scene/chantier.webp" data-src="/assets/scene/chantier.mp4" data-lines="/assets/scene/chantier-lines.svg" data-label="Construction" data-en="Construction" aria-hidden="true"></video>
+<video class="pull__clip" muted playsinline loop preload="none" poster="/assets/scene/port.webp" data-src="/assets/scene/port.mp4" data-lines="/assets/scene/port-lines.svg" data-label="Port · Léman" data-en="Harbour · Lake Geneva" aria-hidden="true"></video>
+<video class="pull__clip" muted playsinline loop preload="none" poster="/assets/scene/residence.webp" data-src="/assets/scene/residence.mp4" data-lines="/assets/scene/residence-lines.svg" data-label="Immobilier" data-en="Real estate" aria-hidden="true"></video>
+<video class="pull__clip" muted playsinline loop preload="none" poster="/assets/scene/industrie.webp" data-src="/assets/scene/industrie.mp4" data-lines="/assets/scene/industrie-lines.svg" data-label="Industrie" data-en="Industry" aria-hidden="true"></video>
+<div class="pull__media pull__ui" data-media="audit" aria-hidden="true">
+<div class="ui__head"><b>Audit · votre marché</b><span>Lausanne · construction</span></div>
+<div class="ui__row"><span>Recherches « entreprise de construction Lausanne »</span><i style="--w:86%"></i></div>
+<div class="ui__row"><span>Concurrents visibles sur Google</span><i style="--w:54%"></i></div>
+<div class="ui__row"><span>Votre visibilité aujourd’hui</span><i style="--w:18%"></i></div>
+<div class="ui__bars"><i style="--h:34%"></i><i style="--h:48%"></i><i style="--h:41%"></i><i style="--h:62%"></i><i style="--h:57%"></i><i style="--h:71%"></i><i style="--h:66%"></i><i style="--h:80%"></i><i style="--h:74%"></i><i style="--h:88%"></i><i style="--h:83%"></i><i style="--h:94%"></i></div>
+<div class="ui__pill">Canal conseillé : Google Ads</div>
 </div>
-<div class="reel__shade" aria-hidden="true"></div>
-<div class="container reel__inner">
+<video class="pull__media pull__clip3" data-media="chantier" muted playsinline loop preload="none" poster="/assets/scene/chantier-soir.webp" data-src="/assets/scene/chantier-soir.mp4" data-lines="/assets/scene/chantier-soir-lines.svg" aria-hidden="true"></video>
+<div class="pull__media pull__ui" data-media="calls" aria-hidden="true">
+<div class="ui__head"><b>Rapport du mois</b><span>exemple</span></div>
+<div class="ui__note"><img class="src-ico" src="/assets/partners/google-ads.svg" alt="" width="24" height="22"><div><b>Appel entrant · Google Ads</b><span>Rénovation d’un immeuble · Lausanne</span></div></div>
+<div class="ui__note"><svg class="src-ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="#34A853" d="M19.527 4.799c1.212 2.608.937 5.678-.405 8.173-1.101 2.047-2.744 3.74-4.098 5.614-.619.858-1.244 1.75-1.669 2.727-.141.325-.263.658-.383.992-.121.333-.224.673-.34 1.008-.109.314-.236.684-.627.687h-.007c-.466-.001-.579-.53-.695-.887-.284-.874-.581-1.713-1.019-2.525-.51-.944-1.145-1.817-1.79-2.671L19.527 4.799zM8.545 7.705l-3.959 4.707c.724 1.54 1.821 2.863 2.871 4.18.247.31.494.622.737.936l4.984-5.925-.029.01c-1.741.601-3.691-.291-4.392-1.987a3.377 3.377 0 0 1-.209-.716c-.063-.437-.077-.761-.004-1.198l.001-.007zM5.492 3.149l-.003.004c-1.947 2.466-2.281 5.88-1.117 8.77l4.785-5.689-.058-.05-3.607-3.035zM14.661.436l-3.838 4.563a.295.295 0 0 1 .027-.01c1.6-.551 3.403.15 4.22 1.626.176.319.323.683.377 1.045.068.446.085.773.012 1.22l-.003.016 3.836-4.561A8.382 8.382 0 0 0 14.67.439l-.009-.003zM9.466 5.868L14.162.285l-.047-.012A8.31 8.31 0 0 0 11.986 0a8.439 8.439 0 0 0-6.169 2.766l-.016.018 3.665 3.084z"/></svg><div><b>Demande de devis · Google Maps</b><span>Bureaux de 400 m² · Genève</span></div></div>
+<div class="ui__note"><svg class="src-ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="#111" d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg><div><b>Message · ChatGPT</b><span>« Recommandé par ChatGPT » · Nyon</span></div></div>
+<svg class="ui__spark" viewBox="0 0 200 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 36 C25 34 40 30 60 27 S100 20 120 16 S170 8 200 3" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+</div>
+<img class="pull__lines" data-pull-lines src="/assets/scene/geneve-lines.svg" alt="" aria-hidden="true">
+<div class="pull__shade" aria-hidden="true"></div>
+</div>
+</div>
+</div>
+<div class="container pull__hero" data-pull-hero>
 <span class="hero__badge"><svg class="flag-ch" viewBox="0 0 32 32" width="16" height="16" aria-hidden="true"><rect width="32" height="32" rx="4" fill="#da291c"/><path d="M16 6v20M6 16h20" stroke="#fff" stroke-width="6"/></svg>Entreprise suisse · sans intermédiaire</span>
-<h1 class="t-display-xl hero__title reel__title" data-split="lines">Des appels, des devis,<br>des réservations.<br><em>Pour vous seul.</em></h1>
+<h1 class="t-display-xl hero__title pull__title" data-split="lines">Des appels, des devis,<br>des réservations.<br><em>Pour vous seul.</em></h1>
 <p class="t-body-lg hero__lead">Google Ads, recherche ChatGPT, référencement local ou publicité Meta : l’audit gratuit choisit le canal qui vous rapportera le plus, et nous vous amenons des appels et des demandes réguliers. <strong>Tout est exclusif</strong> : rien n’est partagé avec un concurrent.</p>
 <div class="hero__actions">
 <a class="btn btn--primary btn--lg" href="/book" data-magnetic>Demander mon audit gratuit<svg class="ico" viewBox="0 0 16 16" width="14" height="14" fill="none" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a class="btn btn--glass btn--lg" href="tel:+41762632817" data-magnetic>Nous appeler<svg class="ico" viewBox="0 0 16 16" width="14" height="14" fill="none" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
 </div>
 <p class="hero__note"><b>Audit gratuit</b>, puis dès 1’200 CHF par mois. Sans engagement.</p>
 </div>
-<div class="container reel__foot">
-<div class="reel__now" aria-hidden="true"><span class="reel__label" data-reel-label>Coiffure</span><span class="reel__bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
+<div class="container pull__foot" data-pull-foot>
+<div class="reel__now" aria-hidden="true"><span class="reel__label" data-pull-label>Genève</span><span class="reel__bars"><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
 <!-- reviews:score --><a class="rv-score " href="/avis"><span class="rv-stars" role="img" aria-label="5 étoiles sur 5"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.8l2.5 5.3 5.8.7-4.3 4 1.1 5.7L10 14.7l-5.1 2.8 1.1-5.7-4.3-4 5.8-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.8l2.5 5.3 5.8.7-4.3 4 1.1 5.7L10 14.7l-5.1 2.8 1.1-5.7-4.3-4 5.8-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.8l2.5 5.3 5.8.7-4.3 4 1.1 5.7L10 14.7l-5.1 2.8 1.1-5.7-4.3-4 5.8-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.8l2.5 5.3 5.8.7-4.3 4 1.1 5.7L10 14.7l-5.1 2.8 1.1-5.7-4.3-4 5.8-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.8l2.5 5.3 5.8.7-4.3 4 1.1 5.7L10 14.7l-5.1 2.8 1.1-5.7-4.3-4 5.8-.7z"/></svg></span><b>5,0</b><span>10 avis Google</span></a><!-- /reviews:score -->
+</div>
+<div class="pull__chapters">
+<article class="pull__ch pull__ch--center" data-ch="c1">
+<h2 class="t-display-md">Pas de raccourci<br>vers de bons clients.</h2>
+<p class="t-body">L’audit, la page, le canal et le suivi : nous travaillons toute la chaîne, et chaque appel est mesuré.</p>
+</article>
+<article class="pull__ch pull__ch--left" data-ch="c2">
+<span class="eyebrow">01 · Audit</span>
+<h3 class="t-display-md">L’audit gratuit</h3>
+<p class="t-body">Votre métier, votre zone, vos concurrents, ce que vous avez déjà payé et ce que cela a donné. Nous vous disons honnêtement ce qu’il est possible d’obtenir.</p>
+<span class="method__meta">Gratuit · sans engagement</span>
+<a class="btn btn--glass" href="/book">Demander mon audit gratuit<svg class="ico" viewBox="0 0 16 16" width="14" height="14" fill="none" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+</article>
+<article class="pull__ch pull__ch--right" data-ch="c3">
+<span class="eyebrow">02 · La page et le canal</span>
+<h3 class="t-display-md">La page et le canal</h3>
+<p class="t-body">L’audit désigne le canal qui vous rapportera le plus : Google Ads, recherche ChatGPT, référencement local ou Meta. Nous construisons la page qui transforme un visiteur en appel, puis nous lançons et réglons.</p>
+<span class="method__meta">Un canal, choisi pour vous</span>
+</article>
+<article class="pull__ch pull__ch--left" data-ch="c4">
+<span class="eyebrow">03 · Appels</span>
+<h3 class="t-display-md">Les appels et les demandes</h3>
+<p class="t-body">Les appels et les demandes arrivent chez vous, et chez vous seul. Chaque mois, un rapport clair et des ajustements. Vous restez libre de partir quand vous voulez.</p>
+<span class="method__meta">Rapport mensuel · sans engagement</span>
+</article>
 </div>
 </div>
 </section>
@@ -337,7 +385,7 @@
 <section class="grow-sec" data-grow>
 <div class="grow__sticky">
 <div class="grow__card" data-grow-card>
-<div class="grow__media"><img src="/assets/reel/menuiserie.webp" alt="" loading="lazy" decoding="async" width="960" height="540"></div>
+<div class="grow__media"><img src="/assets/scene/chantier-soir.webp" alt="" loading="lazy" decoding="async" width="960" height="540"></div>
 <div class="grow__copy">
 <span class="eyebrow">/ Exclusif</span>
 <p class="grow__text" data-grow-text>Chaque appel, chaque devis, chaque réservation arrive chez vous seul. Rien n’est partagé. Rien n’est revendu.</p>
@@ -490,10 +538,10 @@
 <div class="phone__time">08:00</div>
 <div class="phone__date">Mardi 21 octobre</div>
 <div class="phone__notes">
-<div class="ph-note" data-ring-note="0"><span class="ph-note__src"><img class="src-ico" src="/assets/partners/google-ads.svg" alt="" width="24" height="22"></span><div><b>Appel entrant</b><span class="ph-note__via">Google Ads · 08:12</span><p>Rénovation de salle de bain · Morges</p></div></div>
-<div class="ph-note" data-ring-note="1"><span class="ph-note__src"><svg class="src-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 8h8M8 12h8M8 16h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><div><b>Demande de devis</b><span class="ph-note__via">Votre site · 09:47</span><p>Peinture d’un 4½ pièces · Lausanne</p></div></div>
-<div class="ph-note" data-ring-note="2"><span class="ph-note__src"><svg class="src-ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="#E4405F" d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg></span><div><b>Nouvelle réservation</b><span class="ph-note__via">Instagram · 11:05</span><p>Couleur et coupe · samedi 10h00</p></div></div>
-<div class="ph-note" data-ring-note="3"><span class="ph-note__src"><svg class="src-ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="#34A853" d="M19.527 4.799c1.212 2.608.937 5.678-.405 8.173-1.101 2.047-2.744 3.74-4.098 5.614-.619.858-1.244 1.75-1.669 2.727-.141.325-.263.658-.383.992-.121.333-.224.673-.34 1.008-.109.314-.236.684-.627.687h-.007c-.466-.001-.579-.53-.695-.887-.284-.874-.581-1.713-1.019-2.525-.51-.944-1.145-1.817-1.79-2.671L19.527 4.799zM8.545 7.705l-3.959 4.707c.724 1.54 1.821 2.863 2.871 4.18.247.31.494.622.737.936l4.984-5.925-.029.01c-1.741.601-3.691-.291-4.392-1.987a3.377 3.377 0 0 1-.209-.716c-.063-.437-.077-.761-.004-1.198l.001-.007zM5.492 3.149l-.003.004c-1.947 2.466-2.281 5.88-1.117 8.77l4.785-5.689-.058-.05-3.607-3.035zM14.661.436l-3.838 4.563a.295.295 0 0 1 .027-.01c1.6-.551 3.403.15 4.22 1.626.176.319.323.683.377 1.045.068.446.085.773.012 1.22l-.003.016 3.836-4.561A8.382 8.382 0 0 0 14.67.439l-.009-.003zM9.466 5.868L14.162.285l-.047-.012A8.31 8.31 0 0 0 11.986 0a8.439 8.439 0 0 0-6.169 2.766l-.016.018 3.665 3.084z"/></svg></span><div><b>Appel entrant</b><span class="ph-note__via">Google Maps · 14:30</span><p>Fuite urgente · Renens</p></div></div>
+<div class="ph-note" data-ring-note="0"><span class="ph-note__src"><img class="src-ico" src="/assets/partners/google-ads.svg" alt="" width="24" height="22"></span><div><b>Appel entrant</b><span class="ph-note__via">Google Ads · 08:12</span><p>Rénovation d’un immeuble de 12 logements · Morges</p></div></div>
+<div class="ph-note" data-ring-note="1"><span class="ph-note__src"><svg class="src-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 8h8M8 12h8M8 16h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><div><b>Demande de devis</b><span class="ph-note__via">Votre site · 09:47</span><p>Aménagement de bureaux, 400 m² · Lausanne</p></div></div>
+<div class="ph-note" data-ring-note="2"><span class="ph-note__src"><svg class="src-ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="#E4405F" d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg></span><div><b>Nouveau rendez-vous</b><span class="ph-note__via">Instagram · 11:05</span><p>Consultation · clinique · jeudi 9h00</p></div></div>
+<div class="ph-note" data-ring-note="3"><span class="ph-note__src"><svg class="src-ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="#34A853" d="M19.527 4.799c1.212 2.608.937 5.678-.405 8.173-1.101 2.047-2.744 3.74-4.098 5.614-.619.858-1.244 1.75-1.669 2.727-.141.325-.263.658-.383.992-.121.333-.224.673-.34 1.008-.109.314-.236.684-.627.687h-.007c-.466-.001-.579-.53-.695-.887-.284-.874-.581-1.713-1.019-2.525-.51-.944-1.145-1.817-1.79-2.671L19.527 4.799zM8.545 7.705l-3.959 4.707c.724 1.54 1.821 2.863 2.871 4.18.247.31.494.622.737.936l4.984-5.925-.029.01c-1.741.601-3.691-.291-4.392-1.987a3.377 3.377 0 0 1-.209-.716c-.063-.437-.077-.761-.004-1.198l.001-.007zM5.492 3.149l-.003.004c-1.947 2.466-2.281 5.88-1.117 8.77l4.785-5.689-.058-.05-3.607-3.035zM14.661.436l-3.838 4.563a.295.295 0 0 1 .027-.01c1.6-.551 3.403.15 4.22 1.626.176.319.323.683.377 1.045.068.446.085.773.012 1.22l-.003.016 3.836-4.561A8.382 8.382 0 0 0 14.67.439l-.009-.003zM9.466 5.868L14.162.285l-.047-.012A8.31 8.31 0 0 0 11.986 0a8.439 8.439 0 0 0-6.169 2.766l-.016.018 3.665 3.084z"/></svg></span><div><b>Appel entrant</b><span class="ph-note__via">Google Maps · 14:30</span><p>Projet de villa · Nyon</p></div></div>
 <div class="ph-note" data-ring-note="4"><span class="ph-note__src"><svg class="src-ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg></span><div><b>Nouveau message</b><span class="ph-note__via">ChatGPT · 16:58</span><p>« ChatGPT m’a recommandé votre entreprise »</p></div></div>
 </div>
 </div>
@@ -521,79 +569,7 @@
 </div>
 </section>
 
-<!-- ═══════════ PROCESS (3D layer stack) ═══════════ -->
-<section class="stack-sec" id="process">
-<div class="container">
-<div class="sec-head reveal">
-<span class="eyebrow">/ La méthode</span>
-<h2 class="t-display-lg" data-split="words">Vous faites votre métier.<br>Nous vous amenons les demandes.</h2>
-</div>
-</div>
-<div class="stack" data-stack>
-<div class="stack__sticky">
-<div class="container stack__grid">
-<div class="stack__copy">
-<div class="stack__count" aria-hidden="true"><b data-stack-num>01</b><span>/ 04</span></div>
-<div class="stack__steps">
-<article class="stack__step is-on" data-stack-step="0">
-<span class="eyebrow">01 · Audit</span>
-<h3 class="t-display-md">L’audit gratuit</h3>
-<p class="t-body">Votre métier, votre zone, vos concurrents, ce que vous avez déjà payé et ce que cela a donné. Nous vous disons honnêtement ce qu’il est possible d’obtenir.</p>
-<span class="method__meta">Gratuit · sans engagement</span>
-</article>
-<article class="stack__step" data-stack-step="1">
-<span class="eyebrow">02 · Plan</span>
-<h3 class="t-display-md">Le plan et la page</h3>
-<p class="t-body">L’audit désigne le canal qui vous rapportera le plus, et nous construisons la page qui transforme un visiteur en appel ou en demande. Textes et images compris.</p>
-<span class="method__meta">Page incluse · rédigée par nous</span>
-</article>
-<article class="stack__step" data-stack-step="2">
-<span class="eyebrow">03 · Campagnes</span>
-<h3 class="t-display-md">Les campagnes</h3>
-<p class="t-body">Google Ads, recherche ChatGPT, référencement local ou Meta : nous lançons le canal choisi, nous mesurons et nous réglons. Sur Google Ads et Meta, le budget publicitaire est inclus.</p>
-<span class="method__meta">Un canal, choisi pour vous</span>
-</article>
-<article class="stack__step" data-stack-step="3">
-<span class="eyebrow">04 · Demandes</span>
-<h3 class="t-display-md">Les appels et les demandes</h3>
-<p class="t-body">Les appels et les demandes arrivent chez vous, et chez vous seul. Chaque mois, un rapport clair et des ajustements. Vous restez libre de partir quand vous voulez.</p>
-<span class="method__meta">Rapport mensuel · sans engagement</span>
-</article>
-</div>
-<div class="stack__progress" aria-hidden="true"><i data-stack-bar></i></div>
-</div>
-<div class="stack__stage" aria-hidden="true">
-<div class="stack__world" data-stack-world>
-<div class="stack__layer" data-stack-layer="0"><div class="ly">
-<div class="ly__head"><b>Audit · votre marché</b><span>Morges</span></div>
-<div class="ly__row"><span>Recherches « plombier Morges »</span><i style="--w:82%"></i></div>
-<div class="ly__row"><span>Concurrents visibles</span><i style="--w:46%"></i></div>
-<div class="ly__row"><span>Votre fiche Google</span><i style="--w:28%"></i></div>
-<div class="ly__pill">Canal conseillé : Google Ads</div>
-</div></div>
-<div class="stack__layer" data-stack-layer="1"><div class="ly ly--page">
-<div class="ly__bar"><i></i><i></i><i></i><span>votre-entreprise.ch</span></div>
-<div class="ly__hero"><b>Plombier à Morges</b><span>Intervention rapide · 7j/7</span></div>
-<div class="ly__blocks"><i></i><i></i><i></i></div>
-<div class="ly__cta">Demander un devis</div>
-</div></div>
-<div class="stack__layer" data-stack-layer="2"><div class="ly ly--chan">
-<div class="ly__head"><b>Le canal choisi</b><span>1 sur 4</span></div>
-<div class="ly__chips"><span class="is-pick"><img class="src-ico" src="/assets/partners/google-ads.svg" alt="" width="24" height="22">Google Ads</span><span><svg class="src-ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg>ChatGPT</span><span><svg class="src-ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="#34A853" d="M19.527 4.799c1.212 2.608.937 5.678-.405 8.173-1.101 2.047-2.744 3.74-4.098 5.614-.619.858-1.244 1.75-1.669 2.727-.141.325-.263.658-.383.992-.121.333-.224.673-.34 1.008-.109.314-.236.684-.627.687h-.007c-.466-.001-.579-.53-.695-.887-.284-.874-.581-1.713-1.019-2.525-.51-.944-1.145-1.817-1.79-2.671L19.527 4.799zM8.545 7.705l-3.959 4.707c.724 1.54 1.821 2.863 2.871 4.18.247.31.494.622.737.936l4.984-5.925-.029.01c-1.741.601-3.691-.291-4.392-1.987a3.377 3.377 0 0 1-.209-.716c-.063-.437-.077-.761-.004-1.198l.001-.007zM5.492 3.149l-.003.004c-1.947 2.466-2.281 5.88-1.117 8.77l4.785-5.689-.058-.05-3.607-3.035zM14.661.436l-3.838 4.563a.295.295 0 0 1 .027-.01c1.6-.551 3.403.15 4.22 1.626.176.319.323.683.377 1.045.068.446.085.773.012 1.22l-.003.016 3.836-4.561A8.382 8.382 0 0 0 14.67.439l-.009-.003zM9.466 5.868L14.162.285l-.047-.012A8.31 8.31 0 0 0 11.986 0a8.439 8.439 0 0 0-6.169 2.766l-.016.018 3.665 3.084z"/></svg>Maps</span><span><svg class="src-ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="#0866FF" d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>Meta</span></div>
-<div class="ly__spark"><svg viewBox="0 0 200 50" preserveAspectRatio="none" aria-hidden="true"><path d="M0 44 C30 40 45 36 70 30 S120 22 140 14 S180 8 200 4" fill="none" stroke="currentColor" stroke-width="2.4"/></svg></div>
-</div></div>
-<div class="stack__layer" data-stack-layer="3"><div class="ly ly--calls">
-<div class="ly__head"><b>Vos demandes</b><span>ce mois</span></div>
-<div class="ly__note"><b>Appel entrant</b><span>Fuite urgente · Renens</span></div>
-<div class="ly__note"><b>Demande de devis</b><span>Salle de bain · Morges</span></div>
-<div class="ly__note"><b>Réservation</b><span>Jeudi 14h · Nyon</span></div>
-</div></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
+
 
 
 <!-- ═══════════ COMMITMENTS ═══════════ -->
@@ -674,23 +650,21 @@
 <section class="orbit-sec" data-orbit>
 <div class="orb__stage">
 <div class="orb" aria-hidden="true">
-<span class="orb__tile" data-tile="plomberie" style="--x:8%;--y:14%;--s:1.0;--d:0.15"><img src="/assets/reel/plomberie-sm.webp" alt="" loading="lazy" decoding="async" width="420" height="236"></span>
-<span class="orb__tile" data-tile="coiffure" style="--x:22%;--y:4%;--s:0.7;--d:0.28"><img src="/assets/reel/coiffure-sm.webp" alt="" loading="lazy" decoding="async" width="420" height="236"></span>
-<span class="orb__tile" data-tile="peinture" style="--x:70%;--y:6%;--s:0.85;--d:0.41"><img src="/assets/reel/peinture-sm.webp" alt="" loading="lazy" decoding="async" width="420" height="236"></span>
-<span class="orb__tile" data-tile="electricite" style="--x:86%;--y:18%;--s:1.1;--d:0.54"><img src="/assets/reel/electricite-sm.webp" alt="" loading="lazy" decoding="async" width="420" height="236"></span>
-<span class="orb__tile" data-tile="menuiserie" style="--x:4%;--y:52%;--s:0.8;--d:0.67"><img src="/assets/reel/menuiserie-sm.webp" alt="" loading="lazy" decoding="async" width="420" height="236"></span>
-<span class="orb__tile" data-tile="garage" style="--x:90%;--y:50%;--s:0.75;--d:0.15"><img src="/assets/reel/garage-sm.webp" alt="" loading="lazy" decoding="async" width="420" height="236"></span>
-<span class="orb__tile" data-tile="jardin" style="--x:14%;--y:80%;--s:1.05;--d:0.28"><img src="/assets/reel/jardin-sm.webp" alt="" loading="lazy" decoding="async" width="420" height="236"></span>
-<span class="orb__tile" data-tile="onglerie" style="--x:30%;--y:88%;--s:0.7;--d:0.41"><img src="/assets/reel/onglerie-sm.webp" alt="" loading="lazy" decoding="async" width="420" height="236"></span>
-<span class="orb__tile" data-tile="" style="--x:66%;--y:86%;--s:0.9;--d:0.54"><img src="/assets/work/gsservice-sm.webp" alt="" loading="lazy" decoding="async" width="420" height="236"></span>
-<span class="orb__tile" data-tile="" style="--x:82%;--y:78%;--s:1.0;--d:0.67"><img src="/assets/work/charsbeautyroom-sm.webp" alt="" loading="lazy" decoding="async" width="420" height="236"></span>
-<span class="orb__tile" data-tile="" style="--x:40%;--y:10%;--s:0.6;--d:0.15"><img src="/assets/work/talofa-sm.webp" alt="" loading="lazy" decoding="async" width="420" height="236"></span>
-<span class="orb__tile" data-tile="" style="--x:58%;--y:94%;--s:0.6;--d:0.28"><img src="/assets/reel/electricite-sm.webp" alt="" loading="lazy" decoding="async" width="420" height="236"></span>
+<span class="orb__tile" data-tile="chantier" style="--x:8%;--y:14%;--s:1.0;--d:0.15"><img src="/assets/scene/chantier-sm.webp" alt="" loading="lazy" decoding="async" width="440" height="248"></span>
+<span class="orb__tile" data-tile="residence" style="--x:22%;--y:4%;--s:0.7;--d:0.28"><img src="/assets/scene/residence-sm.webp" alt="" loading="lazy" decoding="async" width="440" height="248"></span>
+<span class="orb__tile" data-tile="clinique" style="--x:70%;--y:6%;--s:0.85;--d:0.41"><img src="/assets/scene/clinique-sm.webp" alt="" loading="lazy" decoding="async" width="440" height="248"></span>
+<span class="orb__tile" data-tile="industrie" style="--x:86%;--y:18%;--s:1.1;--d:0.54"><img src="/assets/scene/industrie-sm.webp" alt="" loading="lazy" decoding="async" width="440" height="248"></span>
+<span class="orb__tile" data-tile="tours" style="--x:4%;--y:52%;--s:0.8;--d:0.67"><img src="/assets/scene/tours-sm.webp" alt="" loading="lazy" decoding="async" width="440" height="248"></span>
+<span class="orb__tile" data-tile="conseil" style="--x:90%;--y:50%;--s:0.75;--d:0.15"><img src="/assets/scene/conseil-sm.webp" alt="" loading="lazy" decoding="async" width="440" height="248"></span>
+<span class="orb__tile" data-tile="chantier-soir" style="--x:14%;--y:80%;--s:1.05;--d:0.28"><img src="/assets/scene/chantier-soir-sm.webp" alt="" loading="lazy" decoding="async" width="440" height="248"></span>
+<span class="orb__tile" data-tile="" style="--x:30%;--y:88%;--s:0.7;--d:0.41"><img src="/assets/scene/geneve-sm.webp" alt="" loading="lazy" decoding="async" width="440" height="248"></span>
+<span class="orb__tile" data-tile="" style="--x:66%;--y:86%;--s:0.9;--d:0.54"><img src="/assets/scene/port-sm.webp" alt="" loading="lazy" decoding="async" width="440" height="248"></span>
+<span class="orb__tile" data-tile="" style="--x:82%;--y:78%;--s:1.0;--d:0.67"><img src="/assets/scene/verre-sm.webp" alt="" loading="lazy" decoding="async" width="440" height="248"></span>
 </div>
 <div class="container orb__center">
 <span class="eyebrow">/ Pour votre métier</span>
-<h2 class="t-display-lg orb__title"><span>Des clients pour</span><br><span class="rot" data-rot><span class="rot__w is-on" data-en="plumbers" data-tile="plomberie">les plombiers</span><span class="rot__w" data-en="hairdressers" data-tile="coiffure">les coiffeuses</span><span class="rot__w" data-en="painters" data-tile="peinture">les peintres</span><span class="rot__w" data-en="electricians" data-tile="electricite">les électriciens</span><span class="rot__w" data-en="carpenters" data-tile="menuiserie">les menuisiers</span><span class="rot__w" data-en="car mechanics" data-tile="garage">les garagistes</span><span class="rot__w" data-en="landscapers" data-tile="jardin">les paysagistes</span><span class="rot__w" data-en="beauty studios" data-tile="onglerie">les instituts</span></span></h2>
-<p class="t-body orb__sub">Artisans, instituts, services à domicile : toutes les entreprises qui vivent de la demande locale.</p>
+<h2 class="t-display-lg orb__title"><span>Des clients pour</span><br><span class="rot" data-rot><span class="rot__w is-on" data-en="construction companies" data-tile="chantier">les entreprises de construction</span><span class="rot__w" data-en="property managers" data-tile="residence">les régies immobilières</span><span class="rot__w" data-en="clinics" data-tile="clinique">les cliniques</span><span class="rot__w" data-en="manufacturers" data-tile="industrie">les industriels</span><span class="rot__w" data-en="architecture firms" data-tile="tours">les bureaux d’architectes</span><span class="rot__w" data-en="accounting firms" data-tile="conseil">les fiduciaires</span><span class="rot__w" data-en="property developers" data-tile="chantier-soir">les promoteurs</span></span></h2>
+<p class="t-body orb__sub">Construction, immobilier, santé, industrie, services : des entreprises établies qui veulent un flux régulier de demandes qualifiées.</p>
 <a class="btn btn--primary btn--lg" href="/book" data-magnetic>Demander mon audit gratuit<svg class="ico" viewBox="0 0 16 16" width="14" height="14" fill="none" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
 </div>
 </div>

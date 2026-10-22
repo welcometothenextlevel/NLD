@@ -429,3 +429,11 @@ Business Profile and Search Console operations are outside this website update.
 - F · Channel cards fill dark green on hover (and when centred on touch screens).
 - js/scenes.js (home only). Ticker row 2 got brand logos (Simple Icons, CC0; Google Ads official SVG).
 - Puppeteer desktop + iPhone 13 + dark mode: videos play and advance, no overflow, no console errors; EN check clean. check-site PASS. Assets v=20261019e.
+
+## 2026-10-22 — scale.com hero → pull-apart stack, premium footage
+
+- Owner: hero videos showed small trades they no longer target, and the text was hard to read; wanted the scroll from the hero to match scale.com exactly.
+- Analysed the owner's recording frame by frame (0.125 s steps) and the live site: scale.com renders the stack in WebGL (`<canvas>`), with HTML text in `.PullApartContent` layers (perspective 800px) on top. Rebuilt in CSS 3D (`[data-pull]`, js/scenes.js `pull()`): the hero card shrinks and tilts into a stack as the page turns black; 3 glass plates fan out (contour line art traced from each clip with potracer, flow paths, canton coordinates/postcodes); then 4 chapters, centre → right → left → right, with the matching text and media (reel → audit screen → construction at dusk → monthly report).
+- New footage: 10 Pexels clips (Geneva aerial, glass towers, construction, harbour at dusk, luxury residence, robotised factory, boardroom, clinic, glass facade, construction at dusk), 1280×720, 5 s, no audio, ffmpeg via imageio-ffmpeg, ≈4.7 MB total, lazy-loaded. Old small-trade reel removed (assets/reel).
+- Hero copy now centred on a darker radial overlay with text shadow. Old method layer stack folded into the chapters (anchor #process kept). Orbit words/tiles, phone notifications and the green card switched to bigger-company examples.
+- Puppeteer desktop + iPhone 13: no overflow, no console errors; EN check clean; check-site PASS. Assets v=20261022a.
