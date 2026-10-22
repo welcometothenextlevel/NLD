@@ -31,9 +31,14 @@ BUSINESS = {
     "url": SITE + "/",
     "logo": SITE + "/assets/logo-mark-512.png",
     "image": SITE + "/assets/social-preview.png",
-    "description": ("Entreprise suisse qui amène aux PME de Suisse romande des demandes de devis et "
-                    "des réservations exclusives, via Google Ads, la recherche ChatGPT, le référencement "
-                    "local et la publicité Meta. Audit gratuit, sans engagement."),
+    "description": ("Agence marketing de performance en Suisse romande. Next Digital Level garantit "
+                    "chaque mois un volume fixe d’appels, de demandes de devis ou de réservations aux "
+                    "entreprises éligibles, via Google Ads, la recherche ChatGPT, le référencement local "
+                    "et la publicité Meta. Audit gratuit, sans engagement."),
+    "slogan": "Des appels, des devis, des réservations. Pour vous seul.",
+    "knowsAbout": ["Marketing de performance", "Génération de leads", "Google Ads", "Publicité Meta",
+                   "Référencement local", "SEO", "Recherche ChatGPT", "Création de site internet",
+                   "Acquisition de clients"],
     "founder": {"@type": "Person", "name": "Amin Hamdi", "jobTitle": "Fondateur", "nationality": {"@type": "Country", "name": "Switzerland"}},
     "telephone": "+41 76 263 28 17",
     "email": "contact@nextdigitalevel.com",
@@ -87,6 +92,14 @@ PLACES = {
     'creation-site-internet-monthey': ('Monthey', city('Monthey', 'Valais')),
     'creation-site-internet-la-chaux-de-fonds': ('La Chaux-de-Fonds', [city('La Chaux-de-Fonds', 'Neuchâtel'), city('Le Locle', 'Neuchâtel')]),
     'creation-site-internet-suisse-romande': ('Suisse romande', [canton(c) for c in CANTONS]),
+    # Performance-marketing landing pages (scripts/build-agency.py)
+    'agence-marketing-suisse-romande': ('Suisse romande', [canton(c) for c in CANTONS], 'Marketing de performance'),
+    'agence-marketing-geneve': ('Genève', canton('Genève'), 'Marketing de performance'),
+    'agence-marketing-lausanne': ('Lausanne et le canton de Vaud', [city('Lausanne', 'Vaud'), canton('Vaud')], 'Marketing de performance'),
+    'agence-marketing-fribourg': ('Fribourg', canton('Fribourg'), 'Marketing de performance'),
+    'agence-marketing-neuchatel': ('Neuchâtel', canton('Neuchâtel'), 'Marketing de performance'),
+    'agence-marketing-valais': ('Valais', canton('Valais'), 'Marketing de performance'),
+    'agence-marketing-jura': ('Jura', canton('Jura'), 'Marketing de performance'),
 }
 
 # Breadcrumb names for pages that had none: the same labels the footer uses.
@@ -168,10 +181,11 @@ def process(path, check=False):
 
     new = [render(BUSINESS)]
     if slug in PLACES:
-        label, area = PLACES[slug]
+        label, area = PLACES[slug][:2]
+        stype = PLACES[slug][2] if len(PLACES[slug]) > 2 else "Création de site internet"
         new.append(render({"@context": "https://schema.org", "@type": "Service",
-                           "serviceType": "Création de site internet",
-                           "name": "Création de site internet — " + label,
+                           "serviceType": stype,
+                           "name": stype + " — " + label,
                            "provider": {"@id": BUSINESS_ID},
                            "areaServed": area,
                            "url": "%s/%s" % (SITE, slug)}))

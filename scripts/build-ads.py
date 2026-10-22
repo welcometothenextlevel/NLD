@@ -67,7 +67,7 @@ ADS = [
               ('Faut-il déjà avoir un site ?',
                'Non. Si votre site ne convertit pas, nous construisons une page ou un site fait pour transformer les visiteurs en demandes, et c’est inclus dans le prix.'),
               ('En combien de temps voit-on des résultats ?',
-               'Les premières demandes arrivent souvent dans les premiers jours, mais il faut compter quelques semaines pour que la campagne se stabilise. Personne ne peut garantir un volume précis, et nous ne le ferons pas.')]),
+               'Les premières demandes arrivent souvent dans les premiers jours, mais il faut compter quelques semaines pour que la campagne se stabilise. Le volume mensuel, lui, est garanti aux entreprises éligibles et fixé avec vous après l’audit gratuit.')]),
 
     dict(slug='recherche-ia', nav='Recherche ChatGPT', other=None,
          icon=True, badge='Recherche ChatGPT et IA',

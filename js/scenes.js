@@ -39,11 +39,11 @@
     const saveData = navigator.connection && navigator.connection.saveData;
     const usePosters = reduced || saveData;
     const mobile = () => window.innerWidth <= 900;
-    const KD = [[0.12, 0, -0.05, 0.46, 10, 16, 56], [0.30, 0, -0.06, 0.46, 9, 10, 62], [0.37, 0.19, 0, 0.40, 9, 34, 84], [0.55, 0.19, 0, 0.40, 8, 28, 90],
+    const KD = [[0.15, 0, -0.05, 0.46, 10, 16, 56], [0.30, 0, -0.06, 0.46, 9, 10, 62], [0.37, 0.19, 0, 0.40, 9, 34, 84], [0.55, 0.19, 0, 0.40, 8, 28, 90],
                 [0.62, -0.19, 0, 0.40, 9, -34, 84], [0.79, -0.19, 0, 0.40, 8, -28, 90], [0.86, 0.19, 0, 0.40, 9, 34, 84], [1, 0.19, 0, 0.40, 8, 28, 90]];
-    const KM = [[0.12, 0, -0.2, 0.8, 10, 14, 34], [0.30, 0, -0.21, 0.8, 9, 9, 38], [0.37, 0.02, -0.21, 0.76, 9, 22, 46], [0.55, 0.02, -0.21, 0.76, 8, 18, 50],
+    const KM = [[0.15, 0, -0.2, 0.8, 10, 14, 34], [0.30, 0, -0.21, 0.8, 9, 9, 38], [0.37, 0.02, -0.21, 0.76, 9, 22, 46], [0.55, 0.02, -0.21, 0.76, 8, 18, 50],
                 [0.62, -0.02, -0.21, 0.76, 9, -22, 46], [0.79, -0.02, -0.21, 0.76, 8, -18, 50], [0.86, 0.02, -0.21, 0.76, 9, 22, 46], [1, 0.02, -0.21, 0.76, 8, 18, 50]];
-    const CH = [['c1', 0.13, 0.33], ['c2', 0.37, 0.57], ['c3', 0.61, 0.81], ['c4', 0.85, 1.01]];
+    const CH = [['c1', 0.16, 0.33], ['c2', 0.37, 0.57], ['c3', 0.61, 0.79], ['c4', 0.84, 0.92]];
     const ease = t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
     const sm = (a, b, v) => { const t = clamp((v - a) / (b - a)); return t * t * (3 - 2 * t); };
     const lerp = (a, b, t) => a + (b - a) * t;
@@ -102,19 +102,20 @@
       rig.style.left = (cx - w / 2).toFixed(1) + 'px'; rig.style.top = (cy - h / 2).toFixed(1) + 'px';
       rig.style.width = w.toFixed(1) + 'px'; rig.style.height = h.toFixed(1) + 'px';
       rig.style.transform = `rotateX(${(rx * s0).toFixed(2)}deg) rotateY(${(ry * s0).toFixed(2)}deg)`;
-      card.style.setProperty('--r', lerp(26, 12, s0).toFixed(1) + 'px');
+      card.style.setProperty('--r', lerp(M ? 22 : 26, 12, s0).toFixed(1) + 'px');
       rig.style.setProperty('--gap', (gap * s0).toFixed(1) + 'px');
       // plates fan out away from the side the stack turns towards, a little larger each step back
       rig.style.setProperty('--px', ((ry >= 0 ? -1 : 1) * (M ? 10 : 20) * s0).toFixed(1) + 'px');
       rig.style.setProperty('--py', (-8 * s0).toFixed(1) + 'px');
       rig.style.setProperty('--ps', (0.035 * s0).toFixed(4));
-      rig.style.setProperty('--po', sm(0.04, 0.12, p).toFixed(3));
-      card.style.setProperty('--lo', (0.5 * sm(0.05, 0.14, p)).toFixed(3));
-      card.style.setProperty('--hs', (1 - 0.8 * sm(0.02, 0.12, p)).toFixed(3));
-      const out = sm(0.965, 1, p);                   // hand back to the light page
-      stage.style.setProperty('--d', (sm(0.0, 0.1, p) * (1 - out)).toFixed(3));
-      rig.style.opacity = (1 - out).toFixed(3);
-      const ho = 1 - sm(0.005, 0.06, p);
+      rig.style.setProperty('--po', sm(0.05, 0.15, p).toFixed(3));
+      card.style.setProperty('--lo', (0.5 * sm(0.06, 0.16, p)).toFixed(3));
+      card.style.setProperty('--hs', (1 - 0.8 * sm(0.02, 0.14, p)).toFixed(3));
+      // hand back to the light page slowly, after the last chapter has gone
+      const out = sm(0.925, 1, p);
+      stage.style.setProperty('--d', (sm(0.0, 0.15, p) * (1 - out)).toFixed(3));
+      rig.style.opacity = (1 - sm(0.92, 0.985, p)).toFixed(3);
+      const ho = 1 - sm(0.005, 0.075, p);
       root.style.setProperty('--ho', ho.toFixed(3)); hero.style.setProperty('--ho', ho.toFixed(3)); foot.style.setProperty('--ho', ho.toFixed(3));
       hero.style.setProperty('--hy', (-60 * (1 - ho)).toFixed(1) + 'px');
       if (ho < 0.2) root.setAttribute('data-past-hero', ''); else root.removeAttribute('data-past-hero');
@@ -162,20 +163,55 @@
     // The display font loads late; measure again once it has, or the italic word is clipped.
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(size);
     window.addEventListener('load', size);
-    if (!reduced) {
-      let t = 0, vis = false;
-      const run = () => { clearInterval(t); if (vis && !document.hidden) t = setInterval(next, 2300); };
-      if ('IntersectionObserver' in window) new IntersectionObserver(en => { vis = en[0].isIntersecting; run(); }).observe(root); else { vis = true; run(); }
-      document.addEventListener('visibilitychange', run);
-      scenes.push(() => {
-        const r = root.getBoundingClientRect();
-        if (r.bottom < 0 || r.top > window.innerHeight) return;
-        const c = (r.top + r.height / 2 - window.innerHeight / 2) / window.innerHeight; // -1..1 around centre
-        tiles.forEach(t => {
-          const s = parseFloat(getComputedStyle(t).getPropertyValue('--s')) || 1;
-          t.style.setProperty('--py', (c * -90 * s).toFixed(1) + 'px');
-        });
+    // Ring of tiles around the headline, like scale.com: a tilted ellipse that
+    // turns slowly clockwise; tiles grow on the near side (left, slightly below)
+    // and shrink on the far side. Clicking a tile stops the ring and zooms it.
+    const ring = $('[data-orb]', root);
+    const N = tiles.length, NEAR = Math.PI * 1.06;
+    let base = 0, last = 0, vis = false, zoomed = null, rafId = 0;
+    function place() {
+      const r = ring.getBoundingClientRect(), W = r.width, H = r.height, M = window.innerWidth <= 720;
+      const cx = W / 2, cy = H * (M ? 0.5 : 0.47);
+      const rx = Math.min(W * (M ? 0.5 : 0.36), 560), ry = Math.min(H * (M ? 0.44 : 0.33), 300);
+      const S = M ? 72 : 140, smin = M ? 0.42 : 0.27;
+      tiles.forEach((t, k) => {
+        const a = base + k * Math.PI * 2 / N;
+        const f = (1 + Math.cos(a - NEAR)) / 2;                // 1 = nearest
+        let sc = smin + (1 - smin) * f;
+        const isZ = t === zoomed; if (isZ) sc = Math.max(sc, 0.9) * 1.35;
+        t.style.setProperty('--z', sc.toFixed(3));
+        t.style.transform = `translate3d(${(cx + rx * Math.cos(a) - S / 2).toFixed(1)}px, ${(cy + ry * Math.sin(a) - S / 2).toFixed(1)}px, 0) scale(${sc.toFixed(3)})`;
+        t.style.zIndex = isZ ? 60 : Math.round(f * 40);
+        t.style.opacity = (0.55 + 0.45 * f).toFixed(2);
       });
+    }
+    function loop(now) {
+      rafId = 0;
+      const dt = last ? Math.min(now - last, 60) : 16; last = now;
+      if (!zoomed && !reduced) base += dt * (Math.PI * 2 / 46000);
+      place();
+      if (vis && !document.hidden) rafId = requestAnimationFrame(loop);
+    }
+    const start = () => { if (!rafId) { last = 0; rafId = requestAnimationFrame(loop); } };
+    tiles.forEach(t => {
+      const cap = $('.orb__cap', t); if (EN && cap && cap.dataset.en) cap.textContent = cap.dataset.en;
+      t.addEventListener('click', e => {
+        e.stopPropagation();
+        if (zoomed) zoomed.classList.remove('is-zoom');
+        zoomed = zoomed === t ? null : t;
+        if (zoomed) zoomed.classList.add('is-zoom');
+        place();
+      });
+    });
+    document.addEventListener('click', () => { if (zoomed) { zoomed.classList.remove('is-zoom'); zoomed = null; } });
+    place();
+    if ('IntersectionObserver' in window) new IntersectionObserver(en => { vis = en[0].isIntersecting; if (vis) start(); }).observe(root); else { vis = true; start(); }
+    window.addEventListener('resize', place);
+    if (!reduced) {
+      let wt = 0;
+      const run = () => { clearInterval(wt); if (vis && !document.hidden) wt = setInterval(next, 2300); };
+      if ('IntersectionObserver' in window) new IntersectionObserver(en => { vis = en[0].isIntersecting; run(); if (vis) start(); }).observe(root); else run();
+      document.addEventListener('visibilitychange', () => { run(); if (!document.hidden) start(); });
     }
   })();
 

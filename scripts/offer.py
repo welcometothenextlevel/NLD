@@ -18,6 +18,7 @@ NE = '<svg class="ico" viewBox="0 0 16 16" width="14" height="14" fill="none" ar
 TICK = '<svg viewBox="0 0 16 16" width="14" height="14" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 
 INCLUDED = [
+    ('Volume mensuel garanti', 'Guaranteed monthly volume'),
     ('Audit gratuit : le meilleur canal pour vous', 'Free audit: the best channel for you'),
     ('Google Ads, ChatGPT, SEO local ou Meta', 'Google Ads, ChatGPT, local SEO or Meta'),
     ('Budget publicitaire inclus (Google Ads, Meta)', 'Ad budget included (Google Ads, Meta)'),
@@ -52,7 +53,7 @@ def full():
 <a class="btn btn--gold btn--lg" href="/book">Demander mon audit gratuit{NE}</a>
 </div>
 </div>
-<p class="offer__fine">Le prix dépend du canal, de votre métier et de votre zone : l’audit gratuit le fixe avant tout engagement. Nous ne promettons pas un nombre d’appels ou de demandes avant d’avoir étudié votre marché.</p>
+<p class="offer__fine">Le prix et le volume mensuel garanti dépendent du canal, de votre métier et de votre zone : l’audit gratuit les fixe avant tout engagement, pour les entreprises éligibles.</p>
 </div>
 </section>'''
 
@@ -81,8 +82,8 @@ def english():
         'Un canal · par mois': 'One channel · per month',
         'Le canal choisi à l’audit, géré pour vous. Résiliable chaque mois.': 'The channel chosen in the audit, run for you. Cancel any month.',
         '<b>Appels et demandes exclusifs</b> <i aria-hidden="true">·</i> <b>0 engagement</b>': '<b>Exclusive calls and enquiries</b> <i aria-hidden="true">·</i> <b>No commitment</b>',
-        'Le prix dépend du canal, de votre métier et de votre zone : l’audit gratuit le fixe avant tout engagement. Nous ne promettons pas un nombre d’appels ou de demandes avant d’avoir étudié votre marché.':
-            'The price depends on the channel, your trade and your area: the free audit sets it before you commit. We don’t promise a number of calls or enquiries before we have studied your market.',
+        'Le prix et le volume mensuel garanti dépendent du canal, de votre métier et de votre zone : l’audit gratuit les fixe avant tout engagement, pour les entreprises éligibles.':
+            'The price and the guaranteed monthly volume depend on the channel, your trade and your area: the free audit sets them before you commit, for eligible businesses.',
         f'<b>Audit gratuit</b>, puis dès {PRICE} CHF par mois. Chaque canal est un service à part. Sans engagement.':
             f'<b>Free audit</b>, then from {PRICE} CHF a month. Each channel is a separate service. No commitment.',
         'dès': 'from', 'CHF / mois': 'CHF / month',

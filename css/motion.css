@@ -2196,3 +2196,40 @@ a.project-shot:focus-visible { outline: 2px solid var(--accent); outline-offset:
   .ui__head b { font-size: 0.95rem; }
   .ui__note { padding: 6px 8px; }
 }
+
+/* ---------- 47. Orbit ring (scale.com-style): square tiles on a tilted ellipse,
+   bigger on the near side, rotating slowly; click a tile to stop and zoom. */
+.orb__stage { min-height: clamp(620px, 92vh, 900px); }
+.orb { --S: 140px; }
+.orb__tile { left: 0; top: 0; width: var(--S); height: var(--S); aspect-ratio: auto; border-radius: 10px; overflow: visible; animation: none; filter: none; box-shadow: 0 14px 34px -18px rgba(20, 30, 25, 0.55); transform: translate3d(-200px, -200px, 0); transition: box-shadow 0.4s var(--ease-ui); will-change: transform; pointer-events: auto; cursor: pointer; }
+.orb__tile img { border-radius: 10px; }
+.orb__tile.is-hot { box-shadow: 0 0 0 2px var(--gold), 0 18px 40px -18px rgba(20, 30, 25, 0.6); }
+.orb__tile.is-zoom { box-shadow: 0 30px 60px -20px rgba(20, 30, 25, 0.6); }
+.orb__cap { position: absolute; left: 50%; top: calc(100% + 10px); transform: translateX(-50%) scale(0.9); opacity: 0; white-space: nowrap; padding: 5px 10px; border-radius: 999px; background: var(--ink); color: var(--canvas); font-size: 0.72rem; font-weight: 600; transition: opacity 0.3s var(--ease-ui), transform 0.35s var(--ease-reveal); pointer-events: none; }
+.orb__tile.is-zoom .orb__cap { opacity: 1; transform: translateX(-50%) scale(calc(1 / var(--z, 1))); }
+.orb { pointer-events: none; }
+@media (max-width: 720px) { .orb { --S: 92px; } .orb__stage { min-height: 560px; } .orb__tile:nth-child(n) { display: block; } }
+
+/* pull-apart: rounded corners that iOS Safari respects on video, and a calmer phone hero */
+.pull__card { clip-path: inset(0 round var(--r)); -webkit-clip-path: inset(0 round var(--r)); }
+@media (max-width: 900px) {
+  .pull__card { --r: 22px; }
+  .pull__hero { inset: 84px 18px 40px; gap: 14px; justify-content: center; }
+  .pull__title { font-size: clamp(2rem, 9vw, 2.6rem); line-height: 1.05; }
+  .pull__hero .hero__lead { font-size: 0.9rem; line-height: 1.5; max-width: 34ch; }
+  .pull__hero .hero__note, .pull__foot { display: none; }
+  .pull__hero .hero__badge { font-size: 0.68rem; }
+  .pull__hero .hero__actions .btn { padding: 14px 18px; font-size: 0.92rem; }
+}
+@media (max-width: 380px) { .pull__hero .hero__lead { display: none; } }
+
+@media (max-width: 720px) {
+  .orb { --S: 72px; }
+  .orb__stage { min-height: 640px; }
+  .orb__center { z-index: 80; }
+  .orb__title { font-size: clamp(1.75rem, 7.6vw, 2.3rem); }
+  .orb__sub { max-width: 30ch; font-size: 0.9rem; }
+}
+.pull__kicker { margin: 0; font-family: var(--font-mono); font-size: 0.74rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255, 255, 255, 0.85); text-shadow: 0 1px 12px rgba(0, 0, 0, 0.5); }
+@media (max-width: 900px) { .pull__kicker { font-size: 0.62rem; letter-spacing: 0.12em; max-width: 30ch; } }
+.agency-hero .hero__title { max-width: 20ch; }
