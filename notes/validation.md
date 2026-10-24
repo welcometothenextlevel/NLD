@@ -445,3 +445,9 @@ Business Profile and Search Console operations are outside this website update.
 - Guarantee (owner: "just say garanti"): worded as a monthly volume fixed after the free audit, for eligible businesses — hero note, offer card, fine print, FAQ, commitments, Meta/advertising pages, chat, worker prompt.
 - SEO: home title/description/H1 now target "agence marketing de performance en Suisse romande" (tagline kept as a styled paragraph); 7 new pages from scripts/build-agency.py (hub + Genève, Lausanne/Vaud, Fribourg, Neuchâtel, Valais, Jura) with unique local copy, FAQ, Service (Marketing de performance) + BreadcrumbList; nav region column, drawer, footer and home regions now point to them; business JSON-LD gains slogan/knowsAbout and the guarantee; llms.txt added; sitemap 43 URLs.
 - Puppeteer desktop + iPhone 13: no overflow, no console errors; EN check clean; check-site PASS (49 pages). Assets v=20261022b.
+
+## 2026-10-24 — Phone hero pushed to the right
+
+- Owner screenshot (iPhone): hero text and buttons were offset right and cut off. Cause: `.pull__hero` also carries `.container` (`width: 100%`), which overrides the left/right insets on an absolutely positioned box, so it sat 18px right and 36px too wide. Fixed with `width: auto`.
+- Phone only: hid the hero's "Nous appeler" button (the sticky bar already has "Appeler", and the chat launcher covered it); title 8.1vw so "Des appels, des devis," stays on one line.
+- Puppeteer 375/390/430/1440: hero, title, badge and button now have equal left/right margins. Assets v=20261024.

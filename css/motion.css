@@ -2222,6 +2222,10 @@ a.project-shot:focus-visible { outline: 2px solid var(--accent); outline-offset:
   .pull__hero .hero__actions .btn { padding: 14px 18px; font-size: 0.92rem; }
 }
 @media (max-width: 380px) { .pull__hero .hero__lead { display: none; } }
+/* .container sets width:100%, which beats left/right insets on an absolute box and pushed the
+   phone hero off to the right; let the insets size it. The sticky bar already has « Appeler ». */
+.pull__hero { width: auto; }
+@media (max-width: 900px) { .pull__hero .hero__actions .btn--glass { display: none; } .pull__title { font-size: clamp(1.85rem, 8.1vw, 2.6rem); max-width: none; } }
 
 @media (max-width: 720px) {
   .orb { --S: 72px; }
