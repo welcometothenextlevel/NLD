@@ -408,7 +408,7 @@
     if (!root) return;
     const imgs = $$('[data-showcase-img]', root), tabs = $$('[data-showcase-tab]', root);
     const host = $('[data-showcase-host]', root), link = $('[data-showcase-link]', root);
-    const CYCLE = 4200; let index = 0, timer = 0, expanded = false, visible = false;
+    const CYCLE = 4200; let index = 0, timer = 0, expanded = false, visible = false, trying = false;
     root.style.setProperty('--cycle', CYCLE + 'ms');
     const track = $('[data-showcase-track]', root), screen = $('[data-showcase-screen]', root);
     function show(i, manual) {
@@ -418,19 +418,40 @@
       tabs.forEach((t, k) => { t.setAttribute('aria-selected', String(k === index)); if (k === index) { t.style.animation = 'none'; void t.offsetWidth; t.style.animation = ''; } });
       const t = tabs[index];
       if (t) { if (host) host.textContent = t.dataset.host; if (link) link.href = t.dataset.url; }
-      schedule(manual ? CYCLE * 1.8 : CYCLE);
+      if (index !== 0) live(false);
+      schedule(manual ? CYCLE * 1.8 : +(t && t.dataset.cycle) || CYCLE);
     }
     // Drag / swipe the filmstrip horizontally
     if (track && screen) {
       let x0 = 0, dx = 0, down = false, w = 1;
-      screen.addEventListener('pointerdown', e => { if (!expanded) return; down = true; x0 = e.clientX; dx = 0; w = screen.clientWidth; track.classList.add('is-dragging'); screen.setPointerCapture(e.pointerId); clearTimeout(timer); });
+      screen.addEventListener('pointerdown', e => { if (!expanded || trying || e.target.closest('button')) return; down = true; x0 = e.clientX; dx = 0; w = screen.clientWidth; track.classList.add('is-dragging'); screen.setPointerCapture(e.pointerId); clearTimeout(timer); });
       screen.addEventListener('pointermove', e => { if (!down) return; dx = e.clientX - x0; track.style.transform = `translateX(calc(${index} * -100% + ${dx}px))`; });
       const up = () => { if (!down) return; down = false; track.classList.remove('is-dragging'); track.style.transform = ''; if (Math.abs(dx) > w * 0.12) show(index + (dx < 0 ? 1 : -1), true); else schedule(CYCLE); };
       screen.addEventListener('pointerup', up); screen.addEventListener('pointercancel', up);
       screen.addEventListener('click', e => { if (Math.abs(dx) > 6) e.preventDefault(); });
     }
+    /* Slide 0 is a live site (see section 48 in motion.css): load it when the
+       showcase comes near, scale its desktop layout into the frame, and let
+       « Essayer le site » hand it the pointer while the filmstrip waits. */
+    const site = $('[data-live-site]', root), frame = site && $('iframe', site), tryBtn = $('[data-live-try]', root);
+    function live(on) {
+      if (!site || trying === on) return;
+      trying = on; site.classList.toggle('is-live', on); tryBtn.setAttribute('aria-pressed', String(on));
+      frame.tabIndex = on ? 0 : -1;
+      if (on) { clearTimeout(timer); frame.focus({ preventScroll: true }); } else schedule(CYCLE);
+    }
+    if (site && screen && tryBtn) {
+      const fit = () => { const w = screen.clientWidth, vw = w < 700 ? 1024 : 1440; site.style.setProperty('--vw', vw + 'px'); site.style.setProperty('--vh', Math.round(vw / 1.44) + 'px'); site.style.setProperty('--s', (w / vw).toFixed(4)); };
+      if ('ResizeObserver' in window) new ResizeObserver(fit).observe(screen); else window.addEventListener('resize', fit);
+      fit();
+      const load = () => { if (frame.src) return; frame.addEventListener('load', () => site.classList.add('is-loaded'), { once: true }); frame.src = frame.dataset.src; };
+      if ('IntersectionObserver' in window) { const io = new IntersectionObserver(en => { if (en[0].isIntersecting) { load(); io.disconnect(); } }, { rootMargin: '150% 0px' }); io.observe(root); } else load();
+      tryBtn.addEventListener('click', () => live(!trying));
+      if (fine.matches) screen.addEventListener('pointerleave', () => live(false));
+      document.addEventListener('pointerdown', e => { if (trying && !site.contains(e.target) && !tryBtn.contains(e.target)) live(false); });
+    }
     show(0);
-    function schedule(ms) { clearTimeout(timer); if (expanded && visible && !reduced.matches && !document.hidden) timer = setTimeout(() => show(index + 1), ms); }
+    function schedule(ms) { clearTimeout(timer); if (expanded && visible && !trying && !reduced.matches && !document.hidden) timer = setTimeout(() => show(index + 1), ms); }
     tabs.forEach((t, k) => t.addEventListener('click', () => show(k, true)));
     let raf = 0;
     const update = () => {
@@ -442,7 +463,7 @@
       const e = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
       root.style.setProperty('--p', e.toFixed(4));
       const now = e > 0.92;
-      if (now !== expanded) { expanded = now; root.classList.toggle('is-expanded', expanded); if (expanded) schedule(CYCLE); else clearTimeout(timer); }
+      if (now !== expanded) { expanded = now; root.classList.toggle('is-expanded', expanded); if (expanded) schedule(CYCLE); else { clearTimeout(timer); live(false); } }
     };
     if (reduced.matches) { root.style.setProperty('--p', '1'); root.classList.add('is-expanded'); expanded = true; }
     else { window.addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(update); }, { passive: true }); window.addEventListener('resize', update); update(); }

@@ -513,7 +513,8 @@
     '<span class="pip" aria-hidden="true"></span>Site en ligne': '<span class="pip" aria-hidden="true"></span>Live site',
     '<span class="showcase__hint-l">Faites défiler</span><span class="showcase__hint-r">pour agrandir</span>': '<span class="showcase__hint-l">Scroll</span><span class="showcase__hint-r">to expand</span>',
     'Glisser': 'Drag',
-    '<b>GS Service</b><span>Peinture &amp; rénovation · Vaud</span>': '<b>GS Service</b><span>Painting &amp; renovation · Vaud</span>',
+    '<b>Bluetech Sanitaire</b><span>Sanitaire · Prilly</span>': '<b>Bluetech Sanitaire</b><span>Plumbing · Prilly</span>',
+    'Essayer le site': 'Try the site', 'Fermer': 'Close',
     '<b>Trident Cross Marine</b><span>Entretien de bateaux</span>': '<b>Trident Cross Marine</b><span>Boat detailing</span>',
     '<b>Everest Badminton</b><span>Club sportif</span>': '<b>Everest Badminton</b><span>Sports club</span>',
     '<b>Citiport</b><span>Transport &amp; réservation</span>': '<b>Citiport</b><span>Transport &amp; booking</span>',
@@ -682,6 +683,7 @@
     'Une autre question ? L’assistant en bas de page répond immédiatement, ou écrivez-nous sur WhatsApp.': 'Another question? The assistant at the bottom of the page answers immediately, or message us on WhatsApp.'
   };
   const ATTR = {
+    'Site Bluetech Sanitaire, en direct': 'Bluetech Sanitaire website, live',
     'Ex. entreprise de rénovation à Lausanne': 'E.g. renovation company in Lausanne',
     'Bouche-à-oreille, local.ch, une autre agence… Combien de demandes par mois, et combien vous aimeriez.': 'Word of mouth, local.ch, another agency… How many enquiries a month, and how many you would like.',
     'Entreprise suisse': 'Swiss company',

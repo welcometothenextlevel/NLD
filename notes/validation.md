@@ -455,3 +455,9 @@ Business Profile and Search Console operations are outside this website update.
 ## 2026-10-24 (b) — Review from Ahmet Hoti
 
 - Added Ahmet Hoti's 5-star review (dépannage sanitaire: site + advertising, new clients), copied word for word from the profile; tags marketing + results, so it leads the home, Google Ads and agency-page blocks. RATED 10 → 11 (profile shows 11). Now on 35 pages; check-site PASS.
+
+## 2026-10-24 (c) — Showcase: Bluetech Sanitaire runs live
+
+- Owner asked to replace GS Service in the home showcase with https://welcometothenextlevel.github.io/bluetech-sanitaire/ and to see its 3D animation, i.e. the site running inside ours. Slide 0 is now an iframe (no X-Frame-Options / frame-busting on that site) laid out at 1440×1000 (1024 wide on phones) and scaled into the frame by a ResizeObserver; global `iframe { max-width:100% }` had to be overridden or it rendered the tablet layout. Loaded when the showcase is 1.5 viewports away; poster assets/work/bluetech.webp under it. Bluetech pauses its own render loop off-screen.
+- The iframe ignores the pointer (home page keeps scrolling, filmstrip keeps dragging) until « Essayer le site » in the browser bar; then the cycle holds; it ends on « Fermer », pointer leaving the frame (desktop), a tap outside, or the showcase collapsing. Slide 0 lasts 11 s.
+- Puppeteer (Metal) 1440×900 and iPhone 390: frame fills the screen, 3D renders, try/hold/leave work, no errors, no overflow; EN check 0. Assets v=20261024b.
