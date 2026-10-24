@@ -451,3 +451,7 @@ Business Profile and Search Console operations are outside this website update.
 - Owner screenshot (iPhone): hero text and buttons were offset right and cut off. Cause: `.pull__hero` also carries `.container` (`width: 100%`), which overrides the left/right insets on an absolutely positioned box, so it sat 18px right and 36px too wide. Fixed with `width: auto`.
 - Phone only: hid the hero's "Nous appeler" button (the sticky bar already has "Appeler", and the chat launcher covered it); title 8.1vw so "Des appels, des devis," stays on one line.
 - Puppeteer 375/390/430/1440: hero, title, badge and button now have equal left/right margins. Assets v=20261024.
+
+## 2026-10-24 (b) — Review from Ahmet Hoti
+
+- Added Ahmet Hoti's 5-star review (dépannage sanitaire: site + advertising, new clients), copied word for word from the profile; tags marketing + results, so it leads the home, Google Ads and agency-page blocks. RATED 10 → 11 (profile shows 11). Now on 35 pages; check-site PASS.

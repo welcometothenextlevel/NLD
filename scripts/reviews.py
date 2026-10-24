@@ -20,13 +20,15 @@ ROOT = Path(__file__).resolve().parent.parent
 
 # Update these two when the profile changes. RATED counts every rating,
 # including ones left without a comment (which have no card below).
-RATING, RATED = '5,0', 10
+RATING, RATED = '5,0', 11
 SEE_URL = 'https://search.google.com/local/reviews?placeid=ChIJDxHjKQyWSAkRY9ludK1MBZE'
 WRITE_URL = 'https://search.google.com/local/writereview?placeid=ChIJDxHjKQyWSAkRY9ludK1MBZE'
 
 # Newest first. `tags` decide which page blocks quote the review.
 # `show=False` keeps a review counted in RATED but off the site.
 REVIEWS = [
+    dict(name='Ahmet Hoti', date='octobre 2026', lang='fr', tags={'marketing', 'results'},
+         text=['Très satisfait de son travail ! Il m’a créé mon site internet et fait de la publicité pour mon entreprise de dépannage sanitaire. Grâce à lui, j’ai gagné en visibilité et obtenu de nouveaux clients. Très professionnel, sérieux et efficace, je recommande à 100 % !']),
     # Char's Beauty Room, Melbourne (first card in the portfolio).
     dict(name='Charmayne Grech', date='octobre 2026', lang='en', tags={'design'}, company='Char’s Beauty Room · Melbourne', slug='charmayne-grech',
          text=['Next digital level, has been absoulty amazing, from the start designed a new website 2 weeks turnaround. One of best desinged websites I’ve had. Very proffessional service. Highy recommend thank you']),
