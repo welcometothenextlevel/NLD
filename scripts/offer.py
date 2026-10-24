@@ -5,8 +5,8 @@ Fills `<!-- offer:full -->` (who it is for, platforms vs us, price card) and
 the English strings into js/i18n.js between the /* offer */ markers.
 Run by scripts/reviews.py, so every generator picks it up.
 
-PRICE is the only amount the site may show; scripts/check-site.py refuses
-any other CHF amount.
+No price is published: the free audit sets it. scripts/check-site.py refuses
+any CHF amount.
 """
 from pathlib import Path
 import re
@@ -20,7 +20,7 @@ TICK = '<svg viewBox="0 0 16 16" width="14" height="14" fill="none" aria-hidden=
 INCLUDED = [
     ('Volume mensuel garanti', 'Guaranteed monthly volume'),
     ('Audit gratuit : le meilleur canal pour vous', 'Free audit: the best channel for you'),
-    ('Google Ads, ChatGPT, SEO local ou Meta', 'Google Ads, ChatGPT, local SEO or Meta'),
+    ('Google Ads, SEO local ou Meta', 'Google Ads, local SEO or Meta'),
     ('Budget publicitaire inclus (Google Ads, Meta)', 'Ad budget included (Google Ads, Meta)'),
     ('Site ou page qui convertit, inclus', 'A website or page that converts, included'),
     ('Appels, devis et réservations suivis', 'Calls, quotes and bookings tracked'),
@@ -46,7 +46,7 @@ def full():
 </div>
 <div class="price-card reveal">
 <div class="price-card__top"><span class="eyebrow">Un canal · par mois</span><span class="price-card__tag">Sans engagement</span></div>
-<div class="price"><small>dès</small><b>{PRICE}</b><span>CHF / mois</span></div>
+<div class="price price--text"><b>Sur mesure</b><span>fixé à l’audit gratuit</span></div>
 <p class="price__sub">Le canal choisi à l’audit, géré pour vous. Résiliable chaque mois.</p>
 <ul class="price__list">{items}</ul>
 <p class="price__zero"><b>Appels et demandes exclusifs</b> <i aria-hidden="true">·</i> <b>0 engagement</b></p>
@@ -59,7 +59,7 @@ def full():
 
 
 def note():
-    return (f'<p class="offer-note-line"><b>Audit gratuit</b>, puis dès {PRICE} CHF par mois. '
+    return (f'<p class="offer-note-line"><b>Audit gratuit</b>, puis un prix fixé selon votre métier et votre zone. '
             'Chaque canal est un service à part. Sans engagement.</p>')
 
 
@@ -84,7 +84,7 @@ def english():
         '<b>Appels et demandes exclusifs</b> <i aria-hidden="true">·</i> <b>0 engagement</b>': '<b>Exclusive calls and enquiries</b> <i aria-hidden="true">·</i> <b>No commitment</b>',
         'Le prix et le volume mensuel garanti dépendent du canal, de votre métier et de votre zone : l’audit gratuit les fixe avant tout engagement, pour les entreprises éligibles.':
             'The price and the guaranteed monthly volume depend on the channel, your trade and your area: the free audit sets them before you commit, for eligible businesses.',
-        f'<b>Audit gratuit</b>, puis dès {PRICE} CHF par mois. Chaque canal est un service à part. Sans engagement.':
+        f'<b>Audit gratuit</b>, puis un prix fixé selon votre métier et votre zone. Chaque canal est un service à part. Sans engagement.':
             f'<b>Free audit</b>, then from {PRICE} CHF a month. Each channel is a separate service. No commitment.',
         'dès': 'from', 'CHF / mois': 'CHF / month',
     }

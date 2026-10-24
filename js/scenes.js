@@ -51,7 +51,7 @@
     // reel (hero + first chapter)
     let ri = 0, timer = 0, visible = true, mode = 'reel';
     const name = c => (EN && c.dataset.en) || c.dataset.label;
-    function load(v) { if (!usePosters && v && !v.getAttribute('src') && v.dataset.src) { v.src = v.dataset.src; v.preload = 'auto'; } }
+    function load(v) { if (v && v.dataset.poster && !v.getAttribute('poster')) v.poster = v.dataset.poster; if (!usePosters && v && !v.getAttribute('src') && v.dataset.src) { v.src = v.dataset.src; v.preload = 'auto'; } }
     function setLines(src) { if (src && lines.getAttribute('src') !== src) { lines.src = src; if (plateLines) plateLines.src = src; } }
     function mark() {
       bars.forEach((b, k) => { b.classList.toggle('is-done', k < ri); b.classList.remove('is-on'); });
@@ -74,7 +74,14 @@
       const cur = media.find(x => x.dataset.media === m);
       setLines(cur && cur.dataset.lines ? cur.dataset.lines : (m === 'audit' ? '/assets/scene/verre-lines.svg' : '/assets/scene/tours-lines.svg'));
     }
-    if (usePosters) clips.forEach(c => { c.removeAttribute('src'); c.preload = 'none'; }); else { clips[0].play().catch(() => {}); load(clips[1]); }
+    if (usePosters) clips.forEach(c => { c.removeAttribute('src'); c.preload = 'none'; });
+    else {
+      // The poster paints first; the hero video starts once the page has finished loading.
+      const card = clips[0].closest('.pull__card');
+      clips.forEach(c => c.addEventListener('playing', () => card && card.classList.add('is-playing'), { once: true }));
+      const start = () => { if (clips[ri] === clips[0]) { load(clips[0]); if (visible) clips[0].play().catch(() => {}); } load(clips[(ri + 1) % clips.length]); };
+      if (document.readyState === 'complete') setTimeout(start, 400); else window.addEventListener('load', () => setTimeout(start, 400), { once: true });
+    }
     mark(); schedule();
     if ('IntersectionObserver' in window) new IntersectionObserver(en => {
       visible = en[0].isIntersecting;

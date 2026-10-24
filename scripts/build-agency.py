@@ -22,7 +22,7 @@ GUARANTEE = ('Un volume d’appels, de demandes de devis ou de réservations gar
 PAGES = [
     dict(slug='agence-marketing-geneve', place='Genève', short='Genève', code='GE', site='creation-site-internet-geneve', img='geneve',
          title='Agence marketing à Genève : appels et devis garantis | Next Digital Level',
-         desc='Agence marketing de performance à Genève : Google Ads, SEO local, recherche ChatGPT et Meta. Un volume d’appels et de devis garanti chaque mois. Audit gratuit.',
+         desc='Agence marketing de performance à Genève : Google Ads, SEO local et Meta. Un volume d’appels et de devis garanti chaque mois. Audit gratuit.',
          h1='Agence marketing<br><em>à Genève.</em>',
          lead='Cliniques privées, régies, fiduciaires, entreprises du bâtiment, hôtellerie : à Genève, la concurrence en ligne est forte et chaque clic coûte cher. Nous transformons ce budget en appels et en demandes de devis, et nous garantissons le volume chaque mois.',
          sectors=[('Santé et cliniques privées', 'Consultations, bilans, interventions : des patients qui cherchent un spécialiste à Genève et réservent en ligne, sans plateforme intermédiaire.'),
@@ -111,7 +111,7 @@ HUB = dict(slug='agence-marketing-suisse-romande', place='Suisse romande', short
            towns='Genève, Lausanne, Fribourg, Neuchâtel, Sion, Delémont et toutes les communes de Suisse romande',
            faq=[('Que garantissez-vous exactement ?', 'Un nombre fixe d’appels, de demandes de devis ou de réservations chaque mois. Nous le définissons avec vous après l’audit gratuit, selon votre métier, votre zone et votre capacité, pour les entreprises éligibles.'),
                 ('Qu’est-ce qu’une agence marketing de performance ?', 'Une agence payée pour des résultats mesurables plutôt que pour de la visibilité : des appels, des demandes et des réservations. Chaque franc dépensé est rattaché aux demandes qu’il a produites.'),
-                ('Quels canaux utilisez-vous ?', 'Google Ads, le référencement local et Google Maps, la recherche ChatGPT et la publicité Meta. Chaque canal est un service à part ; l’audit choisit celui qui vous rapportera le plus.')])
+                ('Quels canaux utilisez-vous ?', 'Google Ads, le référencement local et Google Maps, et la publicité Meta. Chaque canal est un service à part ; l’audit choisit celui qui vous rapportera le plus.')])
 ALL = [HUB] + PAGES
 
 
@@ -153,7 +153,7 @@ def page(pg):
 <div class="hero__actions">
 <a class="btn btn--primary btn--lg" href="/book">Demander mon audit gratuit{NE}</a><a class="btn btn--ghost btn--lg" href="tel:+41762632817">Appeler le +41 76 263 28 17{NE}</a>
 </div>
-<p class="hero__note">Entreprise suisse · sans intermédiaire · volume mensuel garanti · dès 1’200 CHF par mois · sans engagement</p>
+<p class="hero__note">Entreprise suisse · sans intermédiaire · volume mensuel garanti · sans engagement</p>
 </div>
 </section>
 <section class="section">
@@ -196,8 +196,7 @@ def page(pg):
 <div class="sector-links reveal">
 <a href="/google-ads" data-cursor="view"><span><small>01</small>Google Ads</span><span aria-hidden="true">{NE}</span></a>
 <a href="/seo-local" data-cursor="view"><span><small>02</small>Référencement local et Google Maps</span><span aria-hidden="true">{NE}</span></a>
-<a href="/recherche-ia" data-cursor="view"><span><small>03</small>Recherche ChatGPT</span><span aria-hidden="true">{NE}</span></a>
-<a href="/publicite-meta" data-cursor="view"><span><small>04</small>Publicité Meta</span><span aria-hidden="true">{NE}</span></a>
+<a href="/publicite-meta" data-cursor="view"><span><small>03</small>Publicité Meta</span><span aria-hidden="true">{NE}</span></a>
 <a href="/{pg['site']}" data-cursor="view"><span><small>Site</small>Votre site à {pg['short']}, inclus</span><span aria-hidden="true">{NE}</span></a>
 </div>
 </div>

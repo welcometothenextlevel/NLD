@@ -33,11 +33,11 @@ BUSINESS = {
     "image": SITE + "/assets/social-preview.png",
     "description": ("Agence marketing de performance en Suisse romande. Next Digital Level garantit "
                     "chaque mois un volume fixe d’appels, de demandes de devis ou de réservations aux "
-                    "entreprises éligibles, via Google Ads, la recherche ChatGPT, le référencement local "
+                    "entreprises éligibles, via Google Ads, le référencement local "
                     "et la publicité Meta. Audit gratuit, sans engagement."),
     "slogan": "Des appels, des devis, des réservations. Pour vous seul.",
     "knowsAbout": ["Marketing de performance", "Génération de leads", "Google Ads", "Publicité Meta",
-                   "Référencement local", "SEO", "Recherche ChatGPT", "Création de site internet",
+                   "Référencement local", "SEO", "Création de site internet",
                    "Acquisition de clients"],
     "founder": {"@type": "Person", "name": "Amin Hamdi", "jobTitle": "Fondateur", "nationality": {"@type": "Country", "name": "Switzerland"}},
     "telephone": "+41 76 263 28 17",

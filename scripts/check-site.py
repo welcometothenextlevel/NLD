@@ -30,9 +30,8 @@ for path in ROOT.rglob('*.html'):
     page = Page(path.relative_to(ROOT)); text = path.read_text(); page.feed(text)
     assert page.lang == 'fr-CH', f'{path}: wrong language'
     assert not re.search(r'\$\s*\d|\b(?:CHF|AUD)\s*\d|61425887683|en_AU|priceCurrency|priceRange', text), f'{path}: stale pricing/contact'
-    # The only amount the site may state is the monthly price (scripts/offer.py).
-    for amount in re.findall(r'(\d[\d’\']*)\s*CHF', text):
-        assert amount in {'1’200'}, f'{path}: unexpected amount {amount} CHF'
+    # No public price: the free audit sets it (the proposal PDF carries the amounts).
+    assert not re.findall(r'(\d[\d’\']*)\s*CHF', text), f'{path}: public CHF amount'
     if path.parent == ROOT:
         assert page.h1 == 1, f'{path}: expected one h1'
         for token in ('rel="canonical"', 'property="og:title"', 'name="description"'):
@@ -52,7 +51,7 @@ for path, page in pages.items():
         assert not (url.path.endswith('.html') and url.scheme == '' and url.netloc == ''), f'{page.path}: internal link keeps .html ({link})'
         if url.fragment and target in pages: assert unquote(url.fragment) in pages[target].ids, f'{page.path}: missing fragment {link}'
 home = (ROOT / 'index.html').read_text()
-for token in ('audit gratuit', '1’200 CHF', 'exclusive', 'Sans engagement', 'Entreprise suisse', 'sans intermédiaire', 'Google Ads', 'ChatGPT'):
+for token in ('audit gratuit', 'exclusive', 'Sans engagement', 'Entreprise suisse', 'sans intermédiaire', 'Google Ads'):
     assert token in home, f'Missing offer: {token}'
 print(f'PASS: {len(pages)} HTML pages; links, fragments, metadata, JSON-LD, contact, offer, absence of prices.')
 

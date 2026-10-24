@@ -14,7 +14,7 @@ NE = '<svg class="ico" viewBox="0 0 16 16" width="14" height="14" fill="none" ar
 
 TAGLINE = 'Le site fait partie du service.<br><em>Il est construit pour convertir.</em>'
 STANCE_SUB = ('Nos campagnes amènent des visiteurs ; c’est la page qui les transforme en appels, en demandes de devis '
-              'et en réservations. C’est pour cela que le site est compris dans notre service, dès 1’200 CHF par mois, sans engagement.')
+              'et en réservations. C’est pour cela que le site est compris dans notre service, sans engagement.')
 
 SERVICES = [
     dict(slug='design-sur-mesure', num='01', nav='Design à votre image',
@@ -69,7 +69,7 @@ SERVICES = [
          faq=[('Garantissez-vous la première page de Google ?', 'Non, et personne ne le peut honnêtement. Nous posons toutes les bases et nous rédigeons des contenus pertinents ; le classement dépend ensuite de votre marché et du temps.'),
               ('Faut-il un blog ?', 'Pas forcément. Pour une PME locale, des pages de services claires et une fiche Google vivante comptent souvent davantage.'),
               ('Que faire de mes avis clients ?', 'Nous vous conseillons pour obtenir des avis réguliers sur votre fiche Google et nous pouvons les mettre en valeur sur le site.'),
-              ('Le SEO est-il facturé en plus ?', 'Non. Le référencement local fait partie du service, avec Google Ads, la recherche ChatGPT et Meta, dès 1’200 CHF par mois.')],
+              ('Le SEO est-il facturé en plus ?', 'Non. Le référencement local fait partie du service, avec Google Ads et Meta.')],
          related=['contenu-redaction', 'suivi-12-mois']),
     dict(slug='site-mobile', num='04', nav='Pensé pour le mobile',
          title='Site web pensé pour le mobile | Next Digital Level',
@@ -120,7 +120,7 @@ SERVICES = [
                 ('Rapport mensuel', 'Ce que le mois a rapporté, ce que nous avons changé, ce que nous prévoyons. Court et lisible.'),
                 ('Libre chaque mois', 'Le service est sans engagement. Vous continuez parce que les demandes arrivent, pas à cause d’un contrat.')],
          included=['Interlocuteur unique, 7 jours sur 7', 'Suivi des formulaires, appels et réservations', 'Rapport mensuel clair', 'Ajustements des campagnes chaque mois', 'Modifications courantes de votre page', 'Sans engagement'],
-         faq=[('Que contient le rapport mensuel ?', 'Le nombre de demandes reçues, leur source (Google, ChatGPT, Meta, référencement), ce qu’elles ont coûté et ce que nous changeons le mois suivant.'),
+         faq=[('Que contient le rapport mensuel ?', 'Le nombre de demandes reçues, leur source (Google, Meta, référencement), ce qu’elles ont coûté et ce que nous changeons le mois suivant.'),
               ('Puis-je arrêter quand je veux ?', 'Oui. Le service est mensuel, sans engagement. Vous nous prévenez et nous arrêtons à la fin du mois.'),
               ('Les modifications de mon site sont-elles comprises ?', 'Oui, les modifications courantes (textes, photos, horaires, offres) sont comprises tant que nous travaillons ensemble.'),
               ('Comment vous joindre ?', 'WhatsApp, téléphone ou e-mail, 7 jours sur 7. Vous avez toujours la même personne en face.')],
@@ -155,7 +155,7 @@ def page(s):
 <div class="hero__actions">
 <a class="btn btn--primary btn--lg" href="/book">Demander mon audit gratuit{NE}</a><a class="btn btn--ghost btn--lg" href="tel:+41762632817">Appeler le +41 76 263 28 17{NE}</a>
 </div>
-<p class="hero__note">Compris dans le service · dès 1’200 CHF par mois · sans engagement</p>
+<p class="hero__note">Compris dans le service · sans engagement</p>
 </div>
 </section>
 <section class="section">
@@ -185,7 +185,7 @@ def page(s):
 <div class="included__copy reveal">
 <span class="eyebrow">/ Compris</span>
 <h2 class="t-display-lg" data-split="words">Inclus d’office.<br><em>Rien à rajouter.</em></h2>
-<p class="t-body-lg">Compris dans notre service de demandes de devis et de réservations, dès 1’200 CHF par mois. Ni optionnel, ni facturé en plus.</p>
+<p class="t-body-lg">Compris dans notre service de demandes de devis et de réservations. Ni optionnel, ni facturé en plus.</p>
 <a class="btn btn--ghost btn--lg" href="/websites">Voir l’offre complète{NE}</a>
 </div>
 <ul class="included__list included__list--simple stagger">{incl}</ul>
