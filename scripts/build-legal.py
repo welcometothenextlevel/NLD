@@ -59,8 +59,7 @@ SECTIONS = [
     ('Partage des données',
      '<p class="t-body">Vos données sont partagées uniquement avec les prestataires nécessaires à '
      'notre activité&nbsp;: Meta Platforms (formulaires Facebook et Instagram), GitHub '
-     '(hébergement du site), Google Fonts (les polices de caractères de ce site sont chargées '
-     'depuis les serveurs de Google, qui reçoit de ce fait votre adresse IP), ainsi que nos outils '
+     '(hébergement du site, polices de caractères comprises), ainsi que nos outils '
      'de communication (téléphone, WhatsApp, e-mail).</p>'
      '<p class="t-body">Dans la section «&nbsp;Réalisations&nbsp;», un aperçu du site d’un client '
      'peut être affiché dans un cadre intégré. Cet aperçu n’est chargé que si vous cliquez '
