@@ -28,7 +28,8 @@ pages = {}
 for path in ROOT.rglob('*.html'):
     if '.git' in path.parts: continue
     page = Page(path.relative_to(ROOT)); text = path.read_text(); page.feed(text)
-    assert page.lang == 'fr-CH', f'{path}: wrong language'
+    # owner/ is an English ownership statement for a visa file, reachable only by its URL.
+    assert page.lang == ('en' if path.parent.name == 'owner' else 'fr-CH'), f'{path}: wrong language'
     assert not re.search(r'\$\s*\d|\b(?:CHF|AUD)\s*\d|61425887683|en_AU|priceCurrency|priceRange', text), f'{path}: stale pricing/contact'
     # No public price: the free audit sets it (the proposal PDF carries the amounts).
     assert not re.findall(r'(\d[\d’\']*)\s*CHF', text), f'{path}: public CHF amount'

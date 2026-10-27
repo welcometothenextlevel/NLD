@@ -461,3 +461,9 @@ Business Profile and Search Console operations are outside this website update.
 - Owner asked to replace GS Service in the home showcase with https://welcometothenextlevel.github.io/bluetech-sanitaire/ and to see its 3D animation, i.e. the site running inside ours. Slide 0 is now an iframe (no X-Frame-Options / frame-busting on that site) laid out at 1440×1000 (1024 wide on phones) and scaled into the frame by a ResizeObserver; global `iframe { max-width:100% }` had to be overridden or it rendered the tablet layout. Loaded when the showcase is 1.5 viewports away; poster assets/work/bluetech.webp under it. Bluetech pauses its own render loop off-screen.
 - The iframe ignores the pointer (home page keeps scrolling, filmstrip keeps dragging) until « Essayer le site » in the browser bar; then the cycle holds; it ends on « Fermer », pointer leaving the frame (desktop), a tap outside, or the showcase collapsing. Slide 0 lasts 11 s.
 - Puppeteer (Metal) 1440×900 and iPhone 390: frame fills the screen, 3D renders, try/hold/leave work, no errors, no overflow; EN check 0. Assets v=20261024b.
+
+## 2026-10-27 — Ownership statement for a visa file
+
+- New /owner/ (owner/index.html): English page confirming Amin Hamdi owns and runs Next Digital Level, with his date of birth and residential address, as he asked for his Australian visa file. Not linked from anywhere (owner's request: no footer link), noindex/nofollow/noarchive, not in the sitemap, no JSON-LD. Lives in a subfolder so offer/reviews/structured-data scripts skip it; check-site allows lang="en" there only.
+- No commercial-register number: the business is a sole proprietorship below the registration threshold (owner, 2026-10-27).
+- Take it down once the visa is decided (delete owner/ and the check-site exception).
