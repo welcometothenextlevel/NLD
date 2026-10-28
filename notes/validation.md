@@ -467,3 +467,7 @@ Business Profile and Search Console operations are outside this website update.
 - New /owner/ (owner/index.html): English page confirming Amin Hamdi owns and runs Next Digital Level, with his date of birth and residential address, as he asked for his Australian visa file. Not linked from anywhere (owner's request: no footer link), noindex/nofollow/noarchive, not in the sitemap, no JSON-LD. Lives in a subfolder so offer/reviews/structured-data scripts skip it; check-site allows lang="en" there only.
 - No commercial-register number: the business is a sole proprietorship below the registration threshold (owner, 2026-10-27).
 - Take it down once the visa is decided (delete owner/ and the check-site exception).
+
+## 2026-10-28 — Review from Troy Petersen
+
+- Added Troy Petersen's 5-star review word for word (English; tags speed + design). RATED 11 → 12 (profile shows 12). check-site PASS.
